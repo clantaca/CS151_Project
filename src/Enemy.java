@@ -8,7 +8,7 @@ public class Enemy extends Character{
 	int power; 
 	
 	public void createRandomEnemy(int currentPower) {
-		
+		double ran = Math.random();
 	}
 	
 	public void attackUser() {
@@ -22,18 +22,19 @@ public class Enemy extends Character{
 	public String toString() {
 		
 		String result = "";
-		//change
-		result += "\nHealth				: " + this.hp;
-		result += "\nPhysical Damage	: " + this.dmg;
-		result += "\nArmor				: " + this.arm;
-		result += "\nCold Damage		: " + this.cold;
-		result += "\nPoison Damage		: " + this.poison;
-		result += "\nFire Damage		: " + this.fire;
-		result += "\nLightning Damage	: " + this.lightning;
-		result += "\nCold Resistance	: " + this.cRes;
-		result += "\nPoison Resistance	: " + this.pRes;
-		result += "\nFire Resistance	: " + this.fRes;
-		result += "\nLighning Resistance: " + this.lRes;
+		
+		result += "Power			: " + this.power + "\n";		
+		result += "Health			: " + this.hp + "\n";
+		result += "Physical Damage		: " + this.dmg + "\n";
+		result += "Armor			: " + this.arm + "\n";
+		result += "Cold Damage		: " + this.cold + "\n";
+		result += "Poison Damage		: " + this.poison + "\n";
+		result += "Fire Damage		: " + this.fire + "\n";
+		result += "Lightning Damage	: " + this.lightning + "\n";
+		result += "Cold Resistance		: " + this.cRes + "\n";
+		result += "Poison Resistance	: " + this.pRes + "\n";
+		result += "Fire Resistance		: " + this.fRes + "\n";
+		result += "Lighning Resistance	: " + this.lRes + "\n";
 		
 		return result;
 					
