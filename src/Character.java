@@ -6,9 +6,7 @@ abstract class Character {
 	
 	int hp;		//health points
 	int dmg;	//physical damage
-	int ap;		//ability power (magic dmg)
 	int arm;	//armor
-	int mr;		//magic resist
 	int cRes;	//cold resist
 	int pRes;	//poison resist
 	int fRes;	//fire resist
@@ -30,28 +28,12 @@ abstract class Character {
 		this.dmg = dmg;
 	}
 
-	public int getAp() {
-		return ap;
-	}
-
-	public void setAp(int ap) {
-		this.ap = ap;
-	}
-
 	public int getArm() {
 		return arm;
 	}
 
 	public void setArm(int arm) {
 		this.arm = arm;
-	}
-
-	public int getMr() {
-		return mr;
-	}
-
-	public void setMr(int mr) {
-		this.mr = mr;
 	}
 
 	public int getcRes() {
