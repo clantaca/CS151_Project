@@ -4,14 +4,14 @@ abstract class Character {
 //Christine Test
 //Jonathan Test
 	
-	int health;
-	int pDmg;
-	int mDmg;
-	int armor;
-	int mRes;
-	int cRes;
-	int pRes;
-	int fRes;
-	int lRes;
+	int hp;		//health points
+	int dmg;	//physical damage
+	int ap;		//ability power (magic dmg)
+	int arm;	//armor
+	int mr;		//magic resist	
+	int cRes;	//cold resist 
+	int pRes;	//poison resist
+	int fRes;	//fire resist
+	int lRes;	//lightning resist
 	
 }
