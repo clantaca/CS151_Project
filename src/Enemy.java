@@ -21,15 +21,29 @@ public class Enemy extends Character{
 	
 	public String toString() {
 		
-		return "";
+		String result = "";
+		
+		result += "\nHealth				: " + this.hp;
+		result += "\nPhysical Damage	: " + this.dmg;
+		result += "\nArmor				: " + this.arm;
+		result += "\nCold Damage		: " + this.cold;
+		result += "\nPoison Damage		: " + this.poison;
+		result += "\nFire Damage		: " + this.fire;
+		result += "\nLightning Damage	: " + this.lightning;
+		result += "\nCold Resistance	: " + this.cRes;
+		result += "\nPoison Resistance	: " + this.pRes;
+		result += "\nFire Resistance	: " + this.fRes;
+		result += "\nLighning Resistance: " + this.lRes;
+		
+		return result;
 				
 				
 	}
 	
 	public static void main(String[] args) {
 		
-		
-		System.out.println("test");
+		Enemy firstEnemy = new Enemy();
+		System.out.println(firstEnemy);
 	}
 	
 }
