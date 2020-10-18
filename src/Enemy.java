@@ -22,7 +22,7 @@ public class Enemy extends Character{
 	public String toString() {
 		
 		String result = "";
-		
+		//change
 		result += "\nHealth				: " + this.hp;
 		result += "\nPhysical Damage	: " + this.dmg;
 		result += "\nArmor				: " + this.arm;
