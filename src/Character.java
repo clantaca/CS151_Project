@@ -7,10 +7,46 @@ abstract class Character {
 	int hp;		//health points
 	int dmg;	//physical damage
 	int arm;	//armor
+	int cold;	//cold damage
+	int poison;	//poison damage
+	int fire;	//fire damage
+	int lightning;	//lightning damage
 	int cRes;	//cold resist
 	int pRes;	//poison resist
 	int fRes;	//fire resist
 	int lRes;	//lightning resist
+
+	public int getCold() {
+		return cold;
+	}
+
+	public void setCold(int cold) {
+		this.cold = cold;
+	}
+
+	public int getPoison() {
+		return poison;
+	}
+
+	public void setPoison(int poison) {
+		this.poison = poison;
+	}
+
+	public int getFire() {
+		return fire;
+	}
+
+	public void setFire(int fire) {
+		this.fire = fire;
+	}
+
+	public int getLightning() {
+		return lightning;
+	}
+
+	public void setLightning(int lightning) {
+		this.lightning = lightning;
+	}
 
 	public int getHp() {
 		return hp;
