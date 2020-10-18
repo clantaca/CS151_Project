@@ -36,8 +36,7 @@ public class Enemy extends Character{
 		result += "\nLighning Resistance: " + this.lRes;
 		
 		return result;
-				
-				
+					
 	}
 	
 	public static void main(String[] args) {
