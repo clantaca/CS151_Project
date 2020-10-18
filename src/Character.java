@@ -5,5 +5,13 @@ abstract class Character {
 //Jonathan Test
 	
 	int health;
+	int pDmg;
+	int mDmg;
+	int armor;
+	int mRes;
+	int cRes;
+	int pRes;
+	int fRes;
+	int lRes;
 	
 }
