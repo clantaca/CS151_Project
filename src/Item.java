@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+public class Item {
+    public static void main(String[] args) {
 
-public class Item extends Character {
-    List<Character> items = new ArrayList<Character>(){
-
-    };
-        }
+    }
+}

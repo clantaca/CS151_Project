@@ -104,5 +104,4 @@ abstract class Character {
 		this.lRes = lRes;
 	}
 
-	
 }

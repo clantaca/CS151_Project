@@ -26,10 +26,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bc4ecb8-c9df-4489-bb25-631aeb903c6b" name="Default Changelist" comment="asdf">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a7d64824-cd47-4f82-86fc-2de52802d6ed" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,22 +51,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -93,14 +79,7 @@
       <option name="project" value="LOCAL" />
       <updated>1603061122832</updated>
     </task>
-    <task id="LOCAL-00003" summary="extra damages">
-      <created>1603061712693</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1603061712693</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,40 +99,34 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="getters and setters" />
     <MESSAGE value="magic removed" />
-    <MESSAGE value="extra damages" />
-    <MESSAGE value="asdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="asdf" />
+    <option name="LAST_COMMIT_MESSAGE" value="magic removed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603062139217">
+    <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser" timestamp="1603061588432">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="414" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603062139217" />
-    <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser" timestamp="1603062680201">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603062680201" />
+    <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061588432" />
     <state x="598" y="361" key="MultipleFileMergeDialog" timestamp="1603060784050">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="598" y="361" key="MultipleFileMergeDialog/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603060784050" />
-    <state x="440" y="174" key="SettingsEditor" timestamp="1603062326551">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1603062335239">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1603062335239" />
+    <state x="552" y="333" key="Vcs.Push.Dialog.v2" timestamp="1603061128449">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="440" y="174" key="SettingsEditor/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603062326551" />
-    <state x="552" y="333" key="Vcs.Push.Dialog.v2" timestamp="1603061714294">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="552" y="333" key="Vcs.Push.Dialog.v2/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061714294" />
+    <state x="552" y="333" key="Vcs.Push.Dialog.v2/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061128449" />
   </component>
 </project>
