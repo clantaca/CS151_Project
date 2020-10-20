@@ -1,6 +1,7 @@
 public class Enemy extends Character{
 	
-	private enum dmgTypeEnum {
+	//every mob has a damage type they can only deal that boosts an offensive stat
+	private enum DmgTypeEnum {
 		PHYSICAL,
 		COLD,
 		POISON,
@@ -8,44 +9,61 @@ public class Enemy extends Character{
 		LIGHTNING
 	}
 	
-	final int NUMBER_OF_ENEMIES = 2;
-	final int POWER_NEEDED_TO_SUMMON_BOSS = 10;
+	//every mob has a natural resistance that boosts a defensive stat; idk if we want it to be seen in it's name tho
+	private enum ResTypeEnum {
+		FOREST,	//armor
+		TUNDRA,	//cold resistance
+		SWAMP,	//poison resistance
+		DESSERT,//fire resistance
+		MOUNTIN	//lightning resistance
+	}
 	
-	final int POWER_INCREASE_OF_COMMON_MOBS = 5;
-	final int POWER_INCREASE_OF_COMMON_BOSS = 8;
+	DmgTypeEnum 	dmgType;
+	ResTypeEnum 	resType;
 	
-	/*
-	 * power increases by 1 after each enemy is defeated
-	 * when power is at 10, boss is summoned
-	 */
-	static int power = 0; 
-	dmgTypeEnum dmgType;
+	final int 		NUMBER_OF_ENEMIES = 5;					//change this whenever you want to add more enemies 
+	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 10;			
 	
+	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
+	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
 	
-	//constructor
+	static int 		power = 0; 							//power is how strong a mob is; boss is summoned on power 10
+	
+	//----------------------------------------------------------------------------------------
+	
+	//Constructor- chooses a random enemy type and gives stats representative of that type
 	public Enemy() {
 		
+		this.setName(""); //need to initialize
 		int enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
 		
 		if (++power == POWER_NEEDED_TO_SUMMON_BOSS) {
 			enemyTypeID = 100; //the boss's id
 		}
 		
-		//just give it some random basic stats
+		//Load random stats to enemy that aren't very good
 		createGenericEnemy();
 
 		switch (enemyTypeID) {
 
 		case 1: 
-			createZombie();
+			createZombie();		//physical
 			break;
 
 		case 2: 
-			createSkeleton();
+			createSkeleton();	//cold
 			break;
 
 		case 3: 
-			createWitch();
+			createWitch();		//poison
+			break;
+			
+		case 4:
+			createWarlock();	//fire
+			break;
+			
+		case 5:
+			createWolf();		//lightning
 			break;
 			
 		case 100:
@@ -59,40 +77,66 @@ public class Enemy extends Character{
 		
 	}
 	
-	public void createZombie() {
+	//----------------------------------------------------------------------------------------
+	
+	//Below are the methods that create a specific mob 
+	private void createZombie() {
 		
-		dmgType = dmgTypeEnum.PHYSICAL;
-		this.setName("Slapping zombie");
-		this.setDmg(power + POWER_INCREASE_OF_COMMON_MOBS);
+		dmgType = DmgTypeEnum.PHYSICAL;
+		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		concatateToName("zombie");
 		
 	}
 	
-	public void createSkeleton() {
+	private void createSkeleton() {
 		
-		dmgType = dmgTypeEnum.COLD;
-		this.setName("Freezing skeleton");
-		this.setCold(power + POWER_INCREASE_OF_COMMON_MOBS);
-		
-	}
-	
-	public void createWitch() {
-		
-		dmgType = dmgTypeEnum.POISON;
-		this.setName("Poisonous witch");
-		this.setPoison(power + POWER_INCREASE_OF_COMMON_MOBS);
+		dmgType = DmgTypeEnum.COLD;
+		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		concatateToName("skeleton");
 		
 	}
 	
-	public void createGiantBoss() {
+	private void createWitch() {
 		
-		dmgType = dmgTypeEnum.POISON;
-		this.setName("The Boss- Giant");
-		this.setDmg(power + POWER_INCREASE_OF_COMMON_BOSS);
+		dmgType = DmgTypeEnum.POISON;
+		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		concatateToName("witch");
+		
+	}
+	
+	private void createWarlock() {
+		
+		dmgType = DmgTypeEnum.FIRE;
+		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		concatateToName("warlock");
+		
+	}
+	
+	private void createWolf() {
+		
+		dmgType = DmgTypeEnum.LIGHTNING;
+		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		concatateToName("wolf");
+		
+	}
+	
+	//no, it's not a giant (big) boss, it's a giant (species)
+	private void createGiantBoss() {
+		
+		dmgType = DmgTypeEnum.PHYSICAL;
+		setDmgType(dmgType, POWER_INCREASE_OF_THE_BOSS);
+		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
+		concatateToName("GIANT BOSS");
 		
 	}
 	
 	//I'm lazy, so this class will give generic stats that we override later
-	public void createGenericEnemy() {
+	private void createGenericEnemy() {
 		
 		final int ALLOWED_POWER_VARIANCE = 3;
 		int randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
@@ -130,6 +174,92 @@ public class Enemy extends Character{
 		this.setlRes(power + randomInt);
 		
 	}
+
+	//assign a damage type to a mob
+	private void setDmgType(DmgTypeEnum dmgType, int powerIncrease) {
+		
+		switch(dmgType) {
+		
+		case PHYSICAL:
+			
+			concatateToName("Punching");
+			this.setDmg(power + powerIncrease);
+			break;
+			
+		case COLD:
+			
+			concatateToName("Freezing");
+			this.setCold(power + powerIncrease);
+			break;
+			
+		case POISON:
+			
+			concatateToName("Poisonous");
+			this.setPoison(power + powerIncrease);
+			break;
+			
+		case FIRE:
+			
+			concatateToName("Firey");
+			this.setFire(power + powerIncrease);
+			break;
+			
+		case LIGHTNING:
+			
+			concatateToName("Electrified");
+			this.setLightning(power + powerIncrease);
+			break;
+			
+		}
+		
+	}
+	
+	//each mob will get a natural resistance against a certain attack type
+	private void setNaturalRes(int powerIncrease) {
+		
+		int resTypeID = generateRandomInt(ResTypeEnum.values().length);
+		
+		switch(resTypeID) {
+		
+		case 1:
+			
+			resType = ResTypeEnum.FOREST;
+			concatateToName("forest");
+			this.setArm(power + powerIncrease);
+			break;
+		
+		case 2:
+			
+			resType = ResTypeEnum.TUNDRA;
+			concatateToName("tundra");
+			this.setcRes(power + powerIncrease);
+			break;
+			
+		case 3:
+			
+			resType = ResTypeEnum.SWAMP;
+			concatateToName("swamp");
+			this.setpRes(power + powerIncrease);
+			break;
+			
+		case 4:
+			
+			resType = ResTypeEnum.DESSERT;
+			concatateToName("dessert");
+			this.setfRes(power + powerIncrease);
+			break;
+			
+		case 5:
+			
+			resType = ResTypeEnum.MOUNTIN;
+			concatateToName("mountin");
+			this.setlRes(power + powerIncrease);
+			break;
+		
+		}
+		
+		
+	}
 	
 	//will generate a random number given upper limit
 	//ex: an upper limit of "2" will return wither 1 or 2
@@ -137,56 +267,57 @@ public class Enemy extends Character{
 		return (int) (Math.random() * upperLimit + 1);
 	}
 	
+	private void concatateToName(String str) {
+		this.setName(this.getName() + str + " ");
+	}
+	
+	//----------------------------------------------------------------------------------------
+	
+	//will decrease player's health depending on how much damage the enemy can do and the player's resistance to that dmgType
 	public void attackUser(Player player) {
-		
-		int currPlayerHealth = player.getHp();
-		int dmgTaken;
 		
 		switch(dmgType) {
 		
 			case PHYSICAL:
-				dmgTaken = calculateDmgTaken(getDmg(), player.getArm());
-				player.setHp(currPlayerHealth - dmgTaken);
+				calculateDmgTaken(getDmg(), player.getArm(), player);
 				break;
 			
 			case COLD:
-				dmgTaken = calculateDmgTaken(getCold(), player.getcRes());
-				player.setHp(currPlayerHealth - dmgTaken);
+				calculateDmgTaken(getCold(), player.getcRes(), player);
 				break;
 				
 			case POISON:
-				dmgTaken = calculateDmgTaken(getPoison(), player.getpRes());
-				player.setHp(currPlayerHealth - dmgTaken);
+				calculateDmgTaken(getPoison(), player.getpRes(), player);
 				break;
 			
 			case FIRE:
-				dmgTaken = calculateDmgTaken(getFire(), player.getfRes());
-				player.setHp(currPlayerHealth - dmgTaken);
+				calculateDmgTaken(getFire(), player.getfRes(), player);
 				break;
 			
 			case LIGHTNING:
-				dmgTaken = calculateDmgTaken(getLightning(), player.getlRes());
-				player.setHp(currPlayerHealth - dmgTaken);
+				calculateDmgTaken(getLightning(), player.getlRes(), player);
 				break;
 			
 		}
 		
 	}
 	
-	//helper method of attackUser that helps calculate damgae taken
-	//arguments: how much dmg the enemy is capable is doing, and the player's def against that type
-	private int calculateDmgTaken(int enemyDmg, int playerDef) {
+	//helper method of attackUser that helps calculate damage taken
+	//arguments: how much dmg the enemy is capable is doing, and the player's def against that type, and the player object
+	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
 		
 		int dmgTaken = enemyDmg - playerDef;
 		
 		if (dmgTaken < 0)
-			return 0;
-		else
-			return dmgTaken;
+			dmgTaken = 0;
+		
+		player.setHp(player.getHp() - dmgTaken);
 		
 	}
 	
-	//Call this once enemy has been defeated to give player the new item the enemy dropped
+	//----------------------------------------------------------------------------------------
+	
+	//Player class calls this once enemy has been defeated to give player the new item the enemy dropped
 	public void enemyHasBeenDefeated(Player player) {
 		
 		//create a new array that has size incremented 
@@ -206,24 +337,27 @@ public class Enemy extends Character{
 		
 	}
 	
+	//----------------------------------------------------------------------------------------
+	
 	public String toString() {
 		
 		String result = "";
 		
-		result += "Name 			: " + getName() + "\n";	
-		result += "Damage Type 		: " + this.dmgType + "\n";	
-		result += "Power			: " + Enemy.power + "\n";		
-		result += "Health			: " + getHp() + "\n";
-		result += "Physical Damage		: " + getDmg() + "\n";
-		result += "Armor			: " + getArm() + "\n";
-		result += "Cold Damage		: " + getCold() + "\n";
-		result += "Poison Damage		: " + getPoison() + "\n";
-		result += "Fire Damage		: " + getFire() + "\n";
-		result += "Lightning Damage	: " + getLightning() + "\n";
-		result += "Cold Resistance		: " + getcRes() + "\n";
-		result += "Poison Resistance	: " + getpRes() + "\n";
-		result += "Fire Resistance		: " + getfRes() + "\n";
-		result += "Lighning Resistance	: " + getlRes() + "\n";
+		result += "Power			: " 		+ Enemy.power + "\n";	
+		result += "Name 			: " 		+ this.getName() + "\n";	
+		result += "Damage Type 		: " 		+ this.dmgType + "\n";	
+		result += "Natural Resistance 	: " 	+ this.resType + "\n";		
+		result += "Health			: " 		+ this.getHp() + "\n";
+		result += "Physical Damage		: " 	+ this.getDmg() + "\n";
+		result += "Armor			: " 		+ this.getArm() + "\n";
+		result += "Cold Damage		: " 		+ this.getCold() + "\n";
+		result += "Poison Damage		: " 	+ this.getPoison() + "\n";
+		result += "Fire Damage		: " 		+ this.getFire() + "\n";
+		result += "Lightning Damage	: " 		+ this.getLightning() + "\n";
+		result += "Cold Resistance		: " 	+ this.getcRes() + "\n";
+		result += "Poison Resistance	: " 	+ this.getpRes() + "\n";
+		result += "Fire Resistance		: " 	+ this.getfRes() + "\n";
+		result += "Lighning Resistance	: " 	+ this.getlRes() + "\n";
 		
 		return result;
 					
@@ -231,8 +365,14 @@ public class Enemy extends Character{
 	
 	public static void main(String[] args) {
 		
-		Enemy firstEnemy = new Enemy();
-		System.out.println(firstEnemy);
+		Enemy newEnemy;
+		
+		for (int i = 0; i < 10; i++) {
+			
+			newEnemy = new Enemy();
+			System.out.println(newEnemy);
+			
+		}
 	}
 	
 }
