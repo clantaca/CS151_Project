@@ -141,37 +141,37 @@ public class Enemy extends Character{
 		final int ALLOWED_POWER_VARIANCE = 3;
 		int randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setHp(power + randomInt);
+		this.getMyStats().setHp(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setDmg(power + randomInt);
+		this.getMyStats().setDmg(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setArm(power + randomInt);
+		this.getMyStats().setArm(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setCold(power + randomInt);
+		this.getMyStats().setCold(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setPoison(power + randomInt);
+		this.getMyStats().setPoison(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setFire(power + randomInt);
+		this.getMyStats().setFire(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setLightning(power + randomInt);
+		this.getMyStats().setLightning(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setcRes(power + randomInt);
+		this.getMyStats().setcRes(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setpRes(power + randomInt);
+		this.getMyStats().setpRes(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setfRes(power + randomInt);
+		this.getMyStats().setfRes(power + randomInt);
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
-		this.setlRes(power + randomInt);
+		this.getMyStats().setlRes(power + randomInt);
 		
 	}
 
@@ -183,31 +183,31 @@ public class Enemy extends Character{
 		case PHYSICAL:
 			
 			concatateToName("Punching");
-			this.setDmg(power + powerIncrease);
+			this.getMyStats().setDmg(power + powerIncrease);
 			break;
 			
 		case COLD:
 			
 			concatateToName("Freezing");
-			this.setCold(power + powerIncrease);
+			this.getMyStats().setCold(power + powerIncrease);
 			break;
 			
 		case POISON:
 			
 			concatateToName("Poisonous");
-			this.setPoison(power + powerIncrease);
+			this.getMyStats().setPoison(power + powerIncrease);
 			break;
 			
 		case FIRE:
 			
 			concatateToName("Firey");
-			this.setFire(power + powerIncrease);
+			this.getMyStats().setFire(power + powerIncrease);
 			break;
 			
 		case LIGHTNING:
 			
 			concatateToName("Electrified");
-			this.setLightning(power + powerIncrease);
+			this.getMyStats().setLightning(power + powerIncrease);
 			break;
 			
 		}
@@ -225,35 +225,35 @@ public class Enemy extends Character{
 			
 			resType = ResTypeEnum.FOREST;
 			concatateToName("forest");
-			this.setArm(power + powerIncrease);
+			this.getMyStats().setArm(power + powerIncrease);
 			break;
 		
 		case 2:
 			
 			resType = ResTypeEnum.TUNDRA;
 			concatateToName("tundra");
-			this.setcRes(power + powerIncrease);
+			this.getMyStats().setcRes(power + powerIncrease);
 			break;
 			
 		case 3:
 			
 			resType = ResTypeEnum.SWAMP;
 			concatateToName("swamp");
-			this.setpRes(power + powerIncrease);
+			this.getMyStats().setpRes(power + powerIncrease);
 			break;
 			
 		case 4:
 			
 			resType = ResTypeEnum.DESSERT;
 			concatateToName("dessert");
-			this.setfRes(power + powerIncrease);
+			this.getMyStats().setfRes(power + powerIncrease);
 			break;
 			
 		case 5:
 			
 			resType = ResTypeEnum.MOUNTIN;
 			concatateToName("mountin");
-			this.setlRes(power + powerIncrease);
+			this.getMyStats().setlRes(power + powerIncrease);
 			break;
 		
 		}
@@ -279,23 +279,23 @@ public class Enemy extends Character{
 		switch(dmgType) {
 		
 			case PHYSICAL:
-				calculateDmgTaken(getDmg(), player.getArm(), player);
+				calculateDmgTaken(this.getMyStats().getDmg(), player.getMyStats().getArm(), player);
 				break;
 			
 			case COLD:
-				calculateDmgTaken(getCold(), player.getcRes(), player);
+				calculateDmgTaken(this.getMyStats().getCold(), player.getMyStats().getcRes(), player);
 				break;
 				
 			case POISON:
-				calculateDmgTaken(getPoison(), player.getpRes(), player);
+				calculateDmgTaken(this.getMyStats().getPoison(), player.getMyStats().getpRes(), player);
 				break;
 			
 			case FIRE:
-				calculateDmgTaken(getFire(), player.getfRes(), player);
+				calculateDmgTaken(this.getMyStats().getFire(), player.getMyStats().getfRes(), player);
 				break;
 			
 			case LIGHTNING:
-				calculateDmgTaken(getLightning(), player.getlRes(), player);
+				calculateDmgTaken(this.getMyStats().getLightning(), player.getMyStats().getlRes(), player);
 				break;
 			
 		}
@@ -311,7 +311,7 @@ public class Enemy extends Character{
 		if (dmgTaken < 0)
 			dmgTaken = 0;
 		
-		player.setHp(player.getHp() - dmgTaken);
+		player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 		
 	}
 	
@@ -347,17 +347,17 @@ public class Enemy extends Character{
 		result += "Name 			: " 		+ this.getName() + "\n";	
 		result += "Damage Type 		: " 		+ this.dmgType + "\n";	
 		result += "Natural Resistance 	: " 	+ this.resType + "\n";		
-		result += "Health			: " 		+ this.getHp() + "\n";
-		result += "Physical Damage		: " 	+ this.getDmg() + "\n";
-		result += "Armor			: " 		+ this.getArm() + "\n";
-		result += "Cold Damage		: " 		+ this.getCold() + "\n";
-		result += "Poison Damage		: " 	+ this.getPoison() + "\n";
-		result += "Fire Damage		: " 		+ this.getFire() + "\n";
-		result += "Lightning Damage	: " 		+ this.getLightning() + "\n";
-		result += "Cold Resistance		: " 	+ this.getcRes() + "\n";
-		result += "Poison Resistance	: " 	+ this.getpRes() + "\n";
-		result += "Fire Resistance		: " 	+ this.getfRes() + "\n";
-		result += "Lighning Resistance	: " 	+ this.getlRes() + "\n";
+		result += "Health			: " 		+ this.getMyStats().getHp() + "\n";
+		result += "Physical Damage		: " 	+ this.getMyStats().getDmg() + "\n";
+		result += "Armor			: " 		+ this.getMyStats().getArm() + "\n";
+		result += "Cold Damage		: " 		+ this.getMyStats().getCold() + "\n";
+		result += "Poison Damage		: " 	+ this.getMyStats().getPoison() + "\n";
+		result += "Fire Damage		: " 		+ this.getMyStats().getFire() + "\n";
+		result += "Lightning Damage	: " 		+ this.getMyStats().getLightning() + "\n";
+		result += "Cold Resistance		: " 	+ this.getMyStats().getcRes() + "\n";
+		result += "Poison Resistance	: " 	+ this.getMyStats().getpRes() + "\n";
+		result += "Fire Resistance		: " 	+ this.getMyStats().getfRes() + "\n";
+		result += "Lighning Resistance	: " 	+ this.getMyStats().getlRes() + "\n";
 		
 		return result;
 					

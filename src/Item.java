@@ -1,4 +1,4 @@
-public class Item extends Character {
+public class Item extends Stats {
     public int value;
     public String itemName;
     
