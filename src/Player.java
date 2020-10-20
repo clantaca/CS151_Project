@@ -33,5 +33,13 @@ public class Player extends Character {
     public static void main(String[] args) {
 
     }
+
+	public Item[] getItem() {
+		return item;
+	}
+
+	public void setItem(Item[] item) {
+		this.item = item;
+	}
 }
 

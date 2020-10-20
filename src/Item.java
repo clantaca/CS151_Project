@@ -11,7 +11,7 @@ public class Item extends Character {
     	
     	if (randomItem == 1)
     		Wand(10);
-    	else if (randomItem == 1)
+    	else if (randomItem == 2)
     		Sword(2);
     	else
     		Shield(3);

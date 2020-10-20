@@ -1,9 +1,7 @@
 
 abstract class Character {
-//Edward Test 2
-//Christine Test
-//Jonathan Test
-	
+
+	String name;//the entity's name
 	int hp;		//health points
 	int dmg;	//physical damage
 	int arm;	//armor
@@ -16,6 +14,15 @@ abstract class Character {
 	int fRes;	//fire resist
 	int lRes;	//lightning resist
 
+	//things would get confusing if they didn't have names
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public int getCold() {
 		return cold;
 	}
