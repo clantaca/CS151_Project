@@ -37,7 +37,7 @@ public class Enemy extends Character{
 		this.setName(""); //need to initialize
 		int enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
 		
-		if (++power == POWER_NEEDED_TO_SUMMON_BOSS) {
+		if (++power % POWER_NEEDED_TO_SUMMON_BOSS == 0) {
 			enemyTypeID = 100; //the boss's id
 		}
 		
@@ -367,7 +367,7 @@ public class Enemy extends Character{
 		
 		Enemy newEnemy;
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			
 			newEnemy = new Enemy();
 			System.out.println(newEnemy);
