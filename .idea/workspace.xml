@@ -26,10 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7d64824-cd47-4f82-86fc-2de52802d6ed" name="Default Changelist" comment="">
+    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,23 +47,40 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
+  <component name="RunManager">
+    <configuration name="Player" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Player" />
+      <module name="CS151_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Player" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a7d64824-cd47-4f82-86fc-2de52802d6ed" name="Default Changelist" comment="" />
+      <changelist id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="" />
       <created>1603059981305</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603059981305</updated>
       <workItem from="1603059988065" duration="3000" />
+      <workItem from="1603209131004" duration="1339000" />
+      <workItem from="1603566222213" duration="11552000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
@@ -81,6 +98,9 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -116,6 +136,14 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061588432" />
+    <state x="531" y="259" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1603209294089">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="531" y="259" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.738@0.0.1366.738" timestamp="1603209294089" />
+    <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1603209290104">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1603209290104" />
     <state x="598" y="361" key="MultipleFileMergeDialog" timestamp="1603060784050">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -128,5 +156,9 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="552" y="333" key="Vcs.Push.Dialog.v2/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061128449" />
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1603571977088">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1603571977088" />
   </component>
 </project>
