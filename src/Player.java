@@ -8,15 +8,12 @@ public class Player extends Character {
         this.setName(name);
         this.N = 10; // fixed inventory size
         this.item = new Item[N];
-        // initializing all items to null
-        for (int i = 0; i < N; i++) {
-            this.item = null;
-        }
 
         // default values for each new player
         this.getMyStats().setHp(100);
         this.getMyStats().setDmg(5);
         this.getMyStats().setArm(5);
+        this.getMyStats().setMana(20);
         this.getMyStats().setcRes(randomInt(0,5));
         this.getMyStats().setpRes(randomInt(0,5));
         this.getMyStats().setfRes(randomInt(0,5));
@@ -79,6 +76,8 @@ public class Player extends Character {
             specialAttack++;
         }
 
+        increaseMana();
+
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
             enemy.getMyStats().setHp(0);
@@ -99,6 +98,8 @@ public class Player extends Character {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
             specialAttack++;
         }
+
+        increaseMana();
 
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
@@ -121,6 +122,8 @@ public class Player extends Character {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
         }
 
+        increaseMana();
+
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
             enemy.getMyStats().setHp(0);
@@ -141,6 +144,8 @@ public class Player extends Character {
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
         }
+
+        increaseMana();
 
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
@@ -163,19 +168,50 @@ public class Player extends Character {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
         }
 
+        increaseMana();
+
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
             enemy.getMyStats().setHp(0);
         }
     }
 
+    public void increaseMana() {
+        int cMana = getMyStats().getMana()+2;
+        if (cMana >= 20) {
+            getMyStats().setMana(20);
+        }
+        else {
+            getMyStats().setMana(cMana);
+        }
+    }
+
     // returns true is attack if blocked, enemy cannot damage player
-    public boolean blockEnemy(Enemy enemy) {
+    public boolean blockEnemy() {
+        int cMana = getMyStats().getMana()+5;
+        if (cMana >= 20) {
+            getMyStats().setMana(20);
+        }
+        else {
+            getMyStats().setMana(cMana);
+        }
         return true;
     }
 
+    public boolean useScroll() {
+        int cMana = getMyStats().getMana()-10;
+        if(cMana <= 0) {
+            getMyStats().setMana(0);
+        }
+        else {
+            getMyStats().setMana(cMana);
+        }
+        return true;
+    }
     // updates inventory with obtained item
     public void updateInventory(Item item) {
+        if (item == null)
+            throw new NullPointerException("Item is null");
         for (int i = 0; i < N; i++) {
             if (this.item[i] == null) {
                 this.item[i] = item;
@@ -185,9 +221,7 @@ public class Player extends Character {
     }
 
     // checks if there is space in inventory to add item
-    public boolean checkInventory(Item item) {
-        if (item == null)
-            throw new NullPointerException("Item is null");
+    public boolean checkInventory() {
         for (int i = 0; i < N; i++) {
             if (this.item[i] == null) {
                 return true; // inventory has space
@@ -200,7 +234,7 @@ public class Player extends Character {
         System.out.println("Displaying inventory...");
         int count = 1;
         for (int i = 0; i < N; i++) {
-            System.out.println(count + ". " + item[1]);
+            System.out.println(count + ". " + item[i]);
             count++;
         }
     }
@@ -209,8 +243,12 @@ public class Player extends Character {
         return item;
 	}
 
+	public int getSpecialAttack() {
+        return specialAttack;
+    }
+
 	public void setItem(Item item) {
-        if (checkInventory(item)) {
+        if (checkInventory()) {
             updateInventory(item);
         }
         else
@@ -219,8 +257,25 @@ public class Player extends Character {
 
     public static void main(String[] args) {
         // Test
-        Player player = new Player("");
-        System.out.println(player.getMyStats());
+        Player player = new Player("Zero");
+        System.out.println(" *** CHARACTER STATS ***");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Hp: " + player.getMyStats().getHp());
+        System.out.println("Mana: " + player.getMyStats().getMana());
+        System.out.println("Armor: " + player.getMyStats().getArm());
+
+        System.out.println(" *** DAMAGE ***");
+        System.out.println("Physical Damage:" + player.getMyStats().getDmg());
+        System.out.println("Cold Damage:" + player.getMyStats().getCold());
+        System.out.println("Poison Damage:" + player.getMyStats().getPoison());
+        System.out.println("Fire Damage:" + player.getMyStats().getFire());
+        System.out.println("Lightning Damage:" + player.getMyStats().getLightning());
+
+        System.out.println(" *** RESISTANCES ***");
+        System.out.println("Cold Resistance:" + player.getMyStats().getcRes());
+        System.out.println("Poison Resistance:" + player.getMyStats().getpRes());
+        System.out.println("Fire Resistance:" + player.getMyStats().getfRes());
+        System.out.println("Lightning Resistance:" + player.getMyStats().getlRes());
     }
 }
 

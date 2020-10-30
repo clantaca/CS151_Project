@@ -27,15 +27,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS151_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS151_Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Stats.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,6 +56,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -54,7 +68,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Player">
     <configuration name="Player" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Player" />
       <module name="CS151_Project" />
@@ -62,9 +76,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CS151_Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Player" />
+        <item itemvalue="JUnit.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -80,7 +104,9 @@
       <updated>1603059981305</updated>
       <workItem from="1603059988065" duration="3000" />
       <workItem from="1603209131004" duration="1339000" />
-      <workItem from="1603566222213" duration="11552000" />
+      <workItem from="1603566222213" duration="11892000" />
+      <workItem from="1603662668662" duration="4123000" />
+      <workItem from="1604021552984" duration="12651000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
@@ -144,6 +170,38 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1603209290104" />
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1604050087722">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604050087722" />
+    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1604050087721">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604050087721" />
+    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1604050087721">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604050087721" />
+    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1604050087722">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604050087722" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1604040983386">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604040983386" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1604040983385">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1604040983385" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1604040983385">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1604040983385" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1604040983386">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1604040983386" />
     <state x="598" y="361" key="MultipleFileMergeDialog" timestamp="1603060784050">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -156,9 +214,21 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="552" y="333" key="Vcs.Push.Dialog.v2/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061128449" />
-    <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1603571977088">
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1604021620075">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1603571977088" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1604021620075" />
+    <state x="387" y="263" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604038799712">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="387" y="263" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.738@0.0.1366.738" timestamp="1604038799712" />
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1604048427472">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1604048427472" />
+    <state x="339" y="165" key="run.anything.popup" timestamp="1604034991797">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1604034991797" />
   </component>
 </project>

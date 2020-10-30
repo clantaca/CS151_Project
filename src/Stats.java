@@ -2,6 +2,7 @@
 public class Stats {
 
 	int hp;		//health points
+	int mana;
 	int dmg;	//physical damage
 	int arm;	//armor
 	int cold;	//cold damage
@@ -100,5 +101,9 @@ public class Stats {
 	public void setlRes(int lRes) {
 		this.lRes = lRes;
 	}
+
+	public int getMana() { return mana; }
+
+	public void setMana(int mana) { this.mana = mana; }
 	
 }
