@@ -1,7 +1,7 @@
 
 public class Stats {
 
-	static int hp;		//health points
+	int hp;		//health points
 	int mana;
 	int dmg;	//physical damage
 	int arm;	//armor
@@ -51,7 +51,7 @@ public class Stats {
 	}
 
 	public void setHp(int hp) {
-		Stats.hp = hp;
+		this.hp = hp;
 	}
 
 	public int getDmg() {
