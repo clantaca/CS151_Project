@@ -3,9 +3,17 @@ import java.util.ArrayList;
 public class Player extends Character {
 
     private int N; // size of inventory space
-    private Item item; // inventory of items
+    private Item item; //Item class to use methods
     private int specialAttack = 0; // increases after every attack
-    private ArrayList<Class<? extends Item>> inventory = new ArrayList<>();
+    private ArrayList<Class<? extends Item>> inventory = new ArrayList<>(); // inventory of items
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public Player(String name) {
         this.setName(name);
@@ -230,7 +238,7 @@ public class Player extends Character {
 	public int getSpecialAttack() {
         return specialAttack;
     }
-    
+
 
     public static void main(String[] args) {
         // Test
