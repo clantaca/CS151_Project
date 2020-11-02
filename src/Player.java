@@ -243,6 +243,14 @@ public class Player extends Character {
         return item;
 	}
 
+	//TODO add this to the start of each turn
+	//checks each item's special effects at the start of each turn
+	public void startOfTurn() {
+        for (Item a : item) {
+            a.specialEffect();
+        }
+    }
+
 	public int getSpecialAttack() {
         return specialAttack;
     }
