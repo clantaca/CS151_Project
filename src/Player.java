@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+
 public class Player extends Character {
 
     private int N; // size of inventory space
-    private Item[] item; // inventory of items
+    private Item item; // inventory of items
     private int specialAttack = 0; // increases after every attack
+    private ArrayList<Class<? extends Item>> inventory = new ArrayList<>();
 
     public Player(String name) {
         this.setName(name);
         this.N = 10; // fixed inventory size
-        this.item = new Item[N];
+        this.item = new Item();
 
         // default values for each new player
         this.getMyStats().setHp(100);
@@ -209,59 +212,25 @@ public class Player extends Character {
         return true;
     }
     // updates inventory with obtained item
-    public void updateInventory(Item item) {
-        if (item == null)
-            throw new NullPointerException("Item is null");
-        for (int i = 0; i < N; i++) {
-            if (this.item[i] == null) {
-                this.item[i] = item;
-                break;
-            }
-        }
+    public void updateInventory() {
+        inventory.add(item.getNewItem());
     }
 
-    // checks if there is space in inventory to add item
-    public boolean checkInventory() {
-        for (int i = 0; i < N; i++) {
-            if (this.item[i] == null) {
-                return true; // inventory has space
-            }
-        }
-        return false;
-    }
 
     public void displayInventory() {
         System.out.println("Displaying inventory...");
         int count = 1;
         for (int i = 0; i < N; i++) {
-            System.out.println(count + ". " + item[i]);
+            System.out.println(count + ". " + inventory.get(i));
             count++;
         }
     }
 
-	public Item[] getItem() {
-        return item;
-	}
-
-	//TODO add this to the start of each turn
-	//checks each item's special effects at the start of each turn
-	public void startOfTurn() {
-        for (Item a : item) {
-            a.specialEffect();
-        }
-    }
 
 	public int getSpecialAttack() {
         return specialAttack;
     }
-
-	public void setItem(Item item) {
-        if (checkInventory()) {
-            updateInventory(item);
-        }
-        else
-            System.out.println("Inventory Full. Cannot obtain item.");
-	}
+    
 
     public static void main(String[] args) {
         // Test
