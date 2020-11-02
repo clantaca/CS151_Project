@@ -7,6 +7,14 @@ public class Player extends Character {
     private int specialAttack = 0; // increases after every attack
     private ArrayList<Class<? extends Item>> inventory = new ArrayList<>(); // inventory of items
 
+    public ArrayList<Class<? extends Item>> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Class<? extends Item>> inventory) {
+        this.inventory = inventory;
+    }
+
     public Item getItem() {
         return item;
     }
@@ -222,6 +230,7 @@ public class Player extends Character {
     // updates inventory with obtained item
     public void updateInventory() {
         inventory.add(item.getNewItem());
+
     }
 
 
