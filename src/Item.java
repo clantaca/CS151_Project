@@ -14,7 +14,7 @@ public class Item extends Stats {
     public void test(){
     }
     //creates an array to put the items in
-    public ArrayList<Class<? extends Item>> Items = new ArrayList<>();
+    private ArrayList<Class<? extends Item>> Items = new ArrayList<>();
     public int weaponCounter;
     public int attackCounter;
     public int hitCounter;
