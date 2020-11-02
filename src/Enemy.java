@@ -14,7 +14,7 @@ public class Enemy extends Character{
 		FOREST,	//armor
 		TUNDRA,	//cold resistance
 		SWAMP,	//poison resistance
-		DESSERT,//fire resistance
+		DESERT,//fire resistance
 		MOUNTIN	//lightning resistance
 	}
 	
@@ -74,6 +74,12 @@ public class Enemy extends Character{
 		
 		//possible mobs; idk what to put yet
 		//giant, wolf, undead, ghost, zombie, skeleton, spider, bat, slime, giant rat, ghoul, vampire, orcs, cyclops, witch, wizard, warlock, mummy, ogre, minotaur, snake, scorpion, lich
+		
+	}
+	
+	public int getPower() {
+		
+		return Enemy.power;
 		
 	}
 	
@@ -244,8 +250,8 @@ public class Enemy extends Character{
 			
 		case 4:
 			
-			resType = ResTypeEnum.DESSERT;
-			concatateToName("dessert");
+			resType = ResTypeEnum.DESERT;
+			concatateToName("desert");
 			this.getMyStats().setfRes(power + powerIncrease);
 			break;
 			
