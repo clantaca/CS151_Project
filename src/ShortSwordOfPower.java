@@ -11,7 +11,7 @@ public class ShortSwordOfPower extends Item {
     }
 
     @Override
-    public void onHit() {
+    public void itemStats() {
         weaponCounter++;
         setDmg(randomInt(10,4));
         originalDmg = getDmg();

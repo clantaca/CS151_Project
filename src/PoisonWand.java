@@ -11,7 +11,7 @@ public class PoisonWand extends Item {
     }
 
     @Override
-    public void onTurn() {
+    public void itemStats() {
         setPoison(randomInt(8, 4));
         setCold(randomInt(4,1));
         setLightning(randomInt(4,2));

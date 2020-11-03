@@ -9,7 +9,7 @@ public class StonewallShield extends Item {
     }
 
     @Override
-    public void onTurn() {
+    public void itemStats() {
         setHp(randomInt(20,10));
         setlRes(randomInt(10,5));
         setcRes(randomInt(10,5));

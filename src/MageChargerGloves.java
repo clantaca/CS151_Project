@@ -9,7 +9,7 @@ public class MageChargerGloves extends Item {
     }
 
     @Override
-    public void onHit() {
+    public void itemStats() {
         setPoison(randomInt(4, 2));
         setCold(randomInt(4,2));
         setLightning(randomInt(4,2));
