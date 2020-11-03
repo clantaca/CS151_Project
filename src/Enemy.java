@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Enemy extends Character{
 	
 	//every mob has a damage type they can only deal that boosts an offensive stat
@@ -318,28 +320,6 @@ public class Enemy extends Character{
 			dmgTaken = 0;
 		
 		player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-		
-	}
-	
-	//----------------------------------------------------------------------------------------
-	
-	//Player class calls this once enemy has been defeated to give player the new item the enemy dropped
-	public void enemyHasBeenDefeated(Player player) {
-		
-		//create a new array that has size incremented 
-		Item[]	playerItems 	= player.getItem();
-		int		prevItemsLength	= playerItems.length;
-		
-		Item[] 	newPlayerItems 	= new Item[prevItemsLength];
-		Item 	newItemToAdd	= new Item();
-		
-		//copy old array into new one
-		for (int i = 0; i < prevItemsLength; i++) {
-			newPlayerItems[i] = playerItems[i];
-		}
-		
-		//add new item
-		newPlayerItems[prevItemsLength+1] = newItemToAdd;
 		
 	}
 	

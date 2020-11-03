@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameController {
 	
@@ -11,12 +13,20 @@ public class GameController {
 		this.enemy = enemy;
 		this.player = player;
 		
-		//this.combatView.addPhyAtkButListener(new PhyAtkListener());
+		this.combatView.addPhyAtkButListener(new PhyAtkListener());
 		
 	}
 	
-//	class PhyAtkListener implements ActionListner {
-//		
-//	}
+	class PhyAtkListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			int newHp = player.getMyStats().getDmg();
+			enemy.getMyStats().setHp(newHp);
+			
+		}
+		
+	}
 	
 }
