@@ -12,7 +12,7 @@ public class RejuvenatingChestplate extends Item {
     }
 
     @Override
-    public void takeHit() {
+    public void itemStats() {
         setHp(randomInt(50,25));
         setArm(randomInt(20,10));
         setcRes(randomInt(20,10));

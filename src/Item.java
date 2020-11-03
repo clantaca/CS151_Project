@@ -3,15 +3,10 @@ import java.util.ArrayList;
 public class Item extends Stats {
 
     //Variables that get overwritten in the other classes
-    public void onHit() { }
+    public void itemStats() { }
     public void specialEffect() { }
     public String getName() {
         return "item";
-    }
-    public void takeHit() { }
-    public void onTurn() {}
-    public void onHealthThreshold() {}
-    public void test(){
     }
     //creates an array to put the items in
     private ArrayList<Class<? extends Item>> Items = new ArrayList<>();

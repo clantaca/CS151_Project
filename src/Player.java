@@ -230,7 +230,6 @@ public class Player extends Character {
     // updates inventory with obtained item
     public void updateInventory() {
         inventory.add(item.getNewItem());
-
     }
 
 
