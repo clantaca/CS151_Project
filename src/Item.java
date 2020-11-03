@@ -2,6 +2,13 @@ import java.util.ArrayList;
 
 public class Item extends Stats {
 
+	//Start
+	private Player player;
+	public Item(Player player) {
+		this.player = player;
+	}
+	//End
+	
     //Variables that get overwritten in the other classes
     public void itemStats() { }
     public void specialEffect() { }

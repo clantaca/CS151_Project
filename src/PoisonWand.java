@@ -1,6 +1,20 @@
 public class PoisonWand extends Item {
 
-
+	//Start
+	public PoisonWand(Player player) {
+		
+		updatePlayerStats(player);
+		
+	}
+	
+	private void updatePlayerStats(Player player) {
+		
+		//Poison want increases player health by one
+		player.getMyStats().setHp(player.getMyStats().getHp() + 1);
+		
+	}
+	//End
+	
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
