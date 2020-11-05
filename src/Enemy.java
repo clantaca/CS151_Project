@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Enemy extends Character{
 	
 	//every mob has a damage type they can only deal that boosts an offensive stat

@@ -21,9 +21,16 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
-			int newHp = player.getMyStats().getDmg();
+			
+			int newHp = enemy.getMyStats().getHp() - player.getMyStats().getDmg();
 			enemy.getMyStats().setHp(newHp);
+			
+			if (enemy.getMyStats().getHp() <= 0) {
+				enemy = new Enemy();
+			}
+			
+			combatView.setEnemy(enemy);
+			combatView.resetVariables();
 			
 		}
 		

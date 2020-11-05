@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -116,13 +117,14 @@ public class CombatView extends JFrame{
 	
 	//Creates right panel and adds it
 	private void createEastPanel() {
-		
+
 		eastPanel = new JPanel();
 		eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.PAGE_AXIS));
 		eastPanel.add(Box.createRigidArea(new Dimension(PANEL_BORDER, PANEL_BORDER)));
 		eastPanel.setBackground(Color.ORANGE);
 		
 		enemyNameLabel = new JLabel(enemy.getName());
+		System.out.println(enemy.getName());
 		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
 		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());
 		enemyStatsBut = new JButton("Check Stats");
@@ -178,9 +180,29 @@ public class CombatView extends JFrame{
 	
 	//----------------------------------------------------------------------------------------
 	
+	public void setEnemy(Enemy enemy) {
+		this.enemy = enemy;
+	}
+	
+	public void resetVariables() {
+		
+		playerNameLabel.setText(player.getName());
+		playerHpLabel.setText("Health: " + player.getMyStats().getHp());
+		playerManaLabel.setText("Mana: " + player.getMyStats().getMana());
+		enemyNameLabel.setText(enemy.getName());
+		enemyHpLabel.setText("Health: " + enemy.getMyStats().getHp());
+		enemyPowerLabel.setText("Power: " + enemy.getPower());
+		
+	}
+	
 	//I don't think we'll ever use this, but it's here just in case
 	void displayErrorMsg (String errMsg) {
 		JOptionPane.showMessageDialog(this, errMsg);
+	}
+	
+	//repaint whenever action listener is called
+	public void actionPerformed(ActionEvent arg0) {
+		repaint();
 	}
 	
 	//----------------------------------------------------------------------------------------
