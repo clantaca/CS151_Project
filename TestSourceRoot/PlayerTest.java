@@ -16,12 +16,7 @@ public class PlayerTest {
         Player p = new Player("TestPlayer");
         assertTrue(p.useScroll(), "Scroll should be used by player");
     }
-
-    @Test
-    public void testEmptyInventory() {
-        Player p = new Player("TestPlayer");
-        assertTrue(p.checkInventory(), "Inventory should be empty and has space");
-    }
+    
     @Test
     public void testHp() {
         Player p = new Player("TestPlayer");
