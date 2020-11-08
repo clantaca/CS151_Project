@@ -5,13 +5,13 @@ public class Player extends Character {
     private int N; // size of inventory space
     private Item item; //Item class to use methods
     private int specialAttack = 0; // increases after every attack
-    private ArrayList<Class<? extends Item>> inventory = new ArrayList<>(); // inventory of items
+    private ArrayList<Item> inventory = new ArrayList<Item>(); // inventory of items
 
-    public ArrayList<Class<? extends Item>> getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Class<? extends Item>> inventory) {
+    public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
 
@@ -228,11 +228,17 @@ public class Player extends Character {
         return true;
     }
     // updates inventory with obtained item
-    public void updateInventory() {
-        Class<? extends Item> newItem = item.getNewItem();
+    public void updateInventory(Player player) {
+        Item newItem = item.getNewItem();
         inventory.add(newItem);
+        newItem.updatePlayerStats(player);
     }
 
+    public void startOfTurn(Player player) {
+        for (Item i : inventory) {
+            i.specialEffect(player);
+        }
+    }
 
     public void displayInventory() {
         System.out.println("Displaying inventory...");

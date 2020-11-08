@@ -1,16 +1,25 @@
 public class PoisonWand extends Item {
 
 	//Start
-	public PoisonWand(Player player) {
-		
+/*	public PoisonWand(Player player) {
+
 		updatePlayerStats(player);
-		
+
 	}
-	
-	private void updatePlayerStats(Player player) {
+
+    public PoisonWand() {
+
+    }*/
+
+    @Override
+    public void updatePlayerStats(Player player) {
 		
 		//Poison want increases player health by one
-		player.getMyStats().setHp(player.getMyStats().getHp() + 1);
+		player.getMyStats().setPoison(player.getMyStats().getPoison() + randomInt(8, 4));
+        player.getMyStats().setCold(player.getMyStats().getCold() + randomInt(8, 4));
+        player.getMyStats().setFire(player.getMyStats().getFire() + randomInt(8, 4));
+        player.getMyStats().setLightning(player.getMyStats().getLightning() + randomInt(8, 4));
+        player.getMyStats().setPoison(player.getMyStats().getPoison() + randomInt(8, 4));
 		
 	}
 	//End
@@ -34,7 +43,7 @@ public class PoisonWand extends Item {
     }
 
     @Override
-    public void specialEffect() {
+    public void specialEffect(Player player) {
         if (turnCounter == 1) {
             //TODO: MAKE IT APPLY A DEBUFF TO THE ENEMY WHERE THEY TAKE DAMAGE EVERY TURN
         }
