@@ -195,14 +195,15 @@ public class CombatView extends JFrame{
 		
 	}
 	
-	//I don't think we'll ever use this, but it's here just in case
-	void displayErrorMsg (String errMsg) {
-		JOptionPane.showMessageDialog(this, errMsg);
+	public void setPlayerDie() {
+		westPanel.setBackground(Color.RED);
+		centPanel.setBackground(Color.RED);
+		eastPanel.setBackground(Color.RED);
+		displayMessage("You are dead");
 	}
 	
-	//repaint whenever action listener is called
-	public void actionPerformed(ActionEvent arg0) {
-		repaint();
+	public void displayMessage (String msg) {
+		JOptionPane.showMessageDialog(this, msg);
 	}
 	
 	//----------------------------------------------------------------------------------------

@@ -312,10 +312,7 @@ public class Enemy extends Character{
 	//arguments: how much dmg the enemy is capable is doing, and the player's def against that type, and the player object
 	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
 		
-		int dmgTaken = enemyDmg - playerDef;
-		
-		if (dmgTaken < 0)
-			dmgTaken = 0;
+		int dmgTaken = (enemyDmg < playerDef) ? 0 : enemyDmg-playerDef;
 		
 		player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 		

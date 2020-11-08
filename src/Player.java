@@ -83,12 +83,13 @@ public class Player extends Character {
 
         int pdmg = randomizeDmg("Physical");
         int enemyRes = enemy.getMyStats().getArm();
-        int tdmg = (pdmg - enemyRes);
-
+        int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
+        
         if(specialAttack == 10) {
             System.out.println("Physical Special Attack");
-            tdmg = ((getMyStats().getDmg()*2) - enemyRes);
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            tdmg = ((getMyStats().getDmg()*2) < enemyRes) ? 0 : ((getMyStats().getDmg()*2) - enemyRes); //Also modified here; same case as above
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);		
+            specialAttack = 0;								//Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
@@ -106,12 +107,13 @@ public class Player extends Character {
     public void coldAttack(Enemy enemy) {
         int pdmg = randomizeDmg("Cold");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getcRes();
-        int tdmg = (pdmg - enemyRes);
+        int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
         if(specialAttack == 10) {
             System.out.println("Cold Special Attack");
-            tdmg = ((getMyStats().getDmg()*2) - enemyRes);
+            tdmg = ((getMyStats().getCold()*2) < enemyRes) ? 0 : ((getMyStats().getCold()*2) - enemyRes);
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            specialAttack = 0;
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
@@ -129,16 +131,17 @@ public class Player extends Character {
     public void poisonAttack(Enemy enemy) {
         int pdmg = randomizeDmg("Cold");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getpRes();
-        int tdmg = (pdmg - enemyRes);
+        int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
         if(specialAttack == 10) {
             System.out.println("Poison Special Attack");
-            tdmg = ((getMyStats().getDmg()*2) - enemyRes);
+            tdmg = ((getMyStats().getPoison()*2) < enemyRes) ? 0 : ((getMyStats().getPoison()*2) - enemyRes);
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            specialAttack++;
+            specialAttack = 0;
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            specialAttack++;												//Moved special attack down to else statement; I believe this is how you intended
         }
 
         increaseMana();
@@ -152,16 +155,17 @@ public class Player extends Character {
     public void fireAttack(Enemy enemy) {
         int pdmg = randomizeDmg("Fire");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getfRes();
-        int tdmg = (pdmg - enemyRes);
+        int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
         if(specialAttack == 10) {
             System.out.println("Fire Special Attack");
-            tdmg = ((getMyStats().getDmg()*2) - enemyRes);
+            tdmg = ((getMyStats().getFire()*2) < enemyRes) ? 0 : ((getMyStats().getFire()*2) - enemyRes);
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            specialAttack++;
+            specialAttack = 0;
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            specialAttack++;
         }
 
         increaseMana();
@@ -175,16 +179,17 @@ public class Player extends Character {
     public void lightningAttack(Enemy enemy) {
         int pdmg = randomizeDmg("Lightning");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getlRes();
-        int tdmg = (pdmg - enemyRes);
+        int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
         if(specialAttack == 10) {
             System.out.println("Lightning Special Attack");
-            tdmg = ((getMyStats().getDmg()*2) - enemyRes);
+            tdmg = ((getMyStats().getLightning()*2) < enemyRes) ? 0 : ((getMyStats().getLightning()*2) - enemyRes);
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            specialAttack++;
+            specialAttack = 0;
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            specialAttack++;
         }
 
         increaseMana();
