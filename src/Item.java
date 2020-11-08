@@ -23,12 +23,8 @@ public class Item extends Stats {
     public int hitCounter;
     public int turnCounter;
     public int spellCounter = 1;
-    public Item () {
-        Item poisonWand = new PoisonWand();
-        Item bloodlustGauntlets = new BloodlustGauntlets();
 
-        Items.add(poisonWand);
-        Items.add(bloodlustGauntlets);
+    public Item() {
     }
 
     //picks a random item from the array and then removes it

@@ -1,17 +1,21 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
+/*
+JLabel background = new JLabel(new ImageIcon(BACKGROUND));
+		westPanel.add(background);
+		background.setLayout(new FlowLayout());
+ */
 public class CombatView extends JFrame{
 
 	private final int 	FRAME_WIDTH = 450;
 	private final int 	FRAME_HEIGHT = 220;
 	private final int	PANEL_BORDER = 10;
-	
+	private static final String BACKGROUND = "C:\\Users\\Edward\\Downloads\\background1.jpg";
+
 	//All components used in this view
-	private JPanel 		westPanel;
+	private JLabel 		westPanel;
 	private JLabel 		playerNameLabel;
 	private JLabel 		playerHpLabel;
 	private JLabel 		playerManaLabel;
@@ -65,7 +69,7 @@ public class CombatView extends JFrame{
 	//Creates left panel and adds it
 	private void createWestPanel() {
 		
-		westPanel = new JPanel();
+		westPanel = new JLabel(new ImageIcon(BACKGROUND));
 		westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
 		westPanel.add(Box.createRigidArea(new Dimension(PANEL_BORDER, PANEL_BORDER)));
 		westPanel.setBackground(Color.GREEN);
