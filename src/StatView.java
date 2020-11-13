@@ -63,13 +63,28 @@ public class StatView extends JFrame {
 
         this.setVisible(true);
     }
+    
+    public StatView(Player player, Enemy enemy, boolean initialized) {
+    	
+        this.player = player;
+        this.enemy = enemy;
+        this.initialized = initialized;
+
+        createView();
+        createNorth();
+        createWest();
+        createCenter();
+        createEast();
+
+        this.setVisible(true);
+    }
 
     private void createView() {
 
         this.setSize(fWidth, fHeight);
         this.setTitle("Stats");
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     // displays which stats you are viewing
@@ -204,34 +219,43 @@ public class StatView extends JFrame {
     }
 
     public void resetStats() {
+    	
+    	if (initialized) {
+    		
+            pNameLabel.setText(player.getName() + " Stats");
+            pHpLabel.setText("Health: " + player.getMyStats().getHp());
+            pManaLabel.setText("Mana: " + player.getMyStats().getMana());
+            pArmorLabel.setText("Armor: " + player.getMyStats().getArm());
+            pDmgLabel.setText("Physical: " + player.getMyStats().getDmg());
+            pCDmgLabel.setText("Cold: " + player.getMyStats().getCold());
+            pPDmgLabel.setText("Poison: " + player.getMyStats().getPoison());
+            pFDmgLabel.setText("Fire: " + player.getMyStats().getFire());
+            pLDmgLabel.setText("Lightning: " + player.getMyStats().getLightning());
+            pCResLabel.setText("Cold: " + player.getMyStats().getcRes());
+            pPResLabel.setText("Poison: " + player.getMyStats().getpRes());
+            pFResLabel.setText("Fire: " + player.getMyStats().getfRes());
+            pLResLabel.setText("Lightning: " + player.getMyStats().getlRes());
+    		
+    	}
 
-        pNameLabel.setText(player.getName() + " Stats");
-        pHpLabel.setText("Health: " + player.getMyStats().getHp());
-        pManaLabel.setText("Mana: " + player.getMyStats().getMana());
-        pArmorLabel.setText("Armor: " + player.getMyStats().getArm());
-        pDmgLabel.setText("Physical: " + player.getMyStats().getDmg());
-        pCDmgLabel.setText("Cold: " + player.getMyStats().getCold());
-        pPDmgLabel.setText("Poison: " + player.getMyStats().getPoison());
-        pFDmgLabel.setText("Fire: " + player.getMyStats().getFire());
-        pLDmgLabel.setText("Lightning: " + player.getMyStats().getLightning());
-        pCResLabel.setText("Cold: " + player.getMyStats().getcRes());
-        pPResLabel.setText("Poison: " + player.getMyStats().getpRes());
-        pFResLabel.setText("Fire: " + player.getMyStats().getfRes());
-        pLResLabel.setText("Lightning: " + player.getMyStats().getlRes());
+    	else {
+    		
+            eNameLabel = new JLabel(enemy.getName() + " Stats");
+            eHpLabel.setText("Health: " + enemy.getMyStats().getHp());
+            eArmorLabel.setText("Armor: " + enemy.getMyStats().getArm());
+            ePowerLabel.setText("Power: " + enemy.getPower());
+            eDmgLabel.setText("Physical: " + enemy.getMyStats().getDmg());
+            eCDmgLabel.setText("Cold: " + enemy.getMyStats().getCold());
+            ePDmgLabel.setText("Poison: " + enemy.getMyStats().getPoison());
+            eFDmgLabel.setText("Fire: " + enemy.getMyStats().getFire());
+            eLDmgLabel.setText("Lightning: " + enemy.getMyStats().getLightning());
+            eCResLabel.setText("Cold: " + enemy.getMyStats().getcRes());
+            ePResLabel.setText("Poison: " + enemy.getMyStats().getpRes());
+            eFResLabel.setText("Fire: " + enemy.getMyStats().getfRes());
+            eLResLabel.setText("Lightning: " + enemy.getMyStats().getlRes());
+            
+    	}
 
-        eNameLabel = new JLabel(enemy.getName() + " Stats");
-        eHpLabel.setText("Health: " + enemy.getMyStats().getHp());
-        eArmorLabel.setText("Armor: " + enemy.getMyStats().getArm());
-        ePowerLabel.setText("Power: " + enemy.getPower());
-        eDmgLabel.setText("Physical: " + enemy.getMyStats().getDmg());
-        eCDmgLabel.setText("Cold: " + enemy.getMyStats().getCold());
-        ePDmgLabel.setText("Poison: " + enemy.getMyStats().getPoison());
-        eFDmgLabel.setText("Fire: " + enemy.getMyStats().getFire());
-        eLDmgLabel.setText("Lightning: " + enemy.getMyStats().getLightning());
-        eCResLabel.setText("Cold: " + enemy.getMyStats().getcRes());
-        ePResLabel.setText("Poison: " + enemy.getMyStats().getpRes());
-        eFResLabel.setText("Fire: " + enemy.getMyStats().getfRes());
-        eLResLabel.setText("Lightning: " + enemy.getMyStats().getlRes());
     }
 
 
@@ -241,6 +265,10 @@ public class StatView extends JFrame {
 
     public void setInitialized(Boolean initialized) {
         this.initialized = initialized;
+    }
+    
+    public void setEnemy(Enemy enemy) {
+    	this.enemy = enemy;
     }
 
     public static void main(String[] args) {
