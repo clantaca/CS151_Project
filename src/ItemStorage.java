@@ -35,6 +35,7 @@ public class ItemStorage {
 
         Item returnItem = itemStorages.get(rand);
         itemStorages.remove(rand);
+        returnItem.updatePlayerStats(player);
         return returnItem;
     }
 }
