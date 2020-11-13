@@ -2,17 +2,13 @@ import java.util.ArrayList;
 
 public class ItemStorage {
 
-	//Start
-	private Player player;
-	private Item item;
-	public ItemStorage(Player player) {
-		this.player = player;
-	}
-    //End
-	
     //creates an array to put the items in
     public ArrayList<Item> itemStorages = new ArrayList<>();
 
+    //player constructor
+    private Player player;
+
+	//creates the item storage array list with all the items
     public ItemStorage() {
         PoisonWand poisonWand = new PoisonWand();
         MageBerserkerGloves mageBerserkerGloves = new MageBerserkerGloves();
@@ -28,7 +24,7 @@ public class ItemStorage {
         itemStorages.add(bloodlustGauntlets);
     }
 
-    //picks a random item from the array and then removes it
+    //picks a random item from the array, updates the player stats with the items' stats and removes it from the array
     public Item getNewItem() {
 
         int rand = (int)(Math.random() * itemStorages.size());
