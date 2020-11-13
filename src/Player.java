@@ -3,9 +3,15 @@ import java.util.ArrayList;
 public class Player extends Character {
 
     private int N; // size of inventory space
-    private Item item; //Item class to use methods
+    private ItemStorage itemStorage; //Item class to use methods
     private int specialAttack = 0; // increases after every attack
-    private ArrayList<Item> inventory = new ArrayList<Item>(); // inventory of items
+    private ArrayList<Item> inventory = new ArrayList<>(); // inventory of items
+    public int spellCounter = 0;
+    public int weaponCounter = 0;
+    public int attackCounter = 0;
+    public int hitCounter = 0;
+    public int turnCounter = 0;
+    public int originalDmg;
 
     public ArrayList<Item> getInventory() {
         return inventory;
@@ -15,18 +21,18 @@ public class Player extends Character {
         this.inventory = inventory;
     }
 
-    public Item getItem() {
-        return item;
+    public ItemStorage getItem() {
+        return itemStorage;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItem(ItemStorage itemStorage) {
+        this.itemStorage = itemStorage;
     }
 
     public Player(String name) {
         this.setName(name);
         this.N = 10; // fixed inventory size
-        this.item = new Item();
+        this.itemStorage = new ItemStorage();
 
         // default values for each new player
         this.getMyStats().setHp(100);
@@ -228,10 +234,8 @@ public class Player extends Character {
         return true;
     }
     // updates inventory with obtained item
-    public void updateInventory(Player player) {
-        Item newItem = item.getNewItem();
-        inventory.add(newItem);
-        newItem.updatePlayerStats(player);
+    public void updateInventory() {
+        inventory.add(itemStorage.getNewItem());
     }
 
     public void startOfTurn(Player player) {
@@ -242,10 +246,10 @@ public class Player extends Character {
 
     public void displayInventory() {
         System.out.println("Displaying inventory...");
-        int count = 1;
-        for (int i = 0; i < N; i++) {
-            System.out.println(count + ". " + inventory.get(i));
-            count++;
+        for (Item i : inventory) {
+            System.out.println(i.getName());
+            i.itemStats();
+            System.out.println(i.getDescription());
         }
     }
 
