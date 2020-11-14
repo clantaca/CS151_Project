@@ -1,8 +1,9 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class CombatView extends JFrame{
 
@@ -252,6 +253,25 @@ public class CombatView extends JFrame{
 
 	public void displayMessage (String msg) {
 		JOptionPane.showMessageDialog(this, msg);
+	}
+
+	public void playMusic(String musicLocation) {
+		try {
+			File musicPath = new File (musicLocation);
+			if (musicPath.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//----------------------------------------------------------------------------------------

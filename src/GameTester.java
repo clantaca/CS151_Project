@@ -6,8 +6,9 @@ public class GameTester {
 		Enemy enemy = new Enemy();
 		Player player = new Player("Jon");
 		CombatView combatView = new CombatView(player, enemy);
+		String filepath = "BGM.wav";
+		combatView.playMusic(filepath);
 		GameController controller = new GameController(combatView, enemy, player);
-		
 	}
 	
 }
