@@ -5,9 +5,6 @@ public class ItemStorage {
     //creates an array to put the items in
     public ArrayList<Item> itemStorages = new ArrayList<>();
 
-    //player constructor
-    private Player player;
-
 	//creates the item storage array list with all the items
     public ItemStorage() {
         PoisonWand poisonWand = new PoisonWand();
@@ -31,7 +28,6 @@ public class ItemStorage {
 
         Item returnItem = itemStorages.get(rand);
         itemStorages.remove(rand);
-        returnItem.updatePlayerStats(player);
         return returnItem;
     }
 }

@@ -239,8 +239,9 @@ public class Player extends Character {
         return true;
     }
     // updates inventory with obtained item
-    public void updateInventory() {
+    public void updateInventory(Player player) {
         inventory.add(itemStorage.getNewItem());
+        inventory.get(getInventory().size()-1).updatePlayerStats(player);
     }
 
     public void startOfTurn(Player player) {
