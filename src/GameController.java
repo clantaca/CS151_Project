@@ -65,7 +65,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			statViewPlayer = new StatView(player, enemy, true);
 			playSound("ButtonClick.wav");
 			
@@ -77,7 +77,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			statViewEnemy = new StatView(player, enemy, false);
 			playSound("ButtonClick.wav");
 			
@@ -90,8 +90,9 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			//Need implementation, waiting to see how item class turns out
+			playSound("ButtonClick.wav");
 			
 		}
 		
@@ -101,7 +102,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
+			player.startOfTurn(player);
 			player.physicalAttack(enemy);
 			playSound("ButtonClick.wav");
 			combatEnsues();
@@ -114,7 +115,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			player.coldAttack(enemy);
 			playSound("ButtonClick.wav");
 			combatEnsues();
@@ -127,7 +128,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			player.fireAttack(enemy);
 			playSound("ButtonClick.wav");
 			combatEnsues();
@@ -140,7 +141,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			player.lightningAttack(enemy);
 			playSound("ButtonClick.wav");
 			combatEnsues();
@@ -153,7 +154,7 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			player.poisonAttack(enemy);
 			playSound("ButtonClick.wav");
 			combatEnsues();
@@ -166,13 +167,14 @@ public class GameController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			player.startOfTurn(player);
 			player.blockEnemy();
 			playSound("ButtonClick.wav");
 			
 		}
 		
 	}
+	//method to play sounds from a file
 	public void playSound (String filePath)
 	{
 		try

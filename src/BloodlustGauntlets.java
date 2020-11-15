@@ -18,13 +18,13 @@ public class BloodlustGauntlets implements Item {
 
     @Override
     public void itemStats() {
-        System.out.println(itemStats.getDmg());
-        System.out.println(itemStats.getHp());
-        System.out.println(itemStats.getArm());
-        System.out.println(itemStats.getcRes());
-        System.out.println(itemStats.getlRes());
-        System.out.println(itemStats.getpRes());
-        System.out.println(itemStats.getfRes());
+        System.out.println("+" + itemStats.getHp());
+        System.out.println("" + itemStats.getDmg());
+        System.out.println("" + itemStats.getArm());
+        System.out.println("" + itemStats.getcRes());
+        System.out.println("" + itemStats.getlRes());
+        System.out.println("" + itemStats.getpRes());
+        System.out.println("" + itemStats.getfRes());
     }
 
     @Override
@@ -57,6 +57,6 @@ public class BloodlustGauntlets implements Item {
         else if (player.getMyStats().getHp() < player.getMyStats().getHp()*.5)
             player.getMyStats().setDmg(player.getMyStats().getDmg()+20);
         else if (player.getMyStats().getHp() < player.getMyStats().getHp()*.75)
-            player.getMyStats().setDmg(player.getMyStats().getDmg()+20);
+            player.getMyStats().setDmg(player.getMyStats().getDmg()+10);
     }
 }
