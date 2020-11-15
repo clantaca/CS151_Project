@@ -10,11 +10,12 @@ public class CombatView extends JFrame{
 	private final int 	FRAME_WIDTH = 600;
 	private final int 	FRAME_HEIGHT = 400;
 	private final int	PANEL_BORDER = 10;
-	private final int	COMPONENT_PADDING = 1;
+	private final int	COMPONENT_PADDING = 5;
 	private final int	UNITS_FOR_IMAGE_HEIGHT = 150;
 
 	//All components used in this view
-	private JPanel 				westPanel;
+	private JPanel				fullPanel;
+
 	private JLabel				playerImageArea;
 	private JLabel 				playerNameLabel;
 	private JLabel 				playerHpLabel;
@@ -22,7 +23,6 @@ public class CombatView extends JFrame{
 	private JButton 			playerStatsBut;
 	private JButton				playerInvBut;
 
-	private JPanel 				centPanel;
 	private JButton 			phyAtkBut;
 	private JButton 			coldSpBut;
 	private JButton 			fireSpBut;
@@ -30,7 +30,7 @@ public class CombatView extends JFrame{
 	private JButton 			poisonSpBut;
 	private JButton 			blockBut;
 
-	private JPanel 				eastPanel;
+
 	private JLabel				enemyImageArea;
 	private JLabel 				enemyNameLabel;
 	private JLabel 				enemyHpLabel;
@@ -47,12 +47,17 @@ public class CombatView extends JFrame{
 		this.player = player;
 		this.enemy = enemy;
 
+		fullPanel = new JPanel(new GridBagLayout());
+		fullPanel.setBackground(Color.CYAN);
+		
 		createFrame();
 		createWestPanel();
 		createCentPanel();
 		createEastPanel();
-		pack();
+		
+		this.add(fullPanel);
 
+		pack();
 	}
 
 	//----------------------------------------------------------------------------------------
@@ -72,8 +77,7 @@ public class CombatView extends JFrame{
 	//Creates left panel and adds it
 	private void createWestPanel() {
 
-		westPanel = new JPanel(new GridBagLayout());
-		westPanel.setBackground(Color.GREEN);
+
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
@@ -86,35 +90,30 @@ public class CombatView extends JFrame{
 
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		westPanel.add(playerNameLabel, constraints);
+		fullPanel.add(playerNameLabel, constraints);
 		
 		constraints.ipady = UNITS_FOR_IMAGE_HEIGHT; //makes component taller
 		constraints.gridy++;
-		westPanel.add(playerImageArea, constraints);
+		fullPanel.add(playerImageArea, constraints);
 
 		constraints.ipady = 0; //reset back
 		constraints.gridy++;
-		westPanel.add(playerHpLabel, constraints);
+		fullPanel.add(playerHpLabel, constraints);
 
 		constraints.gridy++;
-		westPanel.add(playerManaLabel, constraints);
+		fullPanel.add(playerManaLabel, constraints);
 
 		constraints.gridy++;
-		westPanel.add(playerStatsBut, constraints);
+		fullPanel.add(playerStatsBut, constraints);
 
 		constraints.gridy++;
-		westPanel.add(playerInvBut, constraints);
-
-		this.add(westPanel, BorderLayout.WEST);
-
+		fullPanel.add(playerInvBut, constraints);
 	}
 
 
 	//Creates center panel and adds it
 	private void createCentPanel() {
 
-		centPanel = new JPanel(new GridBagLayout());
-		centPanel.setBackground(Color.YELLOW);
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
@@ -125,36 +124,30 @@ public class CombatView extends JFrame{
 		poisonSpBut = new JButton("Poison Spell Attack");
 		blockBut = new JButton("Block");
 
-		constraints.gridx = 0;
+		constraints.gridx = 1;
 		constraints.gridy = 0;
-		centPanel.add(phyAtkBut, constraints);
-
-		constraints.gridx = 0;
-		constraints.gridy++;
-		centPanel.add(coldSpBut, constraints);
+		fullPanel.add(phyAtkBut, constraints);
 
 		constraints.gridy++;
-		centPanel.add(fireSpBut, constraints);
+		fullPanel.add(coldSpBut, constraints);
 
 		constraints.gridy++;
-		centPanel.add(lightningSpBut, constraints);
+		fullPanel.add(fireSpBut, constraints);
 
 		constraints.gridy++;
-		centPanel.add(poisonSpBut, constraints);
+		fullPanel.add(lightningSpBut, constraints);
 
 		constraints.gridy++;
-		centPanel.add(blockBut, constraints);
+		fullPanel.add(poisonSpBut, constraints);
 
-		this.add(centPanel, BorderLayout.CENTER);
-
+		constraints.gridy++;
+		fullPanel.add(blockBut, constraints);
 	}
 
 
 	//Creates right panel and adds it
 	private void createEastPanel() {
 
-		eastPanel = new JPanel(new GridBagLayout());
-		eastPanel.setBackground(Color.ORANGE);
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
@@ -164,25 +157,23 @@ public class CombatView extends JFrame{
 		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());
 		enemyStatsBut = new JButton("Check Stats");
 
-		constraints.gridx = 0;
+		constraints.gridx = 2;
 		constraints.gridy = 0;
-		eastPanel.add(enemyNameLabel, constraints);
+		fullPanel.add(enemyNameLabel, constraints);
 		
 		constraints.ipady = UNITS_FOR_IMAGE_HEIGHT;
 		constraints.gridy++;
-		eastPanel.add(enemyImageArea, constraints);
+		fullPanel.add(enemyImageArea, constraints);
 		
 		constraints.ipady = 0;
 		constraints.gridy++;
-		eastPanel.add(enemyHpLabel, constraints);
+		fullPanel.add(enemyHpLabel, constraints);
 		
 		constraints.gridy++;
-		eastPanel.add(enemyPowerLabel, constraints);
+		fullPanel.add(enemyPowerLabel, constraints);
 		
 		constraints.gridy++;
-		eastPanel.add(enemyStatsBut, constraints);
-
-		this.add(eastPanel, BorderLayout.EAST);
+		fullPanel.add(enemyStatsBut, constraints);
 
 	}
 	
@@ -245,9 +236,7 @@ public class CombatView extends JFrame{
 	}
 
 	public void setPlayerDie() {
-		westPanel.setBackground(Color.RED);
-		centPanel.setBackground(Color.RED);
-		eastPanel.setBackground(Color.RED);
+		fullPanel.setBackground(Color.RED);
 		displayMessage("You are dead");
 	}
 
