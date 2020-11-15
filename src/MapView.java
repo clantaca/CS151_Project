@@ -1,10 +1,6 @@
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.util.ArrayList;
-
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class MapView extends JFrame{
 
@@ -98,10 +94,11 @@ public class MapView extends JFrame{
 			constraints.gridx = i;
 			constraints.gridy = numEnemiesOnThisLayer; //note: number of enemies also corresponds to the layer number
 			JButton newButton = new JButton(allEnemies.get(currEnemy++).getName());
-			
+
+			int finalI = i-1;
 			newButton.addActionListener(e -> {
 				
-				new CombatView(player, allEnemies.get(1));	//figure this out later
+				new CombatView(player, allEnemies.get(finalI));	//figure this out later
 				
 			});
 			

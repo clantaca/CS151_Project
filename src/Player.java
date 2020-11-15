@@ -56,6 +56,8 @@ public class Player extends Character {
         this.getMyStats().setpRes(randomInt(0,5));
         this.getMyStats().setfRes(randomInt(0,5));
         this.getMyStats().setlRes(randomInt(0,5));
+        this.getMyStats().setDodge(5);
+        this.getMyStats().setCrit(5);
     }
 
     // generates random integer

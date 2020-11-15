@@ -13,7 +13,25 @@ public class Stats {
 	int pRes;	//poison resist
 	int fRes;	//fire resist
 	int lRes;	//lightning resist
-	
+	int dodge;
+	int crit;
+
+	public int getDodge() {
+		return dodge;
+	}
+
+	public void setDodge(int dodge) {
+		this.dodge = dodge;
+	}
+
+	public int getCrit() {
+		return crit;
+	}
+
+	public void setCrit(int crit) {
+		this.crit = crit;
+	}
+
 	public int getCold() {
 		return cold;
 	}
