@@ -12,9 +12,9 @@ public class PlayerTest {
     }
 
     @Test
-    public void testUseScroll() {
+    public void testUseSpell() {
         Player p = new Player("TestPlayer");
-        assertTrue(p.useScroll(), "Scroll should be used by player");
+        assertTrue(p.useSpell(), "Scroll should be used by player");
     }
     
     @Test
