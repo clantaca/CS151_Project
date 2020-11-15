@@ -25,7 +25,6 @@ public class ShortSwordOfPower extends Stats implements Item {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
         player.getMyStats().setArm(player.getMyStats().getArm() + itemStats.getArm());
-        player.weaponCounter++;
     }
     @Override
     public void itemStats() {

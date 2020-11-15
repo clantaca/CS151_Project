@@ -6,11 +6,18 @@ public class Player extends Character {
     private ItemStorage itemStorage; //Item class to use methods
     private int specialAttack = 0; // increases after every attack
     private ArrayList<Item> inventory = new ArrayList<>(); // inventory of items
+
+    //TODO: ADD THESE COUNTERS TO THEIR RESPECTIVE METHODS
     public int spellCounter = 0;
-    public int weaponCounter = 0;
     public int attackCounter = 0;
-    public int hitCounter = 0;
+    public int hitsTakenCounter = 0;
     public int turnCounter = 0;
+    public int blockCounter = 0;
+
+    //TODO: ADD TO START OF TURN AND END OF BATTLE
+    public boolean startOfTurn;
+    public boolean endOfBattle;
+
     public int originalDmg;
 
     public ArrayList<Item> getInventory() {
@@ -242,6 +249,7 @@ public class Player extends Character {
     public void updateInventory(Player player) {
         inventory.add(itemStorage.getNewItem());
         inventory.get(getInventory().size()-1).updatePlayerStats(player);
+        originalDmg = player.getMyStats().getDmg();
     }
 
     public void startOfTurn(Player player) {
