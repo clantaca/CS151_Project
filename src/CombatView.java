@@ -255,6 +255,7 @@ public class CombatView extends JFrame{
 		JOptionPane.showMessageDialog(this, msg);
 	}
 
+	//Creates background music
 	public void playMusic(String musicLocation) {
 		try {
 			File musicPath = new File (musicLocation);
@@ -264,6 +265,17 @@ public class CombatView extends JFrame{
 				clip.open(audioInput);
 				clip.start();
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
+				boolean test = true;
+
+				JOptionPane.showMessageDialog(null, "Pause Background Music");
+				long clipTimePosition = clip.getMicrosecondPosition();
+				clip.stop();
+
+				JOptionPane.showMessageDialog(null, "Unpause Background Music");
+				clip.setMicrosecondPosition(clipTimePosition);
+				clip.start();
+
+
 			}
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
