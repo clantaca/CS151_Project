@@ -26,12 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,12 +163,12 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="getters and setters" />
