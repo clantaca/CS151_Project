@@ -189,31 +189,31 @@ public class Enemy extends Character{
 		case PHYSICAL:
 			
 			concatateToName("Punching");
-			this.getMyStats().setDmg(power + powerIncrease);
+			this.getMyStats().setDmg(power*2 + powerIncrease);
 			break;
 			
 		case COLD:
 			
 			concatateToName("Freezing");
-			this.getMyStats().setCold(power + powerIncrease);
+			this.getMyStats().setCold(power*2 + powerIncrease);
 			break;
 			
 		case POISON:
 			
 			concatateToName("Poisonous");
-			this.getMyStats().setPoison(power + powerIncrease);
+			this.getMyStats().setPoison(power*2 + powerIncrease);
 			break;
 			
 		case FIRE:
 			
 			concatateToName("Firey");
-			this.getMyStats().setFire(power + powerIncrease);
+			this.getMyStats().setFire(power*2 + powerIncrease);
 			break;
 			
 		case LIGHTNING:
 			
 			concatateToName("Electrified");
-			this.getMyStats().setLightning(power + powerIncrease);
+			this.getMyStats().setLightning(power*2 + powerIncrease);
 			break;
 			
 		}
@@ -231,35 +231,35 @@ public class Enemy extends Character{
 			
 			resType = ResTypeEnum.FOREST;
 			concatateToName("forest");
-			this.getMyStats().setArm(power + powerIncrease);
+			this.getMyStats().setArm(power*2 + powerIncrease);
 			break;
 		
 		case 2:
 			
 			resType = ResTypeEnum.TUNDRA;
 			concatateToName("tundra");
-			this.getMyStats().setcRes(power + powerIncrease);
+			this.getMyStats().setcRes(power*2 + powerIncrease);
 			break;
 			
 		case 3:
 			
 			resType = ResTypeEnum.SWAMP;
 			concatateToName("swamp");
-			this.getMyStats().setpRes(power + powerIncrease);
+			this.getMyStats().setpRes(power*2 + powerIncrease);
 			break;
 			
 		case 4:
 			
 			resType = ResTypeEnum.DESERT;
 			concatateToName("desert");
-			this.getMyStats().setfRes(power + powerIncrease);
+			this.getMyStats().setfRes(power*2 + powerIncrease);
 			break;
 			
 		case 5:
 			
 			resType = ResTypeEnum.MOUNTIN;
 			concatateToName("mountin");
-			this.getMyStats().setlRes(power + powerIncrease);
+			this.getMyStats().setlRes(power*2 + powerIncrease);
 			break;
 		
 		}

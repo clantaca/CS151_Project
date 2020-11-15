@@ -99,10 +99,12 @@ public class MapView extends JFrame{
 			constraints.gridy = numEnemiesOnThisLayer; //note: number of enemies also corresponds to the layer number
 			JButton newButton = new JButton(allEnemies.get(currEnemy++).getName());
 			
+			int finalI = i-1;
+			
 			newButton.addActionListener(e -> {
 				
-				new CombatView(player, allEnemies.get(1));	//figure this out later
-				
+				new CombatView(player, allEnemies.get(finalI));	//figure this out later
+			
 			});
 			
 			fullPanel.add(newButton, constraints);
@@ -115,7 +117,7 @@ public class MapView extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		new MapView(new Player("Jon"), 4);
+		new MapView(new Player("Jon"), 10);
 		
 	}
 	
