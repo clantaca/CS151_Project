@@ -92,6 +92,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			//Need implementation, waiting to see how item class turns out
+			playSound("ButtonClick.wav");
 			
 		}
 		
@@ -173,6 +174,7 @@ public class GameController {
 		}
 		
 	}
+	//method to play sounds from a file
 	public void playSound (String filePath)
 	{
 		try

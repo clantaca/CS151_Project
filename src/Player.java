@@ -252,12 +252,14 @@ public class Player extends Character {
         originalDmg = player.getMyStats().getDmg();
     }
 
+    //checks the start of the turn if any conditions for special effect from items are met
     public void startOfTurn(Player player) {
         for (Item i : inventory) {
             i.specialEffect(player);
         }
     }
 
+    //prints out the inventory of all the items with their name, stats, and description
     public void displayInventory() {
         System.out.println("Displaying inventory...");
         for (Item i : inventory) {
