@@ -256,9 +256,9 @@ public class CombatView extends JFrame{
 	}
 
 	//Creates background music
-	public void playMusic(String musicLocation) {
+	public void playMusic(String filePath) {
 		try {
-			File musicPath = new File (musicLocation);
+			File musicPath = new File (filePath);
 			if (musicPath.exists()) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
 				Clip clip = AudioSystem.getClip();

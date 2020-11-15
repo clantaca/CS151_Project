@@ -1,5 +1,9 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class GameController {
 	
@@ -63,6 +67,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			statViewPlayer = new StatView(player, enemy, true);
+			playSound("ButtonClick.wav");
 			
 		}
 		
@@ -74,6 +79,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			statViewEnemy = new StatView(player, enemy, false);
+			playSound("ButtonClick.wav");
 			
 		}
 		
@@ -97,6 +103,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			player.physicalAttack(enemy);
+			playSound("ButtonClick.wav");
 			combatEnsues();
 			
 		}
@@ -109,6 +116,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			player.coldAttack(enemy);
+			playSound("ButtonClick.wav");
 			combatEnsues();
 			
 		}
@@ -121,6 +129,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			player.fireAttack(enemy);
+			playSound("ButtonClick.wav");
 			combatEnsues();
 			
 		}
@@ -133,6 +142,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			player.lightningAttack(enemy);
+			playSound("ButtonClick.wav");
 			combatEnsues();
 			
 		}
@@ -145,6 +155,7 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			player.poisonAttack(enemy);
+			playSound("ButtonClick.wav");
 			combatEnsues();
 			
 		}
@@ -157,9 +168,24 @@ public class GameController {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			player.blockEnemy();
+			playSound("ButtonClick.wav");
 			
 		}
 		
+	}
+	public void playSound (String filePath)
+	{
+		try
+		{
+			AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile( ));
+			Clip clip = AudioSystem.getClip( );
+			clip.open(audioInput);
+			clip.start( );
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace( );
+		}
 	}
 	
 }
