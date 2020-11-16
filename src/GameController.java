@@ -35,6 +35,7 @@ public class GameController {
 		
 		//Create new enemy if it's dead
 		if (enemy.getMyStats().getHp() <= 0) {
+			player.updateInventory(player);
 			enemy = new Enemy();
 		}
 		

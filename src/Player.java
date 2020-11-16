@@ -14,11 +14,11 @@ public class Player extends Character {
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
 
     //TODO: ADD THESE COUNTERS TO THEIR RESPECTIVE METHODS
-    public int spellCounter = 0;
-    public int attackCounter = 0;
-    public int hitsTakenCounter = 0;
-    public int turnCounter = 0;
-    public int blockCounter = 0;
+    public int spellCounter = 0; // whenever the player casts a spell
+    public int attackCounter = 0; // whenever the player attacks with physical attack
+    public int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
+    public int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
+    public int blockCounter = 0; // whenever the player uses block
 
     //TODO: ADD TO START OF TURN AND END OF BATTLE
     public boolean startOfTurn;
