@@ -61,11 +61,11 @@ public class Player extends Character {
     }
 
     // generates random integer
-    public int randomInt(int max, int min) {
+    public int randomInt(int min, int max) {
         return (int) (Math.random()*(max-min))+min;
     }
 
-    // randomizes player's damages
+    // randomizes player's damages for each attack type
     public int randomizeDmg(String dmgType) {
         int pdmg = 0;
         int min = 0;
@@ -101,11 +101,12 @@ public class Player extends Character {
     }
 
     public void physicalAttack(Enemy enemy) {
-
+        // randomizes damage and calculates damage based enemy armor
         int pdmg = randomizeDmg("Physical");
         int enemyRes = enemy.getMyStats().getArm();
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
-        
+
+        // 4th physical attack does special attack
         if(specialAttack == 4) {
             System.out.println("Physical Special Attack");
             tdmg = ((getMyStats().getDmg()*2) < enemyRes) ? 0 : ((getMyStats().getDmg()*2) - enemyRes); //Also modified here; same case as above
@@ -117,6 +118,7 @@ public class Player extends Character {
             specialAttack++;
         }
 
+        // checks poison debuff and enemy loses 10 hp if poisoned
         if(debuffOn){
             if(debuffCounter == 3) {
                 resetDebuff();
@@ -129,7 +131,10 @@ public class Player extends Character {
         }
 
         increaseMana();
+        attackCounter++;
+        turnCounter++;
 
+        // sets enemy hp to 0 if hp is negative
         int enemyHp = enemy.getMyStats().getHp();
         if (enemyHp < 0) {
             enemy.getMyStats().setHp(0);
@@ -137,10 +142,12 @@ public class Player extends Character {
     }
 
     public void coldAttack(Enemy enemy) {
+        // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getcRes();
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
+        // needs 5 mana to cold spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana!");
         }
@@ -158,6 +165,7 @@ public class Player extends Character {
                 cSpellCounter++;
             }
 
+            // checks poison debuff
             if(debuffOn){
                 if(debuffCounter == 3) {
                     resetDebuff();
@@ -170,6 +178,7 @@ public class Player extends Character {
             }
 
             increaseMana();
+            turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
             if (enemyHp < 0) {
@@ -179,10 +188,12 @@ public class Player extends Character {
     }
 
     public void poisonAttack(Enemy enemy) {
+        // randomizes damage and calculates damage based enemy armor and poison resistance
         int pdmg = randomizeDmg("Poison");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getpRes();
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
+        // needs 5 mana to use poison spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana!");
         }
@@ -195,6 +206,7 @@ public class Player extends Character {
 
             debuffOn = true;
             increaseMana();
+            turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
             if (enemyHp < 0) {
@@ -204,10 +216,12 @@ public class Player extends Character {
     }
 
     public void fireAttack(Enemy enemy) {
+        // randomizes damage and calculates damage based enemy armor and fire resistance
         int pdmg = randomizeDmg("Fire");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getfRes();
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
+        // needs 5 mana to use fire spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana!");
         }
@@ -223,6 +237,7 @@ public class Player extends Character {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
             fSpellCounter++;
 
+            // checks poison debuff
             if(debuffOn){
                 if(debuffCounter == 3) {
                     resetDebuff();
@@ -235,6 +250,7 @@ public class Player extends Character {
             }
 
             increaseMana();
+            turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
             if (enemyHp < 0) {
@@ -244,10 +260,12 @@ public class Player extends Character {
     }
 
     public void lightningAttack(Enemy enemy) {
+        // randomizes damage and calculates damage based enemy armor and lightning resistance
         int pdmg = randomizeDmg("Lightning");
         int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getlRes();
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;
 
+        // needs 5 mana to use lightning spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana!");
         }
@@ -258,6 +276,7 @@ public class Player extends Character {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
             System.out.println("Lightning attack");
 
+            // checks poison debuff
             if(debuffOn){
                 if(debuffCounter == 3) {
                     resetDebuff();
@@ -270,6 +289,7 @@ public class Player extends Character {
             }
 
             increaseMana();
+            turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
             if (enemyHp < 0) {
@@ -278,11 +298,13 @@ public class Player extends Character {
         }
     }
 
+    // removes poison buff from enemy
     public void resetDebuff() {
         debuffOn = false;
         debuffCounter = 0;
     }
 
+    // adds +2 mana each time a player attacks
     public void increaseMana() {
         int cMana = getMyStats().getMana()+2;
         if (cMana >= 20) {
@@ -302,6 +324,7 @@ public class Player extends Character {
         else {
             getMyStats().setMana(cMana);
         }
+        blockCounter++;
         return true;
     }
 
@@ -314,6 +337,7 @@ public class Player extends Character {
         else {
             getMyStats().setMana(cMana);
         }
+        spellCounter++;
         return true;
     }
 
