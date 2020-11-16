@@ -178,6 +178,12 @@ public class Enemy extends Character{
 		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
 		
 		this.getMyStats().setlRes(power + randomInt);
+		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		
+		this.getMyStats().setDodge((power + randomInt)/3);			//lowered dodge and crit chances cause it can get way out of hand 
+		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		
+		this.getMyStats().setCrit((power + randomInt)/2);
 		
 	}
 
@@ -268,7 +274,7 @@ public class Enemy extends Character{
 	}
 	
 	//will generate a random number given upper limit
-	//ex: an upper limit of "2" will return wither 1 or 2
+	//ex: an upper limit of "2" will return either 1 or 2
 	private int generateRandomInt(int upperLimit) {
 		return (int) (Math.random() * upperLimit + 1);
 	}
@@ -281,6 +287,10 @@ public class Enemy extends Character{
 	
 	//will decrease player's health depending on how much damage the enemy can do and the player's resistance to that dmgType
 	public void attackUser(Player player) {
+		
+		boolean ifPlayerDodgesEnemyAttack = generateRandomInt(100) <= player.getMyStats().getDodge();
+		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
+			return;
 		
 		switch(dmgType) {
 		
@@ -312,10 +322,20 @@ public class Enemy extends Character{
 	//arguments: how much dmg the enemy is capable is doing, and the player's def against that type, and the player object
 	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
 		
-		int dmgTaken = (enemyDmg < playerDef) ? 0 : enemyDmg-playerDef;
+		boolean ifEnemyLandsCrit = generateRandomInt(100) <= this.getMyStats().getCrit();
 		
-		player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-		
+		if(ifEnemyLandsCrit) {
+			
+			player.getMyStats().setHp(player.getMyStats().getHp() - enemyDmg); //crits ignore player defense
+			
+		}
+
+		else {
+			
+			int dmgTaken = (enemyDmg < playerDef) ? 0 : enemyDmg-playerDef;
+			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
+			
+		}
 	}
 	
 	//----------------------------------------------------------------------------------------
@@ -339,6 +359,8 @@ public class Enemy extends Character{
 		result += "Poison Resistance	: " 	+ this.getMyStats().getpRes() + "\n";
 		result += "Fire Resistance		: " 	+ this.getMyStats().getfRes() + "\n";
 		result += "Lighning Resistance	: " 	+ this.getMyStats().getlRes() + "\n";
+		result += "Dodge Chance		: " 	+ this.getMyStats().getDodge() + "\n";
+		result += "Critical Strike Chance 	: " 	+ this.getMyStats().getCrit() + "\n";
 		
 		return result;
 					
