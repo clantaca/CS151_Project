@@ -335,14 +335,16 @@ public class Enemy extends Character{
 			
 			int dmgTakenDoubled = (enemyDmg*2 < playerDef) ? 0 : enemyDmg-playerDef;
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
-			
+			System.out.println("Enemy lands critical attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
+			System.out.println();
 		}
 
 		else {
 			
 			int dmgTaken = (enemyDmg < playerDef) ? 0 : enemyDmg-playerDef;
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-			
+			System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
+			System.out.println();
 		}
 	}
 	

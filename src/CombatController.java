@@ -42,6 +42,17 @@ public class CombatController {
 		//Create new enemy if it's dead
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
+			
+			if (statViewPlayer != null) {
+				statViewPlayer.setVisible(false);
+				statViewPlayer.dispose();
+			}
+			
+			if (statViewEnemy != null) {
+				statViewEnemy.setVisible(false);
+				statViewEnemy.dispose();
+			}
+			
 			player.resetCounters();
 			combatView.setVisible(false);
 			combatView.dispose();
