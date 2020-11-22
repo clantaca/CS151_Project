@@ -244,31 +244,13 @@ public class CombatView extends JFrame{
 		JOptionPane.showMessageDialog(this, msg);
 	}
 
-	//Creates background music
-	public void playMusic(String filePath) {
-		try {
-			File musicPath = new File (filePath);
-			if (musicPath.exists()) {
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInput);
-				clip.start();
-				clip.loop(Clip.LOOP_CONTINUOUSLY);
-			}
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	//----------------------------------------------------------------------------------------
 
 	public static void main(String[] args) {
 
-		new CombatView(new Player("Bob"), new Enemy());
+		new CombatView(new Player("Bob"), new Enemy(1));
 
 	}
 

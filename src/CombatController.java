@@ -1,23 +1,28 @@
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class GameController {
+public class CombatController {
 	
+
 	private CombatView combatView;
 	private StatView statViewPlayer;
 	private StatView statViewEnemy;
-	private Enemy enemy;
 	private Player player;
+	private Enemy enemy;
+
 	
-	public GameController(CombatView combatView, Enemy enemy, Player player) {
-		
+	public CombatController(CombatView combatView, Enemy enemy, Player player) {
+
 		this.combatView = combatView;
 		this.enemy = enemy;
 		this.player = player;
+		
+
 		
 		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
 		this.combatView.addPlayerInvButListener(new PlayerInvButListener());
@@ -31,12 +36,14 @@ public class GameController {
 		
 	}
 	
+	//------------------------------------ Combat View Listners and Methods -------------------------------------------------
 	private void combatEnsues() {
 		
 		//Create new enemy if it's dead
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
-			enemy = new Enemy();
+			combatView.setVisible(false);
+			combatView.dispose();
 		}
 		
 		//Else player gets hit

@@ -27,17 +27,18 @@ public class Enemy extends Character{
 	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
 	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
 	
-	static int 		power = 0; 							//power is how strong a mob is; boss is summoned on power 10
+	private int 		power = 0; 							//power is how strong a mob is; boss is summoned on power 10
 	
 	//----------------------------------------------------------------------------------------
 	
 	//Constructor- chooses a random enemy type and gives stats representative of that type
-	public Enemy() {
+	public Enemy(int power) {
 		
+		this.power = power;
 		this.setName(""); //need to initialize
 		int enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
 		
-		if (++power % POWER_NEEDED_TO_SUMMON_BOSS == 0) {
+		if (power % POWER_NEEDED_TO_SUMMON_BOSS == 0) {
 			enemyTypeID = 100; //the boss's id
 		}
 		
@@ -79,7 +80,7 @@ public class Enemy extends Character{
 	
 	public int getPower() {
 		
-		return Enemy.power;
+		return power;
 		
 	}
 	
@@ -326,7 +327,8 @@ public class Enemy extends Character{
 		
 		if(ifEnemyLandsCrit) {
 			
-			player.getMyStats().setHp(player.getMyStats().getHp() - enemyDmg); //crits ignore player defense
+			int dmgTakenDoubled = (enemyDmg*2 < playerDef) ? 0 : enemyDmg-playerDef;
+			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
 			
 		}
 
@@ -344,7 +346,7 @@ public class Enemy extends Character{
 		
 		String result = "";
 		
-		result += "Power			: " 		+ Enemy.power + "\n";	
+		result += "Power			: " 		+ this.power + "\n";	
 		result += "Name 			: " 		+ this.getName() + "\n";	
 		result += "Damage Type 		: " 		+ this.dmgType + "\n";	
 		result += "Natural Resistance 	: " 	+ this.resType + "\n";		
@@ -370,9 +372,9 @@ public class Enemy extends Character{
 		
 		Enemy newEnemy;
 		
-		for (int i = 0; i < 20; i++) {
+		for (int i = 1; i <= 20; i++) {
 			
-			newEnemy = new Enemy();
+			newEnemy = new Enemy(i);
 			System.out.println(newEnemy);
 			
 		}

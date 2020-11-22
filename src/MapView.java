@@ -1,39 +1,57 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class MapView extends JFrame{
 
-	
-	
-	
 	private final int 	FRAME_WIDTH = 800;
-	private final int 	FRAME_HEIGHT = 800;
+	private final int 	FRAME_HEIGHT = 400;
 	private final int	COMPONENT_PADDING = 5;
+	private final int	ROWS_PER_SIDE = 5; 		//Map will be a 5x5 square
+	private final int	TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
+	private final int 	PLAYER_STARTING_LOCATION = 22;
+	private final int 	NUM_ENEMIES_ON_MAP = 3;
 	
-	private JPanel	fullPanel;
+	private JPanel	mapPanel;
 	private GridBagConstraints 	constraints;
 	
-	private int numEnemiesAtBase;
-	private ArrayList<Enemy> allEnemies;
+	private JPanel helpPanel;
+	private JLabel showEnemyPowerLabel;
+	private JButton viewStatsButton;
+	
+	private JPanel mvmtPanel;
+	private JButton northButton;
+	private JButton southButton;
+	private JButton eastButton;
+	private JButton westButton;
+	
+	private int playerCurrLocation = PLAYER_STARTING_LOCATION;
+	private ArrayList<Character> allChractersOnMap;
+	private static int currEnemyPower = 1;	//mapView holds the current power level of all enemies - this increments after each combat
 	
 	private Player player;
 	
 	
 	
 	
-	public MapView(Player player, int numEnemiesAtBase) {
+	public MapView(Player player) {
 		
 		this.player = player;
-		this.numEnemiesAtBase = numEnemiesAtBase;
-		this.allEnemies = loadRandomEnemies(numEnemiesAtBase);
-		
-		fullPanel = new JPanel(new GridBagLayout());
-		fullPanel.setBackground(Color.YELLOW);
+		this.allChractersOnMap = loadChracters();
 
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
@@ -41,83 +59,246 @@ public class MapView extends JFrame{
 		//printArrayListOfEnemies(allEnemies);
 		
 		createFrame();
-		createNewLayer(numEnemiesAtBase, 0);
+		createMapPanel();
+		createHelpPanel();
+		createMovementPanel();
 		
-		this.add(fullPanel);
 
 	}
 	
-	
-	
-	
-	private ArrayList<Enemy> loadRandomEnemies(int numEnemiesAtBase) {
+	public void resetAfterCombat() {
+		currEnemyPower++;
 		
-		ArrayList<Enemy> finalArrList = new ArrayList<>();
+		this.allChractersOnMap = loadChracters();
+		playerCurrLocation = PLAYER_STARTING_LOCATION;
+		createMapPanel();
+		createHelpPanel();
+		createMovementPanel();
+	}
+	
+	public void redrawMapAfterMvmt() {
+		createMapPanel();
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void setPlayerCurrLocation(int newLoc) {
+		this.playerCurrLocation = newLoc;
+	}
+	
+	public int getPlayerCurrLocation() {
+		return playerCurrLocation;
+	}
+	
+	public void setSpecificCharacter(int i, Character newCharacter){
+		allChractersOnMap.set(i, newCharacter);
+	}
+	
+	public Character getSpecificChracter(int value) {
+		return allChractersOnMap.get(value);
+	}
+	
+	//--------------------------------------------------------------------------------------------
+	
+	//Fills an arrayList of length 25 with null enemies except for three unique spots where it is filled with enemies of a given power level.
+	private ArrayList<Character> loadChracters() {
 		
-		for (int i = 0; i < numEnemiesAtBase; i++) {
-			for (int j = i; j < numEnemiesAtBase; j++) {
-				
-				finalArrList.add(new Enemy());
-				
-			}
+		ArrayList<Character> finalArrList = new ArrayList<>();
+		
+		//Generates unique numbers to be used for character locations 
+		TreeSet<Integer> occupiedLocations = new TreeSet<>();
+		occupiedLocations.add(PLAYER_STARTING_LOCATION);
+		
+		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+1) {
+			
+			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
+			occupiedLocations.add(randomInt);
+			
+		}
+		
+		
+		for (int i = 0; i < 25; i++) {
+			
+			if (i == PLAYER_STARTING_LOCATION)
+				finalArrList.add(player);
+			else if (occupiedLocations.contains(i))
+				finalArrList.add(new Enemy(currEnemyPower));
+			else
+				finalArrList.add(null);
+			
 		}
 		
 		return finalArrList;
 		
 	}
 	
-	private void printArrayListOfEnemies(ArrayList<Enemy> input) {
+	//will generate a random number given upper limit
+	//ex: an upper limit of "2" will return 0, 1, or 2
+	private int generateRandomInt(int upperLimit) {
+		return (int) (Math.random() * upperLimit);
+	}
+	
+	private void printArrayListOfEnemies(ArrayList<Character> input) {
 		
-		for (Enemy x: input) {
-			System.out.println(x.getName());
+		for (int i = 0; i < input.size(); i++) {
+			
+			try {
+				System.out.println(i + ": " + input.get(i).getName());
+			}
+			
+			catch (NullPointerException e) {
+				System.out.println(i + ": " + "null");
+			}
+			
 		}
 		
 	}
 	
-	
-	
+	//--------------------------------------------------------------------------------------------
 	
 	private void createFrame() {
 
-		this.setTitle("You are in combat!");
+		this.setTitle("You are looking at the map! Yay!");
 		this.setVisible(true);
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 	
-	private int createNewLayer(int numEnemiesOnThisLayer, int currEnemy) {
+	private void createMapPanel() {
 		
+		mapPanel = new JPanel(new GridBagLayout());
+		mapPanel.setBackground(Color.GREEN);
 		
-		if (numEnemiesOnThisLayer == 0)
-			return -1;
+		constraints.gridx = 0;
+		constraints.gridy = 0;
 		
-		//fill this layer with buttons
-		for (int i = 1; i <= numEnemiesOnThisLayer; i++) {
+		for (int i = 0; i < TOTAL_ENEMIES_ALLOWED; i++) {
 			
-			constraints.gridx = i;
-			constraints.gridy = numEnemiesOnThisLayer; //note: number of enemies also corresponds to the layer number
-			JButton newButton = new JButton(allEnemies.get(currEnemy++).getName());
+			JLabel tempLabel;
 			
-			int finalI = i-1;
+			try {
+				tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
+			}
 			
-			newButton.addActionListener(e -> {
+			catch (NullPointerException e) {
+				tempLabel = new JLabel("Grassy Green Grass");
+			}
 				
-				new CombatView(player, allEnemies.get(finalI));	//figure this out later
 			
-			});
+			mapPanel.add(tempLabel, constraints);
 			
-			fullPanel.add(newButton, constraints);
+			constraints.gridx++;
 			
+			//new row
+			if (constraints.gridx % 5 == 0) {
+				constraints.gridx = 0;
+				constraints.gridy++;
+			}
+				
 		}
 		
-		return createNewLayer(numEnemiesOnThisLayer-1, currEnemy);
+		this.add(mapPanel, BorderLayout.CENTER);
+		mapPanel.repaint();
+		mapPanel.revalidate();
 		
+	}
+	
+	private void createHelpPanel() {
+		
+		helpPanel = new JPanel(new GridBagLayout());
+		helpPanel.setBackground(Color.YELLOW);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		showEnemyPowerLabel = new JLabel("Current enemy power: " + currEnemyPower);
+		helpPanel.add(showEnemyPowerLabel, constraints);
+		
+		constraints.gridy = 1;
+		viewStatsButton = new JButton("Click here to view your stats");
+		helpPanel.add(viewStatsButton, constraints);
+		
+		this.add(helpPanel, BorderLayout.NORTH);
+		mapPanel.repaint();
+		mapPanel.revalidate();
+		
+	}
+	
+	private void createMovementPanel() {
+		
+		mvmtPanel = new JPanel(new GridBagLayout());
+		mvmtPanel.setBackground(Color.DARK_GRAY);
+		
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		northButton = new JButton("^");
+		mvmtPanel.add(northButton, constraints);
+		
+		constraints.gridy = 1;
+		southButton = new JButton("\\/");
+		mvmtPanel.add(southButton, constraints);
+		
+		constraints.gridx = 0;
+		eastButton = new JButton("<");
+		mvmtPanel.add(eastButton, constraints);
+		
+		constraints.gridx = 2;
+		westButton = new JButton(">");
+		mvmtPanel.add(westButton, constraints);
+		
+		this.add(mvmtPanel, BorderLayout.SOUTH);
+		
+	}
+	
+	//--------------------------------------------------------------------------------------------
+	
+	public void addViewStatsButtonListener (ActionListener listener) {
+		viewStatsButton.addActionListener(listener);
+	}
+	
+	public void addNorthButtonListener (ActionListener listener) {
+		northButton.addActionListener(listener);
+	}
+	
+	public void addSouthButtonListener (ActionListener listener) {
+		southButton.addActionListener(listener);
+	}
+	
+	public void addEastButtonListener (ActionListener listener) {
+		eastButton.addActionListener(listener);
+	}
+	
+	public void addWestButtonListener (ActionListener listener) {
+		westButton.addActionListener(listener);
+	}
+	
+	//--------------------------------------------------------------------------------------------
+	
+	//Creates background music
+	public void playMusic(String filePath) {
+		try {
+			File musicPath = new File (filePath);
+			if (musicPath.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
 		
-		new MapView(new Player("Jon"), 10);
+		new MapView(new Player("Jon"));
 		
 	}
 	

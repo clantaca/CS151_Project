@@ -273,7 +273,7 @@ public class StatView extends JFrame {
 
     public static void main(String[] args) {
 
-        new StatView(new Player("Zero"), new Enemy());
+        new StatView(new Player("Zero"), new Enemy(1));
     }
 
 }
