@@ -49,9 +49,9 @@ public class StonewallShield extends Stats implements Item {
     //ignore all damage every 3rd turn
     @Override
     public void specialEffect(Player player) {
-        if (player.turnCounter % 3 == 0)
-            player.shieldEffect = true;
+        if (player.getTurnCounter() % 3 == 0)
+            player.setShieldEffect(true);
         else
-            player.shieldEffect = false;
+            player.setShieldEffect(false);
     }
 }
