@@ -302,6 +302,7 @@ public class Player extends Character {
 
             debuffOn = true;
             debuffCounter++;
+            debuffTurnCounter = 0;
             if(debuffOn){
                 if(debuffTurnCounter == 3) {
                     resetDebuff();
