@@ -292,27 +292,33 @@ public class Enemy extends Character{
 		boolean ifPlayerDodgesEnemyAttack = generateRandomInt(100) <= player.getMyStats().getDodge();
 		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
 			return;
-		
+		if (player.isShieldEffect())
+			return;
 		switch(dmgType) {
 		
 			case PHYSICAL:
 				calculateDmgTaken(this.getMyStats().getDmg(), player.getMyStats().getArm(), player);
+				player.setHitsTakenCounter(player.getHitsTakenCounter()+1);
 				break;
 			
 			case COLD:
 				calculateDmgTaken(this.getMyStats().getCold(), player.getMyStats().getcRes(), player);
+				player.setHitsTakenCounter(player.getHitsTakenCounter()+1);
 				break;
 				
 			case POISON:
 				calculateDmgTaken(this.getMyStats().getPoison(), player.getMyStats().getpRes(), player);
+				player.setHitsTakenCounter(player.getHitsTakenCounter()+1);
 				break;
 			
 			case FIRE:
 				calculateDmgTaken(this.getMyStats().getFire(), player.getMyStats().getfRes(), player);
+				player.setHitsTakenCounter(player.getHitsTakenCounter()+1);
 				break;
 			
 			case LIGHTNING:
 				calculateDmgTaken(this.getMyStats().getLightning(), player.getMyStats().getlRes(), player);
+				player.setHitsTakenCounter(player.getHitsTakenCounter()+1);
 				break;
 			
 		}
