@@ -14,17 +14,113 @@ public class Player extends Character {
     private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
 
-    //TODO: ADD THESE COUNTERS TO THEIR RESPECTIVE METHODS
-    public int spellCounter = 0; // whenever the player casts a spell
-    public int attackCounter = 0; // whenever the player attacks with physical attack
-    public int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
-    public int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
-    public int blockCounter = 0; // whenever the player uses block
+    private int spellCounter = 0; // whenever the player casts a spell
+    private int attackCounter = 0; // whenever the player attacks with physical attack
+    private int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
+    private int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
+    private int blockCounter = 0; // whenever the player uses block
 
-    public boolean shieldEffect;
+    public int getcSpellCounter() {
+        return cSpellCounter;
+    }
+
+    public void setcSpellCounter(int cSpellCounter) {
+        this.cSpellCounter = cSpellCounter;
+    }
+
+    public int getfSpellCounter() {
+        return fSpellCounter;
+    }
+
+    public void setfSpellCounter(int fSpellCounter) {
+        this.fSpellCounter = fSpellCounter;
+    }
+
+    public int getDebuffTurnCounter() {
+        return debuffTurnCounter;
+    }
+
+    public void setDebuffTurnCounter(int debuffTurnCounter) {
+        this.debuffTurnCounter = debuffTurnCounter;
+    }
+
+    public int getDebuffCounter() {
+        return debuffCounter;
+    }
+
+    public void setDebuffCounter(int debuffCounter) {
+        this.debuffCounter = debuffCounter;
+    }
+
+    public boolean isDebuffOn() {
+        return debuffOn;
+    }
+
+    public void setDebuffOn(boolean debuffOn) {
+        this.debuffOn = debuffOn;
+    }
+
+    public int getSpellCounter() {
+        return spellCounter;
+    }
+
+    public void setSpellCounter(int spellCounter) {
+        this.spellCounter = spellCounter;
+    }
+
+    public int getAttackCounter() {
+        return attackCounter;
+    }
+
+    public void setAttackCounter(int attackCounter) {
+        this.attackCounter = attackCounter;
+    }
+
+    public int getHitsTakenCounter() {
+        return hitsTakenCounter;
+    }
+
+    public void setHitsTakenCounter(int hitsTakenCounter) {
+        this.hitsTakenCounter = hitsTakenCounter;
+    }
+
+    public int getTurnCounter() {
+        return turnCounter;
+    }
+
+    public void setTurnCounter(int turnCounter) {
+        this.turnCounter = turnCounter;
+    }
+
+    public int getBlockCounter() {
+        return blockCounter;
+    }
+
+    public void setBlockCounter(int blockCounter) {
+        this.blockCounter = blockCounter;
+    }
+
+    public boolean isShieldEffect() {
+        return shieldEffect;
+    }
+
+    public void setShieldEffect(boolean shieldEffect) {
+        this.shieldEffect = shieldEffect;
+    }
+
+    public int getOriginalDmg() {
+        return originalDmg;
+    }
+
+    public void setOriginalDmg(int originalDmg) {
+        this.originalDmg = originalDmg;
+    }
+
+    private boolean shieldEffect;
 
 
-    public int originalDmg;
+    private int originalDmg;
+
 
     public ArrayList<Item> getInventory() {
         return inventory;
@@ -307,6 +403,21 @@ public class Player extends Character {
                 enemy.getMyStats().setHp(0);
             }
         }
+    }
+
+    // resets all the counters
+    public void resetCounters() {
+        specialAttack = 0;
+        cSpellCounter = 0;
+        fSpellCounter = 0;
+        debuffCounter = 0;
+        debuffTurnCounter = 0;
+        debuffOn = false;
+        spellCounter = 0;
+        attackCounter = 0;
+        hitsTakenCounter = 0;
+        turnCounter = 0;
+        blockCounter = 0;
     }
 
     // removes poison buff from enemy

@@ -47,7 +47,7 @@ public class RejuvenatingChestplate extends Stats implements Item {
     //TODO: MAKE IT SO THAT IT HEALS, NOT INCREASES TOTAL HEALTH BY 20
     @Override
     public void specialEffect(Player player) {
-        if (player.hitsTakenCounter % 5 == 0)
+        if (player.getHitsTakenCounter() % 5 == 0)
             player.getMyStats().setHp((player.getMyStats().getHp() + 20));
     }
 }

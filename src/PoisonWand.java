@@ -15,11 +15,11 @@ public class PoisonWand implements Item {
 
     @Override
     public void itemStats() {
-        System.out.println(itemStats.getPoison());
-        System.out.println(itemStats.getCold());
-        System.out.println(itemStats.getLightning());
-        System.out.println(itemStats.getFire());
-        System.out.println(itemStats.getpRes());
+        System.out.println("+" + itemStats.getPoison() + " Poison Damage");
+        System.out.println("+" + itemStats.getCold() + " Cold Damage");
+        System.out.println("+" + itemStats.getLightning() + " Lightning Damage");
+        System.out.println("+" + itemStats.getFire() + " Fire Damage");
+        System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
 
     @Override
@@ -38,13 +38,14 @@ public class PoisonWand implements Item {
 
     @Override
     public String getDescription() {
-        return "At the start of every combat, apply a debuff, causing the enemy to take 1 damage every turn";
+        return "At the start of every combat, apply a debuff, causing the enemy to take 10 damage every turn for 3 turns";
     }
 
     @Override
     public void specialEffect(Player player) {
-        //if (turnCounter == 1) {
-            //TODO: MAKE IT APPLY A DEBUFF TO THE ENEMY WHERE THEY TAKE DAMAGE EVERY TURN
-        //}
+        if (player.getTurnCounter() == 0) {
+            player.setDebuffOn(true);
+            player.setDebuffCounter(player.getDebuffTurnCounter()+1);
+        }
     }
 }

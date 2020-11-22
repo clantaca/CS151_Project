@@ -7,7 +7,7 @@ public class ShortSwordOfPower extends Stats implements Item {
 
     public ShortSwordOfPower() {
         itemStats.setDmg(randomInt(10, 4));
-        itemStats.setCrit(10);
+        itemStats.setCrit(15);
         itemStats.setHp(randomInt(10,5));
         itemStats.setArm(randomInt(10,5));
     }
@@ -39,9 +39,9 @@ public class ShortSwordOfPower extends Stats implements Item {
     //every 2nd attack deals bonus damage
     @Override
     public void specialEffect(Player player) {
-        if (player.attackCounter % 3 == 0)
+        if (player.getAttackCounter() % 3 == 0)
             player.getMyStats().setDmg(player.getMyStats().getDmg() + 15);
         else
-            player.getMyStats().setDmg(player.originalDmg);
+            player.getMyStats().setDmg(player.getOriginalDmg());
     }
 }
