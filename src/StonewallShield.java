@@ -37,23 +37,21 @@ public class StonewallShield extends Stats implements Item {
     }
     @Override
     public void itemStats() {
-        System.out.println(itemStats.getDmg());
-        System.out.println(itemStats.getHp());
-        System.out.println(itemStats.getArm());
-        System.out.println(itemStats.getcRes());
-        System.out.println(itemStats.getfRes());
-        System.out.println(itemStats.getpRes());
-        System.out.println(itemStats.getlRes());
+        System.out.println("+" + itemStats.getDmg() + " Physical Damage");
+        System.out.println("+" + itemStats.getHp() + " Health");
+        System.out.println("+" + itemStats.getArm() + " Armor");
+        System.out.println("+" + itemStats.getcRes() + " Cold Resistance");
+        System.out.println("+" + itemStats.getfRes() + " Fire Resistance");
+        System.out.println("+" + itemStats.getlRes() + " Lightning Resistance");
+        System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
 
     //ignore all damage every 3rd turn
     @Override
     public void specialEffect(Player player) {
-        if (player.turnCounter == 3) {
-            //TODO TAKE NO DAMAGE FROM ENEMY ON THIS TURN
-        }
-        else {
-            player.turnCounter++;
-        }
+        if (player.getTurnCounter() % 3 == 0)
+            player.setShieldEffect(true);
+        else
+            player.setShieldEffect(false);
     }
 }

@@ -10,21 +10,117 @@ public class Player extends Character {
     private int specialAttack = 0; // increases every physical attack
     private int cSpellCounter = 0;
     private int fSpellCounter = 0;
-    private int debuffCounter = 0; // resets debuff after every 3 turns
+    private int debuffTurnCounter = 0; // resets debuff after every 3 turns
+    private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
 
-    //TODO: ADD THESE COUNTERS TO THEIR RESPECTIVE METHODS
-    public int spellCounter = 0; // whenever the player casts a spell
-    public int attackCounter = 0; // whenever the player attacks with physical attack
-    public int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
-    public int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
-    public int blockCounter = 0; // whenever the player uses block
+    private int spellCounter = 0; // whenever the player casts a spell
+    private int attackCounter = 0; // whenever the player attacks with physical attack
+    private int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
+    private int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
+    private int blockCounter = 0; // whenever the player uses block
 
-    //TODO: ADD TO START OF TURN AND END OF BATTLE
-    public boolean startOfTurn;
-    public boolean endOfBattle;
+    public int getcSpellCounter() {
+        return cSpellCounter;
+    }
 
-    public int originalDmg;
+    public void setcSpellCounter(int cSpellCounter) {
+        this.cSpellCounter = cSpellCounter;
+    }
+
+    public int getfSpellCounter() {
+        return fSpellCounter;
+    }
+
+    public void setfSpellCounter(int fSpellCounter) {
+        this.fSpellCounter = fSpellCounter;
+    }
+
+    public int getDebuffTurnCounter() {
+        return debuffTurnCounter;
+    }
+
+    public void setDebuffTurnCounter(int debuffTurnCounter) {
+        this.debuffTurnCounter = debuffTurnCounter;
+    }
+
+    public int getDebuffCounter() {
+        return debuffCounter;
+    }
+
+    public void setDebuffCounter(int debuffCounter) {
+        this.debuffCounter = debuffCounter;
+    }
+
+    public boolean isDebuffOn() {
+        return debuffOn;
+    }
+
+    public void setDebuffOn(boolean debuffOn) {
+        this.debuffOn = debuffOn;
+    }
+
+    public int getSpellCounter() {
+        return spellCounter;
+    }
+
+    public void setSpellCounter(int spellCounter) {
+        this.spellCounter = spellCounter;
+    }
+
+    public int getAttackCounter() {
+        return attackCounter;
+    }
+
+    public void setAttackCounter(int attackCounter) {
+        this.attackCounter = attackCounter;
+    }
+
+    public int getHitsTakenCounter() {
+        return hitsTakenCounter;
+    }
+
+    public void setHitsTakenCounter(int hitsTakenCounter) {
+        this.hitsTakenCounter = hitsTakenCounter;
+    }
+
+    public int getTurnCounter() {
+        return turnCounter;
+    }
+
+    public void setTurnCounter(int turnCounter) {
+        this.turnCounter = turnCounter;
+    }
+
+    public int getBlockCounter() {
+        return blockCounter;
+    }
+
+    public void setBlockCounter(int blockCounter) {
+        this.blockCounter = blockCounter;
+    }
+
+    public boolean isShieldEffect() {
+        return shieldEffect;
+    }
+
+    public void setShieldEffect(boolean shieldEffect) {
+        this.shieldEffect = shieldEffect;
+    }
+
+    public int getOriginalDmg() {
+        return originalDmg;
+    }
+
+    public void setOriginalDmg(int originalDmg) {
+        this.originalDmg = originalDmg;
+    }
+
+    private boolean shieldEffect;
+
+
+    private int originalDmg;
+
 
     public ArrayList<Item> getInventory() {
         return inventory;
@@ -108,26 +204,22 @@ public class Player extends Character {
 
         // 4th physical attack does special attack
         if(specialAttack == 4) {
-            System.out.println("Physical Special Attack");
             tdmg = ((getMyStats().getDmg()*2) < enemyRes) ? 0 : ((getMyStats().getDmg()*2) - enemyRes); //Also modified here; same case as above
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);		
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            System.out.println("Player uses special physical attack and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
             specialAttack = 0;								//Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
         }
         else {
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            System.out.println("Player uses physical attack and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
             specialAttack++;
         }
 
         // checks poison debuff and enemy loses 10 hp if poisoned
         if(debuffOn){
-            if(debuffCounter == 3) {
-                resetDebuff();
-            }
-            else {
-                System.out.println("Enemy is poisoned");
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                debuffCounter++;
-            }
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+            System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+            debuffTurnCounter++;
         }
 
         increaseMana();
@@ -149,7 +241,7 @@ public class Player extends Character {
 
         // needs 5 mana to cold spell
         if(getMyStats().getMana() < 5) {
-            System.out.println("Not enough mana!");
+            System.out.println("Not enough mana to use cold spell!");
         }
         else {
             // 3rd cold spell freezes enemy
@@ -157,24 +249,20 @@ public class Player extends Character {
                 useSpell();
                 tdmg = ((getMyStats().getCold()*3) < enemyRes) ? 0 : ((getMyStats().getCold()*3) - enemyRes);
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-                System.out.println("Enemy is frozen");
+                System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP and is frozen.");
                 cSpellCounter = 0;
             }
             else {
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
                 cSpellCounter++;
             }
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
-                    resetDebuff();
-                }
-                else {
-                    System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
-                }
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                debuffTurnCounter++;
             }
 
             increaseMana();
@@ -195,16 +283,21 @@ public class Player extends Character {
 
         // needs 5 mana to use poison spell
         if(getMyStats().getMana() < 5) {
-            System.out.println("Not enough mana!");
+            System.out.println("Not enough mana to use poison spell!");
         }
         else {
             // sets debuff on enemy
             useSpell();
-            tdmg = ((getMyStats().getPoison()*3) < enemyRes) ? 0 : ((getMyStats().getPoison()*3) - enemyRes);
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Enemy poisoned");
 
             debuffOn = true;
+            debuffCounter++;
+            debuffTurnCounter = 0;
+            if(debuffOn){
+                System.out.println("Enemy is poisoned.");
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                debuffTurnCounter++;
+            }
+
             increaseMana();
             turnCounter++;
 
@@ -223,30 +316,28 @@ public class Player extends Character {
 
         // needs 5 mana to use fire spell
         if(getMyStats().getMana() < 5) {
-            System.out.println("Not enough mana!");
+            System.out.println("Not enough mana to use fire spell!");
         }
         else {
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+            System.out.println("Player uses fire spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+            fSpellCounter++;
+
             // 2nd fire spell does bonus damage
             if(fSpellCounter == 2) {
                 useSpell();
-                System.out.println("Bonus fire damage");
                 tdmg = ((getMyStats().getFire()*3) < enemyRes) ? 0 : ((getMyStats().getFire()*3) - enemyRes);
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player does bonus fire damage. Enemy loses " + tdmg + " HP.");
                 fSpellCounter = 0;
             }
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            fSpellCounter++;
+
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
-                    resetDebuff();
-                }
-                else {
-                    System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
-                }
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                debuffTurnCounter++;
             }
 
             increaseMana();
@@ -267,25 +358,20 @@ public class Player extends Character {
 
         // needs 5 mana to use lightning spell
         if(getMyStats().getMana() < 5) {
-            System.out.println("Not enough mana!");
+            System.out.println("Not enough mana to use lightning spell!");
         }
         else {
             // enemy damage increases
             useSpell();
             tdmg = ((getMyStats().getLightning()*4) < enemyRes) ? 0 : ((getMyStats().getLightning()*4) - enemyRes);
             enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Lightning attack");
+            System.out.println("Player uses lightning spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
-                    resetDebuff();
-                }
-                else {
-                    System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
-                }
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                debuffTurnCounter++;
             }
 
             increaseMana();
@@ -298,9 +384,25 @@ public class Player extends Character {
         }
     }
 
+    // resets all the counters
+    public void resetCounters() {
+        specialAttack = 0;
+        cSpellCounter = 0;
+        fSpellCounter = 0;
+        debuffCounter = 0;
+        debuffTurnCounter = 0;
+        debuffOn = false;
+        spellCounter = 0;
+        attackCounter = 0;
+        hitsTakenCounter = 0;
+        turnCounter = 0;
+        blockCounter = 0;
+    }
+
     // removes poison buff from enemy
     public void resetDebuff() {
         debuffOn = false;
+        debuffTurnCounter = 0;
         debuffCounter = 0;
     }
 
@@ -325,6 +427,7 @@ public class Player extends Character {
             getMyStats().setMana(cMana);
         }
         blockCounter++;
+        System.out.println("Player blocks enemy and obtains 5 mana!");
         return true;
     }
 
@@ -345,6 +448,14 @@ public class Player extends Character {
     public void updateInventory(Player player) {
         inventory.add(itemStorage.getNewItem());
         inventory.get(getInventory().size()-1).updatePlayerStats(player);
+        Item item = inventory.get(inventory.size()-1);
+
+        // displays item name + description
+        System.out.println();
+        System.out.println("Player obtains new item: " + item.getName() + "!");
+        System.out.println(item.getName() + ": " + item.getDescription());
+        System.out.println();
+
         originalDmg = player.getMyStats().getDmg();
     }
 

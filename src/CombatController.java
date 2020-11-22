@@ -53,6 +53,7 @@ public class CombatController {
 				statViewEnemy.dispose();
 			}
 			
+			player.resetCounters();
 			combatView.setVisible(false);
 			combatView.dispose();
 		}

@@ -13,12 +13,14 @@ public class ItemStorage {
         StonewallShield stonewallShield = new StonewallShield();
         ShortSwordOfPower shortSwordOfPower = new ShortSwordOfPower();
         BloodlustGauntlets bloodlustGauntlets = new BloodlustGauntlets();
+        SwiftShoes swiftShoes = new SwiftShoes();
         itemStorages.add(poisonWand);
         itemStorages.add(mageBerserkerGloves);
         itemStorages.add(rejuvenatingChestplate);
         itemStorages.add(stonewallShield);
         itemStorages.add(shortSwordOfPower);
         itemStorages.add(bloodlustGauntlets);
+        itemStorages.add(swiftShoes);
     }
 
     //picks a random item from the array, updates the player stats with the items' stats and removes it from the array

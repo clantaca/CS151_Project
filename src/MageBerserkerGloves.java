@@ -43,24 +43,24 @@ public class MageBerserkerGloves implements Item {
     }
     @Override
     public void itemStats() {
-        System.out.println(itemStats.getHp());
-        System.out.println(itemStats.getArm());
-        System.out.println(itemStats.getcRes());
-        System.out.println(itemStats.getfRes());
-        System.out.println(itemStats.getpRes());
-        System.out.println(itemStats.getlRes());
-        System.out.println(itemStats.getCold());
-        System.out.println(itemStats.getFire());
-        System.out.println(itemStats.getPoison());
-        System.out.println(itemStats.getLightning());
+        System.out.println("+" + itemStats.getHp() + " Health");
+        System.out.println("+" + itemStats.getArm() + " Armour");
+        System.out.println("+" + itemStats.getcRes() + " Cold Resistance");
+        System.out.println("+" + itemStats.getfRes() + " Fire Resist");
+        System.out.println("+" + itemStats.getlRes() + " Lightning Resistance");
+        System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
+        System.out.println("+" + itemStats.getCold() + " Cold Damage");
+        System.out.println("+" + itemStats.getFire() + " Fire Damage");
+        System.out.println("+" + itemStats.getLightning() + " Lightning Damage");
+        System.out.println("+" + itemStats.getPoison() + " Poison Damage");
     }
 
     //each spell casts increase all magic damage
     @Override
     public void specialEffect(Player player) {
-        player.getMyStats().setCold(player.getMyStats().getCold() + (2 * player.spellCounter));
-        player.getMyStats().setFire(player.getMyStats().getfRes() + (2 * player.spellCounter));
-        player.getMyStats().setPoison(player.getMyStats().getPoison() + (2 * player.spellCounter));
-        player.getMyStats().setLightning(player.getMyStats().getLightning() + (2 * player.spellCounter));
+        player.getMyStats().setCold(player.getMyStats().getCold() + (2 * player.getSpellCounter()));
+        player.getMyStats().setFire(player.getMyStats().getfRes() + (2 * player.getSpellCounter()));
+        player.getMyStats().setPoison(player.getMyStats().getPoison() + (2 * player.getSpellCounter()));
+        player.getMyStats().setLightning(player.getMyStats().getLightning() + (2 * player.getSpellCounter()));
 }
 }
