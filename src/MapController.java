@@ -52,6 +52,11 @@ public class MapController {
 		else {
 			
 			//TODO: add enemy verification here
+			if(statViewPlayer != null) {
+				statViewPlayer.setVisible(false);
+				statViewPlayer.dispose();
+			}
+
 			new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
 			mapView.resetAfterCombat();
 		}
