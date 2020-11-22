@@ -113,7 +113,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.physicalAttack(enemy);
-			playSound("ButtonClick.wav");
+			playSound("PhysAttack.wav");
 			combatEnsues();
 			
 		}
@@ -126,7 +126,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.coldAttack(enemy);
-			playSound("ButtonClick.wav");
+			playSound("ColdAttack.wav");
 			combatEnsues();
 			
 		}
@@ -139,7 +139,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.fireAttack(enemy);
-			playSound("ButtonClick.wav");
+			playSound("FireAttack.wav");
 			combatEnsues();
 			
 		}
@@ -152,7 +152,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.lightningAttack(enemy);
-			playSound("ButtonClick.wav");
+			playSound("LightningAttack.wav");
 			combatEnsues();
 			
 		}
@@ -165,7 +165,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.poisonAttack(enemy);
-			playSound("ButtonClick.wav");
+			playSound("PoisonAttack.wav");
 			combatEnsues();
 			
 		}
@@ -178,7 +178,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.blockEnemy();
-			playSound("ButtonClick.wav");
+			playSound("Block.wav");
 			
 		}
 		
