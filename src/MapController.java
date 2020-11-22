@@ -1,10 +1,10 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MapController {
 
@@ -45,15 +45,15 @@ public class MapController {
 			mapView.setPlayerCurrLocation(newLoc);
 			mapView.setSpecificCharacter(oldLoc, null);
 			mapView.redrawMapAfterMvmt();
-			
 		}
 		
 		//else it's an enemy
 		else {
-			
-			//TODO: add enemy verification here
-			new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
-			mapView.resetAfterCombat();
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this enemy?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
+			if(option == JOptionPane.YES_OPTION) {
+				new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
+				mapView.resetAfterCombat();
+			}
 		}
 		
 		
