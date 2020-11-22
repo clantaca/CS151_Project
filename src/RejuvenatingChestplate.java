@@ -35,24 +35,19 @@ public class RejuvenatingChestplate extends Stats implements Item {
     }
     @Override
     public void itemStats() {
-        System.out.println(itemStats.getHp());
-        System.out.println(itemStats.getArm());
-        System.out.println(itemStats.getcRes());
-        System.out.println(itemStats.getfRes());
-        System.out.println(itemStats.getpRes());
-        System.out.println(itemStats.getlRes());
+        System.out.println("+" + itemStats.getHp() + " Health");
+        System.out.println("+" + itemStats.getArm() + " Armor");
+        System.out.println("+" + itemStats.getcRes() + " Cold Resistance");
+        System.out.println("+" + itemStats.getfRes() + " Fire Resistance");
+        System.out.println("+" + itemStats.getlRes() + " Lightning Resistance");
+        System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
 
     //heals self after every 4th hit taken
     //TODO: MAKE IT SO THAT IT HEALS, NOT INCREASES TOTAL HEALTH BY 20
     @Override
     public void specialEffect(Player player) {
-        if (player.hitsTakenCounter == 4) {
+        if (player.hitsTakenCounter % 5 == 0)
             player.getMyStats().setHp((player.getMyStats().getHp() + 20));
-            player.hitsTakenCounter = 0;
-        }
-            else {
-                player.hitsTakenCounter++;
-            }
     }
 }

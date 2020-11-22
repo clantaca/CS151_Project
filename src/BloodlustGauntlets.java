@@ -18,13 +18,13 @@ public class BloodlustGauntlets implements Item {
 
     @Override
     public void itemStats() {
-        System.out.println("+" + itemStats.getHp());
-        System.out.println("" + itemStats.getDmg());
-        System.out.println("" + itemStats.getArm());
-        System.out.println("" + itemStats.getcRes());
-        System.out.println("" + itemStats.getlRes());
-        System.out.println("" + itemStats.getpRes());
-        System.out.println("" + itemStats.getfRes());
+        System.out.println("" + itemStats.getHp() + " HP");
+        System.out.println("+" + itemStats.getDmg() + " Physical DMG");
+        System.out.println("" + itemStats.getArm() + " Armor");
+        System.out.println("" + itemStats.getcRes() + " Cold Resistance");
+        System.out.println("" + itemStats.getfRes() + " Fire Resistance");
+        System.out.println("" + itemStats.getlRes() + " Lightning Resistance");
+        System.out.println("" + itemStats.getpRes() + " Poison Resistance");
     }
 
     @Override

@@ -10,7 +10,8 @@ public class Player extends Character {
     private int specialAttack = 0; // increases every physical attack
     private int cSpellCounter = 0;
     private int fSpellCounter = 0;
-    private int debuffCounter = 0; // resets debuff after every 3 turns
+    private int debuffTurnCounter = 0; // resets debuff after every 3 turns
+    private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
 
     //TODO: ADD THESE COUNTERS TO THEIR RESPECTIVE METHODS
@@ -20,9 +21,8 @@ public class Player extends Character {
     public int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
     public int blockCounter = 0; // whenever the player uses block
 
-    //TODO: ADD TO START OF TURN AND END OF BATTLE
-    public boolean startOfTurn;
-    public boolean endOfBattle;
+    public boolean shieldEffect;
+
 
     public int originalDmg;
 
@@ -120,13 +120,13 @@ public class Player extends Character {
 
         // checks poison debuff and enemy loses 10 hp if poisoned
         if(debuffOn){
-            if(debuffCounter == 3) {
+            if(debuffTurnCounter == 3) {
                 resetDebuff();
             }
             else {
                 System.out.println("Enemy is poisoned");
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                debuffCounter++;
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                debuffTurnCounter++;
             }
         }
 
@@ -167,13 +167,13 @@ public class Player extends Character {
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
+                if(debuffTurnCounter == 3) {
                     resetDebuff();
                 }
                 else {
                     System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                    debuffTurnCounter++;
                 }
             }
 
@@ -205,6 +205,17 @@ public class Player extends Character {
             System.out.println("Enemy poisoned");
 
             debuffOn = true;
+            debuffCounter++;
+            if(debuffOn){
+                if(debuffTurnCounter == 3) {
+                    resetDebuff();
+                }
+                else {
+                    System.out.println("Enemy is poisoned");
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                    debuffTurnCounter++;
+                }
+            }
             increaseMana();
             turnCounter++;
 
@@ -239,13 +250,13 @@ public class Player extends Character {
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
+                if(debuffTurnCounter == 3) {
                     resetDebuff();
                 }
                 else {
                     System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                    debuffTurnCounter++;
                 }
             }
 
@@ -278,13 +289,13 @@ public class Player extends Character {
 
             // checks poison debuff
             if(debuffOn){
-                if(debuffCounter == 3) {
+                if(debuffTurnCounter == 3) {
                     resetDebuff();
                 }
                 else {
                     System.out.println("Enemy is poisoned");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - 10);
-                    debuffCounter++;
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
+                    debuffTurnCounter++;
                 }
             }
 
@@ -301,6 +312,7 @@ public class Player extends Character {
     // removes poison buff from enemy
     public void resetDebuff() {
         debuffOn = false;
+        debuffTurnCounter = 0;
         debuffCounter = 0;
     }
 
