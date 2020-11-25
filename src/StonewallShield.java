@@ -1,11 +1,12 @@
 public class StonewallShield extends Stats implements Item {
 
+    Item item;
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
     private Stats itemStats = new Stats();
 
-    public StonewallShield() {
+    public StonewallShield(Item item) {
         itemStats.setDmg(randomInt(7,1));
         itemStats.setHp(randomInt(20,10));
         itemStats.setArm(randomInt(10,5));
@@ -13,16 +14,17 @@ public class StonewallShield extends Stats implements Item {
         itemStats.setfRes(randomInt(10,5));
         itemStats.setpRes(randomInt(10,5));
         itemStats.setlRes(randomInt(10,5));
+        this.item = item;
     }
 
     @Override
     public String getName() {
-        return "Stonewall's Shield";
+        return item.getName() + "Stonewall's Shield";
     }
 
     @Override
     public String getDescription() {
-        return "On every 3rd turn, ignore all damage taken.";
+        return "On every 3rd turn, ignore all damage taken." + item.getDescription();
     }
 
     @Override

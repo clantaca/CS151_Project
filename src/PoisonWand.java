@@ -1,16 +1,17 @@
 public class PoisonWand implements Item {
-
+    Item item;
     private Stats itemStats = new Stats();
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
 
-    public PoisonWand() {
+    public PoisonWand(Item item) {
         itemStats.setPoison(randomInt(8, 4));
         itemStats.setCold(randomInt(4,2));
         itemStats.setLightning(randomInt(4,2));
         itemStats.setFire(randomInt(4,2));
         itemStats.setpRes(randomInt(10,0));
+        this.item = item;
     }
 
     @Override
@@ -33,12 +34,13 @@ public class PoisonWand implements Item {
 
     @Override
     public String getName() {
-        return "Poisonous Wand";
+        return item.getName() + "Poisonous Wand";
     }
 
     @Override
     public String getDescription() {
-        return "At the start of every combat, apply a debuff, causing the enemy to take 10 damage every turn for 3 turns";
+        return "At the start of every combat, apply a debuff, causing the enemy to take 10 damage every turn for 3 turns"
+                + item.getDescription();
     }
 
     @Override

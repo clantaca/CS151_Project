@@ -1,9 +1,6 @@
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 public class CombatView extends JFrame{
 
@@ -14,7 +11,7 @@ public class CombatView extends JFrame{
 	private final int	UNITS_FOR_IMAGE_HEIGHT = 150;
 
 	//All components used in this view
-	private JPanel				fullPanel;
+	private JLabel				fullPanel;
 
 	private JLabel				playerImageArea;
 	private JLabel 				playerNameLabel;
@@ -47,18 +44,21 @@ public class CombatView extends JFrame{
 		this.player = player;
 		this.enemy = enemy;
 
-		fullPanel = new JPanel(new GridBagLayout());
+		ImageIcon backgroundImage = new ImageIcon("background.jpg");
+		fullPanel = new JLabel(backgroundImage);
+		fullPanel.setLayout(new GridBagLayout());
 		fullPanel.setBackground(Color.CYAN);
-		
+
 		createFrame();
 		createWestPanel();
 		createCentPanel();
 		createEastPanel();
-		
+
 		this.add(fullPanel);
 
 		pack();
 	}
+
 
 	//----------------------------------------------------------------------------------------
 

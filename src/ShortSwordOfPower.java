@@ -1,24 +1,26 @@
 public class ShortSwordOfPower extends Stats implements Item {
 
+    Item item;
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
     private Stats itemStats = new Stats();
 
-    public ShortSwordOfPower() {
+    public ShortSwordOfPower(Item item) {
         itemStats.setDmg(randomInt(10, 4));
         itemStats.setCrit(15);
         itemStats.setHp(randomInt(10,5));
         itemStats.setArm(randomInt(10,5));
+        this.item = item;
     }
     @Override
     public String getName() {
-        return "Short Sword Of Power";
+        return item.getName() + "Short Sword Of Power";
     }
 
     @Override
     public String getDescription() {
-        return "Every 3rd physical attack has it's damage increased by 15.";
+        return "Every 3rd physical attack has it's damage increased by 15." + item.getDescription();
     }
 
     @Override

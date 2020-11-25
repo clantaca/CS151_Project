@@ -1,27 +1,29 @@
 public class RejuvenatingChestplate extends Stats implements Item {
 
+    Item item;
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
     private Stats itemStats = new Stats();
 
-    public RejuvenatingChestplate() {
+    public RejuvenatingChestplate(Item item) {
         itemStats.setHp(randomInt(50,25));
         itemStats.setArm(randomInt(20,10));
         itemStats.setcRes(randomInt(20,10));
         itemStats.setfRes(randomInt(20,10));
         itemStats.setpRes(randomInt(20,10));
         itemStats.setlRes(randomInt(20,10));
+        this.item = item;
     }
 
     @Override
     public String getName() {
-        return "Rejuvenating Chestplate";
+        return item.getName() + "Rejuvenating Chestplate";
     }
 
     @Override
     public String getDescription() {
-        return "Every 5th you take from the enemy, heal for 20.";
+        return "Every 5th you take from the enemy, heal for 20." + item.getDescription();
     }
 
     @Override

@@ -1,11 +1,11 @@
 public class SwiftShoes implements Item {
-
+    Item item;
     private Stats itemStats = new Stats();
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
 
-    public SwiftShoes() {
+    public SwiftShoes(Item item) {
         itemStats.setHp(randomInt(30, 15));
         itemStats.setArm(randomInt(10,0));
         itemStats.setcRes(randomInt(10,0));
@@ -13,6 +13,7 @@ public class SwiftShoes implements Item {
         itemStats.setpRes(randomInt(10,0));
         itemStats.setlRes(randomInt(10,0));
         itemStats.setDodge(25);
+        this.item = item;
     }
     @Override
     public void itemStats() {
@@ -32,7 +33,7 @@ public class SwiftShoes implements Item {
 
     @Override
     public String getName() {
-        return "Shoes of Swiftness";
+        return item.getName() + "Shoes of Swiftness";
     }
 
     @Override
@@ -48,6 +49,6 @@ public class SwiftShoes implements Item {
 
     @Override
     public String getDescription() {
-        return "Increases Dodge chance by 25%.";
+        return "Increases Dodge chance by 20%" + item.getDescription();
     }
 }

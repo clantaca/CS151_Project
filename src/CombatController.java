@@ -76,6 +76,7 @@ public class CombatController {
 		combatView.resetVariables();
 		
 		if (player.getMyStats().getHp() <= 0) {
+			playSound("Death.wav");
 			combatView.setPlayerDie();
 		}
 

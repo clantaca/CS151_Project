@@ -1,11 +1,12 @@
 public class MageBerserkerGloves implements Item {
 
+    Item item;
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
     private Stats itemStats = new Stats();
 
-    public MageBerserkerGloves() {
+    public MageBerserkerGloves(Item item) {
         itemStats.setHp(randomInt(10, 5));
         itemStats.setArm(randomInt(5, 0));
         itemStats.setcRes(randomInt(5, 0));
@@ -16,16 +17,17 @@ public class MageBerserkerGloves implements Item {
         itemStats.setFire(randomInt(4, 2));
         itemStats.setPoison(randomInt(4, 2));
         itemStats.setLightning(randomInt(4, 2));
+        this.item = item;
     }
 
     @Override
     public String getName() {
-        return "Mage's Berserker Gloves";
+        return item.getName() + "Mage's Berserker Gloves";
     }
 
     @Override
     public String getDescription() {
-        return "Every spell cast increases the damage of consecutive spells cast by 2.";
+        return "Every spell cast increases the damage of consecutive spells cast by 2." + item.getDescription();
     }
 
     @Override

@@ -7,13 +7,14 @@ public class ItemStorage {
 
 	//creates the item storage array list with all the items
     public ItemStorage() {
-        PoisonWand poisonWand = new PoisonWand();
-        MageBerserkerGloves mageBerserkerGloves = new MageBerserkerGloves();
-        RejuvenatingChestplate rejuvenatingChestplate = new RejuvenatingChestplate();
-        StonewallShield stonewallShield = new StonewallShield();
-        ShortSwordOfPower shortSwordOfPower = new ShortSwordOfPower();
-        BloodlustGauntlets bloodlustGauntlets = new BloodlustGauntlets();
-        SwiftShoes swiftShoes = new SwiftShoes();
+        Item itemDec = new ItemDec();
+        Item poisonWand = new PoisonWand(itemDec);
+        Item mageBerserkerGloves = new MageBerserkerGloves(itemDec);
+        Item rejuvenatingChestplate = new RejuvenatingChestplate(itemDec);
+        Item stonewallShield = new StonewallShield(itemDec);
+        Item shortSwordOfPower = new ShortSwordOfPower(itemDec);
+        Item bloodlustGauntlets = new BloodlustGauntlets(itemDec);
+        Item swiftShoes = new SwiftShoes(itemDec);
         itemStorages.add(poisonWand);
         itemStorages.add(mageBerserkerGloves);
         itemStorages.add(rejuvenatingChestplate);

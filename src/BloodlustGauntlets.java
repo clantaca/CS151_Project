@@ -1,12 +1,13 @@
 
 public class BloodlustGauntlets implements Item {
 
+    Item item;
     private Stats itemStats = new Stats();
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
 
-    public BloodlustGauntlets() {
+    public BloodlustGauntlets(Item item) {
         itemStats.setDmg(randomInt(25,10));
         itemStats.setHp(randomInt(0,-30));
         itemStats.setArm(randomInt(0,-5));
@@ -14,6 +15,7 @@ public class BloodlustGauntlets implements Item {
         itemStats.setlRes(randomInt(0,-5));
         itemStats.setpRes(randomInt(0,-5));
         itemStats.setfRes(randomInt(0,-5));
+        this.item = item;
     }
 
     @Override
@@ -41,12 +43,12 @@ public class BloodlustGauntlets implements Item {
 
     @Override
     public String getName() {
-        return "Bloodlust Gauntlets";
+        return item.getName() + "Bloodlust Gauntlets";
     }
 
     @Override
     public String getDescription() {
-        return "While below 75%/50%/25% health, increase damage by 10/20/30 respectively.";
+        return "While below 75%/50%/25% health, increase damage by 10/20/30 respectively." + item.getDescription();
     }
 
     //When the player is at 75%/50%/25% of his max health, increase damage
