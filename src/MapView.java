@@ -18,12 +18,13 @@ import javax.swing.*;
 
 public class MapView extends JFrame{
 
-	private final int 	FRAME_WIDTH = 800;
-	private final int 	FRAME_HEIGHT = 400;
-	private final int	COMPONENT_PADDING = 5;
+	private final int 	FRAME_WIDTH = 1200;
+	private final int 	FRAME_HEIGHT = 700;
+	private final int	COMPONENT_PADDING = 20;
 	private final int	ROWS_PER_SIDE = 5; 		//Map will be a 5x5 square
 	private final int	TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
 	private final int 	PLAYER_STARTING_LOCATION = 22;
+	private final int 	EXIT_STARTING_LOCATION = 2;
 	private final int 	NUM_ENEMIES_ON_MAP = 3;
 	
 	private JPanel	mapPanel;
@@ -110,8 +111,10 @@ public class MapView extends JFrame{
 		//Generates unique numbers to be used for character locations 
 		TreeSet<Integer> occupiedLocations = new TreeSet<>();
 		occupiedLocations.add(PLAYER_STARTING_LOCATION);
+		occupiedLocations.add(EXIT_STARTING_LOCATION);
 		
-		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+1) {
+		//Add 3 enemies to the map (it is num of enemies + 2 since player and exit take up a spot each)
+		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
 			
 			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
 			occupiedLocations.add(randomInt);
@@ -121,7 +124,7 @@ public class MapView extends JFrame{
 		
 		for (int i = 0; i < 25; i++) {
 			
-			if (i == PLAYER_STARTING_LOCATION)
+			if (i == PLAYER_STARTING_LOCATION || i == EXIT_STARTING_LOCATION)
 				finalArrList.add(player);
 			else if (occupiedLocations.contains(i))
 				finalArrList.add(new Enemy(currEnemyPower));
@@ -170,8 +173,10 @@ public class MapView extends JFrame{
 	private void createMapPanel() {
 		
 		mapPanel = new JPanel(new GridBagLayout());
-		mapPanel.setBackground(Color.GREEN);
+		mapPanel.setBackground(Color.DARK_GRAY);
 		
+		constraints.ipadx = 10;
+		constraints.ipady = 10;
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		
@@ -181,10 +186,15 @@ public class MapView extends JFrame{
 			
 			try {
 				tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
+				tempLabel.setOpaque(true);
+				
+				if (i == EXIT_STARTING_LOCATION)
+					tempLabel.setText("Stairway Up");
 			}
 			
 			catch (NullPointerException e) {
-				tempLabel = new JLabel("Grassy Green Grass");
+				tempLabel = new JLabel();
+				tempLabel.setOpaque(true);
 			}
 				
 			
@@ -229,7 +239,7 @@ public class MapView extends JFrame{
 	private void createMovementPanel() {
 		
 		mvmtPanel = new JPanel(new GridBagLayout());
-		mvmtPanel.setBackground(Color.DARK_GRAY);
+		mvmtPanel.setBackground(Color.GRAY);
 		
 		constraints.gridx = 1;
 		constraints.gridy = 0;
