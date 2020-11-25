@@ -28,7 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NotificationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotificationView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +84,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="NotificationView" />
+      <module name="CS151_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Player" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Player" />
       <module name="CS151_Project" />
@@ -96,29 +103,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CS151_Project" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PlayerTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="PARAMETERS" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.Player" />
       <item itemvalue="Application.ShortSwordOfPower" />
       <item itemvalue="Application.Item" />
-      <item itemvalue="JUnit.PlayerTest" />
       <item itemvalue="Application.GameTester" />
+      <item itemvalue="Application.NotificationView" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GameTester" />
+        <item itemvalue="Application.NotificationView" />
         <item itemvalue="Application.Item" />
         <item itemvalue="Application.ShortSwordOfPower" />
         <item itemvalue="Application.Player" />
-        <item itemvalue="JUnit.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -205,28 +203,28 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1603209290104" />
-    <state width="1323" height="118" key="GridCell.Tab.0.bottom" timestamp="1606083017231">
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606342060730">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="118" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606083017231" />
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="118" key="GridCell.Tab.0.center" timestamp="1606083017230">
+    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606342060730">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="118" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606083017230" />
+    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="118" key="GridCell.Tab.0.left" timestamp="1606083017229">
+    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606342060729">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="118" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606083017229" />
+    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606342060729" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="118" key="GridCell.Tab.0.right" timestamp="1606083017231">
+    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606342060730">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="118" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606083017231" />
+    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">

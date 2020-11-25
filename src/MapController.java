@@ -16,6 +16,7 @@ public class MapController {
 	private MapView mapView;
 	private StatView statViewPlayer;
 	private Player player;
+	private int enemyCounter = 0;
 	
 	public MapController(MapView mapView, Player player) {
 		
@@ -47,22 +48,36 @@ public class MapController {
 			mapView.redrawMapAfterMvmt();
 		}
 		
-		//else it's an enemy
-		else {
-
-			//TODO: add enemy verification here
+		//if we hit the exit (exit is part of player class)
+		else if (mapView.getSpecificChracter(newLoc) instanceof Player ) {
+			
 			if(statViewPlayer != null) {
 				statViewPlayer.setVisible(false);
 				statViewPlayer.dispose();
 			}
 
-			new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
-			mapView.resetAfterCombat();
+			int option = JOptionPane.showConfirmDialog(null, "You have reached the exit", "Would you like to go up to the next level of this tower?", JOptionPane.YES_NO_OPTION);
+			if(option == JOptionPane.YES_OPTION) {
+				mapView.resetAfterCombat();
+			}
 			
+		}
+		
+		//else it's an enemy
+		else {
+
+			if(statViewPlayer != null) {
+				statViewPlayer.setVisible(false);
+				statViewPlayer.dispose();
+			}
+
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this enemy?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
 				new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
-				mapView.resetAfterCombat();
+				mapView.setSpecificCharacter(newLoc, null);
+				mapView.redrawMapAfterMvmt();
+				enemyCounter++;
+
 			}
 		}
 		
