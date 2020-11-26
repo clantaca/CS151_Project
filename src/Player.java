@@ -141,12 +141,14 @@ public class Player extends Character {
 
         // default values for each new player
         this.getMyStats().setHp(100);
+        this.getMyStats().setMaxHP(100);
         this.getMyStats().setDmg(20);
         this.getMyStats().setCold(20);
         this.getMyStats().setPoison(20);
         this.getMyStats().setFire(20);
         this.getMyStats().setArm(5);
         this.getMyStats().setMana(20);
+        this.getMyStats().setMaxMana(20);
         this.getMyStats().setcRes(5);
         this.getMyStats().setpRes(5);
         this.getMyStats().setfRes(5);

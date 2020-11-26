@@ -30,6 +30,7 @@ public class RejuvenatingChestplate extends Stats implements Item {
     public void updatePlayerStats(Player player) {
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
         player.getMyStats().setArm(player.getMyStats().getArm() + itemStats.getArm());
+        player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
         player.getMyStats().setcRes(player.getMyStats().getcRes() + itemStats.getcRes());
         player.getMyStats().setfRes(player.getMyStats().getfRes() + itemStats.getfRes());
         player.getMyStats().setpRes(player.getMyStats().getpRes() + itemStats.getpRes());

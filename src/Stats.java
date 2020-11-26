@@ -15,6 +15,24 @@ public class Stats {
 	int lRes;	//lightning resist
 	int dodge;
 	int crit;
+	int maxHP;
+	int maxMana;
+
+	public int getMaxMana() {
+		return maxMana;
+	}
+
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
+	}
+
+	public int getMaxHP() {
+		return maxHP;
+	}
+
+	public void setMaxHP(int maxHP) {
+		this.maxHP = maxHP;
+	}
 
 	public int getDodge() {
 		return dodge;

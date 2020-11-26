@@ -31,6 +31,7 @@ public class StonewallShield extends Stats implements Item {
     public void updatePlayerStats(Player player) {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
+        player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
         player.getMyStats().setArm(player.getMyStats().getArm() + itemStats.getArm());
         player.getMyStats().setcRes(player.getMyStats().getcRes() + itemStats.getcRes());
         player.getMyStats().setfRes(player.getMyStats().getfRes() + itemStats.getfRes());

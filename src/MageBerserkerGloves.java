@@ -33,6 +33,7 @@ public class MageBerserkerGloves implements Item {
     @Override
     public void updatePlayerStats (Player player) {
         player.getMyStats().setHp(player.getMyStats().getHp() + randomInt(10, 5));
+        player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
         player.getMyStats().setArm(player.getMyStats().getArm() + randomInt(5, 0));
         player.getMyStats().setcRes(player.getMyStats().getcRes() + randomInt(5, 0));
         player.getMyStats().setfRes(player.getMyStats().getfRes() + randomInt(5, 0));

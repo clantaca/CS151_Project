@@ -83,8 +83,8 @@ public class CombatView extends JFrame{
 
 		playerNameLabel = new JLabel(player.getName());
 		playerImageArea = new JLabel("Player image goes here");		//Delete this text later
-		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp());
-		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana());
+		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
+		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
 		playerStatsBut = new JButton("Check Stats");
 		playerInvBut = new JButton("Open Inventory");
 
