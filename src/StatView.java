@@ -117,8 +117,8 @@ public class StatView extends JFrame {
         if (initialized) {
             pNameLabel = new JLabel(player.getName() + " Stats");
             //playerPic = new JLabel(new ImageIcon("Player.PNG"));
-            pHpLabel = new JLabel("Health: " + player.getMyStats().getHp());
-            pManaLabel = new JLabel("Mana: " + player.getMyStats().getMana());
+            pHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
+            pManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
             pArmorLabel = new JLabel("Armor: " + player.getMyStats().getArm());
 
             westPanel.add(pNameLabel);
