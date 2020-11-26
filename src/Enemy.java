@@ -146,45 +146,31 @@ public class Enemy extends Character{
 	private void createGenericEnemy() {
 		
 		final int ALLOWED_POWER_VARIANCE = 3;
-		int randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setHp(power * randomInt(80, 100));
+
+		this.getMyStats().setDmg(power * randomInt(5,10));
 		
-		this.getMyStats().setHp(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setArm(power * randomInt(3,6));
 		
-		this.getMyStats().setDmg(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setCold(power * randomInt(5,10));
 		
-		this.getMyStats().setArm(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setPoison(power * randomInt(5,10));
+
+		this.getMyStats().setFire(power * randomInt(5,10));
 		
-		this.getMyStats().setCold(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setLightning(power * randomInt(5,10));
 		
-		this.getMyStats().setPoison(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
+		this.getMyStats().setcRes(power * randomInt(3,6));
 		
-		this.getMyStats().setFire(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setLightning(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setcRes(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setpRes(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setfRes(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setlRes(power + randomInt);
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setDodge((power + randomInt)/3);			//lowered dodge and crit chances cause it can get way out of hand 
-		randomInt = generateRandomInt(ALLOWED_POWER_VARIANCE);
-		
-		this.getMyStats().setCrit((power + randomInt)/2);
+		this.getMyStats().setpRes(power * randomInt(3,6));
+
+		this.getMyStats().setfRes(power * randomInt(3,6));
+
+		this.getMyStats().setlRes(power * randomInt(3,6));
+
+		this.getMyStats().setDodge(10);			//lowered dodge and crit chances cause it can get way out of hand
+
+		this.getMyStats().setCrit(10);
 		
 	}
 
@@ -279,7 +265,9 @@ public class Enemy extends Character{
 	private int generateRandomInt(int upperLimit) {
 		return (int) (Math.random() * upperLimit + 1);
 	}
-	
+	public int randomInt(int min, int max) {
+		return (int) (Math.random() * (max - min)) + min;
+	}
 	private void concatateToName(String str) {
 		this.setName(this.getName() + str + " ");
 	}

@@ -126,10 +126,6 @@ public class Player extends Character {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
-    }
-
     public ItemStorage getItem() {
         return itemStorage;
     }
@@ -145,13 +141,16 @@ public class Player extends Character {
 
         // default values for each new player
         this.getMyStats().setHp(100);
-        this.getMyStats().setDmg(5);
+        this.getMyStats().setDmg(20);
+        this.getMyStats().setCold(20);
+        this.getMyStats().setPoison(20);
+        this.getMyStats().setFire(20);
         this.getMyStats().setArm(5);
         this.getMyStats().setMana(20);
-        this.getMyStats().setcRes(randomInt(0,5));
-        this.getMyStats().setpRes(randomInt(0,5));
-        this.getMyStats().setfRes(randomInt(0,5));
-        this.getMyStats().setlRes(randomInt(0,5));
+        this.getMyStats().setcRes(5);
+        this.getMyStats().setpRes(5);
+        this.getMyStats().setfRes(5);
+        this.getMyStats().setlRes(5);
         this.getMyStats().setDodge(5);
         this.getMyStats().setCrit(5);
     }

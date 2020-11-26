@@ -44,7 +44,7 @@ public class CombatView extends JFrame{
 		this.player = player;
 		this.enemy = enemy;
 
-		ImageIcon backgroundImage = new ImageIcon("background.jpg");
+		ImageIcon backgroundImage = new ImageIcon("background1.jpg");
 		fullPanel = new JLabel(backgroundImage);
 		fullPanel.setLayout(new GridBagLayout());
 		fullPanel.setBackground(Color.CYAN);
