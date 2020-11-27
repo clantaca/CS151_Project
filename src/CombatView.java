@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import javafx.scene.layout.Border;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -82,6 +85,11 @@ public class CombatView extends JFrame{
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
 		playerNameLabel = new JLabel(player.getName());
+		playerNameLabel.setForeground(Color.BLUE);
+		//javax.swing.border.Border border = BorderFactory.createEtchedBorder(Color.GREEN, Color.BLUE);
+		//playerNameLabel.setBorder(border);
+		
+		
 		playerImageArea = new JLabel("Player image goes here");		//Delete this text later
 		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
 		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
@@ -152,6 +160,8 @@ public class CombatView extends JFrame{
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
 		enemyNameLabel = new JLabel(enemy.getName());
+		enemyNameLabel.setForeground(Color.RED);
+		
 		enemyImageArea = new JLabel("Enemy image goes here");		//Delete this text later
 		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
 		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());
