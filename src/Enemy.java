@@ -327,18 +327,27 @@ public class Enemy extends Character{
 		
 		if(ifEnemyLandsCrit) {
 			
-			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 0 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
 			System.out.println("Enemy lands critical attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
 			System.out.println();
 		}
 
 		else {
-			
-			int dmgTaken = ((enemyDmg < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 0 : enemyDmg - (int)(playerDef*EFFECTIVNESS_OF_DEF));
-			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-			System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
-			System.out.println();
+			if (player.blocked) {
+
+				int dmgTaken = ((enemyDmg/2 < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg/2 - (int) (playerDef * EFFECTIVNESS_OF_DEF));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
+				System.out.println("Player blocks enemy and takes " + dmgTaken + "and restores 5 mana.");
+				System.out.println();
+				player.resetBlock();
+			}
+			else {
+				int dmgTaken = ((enemyDmg < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg - (int) (playerDef * EFFECTIVNESS_OF_DEF));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
+				System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
+				System.out.println();
+			}
 		}
 	}
 	
