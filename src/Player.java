@@ -364,6 +364,7 @@ public class Player extends Character {
                 if (debuffOn) {
                     System.out.println("Enemy is poisoned.");
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10 * debuffCounter));
+                    System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
                     debuffTurnCounter++;
                 }
 
