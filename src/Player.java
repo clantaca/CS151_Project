@@ -204,16 +204,28 @@ public class Player extends Character {
         int tdmg = (pdmg < enemyRes) ? 0 : pdmg-enemyRes;  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
 
         // 4th physical attack does special attack
-        if(specialAttack == 4) {
-            tdmg = ((getMyStats().getDmg()*2) < enemyRes) ? 0 : ((getMyStats().getDmg()*2) - enemyRes); //Also modified here; same case as above
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Player uses special physical attack and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
-            specialAttack = 0;								//Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
+        if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+            System.out.println("Enemy dodges your attack!");
+            return;
         }
         else {
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Player uses physical attack and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
-            specialAttack++;
+            if (specialAttack == 4) {
+                tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player uses special physical attack and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+                specialAttack = 0;                                //Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
+            } else {
+                if (randomInt(0, 100) <= getMyStats().getCrit()) {
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg*2));
+                    System.out.println("Player lands a critical strike, dealing " + tdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
+                    specialAttack++;
+                }
+                else {
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg));
+                    System.out.println("Player attacks with his weapon, dealing " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+                    specialAttack++;
+                }
+            }
         }
 
         // checks poison debuff and enemy loses 10 hp if poisoned
@@ -245,20 +257,24 @@ public class Player extends Character {
             System.out.println("Not enough mana to use cold spell!");
         }
         else {
-            // 3rd cold spell freezes enemy
-            if(cSpellCounter == 3) {
-                useSpell();
-                tdmg = ((getMyStats().getCold()*3) < enemyRes) ? 0 : ((getMyStats().getCold()*3) - enemyRes);
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-                System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP and is frozen.");
-                cSpellCounter = 0;
+            if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                System.out.println("Enemy dodges your attack!");
+                return;
             }
             else {
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-                System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
-                cSpellCounter++;
+                // 3rd cold spell freezes enemy
+                if (cSpellCounter == 3) {
+                    useSpell();
+                    tdmg = ((getMyStats().getCold() * 3) < enemyRes) ? 0 : ((getMyStats().getCold() * 3) - enemyRes);
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                    System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP and is frozen.");
+                    cSpellCounter = 0;
+                } else {
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                    System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+                    cSpellCounter++;
+                }
             }
-
             // checks poison debuff
             if(debuffOn){
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
@@ -287,17 +303,23 @@ public class Player extends Character {
             System.out.println("Not enough mana to use poison spell!");
         }
         else {
-            // sets debuff on enemy
-            useSpell();
-
-            debuffOn = true;
-            debuffCounter++;
-            debuffTurnCounter = 0;
-            if(debuffOn){
-                System.out.println("Enemy is poisoned.");
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
-                debuffTurnCounter++;
+            if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                System.out.println("Enemy dodges your attack!");
+                return;
             }
+            else {
+                // sets debuff on enemy
+                useSpell();
+
+                debuffOn = true;
+                debuffCounter++;
+                debuffTurnCounter = 0;
+            }
+                if (debuffOn) {
+                    System.out.println("Enemy is poisoned.");
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10 * debuffCounter));
+                    debuffTurnCounter++;
+                }
 
             increaseMana();
             turnCounter++;
@@ -320,19 +342,24 @@ public class Player extends Character {
             System.out.println("Not enough mana to use fire spell!");
         }
         else {
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Player uses fire spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
-            fSpellCounter++;
-
-            // 2nd fire spell does bonus damage
-            if(fSpellCounter == 2) {
-                useSpell();
-                tdmg = ((getMyStats().getFire()*3) < enemyRes) ? 0 : ((getMyStats().getFire()*3) - enemyRes);
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-                System.out.println("Player does bonus fire damage. Enemy loses " + tdmg + " HP.");
-                fSpellCounter = 0;
+            if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                System.out.println("Enemy dodges your attack!");
+                return;
             }
+            else {
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player uses fire spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+                fSpellCounter++;
 
+                // 2nd fire spell does bonus damage
+                if (fSpellCounter == 2) {
+                    useSpell();
+                    tdmg = ((getMyStats().getFire() * 3) < enemyRes) ? 0 : ((getMyStats().getFire() * 3) - enemyRes);
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                    System.out.println("Player does bonus fire damage. Enemy loses " + tdmg + " HP.");
+                    fSpellCounter = 0;
+                }
+            }
 
             // checks poison debuff
             if(debuffOn){
@@ -340,7 +367,7 @@ public class Player extends Character {
                 System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
                 debuffTurnCounter++;
             }
-
+}
             increaseMana();
             turnCounter++;
 
@@ -349,7 +376,7 @@ public class Player extends Character {
                 enemy.getMyStats().setHp(0);
             }
         }
-    }
+
 
     public void lightningAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
@@ -362,12 +389,17 @@ public class Player extends Character {
             System.out.println("Not enough mana to use lightning spell!");
         }
         else {
-            // enemy damage increases
-            useSpell();
-            tdmg = ((getMyStats().getLightning()*4) < enemyRes) ? 0 : ((getMyStats().getLightning()*4) - enemyRes);
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-            System.out.println("Player uses lightning spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
-
+            if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                System.out.println("Enemy dodges your attack!");
+                return;
+            }
+            else {
+                // enemy damage increases
+                useSpell();
+                tdmg = ((getMyStats().getLightning() * 4) < enemyRes) ? 0 : ((getMyStats().getLightning() * 4) - enemyRes);
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player uses lightning spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
+            }
             // checks poison debuff
             if(debuffOn){
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
