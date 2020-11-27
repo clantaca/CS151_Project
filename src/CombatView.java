@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 public class CombatView extends JFrame{
 
 	private final int 	FRAME_WIDTH = 600;
-	private final int 	FRAME_HEIGHT = 400;
-	private final int	PANEL_BORDER = 10;
+	private final int 	FRAME_HEIGHT = 200;
 	private final int	COMPONENT_PADDING = 5;
-	private final int	UNITS_FOR_IMAGE_HEIGHT = 10;
 
 	//All components used in this view
 	private JLabel				fullPanel;
@@ -95,11 +93,11 @@ public class CombatView extends JFrame{
 		constraints.gridy = 0;
 		fullPanel.add(playerNameLabel, constraints);
 		
-		constraints.ipady = UNITS_FOR_IMAGE_HEIGHT; //makes component taller
+		constraints.weighty = 1; //makes component taller
 		constraints.gridy++;
 		fullPanel.add(playerImageArea, constraints);
 
-		constraints.ipady = 0; //reset back
+		constraints.weighty = 0;
 		constraints.gridy++;
 		fullPanel.add(playerHpLabel, constraints);
 
@@ -167,11 +165,11 @@ public class CombatView extends JFrame{
 		constraints.gridy = 0;
 		fullPanel.add(enemyNameLabel, constraints);
 		
-		constraints.ipady = UNITS_FOR_IMAGE_HEIGHT;
-		constraints.gridy =+ 2;
+		constraints.weighty = 1;
+		constraints.gridy++;
 		fullPanel.add(enemyImageArea, constraints);
 		
-		constraints.ipady = 0;
+		constraints.weighty = 0;
 		constraints.gridy++;
 		fullPanel.add(enemyHpLabel, constraints);
 		
@@ -180,6 +178,7 @@ public class CombatView extends JFrame{
 		
 		constraints.gridy++;
 		fullPanel.add(enemyStatsBut, constraints);
+
 
 	}
 	
