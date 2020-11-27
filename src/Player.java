@@ -13,6 +13,7 @@ public class Player extends Character {
     private int debuffTurnCounter = 0; // resets debuff after every 3 turns
     private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
+    private boolean blocked = true;
 
     private int spellCounter = 0; // whenever the player casts a spell
     private int attackCounter = 0; // whenever the player attacks with physical attack
@@ -174,7 +175,7 @@ public class Player extends Character {
                 max = getMyStats().getDmg();
                 // if player has over 5 dmg, the min is 10% over their max dmg
                 if (max > 5) {
-                    min = (int)(max*(10.0f/100.0f));
+                    min = (int)(max*(20.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -183,7 +184,7 @@ public class Player extends Character {
             case "Cold":
                 max = getMyStats().getCold();
                 if (max > 5) {
-                    min = (int)(max*(10.0f/100.0f));
+                    min = (int)(max*(20.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -192,7 +193,7 @@ public class Player extends Character {
             case "Poison":
                 max = getMyStats().getPoison();
                 if (max > 5) {
-                    min = (int)(max*(10.0f/100.0f));
+                    min = (int)(max*(20.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -201,7 +202,7 @@ public class Player extends Character {
             case "Fire":
                 max = getMyStats().getFire();
                 if (max > 5) {
-                    min = (int)(max*(10.0f/100.0f));
+                    min = (int)(max*(20.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -210,7 +211,7 @@ public class Player extends Character {
             case "Lightning":
                 max = getMyStats().getLightning();
                 if (max > 5) {
-                    min = (int)(max*(10.0f/100.0f));
+                    min = (int)(max*(20.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -271,6 +272,7 @@ public class Player extends Character {
         }
 
         increaseMana(3);
+        resetBlock();
         attackCounter++;
         turnCounter++;
 
@@ -284,7 +286,7 @@ public class Player extends Character {
     public void coldAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold");
-        int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getcRes();
+        int enemyRes = enemy.getMyStats().getcRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
 
         // needs 5 mana to cold spell
@@ -329,6 +331,7 @@ public class Player extends Character {
             }
 
             increaseMana(1);
+            resetBlock();
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -341,7 +344,7 @@ public class Player extends Character {
     public void poisonAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and poison resistance
         int pdmg = randomizeDmg("Poison");
-        int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getpRes();
+        int enemyRes = enemy.getMyStats().getpRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
 
         // needs 5 mana to use poison spell
@@ -368,6 +371,7 @@ public class Player extends Character {
                     debuffTurnCounter++;
                 }
 
+                resetBlock();
             increaseMana(1);
             turnCounter++;
 
@@ -381,7 +385,7 @@ public class Player extends Character {
     public void fireAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and fire resistance
         int pdmg = randomizeDmg("Fire");
-        int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getfRes();
+        int enemyRes = enemy.getMyStats().getfRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
 
         // needs 5 mana to use fire spell
@@ -427,6 +431,7 @@ public class Player extends Character {
             }
 }
             increaseMana(1);
+            resetBlock();
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -439,7 +444,7 @@ public class Player extends Character {
     public void lightningAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
         int pdmg = randomizeDmg("Lightning");
-        int enemyRes = enemy.getMyStats().getArm() + enemy.getMyStats().getlRes();
+        int enemyRes = enemy.getMyStats().getlRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
 
         // needs 5 mana to use lightning spell
@@ -466,6 +471,7 @@ public class Player extends Character {
             }
 
             increaseMana(1);
+            resetBlock();
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -508,6 +514,10 @@ public class Player extends Character {
         }
     }
 
+    public void resetBlock() {
+        blocked = false;
+    }
+
     // returns true is attack if blocked, enemy cannot damage player
     public boolean blockEnemy() {
         int bMana = getMyStats().getMana()+5;
@@ -520,7 +530,7 @@ public class Player extends Character {
         blockCounter++;
         //System.out.println(getMyStats().getMana());
         System.out.println("Player blocks enemy and obtains 5 mana!");
-        return true;
+        return blocked;
     }
 
     // each spell uses 5 mana

@@ -28,7 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,20 +69,18 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="JUnit.BloodlustGauntletsTest">
-    <configuration name="BloodlustGauntletsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.GameTester">
+    <configuration name="GameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameTester" />
       <module name="CS151_Project" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BloodlustGauntletsTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PoisonWandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BloodlustGauntletsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PoisonWandTest" />
+      <option name="MAIN_CLASS_NAME" value="BloodlustGauntletsTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,19 +114,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.PoisonWandTest" />
       <item itemvalue="JUnit.RejuvenatingChestplateTest" />
       <item itemvalue="JUnit.ShortSwordOfPowerTest" />
       <item itemvalue="JUnit.StonewallShieldTest" />
       <item itemvalue="JUnit.BloodlustGauntletsTest" />
+      <item itemvalue="Application.GameTester" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GameTester" />
         <item itemvalue="JUnit.BloodlustGauntletsTest" />
         <item itemvalue="JUnit.StonewallShieldTest" />
         <item itemvalue="JUnit.ShortSwordOfPowerTest" />
         <item itemvalue="JUnit.RejuvenatingChestplateTest" />
-        <item itemvalue="JUnit.PoisonWandTest" />
       </list>
     </recent_temporary>
   </component>
@@ -223,28 +221,28 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="479" y="229" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1606484177271" />
-    <state width="661" height="117" key="GridCell.Tab.0.bottom" timestamp="1606491923972">
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606512489950">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="661" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606491923972" />
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606512489950" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="661" height="117" key="GridCell.Tab.0.center" timestamp="1606491923971">
+    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606512489948">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="661" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
+    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606512489948" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="661" height="117" key="GridCell.Tab.0.left" timestamp="1606491923971">
+    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606512489948">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="661" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
+    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606512489948" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="661" height="117" key="GridCell.Tab.0.right" timestamp="1606491923971">
+    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606512489949">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="661" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
+    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606512489949" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">
