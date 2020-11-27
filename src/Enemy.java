@@ -323,10 +323,11 @@ public class Enemy extends Character{
 	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
 		
 		boolean ifEnemyLandsCrit = generateRandomInt(100) <= this.getMyStats().getCrit();
+		final double EFFECTIVNESS_OF_DEF = 0.1;
 		
 		if(ifEnemyLandsCrit) {
 			
-			int dmgTakenDoubled = (enemyDmg*2 < playerDef) ? 0 : enemyDmg-playerDef;
+			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 0 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
 			System.out.println("Enemy lands critical attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
 			System.out.println();
@@ -334,7 +335,7 @@ public class Enemy extends Character{
 
 		else {
 			
-			int dmgTaken = (enemyDmg < playerDef) ? 0 : enemyDmg-playerDef;
+			int dmgTaken = ((enemyDmg < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 0 : enemyDmg - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 			System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
 			System.out.println();
