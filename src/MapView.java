@@ -9,9 +9,10 @@ import java.util.TreeSet;
 
 public class MapView extends JFrame{
 
-	private final int 	FRAME_WIDTH = 1200;
-	private final int 	FRAME_HEIGHT = 700;
-	private final int	COMPONENT_PADDING = 20;
+	private final int 	FRAME_WIDTH = 1500;
+	private final int 	FRAME_HEIGHT = 1000;
+	private final int	COMPONENT_PADDING_HEIGHT = 35;
+	private final int	COMPONENT_PADDING_LENGTH = 90;
 	private final int	ROWS_PER_SIDE = 5; 		//Map will be a 5x5 square
 	private final int	TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
 	private final int 	PLAYER_STARTING_LOCATION = 22;
@@ -47,7 +48,9 @@ public class MapView extends JFrame{
 		this.allChractersOnMap = loadChracters();
 
 		constraints = new GridBagConstraints();
-		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
+		constraints.insets = new Insets(COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH, COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH);
+		constraints.ipadx = 20;
+		constraints.ipady = 20;
 
 		//printArrayListOfEnemies(allEnemies);
 		
@@ -167,8 +170,7 @@ public class MapView extends JFrame{
 		mapPanel = new JPanel(new GridBagLayout());
 		mapPanel.setBackground(Color.DARK_GRAY);
 		
-		constraints.ipadx = 10;
-		constraints.ipady = 10;
+
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		
@@ -211,7 +213,7 @@ public class MapView extends JFrame{
 	private void createHelpPanel() {
 		
 		helpPanel = new JPanel(new GridBagLayout());
-		helpPanel.setBackground(Color.YELLOW);
+		helpPanel.setBackground(Color.GRAY);
 		
 		constraints.gridx = 0;
 		constraints.gridy = 0;

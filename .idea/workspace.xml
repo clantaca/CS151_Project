@@ -28,8 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CombatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,58 +65,70 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.GameTester">
-    <configuration name="CombatView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CombatView" />
+  <component name="RunManager" selected="JUnit.BloodlustGauntletsTest">
+    <configuration name="BloodlustGauntletsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BloodlustGauntletsTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GameTester" />
+    <configuration name="PoisonWandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PoisonWandTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Item" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Item" />
+    <configuration name="RejuvenatingChestplateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RejuvenatingChestplateTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificationView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="NotificationView" />
+    <configuration name="ShortSwordOfPowerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ShortSwordOfPowerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Player" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Player" />
+    <configuration name="StonewallShieldTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
-      <method v="2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="StonewallShieldTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Player" />
-      <item itemvalue="Application.Item" />
-      <item itemvalue="Application.GameTester" />
-      <item itemvalue="Application.NotificationView" />
-      <item itemvalue="Application.CombatView" />
+      <item itemvalue="JUnit.PoisonWandTest" />
+      <item itemvalue="JUnit.RejuvenatingChestplateTest" />
+      <item itemvalue="JUnit.ShortSwordOfPowerTest" />
+      <item itemvalue="JUnit.StonewallShieldTest" />
+      <item itemvalue="JUnit.BloodlustGauntletsTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GameTester" />
-        <item itemvalue="Application.CombatView" />
-        <item itemvalue="Application.Player" />
-        <item itemvalue="Application.NotificationView" />
-        <item itemvalue="Application.Item" />
+        <item itemvalue="JUnit.BloodlustGauntletsTest" />
+        <item itemvalue="JUnit.StonewallShieldTest" />
+        <item itemvalue="JUnit.ShortSwordOfPowerTest" />
+        <item itemvalue="JUnit.RejuvenatingChestplateTest" />
+        <item itemvalue="JUnit.PoisonWandTest" />
       </list>
     </recent_temporary>
   </component>
@@ -192,6 +203,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="414" y="255" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604254110228" />
+    <state x="92" y="92" width="1182" height="554" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1606488109412">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="92" y="92" width="1182" height="554" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1366.738@0.0.1366.738" timestamp="1606488109412" />
     <state x="765" y="284" key="#com.intellij.ide.util.MemberChooser" timestamp="1604335708767">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -204,28 +219,32 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1603209290104" />
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606457494717">
+    <state x="479" y="229" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606484177271">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606457494717" />
+    <state x="479" y="229" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1606484177271" />
+    <state width="661" height="117" key="GridCell.Tab.0.bottom" timestamp="1606491923972">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="661" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606491923972" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606457494715">
+    <state width="661" height="117" key="GridCell.Tab.0.center" timestamp="1606491923971">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606457494715" />
+    <state width="661" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606457494714">
+    <state width="661" height="117" key="GridCell.Tab.0.left" timestamp="1606491923971">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606457494714" />
+    <state width="661" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606457494716">
+    <state width="661" height="117" key="GridCell.Tab.0.right" timestamp="1606491923971">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606457494716" />
+    <state width="661" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606491923971" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">
@@ -252,10 +271,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="598" y="361" key="MultipleFileMergeDialog/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603060784050" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1603062335239">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1606492062634">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1603062335239" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1606492062634" />
     <state x="552" y="333" key="Vcs.Push.Dialog.v2" timestamp="1603061128449">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -280,5 +299,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1604034991797" />
+    <state x="346" y="59" key="search.everywhere.popup" timestamp="1606490106803">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1606490106803" />
   </component>
 </project>
