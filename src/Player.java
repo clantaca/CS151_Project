@@ -146,6 +146,7 @@ public class Player extends Character {
         this.getMyStats().setCold(20);
         this.getMyStats().setPoison(20);
         this.getMyStats().setFire(20);
+        this.getMyStats().setLightning(20);
         this.getMyStats().setArm(5);
         this.getMyStats().setMana(20);
         this.getMyStats().setMaxMana(20);
@@ -165,32 +166,47 @@ public class Player extends Character {
     // randomizes player's damages for each attack type
     public int randomizeDmg(String dmgType) {
         int pdmg = 0;
-        int min = 0;
+        int min = 1;
         int max = 0;
         switch (dmgType) {
 
             case "Physical":
                 max = getMyStats().getDmg();
+                // if player has over 5 dmg, the min is 10% over their max dmg
+                if (max > 5) {
+                    min = (int)(max*(10.0f/100.0f));
+                }
                 pdmg = randomInt(min, max);
                 break;
 
             case "Cold":
                 max = getMyStats().getCold();
+                if (max > 5) {
+                    min = (int)(max*(10.0f/100.0f));
+                }
                 pdmg = randomInt(min, max);
                 break;
 
             case "Poison":
                 max = getMyStats().getPoison();
+                if (max > 5) {
+                    min = (int)(max*(10.0f/100.0f));
+                }
                 pdmg = randomInt(min, max);
                 break;
 
             case "Fire":
-                max = getMyStats().getFire();
+                if (max > 5) {
+                    min = (int)(max*(10.0f/100.0f));
+                }
                 pdmg = randomInt(min, max);
                 break;
 
             case "Lightning":
                 max = getMyStats().getLightning();
+                if (max > 5) {
+                    min = (int)(max*(10.0f/100.0f));
+                }
                 pdmg = randomInt(min, max);
                 break;
         }
@@ -216,11 +232,13 @@ public class Player extends Character {
                 specialAttack = 0;                                //Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
             } else {
                 if (randomInt(0, 100) <= getMyStats().getCrit()) {
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg*2));
+                    tdmg = ((getMyStats().getCold() * 2) < enemyRes) ? 0 : ((getMyStats().getCold() * 2) - enemyRes);
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg));
                     System.out.println("Player lands a critical strike, dealing " + tdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
                     specialAttack++;
                 }
                 else {
+                    tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg));
                     System.out.println("Player attacks with his weapon, dealing " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
                     specialAttack++;
@@ -235,7 +253,7 @@ public class Player extends Character {
             debuffTurnCounter++;
         }
 
-        increaseMana();
+        increaseMana(3);
         attackCounter++;
         turnCounter++;
 
@@ -270,6 +288,7 @@ public class Player extends Character {
                     System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP and is frozen.");
                     cSpellCounter = 0;
                 } else {
+                    tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                     System.out.println("Player uses cold spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
                     cSpellCounter++;
@@ -282,7 +301,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 
-            increaseMana();
+            increaseMana(1);
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -321,7 +340,7 @@ public class Player extends Character {
                     debuffTurnCounter++;
                 }
 
-            increaseMana();
+            increaseMana(1);
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -347,6 +366,8 @@ public class Player extends Character {
                 return;
             }
             else {
+                useSpell();
+                tdmg = ((getMyStats().getFire() * 1) < enemyRes) ? 0 : ((getMyStats().getFire() * 1) - enemyRes);
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                 System.out.println("Player uses fire spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
                 fSpellCounter++;
@@ -368,7 +389,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 }
-            increaseMana();
+            increaseMana(1);
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -396,7 +417,7 @@ public class Player extends Character {
             else {
                 // enemy damage increases
                 useSpell();
-                tdmg = ((getMyStats().getLightning() * 4) < enemyRes) ? 0 : ((getMyStats().getLightning() * 4) - enemyRes);
+                tdmg = ((getMyStats().getLightning() * 3) < enemyRes) ? 0 : ((getMyStats().getLightning() * 3) - enemyRes);
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                 System.out.println("Player uses lightning spell and does " + tdmg + " damage. Enemy loses " + tdmg + " HP.");
             }
@@ -407,7 +428,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 
-            increaseMana();
+            increaseMana(1);
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -440,8 +461,8 @@ public class Player extends Character {
     }
 
     // adds +2 mana each time a player attacks
-    public void increaseMana() {
-        int cMana = getMyStats().getMana()+2;
+    public void increaseMana(int num) {
+        int cMana = getMyStats().getMana()+num;
         if (cMana >= 20) {
             getMyStats().setMana(20);
         }
@@ -452,14 +473,15 @@ public class Player extends Character {
 
     // returns true is attack if blocked, enemy cannot damage player
     public boolean blockEnemy() {
-        int cMana = getMyStats().getMana()+5;
-        if (cMana >= 20) {
+        int bMana = getMyStats().getMana()+5;
+        if (bMana >= 20) {
             getMyStats().setMana(20);
         }
         else {
-            getMyStats().setMana(cMana);
+            getMyStats().setMana(bMana);
         }
         blockCounter++;
+        //System.out.println(getMyStats().getMana());
         System.out.println("Player blocks enemy and obtains 5 mana!");
         return true;
     }

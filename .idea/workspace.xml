@@ -28,7 +28,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NotificationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotificationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CombatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +71,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.GameTester">
+    <configuration name="CombatView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CombatView" />
+      <module name="CS151_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GameTester" />
       <module name="CS151_Project" />
@@ -96,27 +104,20 @@
       <module name="CS151_Project" />
       <method v="2" />
     </configuration>
-    <configuration name="ShortSwordOfPower" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ShortSwordOfPower" />
-      <module name="CS151_Project" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Player" />
-      <item itemvalue="Application.ShortSwordOfPower" />
       <item itemvalue="Application.Item" />
       <item itemvalue="Application.GameTester" />
       <item itemvalue="Application.NotificationView" />
+      <item itemvalue="Application.CombatView" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GameTester" />
+        <item itemvalue="Application.CombatView" />
+        <item itemvalue="Application.Player" />
         <item itemvalue="Application.NotificationView" />
         <item itemvalue="Application.Item" />
-        <item itemvalue="Application.ShortSwordOfPower" />
-        <item itemvalue="Application.Player" />
       </list>
     </recent_temporary>
   </component>
@@ -203,28 +204,28 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="25" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1603209290104" />
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606342060730">
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606457494717">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606457494717" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606342060730">
+    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606457494715">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
+    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606457494715" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606342060729">
+    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606457494714">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606342060729" />
+    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606457494714" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606342060730">
+    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606457494716">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606342060730" />
+    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606457494716" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">
