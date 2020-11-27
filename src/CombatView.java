@@ -8,7 +8,7 @@ public class CombatView extends JFrame{
 	private final int 	FRAME_HEIGHT = 400;
 	private final int	PANEL_BORDER = 10;
 	private final int	COMPONENT_PADDING = 5;
-	private final int	UNITS_FOR_IMAGE_HEIGHT = 150;
+	private final int	UNITS_FOR_IMAGE_HEIGHT = 10;
 
 	//All components used in this view
 	private JLabel				fullPanel;
@@ -44,7 +44,7 @@ public class CombatView extends JFrame{
 		this.player = player;
 		this.enemy = enemy;
 
-		ImageIcon backgroundImage = new ImageIcon("background1.jpg");
+		ImageIcon backgroundImage = new ImageIcon("background.jpg");
 		fullPanel = new JLabel(backgroundImage);
 		fullPanel.setLayout(new GridBagLayout());
 		fullPanel.setBackground(Color.CYAN);
@@ -82,9 +82,12 @@ public class CombatView extends JFrame{
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
 		playerNameLabel = new JLabel(player.getName());
-		playerImageArea = new JLabel("Player image goes here");		//Delete this text later
+		playerNameLabel.setForeground(Color.WHITE);
+		playerImageArea = new JLabel(new ImageIcon("player.gif"));		//Delete this text later
 		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
+		playerHpLabel.setForeground(Color.WHITE);
 		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
+		playerManaLabel.setForeground(Color.WHITE);
 		playerStatsBut = new JButton("Check Stats");
 		playerInvBut = new JButton("Open Inventory");
 
@@ -152,9 +155,12 @@ public class CombatView extends JFrame{
 		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
 
 		enemyNameLabel = new JLabel(enemy.getName());
-		enemyImageArea = new JLabel("Enemy image goes here");		//Delete this text later
+		enemyNameLabel.setForeground(Color.WHITE);
+		enemyImageArea = new JLabel(new ImageIcon(enemy.enemyImage));
 		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
+		enemyHpLabel.setForeground(Color.WHITE);
 		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());
+		enemyPowerLabel.setForeground(Color.WHITE);
 		enemyStatsBut = new JButton("Check Stats");
 
 		constraints.gridx = 2;
@@ -162,7 +168,7 @@ public class CombatView extends JFrame{
 		fullPanel.add(enemyNameLabel, constraints);
 		
 		constraints.ipady = UNITS_FOR_IMAGE_HEIGHT;
-		constraints.gridy++;
+		constraints.gridy =+ 2;
 		fullPanel.add(enemyImageArea, constraints);
 		
 		constraints.ipady = 0;
@@ -227,11 +233,16 @@ public class CombatView extends JFrame{
 	public void resetVariables() {
 
 		playerNameLabel.setText(player.getName());
-		playerHpLabel.setText("Health: " + player.getMyStats().getHp());
-		playerManaLabel.setText("Mana: " + player.getMyStats().getMana());
+		playerHpLabel.setText("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
+		playerHpLabel.setForeground(Color.WHITE);
+		playerManaLabel.setText("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
+		playerManaLabel.setForeground(Color.WHITE);
 		enemyNameLabel.setText(enemy.getName());
+		enemyNameLabel.setForeground(Color.WHITE);
 		enemyHpLabel.setText("Health: " + enemy.getMyStats().getHp());
+		enemyHpLabel.setForeground(Color.WHITE);
 		enemyPowerLabel.setText("Power: " + enemy.getPower());
+		enemyPowerLabel.setForeground(Color.WHITE);
 
 	}
 

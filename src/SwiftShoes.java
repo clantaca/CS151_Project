@@ -50,6 +50,6 @@ public class SwiftShoes implements Item {
 
     @Override
     public String getDescription() {
-        return "Increases Dodge chance by 20%" + item.getDescription();
+        return "Increases Dodge chance by 25%" + item.getDescription();
     }
 }

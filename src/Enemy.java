@@ -1,5 +1,5 @@
 public class Enemy extends Character{
-	
+	public String				enemyImage;
 	//every mob has a damage type they can only deal that boosts an offensive stat
 	private enum DmgTypeEnum {
 		PHYSICAL,
@@ -64,7 +64,7 @@ public class Enemy extends Character{
 			break;
 			
 		case 5:
-			createWolf();		//lightning
+			createYeti();		//lightning
 			break;
 			
 		case 100:
@@ -74,7 +74,7 @@ public class Enemy extends Character{
 		}
 		
 		//possible mobs; idk what to put yet
-		//giant, wolf, undead, ghost, zombie, skeleton, spider, bat, slime, giant rat, ghoul, vampire, orcs, cyclops, witch, wizard, warlock, mummy, ogre, minotaur, snake, scorpion, lich
+		//giant, yeti, undead, ghost, zombie, skeleton, spider, bat, slime, giant rat, ghoul, vampire, orcs, cyclops, witch, wizard, warlock, mummy, ogre, minotaur, snake, scorpion, lich
 		
 	}
 	
@@ -93,7 +93,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("zombie");
-		
+		enemyImage = "zombie.gif";
 	}
 	
 	private void createSkeleton() {
@@ -102,7 +102,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("skeleton");
-		
+		enemyImage = "skeleton.gif";
 	}
 	
 	private void createWitch() {
@@ -111,7 +111,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("witch");
-		
+		enemyImage = "witch.gif";
 	}
 	
 	private void createWarlock() {
@@ -120,16 +120,16 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("warlock");
-		
+		enemyImage = "warlock.gif";
 	}
 	
-	private void createWolf() {
+	private void createYeti() {
 		
 		dmgType = DmgTypeEnum.LIGHTNING;
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
-		concatateToName("wolf");
-		
+		concatateToName("yeti");
+		enemyImage = "yeti.gif";
 	}
 	
 	//no, it's not a giant (big) boss, it's a giant (species)
@@ -139,7 +139,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_THE_BOSS);
 		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
 		concatateToName("GIANT BOSS");
-		
+		enemyImage = "boss.gif";
 	}
 	
 	//I'm lazy, so this class will give generic stats that we override later
@@ -251,7 +251,7 @@ public class Enemy extends Character{
 		case 5:
 			
 			resType = ResTypeEnum.MOUNTIN;
-			concatateToName("mountin");
+			concatateToName("mountain");
 			this.getMyStats().setlRes(power*2 + powerIncrease);
 			break;
 		
@@ -276,12 +276,17 @@ public class Enemy extends Character{
 	
 	//will decrease player's health depending on how much damage the enemy can do and the player's resistance to that dmgType
 	public void attackUser(Player player) {
-		
+
 		boolean ifPlayerDodgesEnemyAttack = generateRandomInt(100) <= player.getMyStats().getDodge();
 		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
+		{
+			System.out.println("Player dodges the enemy's attack!");
 			return;
-		if (player.isShieldEffect())
+		}
+		if (player.isShieldEffect()) {
+			System.out.println("Player's Stonewall shield blocks all the damage!");
 			return;
+		}
 		switch(dmgType) {
 		
 			case PHYSICAL:
