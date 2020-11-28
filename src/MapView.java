@@ -18,6 +18,7 @@ public class MapView extends JFrame{
 	private final int 	PLAYER_STARTING_LOCATION = 22;
 	private final int 	EXIT_STARTING_LOCATION = 2;
 	private final int 	NUM_ENEMIES_ON_MAP = 3;
+	private final int	BOSS_ID = 100; //find in enemy class
 	private final String FILE_PATH = "BGM.wav";
 	
 	private JPanel	mapPanel;
@@ -106,7 +107,9 @@ public class MapView extends JFrame{
 		//Generates unique numbers to be used for character locations 
 		TreeSet<Integer> occupiedLocations = new TreeSet<>();
 		occupiedLocations.add(PLAYER_STARTING_LOCATION);
-		occupiedLocations.add(EXIT_STARTING_LOCATION);
+		
+		if (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) 
+			occupiedLocations.add(EXIT_STARTING_LOCATION);
 		
 		//Add 3 enemies to the map (it is num of enemies + 2 since player and exit take up a spot each)
 		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
@@ -182,7 +185,7 @@ public class MapView extends JFrame{
 				tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
 				tempLabel.setOpaque(true);
 				
-				if (i == EXIT_STARTING_LOCATION)
+				if (i == EXIT_STARTING_LOCATION && (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) )
 					tempLabel.setText("Stairway Up");
 			}
 			

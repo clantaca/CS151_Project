@@ -27,7 +27,8 @@ public class Enemy extends Character{
 	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
 	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
 	
-	private int 		power = 0; 							//power is how strong a mob is; boss is summoned on power 10
+	private int 	power = 0; 							//power is how strong a mob is; boss is summoned on power 10
+	private int		enemyTypeID;
 	
 	//----------------------------------------------------------------------------------------
 	
@@ -36,7 +37,7 @@ public class Enemy extends Character{
 		
 		this.power = power;
 		this.setName(""); //need to initialize
-		int enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
+		enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
 		
 		if (power % POWER_NEEDED_TO_SUMMON_BOSS == 0) {
 			enemyTypeID = 100; //the boss's id
@@ -83,6 +84,11 @@ public class Enemy extends Character{
 		return power;
 		
 	}
+	
+	public int getEnemyTypeID() {
+		return enemyTypeID;
+	}
+	
 	
 	//----------------------------------------------------------------------------------------
 	
@@ -142,6 +148,7 @@ public class Enemy extends Character{
 		enemyImage = "boss.gif";
 	}
 	
+
 	//I'm lazy, so this class will give generic stats that we override later
 	private void createGenericEnemy() {
 		
