@@ -71,7 +71,7 @@ public class MapController {
 				statViewPlayer.dispose();
 			}
 
-			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this enemy?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
 				new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
 				mapView.setSpecificCharacter(newLoc, null);
