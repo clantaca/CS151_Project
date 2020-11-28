@@ -14,7 +14,7 @@ public class Enemy extends Character{
 		FOREST,	//armor
 		TUNDRA,	//cold resistance
 		SWAMP,	//poison resistance
-		DESERT,//fire resistance
+		DESERT, //fire resistance
 		MOUNTIN	//lightning resistance
 	}
 	

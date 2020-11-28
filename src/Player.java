@@ -175,7 +175,7 @@ public class Player extends Character {
                 max = getMyStats().getDmg();
                 // if player has over 5 dmg, the min is 10% over their max dmg
                 if (max > 5) {
-                    min = (int)(max*(20.0f/100.0f));
+                    min = (int)(max*(80.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -184,7 +184,7 @@ public class Player extends Character {
             case "Cold":
                 max = getMyStats().getCold();
                 if (max > 5) {
-                    min = (int)(max*(20.0f/100.0f));
+                    min = (int)(max*(80.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -193,7 +193,7 @@ public class Player extends Character {
             case "Poison":
                 max = getMyStats().getPoison();
                 if (max > 5) {
-                    min = (int)(max*(20.0f/100.0f));
+                    min = (int)(max*(80.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -202,7 +202,7 @@ public class Player extends Character {
             case "Fire":
                 max = getMyStats().getFire();
                 if (max > 5) {
-                    min = (int)(max*(20.0f/100.0f));
+                    min = (int)(max*(80.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
@@ -211,7 +211,7 @@ public class Player extends Character {
             case "Lightning":
                 max = getMyStats().getLightning();
                 if (max > 5) {
-                    min = (int)(max*(20.0f/100.0f));
+                    min = (int)(max*(80.0f/100.0f));
                 }
                 pdmg = randomInt(min, max);
                 //System.out.println(pdmg);
