@@ -554,6 +554,7 @@ public class Player extends Character {
         // displays item name + description
         System.out.println();
         System.out.println("Player obtains new item: " + item.getName() + "!");
+        item.itemStats();
         System.out.println(item.getName() + ": " + item.getDescription());
         System.out.println();
 
