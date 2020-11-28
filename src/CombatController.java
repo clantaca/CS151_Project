@@ -76,7 +76,7 @@ public class CombatController {
 		combatView.resetVariables();
 		
 		if (player.getMyStats().getHp() <= 0) {
-			playSound("Death.wav");
+			playSound("resources/Death.wav");
 			combatView.setPlayerDie();
 		}
 
@@ -88,7 +88,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			statViewPlayer = new StatView(player, enemy, true);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -100,7 +100,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			statViewEnemy = new StatView(player, enemy, false);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -114,7 +114,7 @@ public class CombatController {
 
 			//Need implementation, waiting to see how item class turns out
 			player.displayInventory();
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -126,7 +126,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.physicalAttack(enemy);
-			playSound("PhysAttack.wav");
+			playSound("resources/PhysAttack.wav");
 			combatEnsues();
 			
 		}
@@ -139,7 +139,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.coldAttack(enemy);
-			playSound("ColdAttack.wav");
+			playSound("resources/ColdAttack.wav");
 			combatEnsues();
 			
 		}
@@ -152,7 +152,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.fireAttack(enemy);
-			playSound("FireAttack.wav");
+			playSound("resources/FireAttack.wav");
 			combatEnsues();
 			
 		}
@@ -165,7 +165,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.lightningAttack(enemy);
-			playSound("LightningAttack.wav");
+			playSound("resources/LightningAttack.wav");
 			combatEnsues();
 			
 		}
@@ -178,7 +178,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.poisonAttack(enemy);
-			playSound("PoisonAttack.wav");
+			playSound("resources/PoisonAttack.wav");
 			combatEnsues();
 			
 		}
@@ -191,7 +191,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.blockEnemy();
-			playSound("Block.wav");
+			playSound("resources/Block.wav");
 			combatEnsues();
 			
 		}

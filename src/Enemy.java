@@ -22,7 +22,7 @@ public class Enemy extends Character{
 	ResTypeEnum 	resType;
 	
 	final int 		NUMBER_OF_ENEMIES = 5;					//change this whenever you want to add more enemies 
-	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 10;			
+	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 4;
 	
 	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
 	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
@@ -99,7 +99,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("zombie");
-		enemyImage = "zombie.gif";
+		enemyImage = "resources/zombie.gif";
 	}
 	
 	private void createSkeleton() {
@@ -108,7 +108,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("skeleton");
-		enemyImage = "skeleton.gif";
+		enemyImage = "resources/skeleton.gif";
 	}
 	
 	private void createWitch() {
@@ -117,7 +117,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("witch");
-		enemyImage = "witch.gif";
+		enemyImage = "resources/witch.gif";
 	}
 	
 	private void createWarlock() {
@@ -126,7 +126,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("warlock");
-		enemyImage = "warlock.gif";
+		enemyImage = "resources/warlock.gif";
 	}
 	
 	private void createYeti() {
@@ -135,7 +135,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("yeti");
-		enemyImage = "yeti.gif";
+		enemyImage = "resources/yeti.gif";
 	}
 	
 	//no, it's not a giant (big) boss, it's a giant (species)
@@ -145,7 +145,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_THE_BOSS);
 		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
 		concatateToName("GIANT BOSS");
-		enemyImage = "boss.gif";
+		enemyImage = "resources/boss.gif";
 	}
 	
 

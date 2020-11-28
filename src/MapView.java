@@ -19,7 +19,7 @@ public class MapView extends JFrame{
 	private final int 	EXIT_STARTING_LOCATION = 2;
 	private final int 	NUM_ENEMIES_ON_MAP = 3;
 	private final int	BOSS_ID = 100; //find in enemy class
-	private final String FILE_PATH = "BGM.wav";
+	private final String FILE_PATH = "resources/BGM.wav";
 	
 	private JPanel	mapPanel;
 	private GridBagConstraints 	constraints;
