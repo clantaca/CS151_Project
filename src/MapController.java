@@ -90,7 +90,7 @@ public class MapController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			statViewPlayer = new StatView(player, new Enemy(1), true);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -102,7 +102,7 @@ public class MapController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			playerMoves(MOVE_NORTH);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -114,7 +114,7 @@ public class MapController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			playerMoves(MOVE_SOUTH);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -126,7 +126,7 @@ public class MapController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			playerMoves(MOVE_EAST);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		
@@ -138,7 +138,7 @@ public class MapController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			playerMoves(MOVE_WEST);
-			playSound("ButtonClick.wav");
+			playSound("resources/ButtonClick.wav");
 			
 		}
 		

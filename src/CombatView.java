@@ -7,6 +7,7 @@ public class CombatView extends JFrame{
 	private final int 	FRAME_WIDTH = 600;
 	private final int 	FRAME_HEIGHT = 200;
 	private final int	COMPONENT_PADDING = 5;
+	private final String BACKGROUND_IMAGE = "resources/background.jpg";
 
 	//All components used in this view
 	private JLabel				fullPanel;
@@ -37,12 +38,14 @@ public class CombatView extends JFrame{
 	private Player 				player;
 	private Enemy				enemy;
 
+
+
 	public CombatView(Player player, Enemy enemy) {
 
 		this.player = player;
 		this.enemy = enemy;
 
-		ImageIcon backgroundImage = new ImageIcon("background.jpg");
+		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
 		fullPanel = new JLabel(backgroundImage);
 		fullPanel.setLayout(new GridBagLayout());
 		fullPanel.setBackground(Color.CYAN);
@@ -81,7 +84,7 @@ public class CombatView extends JFrame{
 
 		playerNameLabel = new JLabel(player.getName());
 		playerNameLabel.setForeground(Color.WHITE);
-		playerImageArea = new JLabel(new ImageIcon("player.gif"));		//Delete this text later
+		playerImageArea = new JLabel(new ImageIcon("resources/player.gif"));		//Delete this text later
 		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
 		playerHpLabel.setForeground(Color.WHITE);
 		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
