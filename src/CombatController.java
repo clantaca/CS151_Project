@@ -113,6 +113,7 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 
 			//Need implementation, waiting to see how item class turns out
+			player.displayInventory();
 			playSound("ButtonClick.wav");
 			
 		}
@@ -190,8 +191,8 @@ public class CombatController {
 		public void actionPerformed(ActionEvent arg0) {
 			player.startOfTurn(player);
 			player.blockEnemy();
-			combatView.resetVariables();
 			playSound("Block.wav");
+			combatEnsues();
 			
 		}
 		

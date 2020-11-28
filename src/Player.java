@@ -529,8 +529,7 @@ public class Player extends Character {
         }
         blockCounter++;
         //System.out.println(getMyStats().getMana());
-        System.out.println("Player blocks enemy and obtains 5 mana!");
-        return blocked;
+        return blocked = true;
     }
 
     // each spell uses 5 mana
@@ -555,6 +554,7 @@ public class Player extends Character {
         // displays item name + description
         System.out.println();
         System.out.println("Player obtains new item: " + item.getName() + "!");
+        item.itemStats();
         System.out.println(item.getName() + ": " + item.getDescription());
         System.out.println();
 
