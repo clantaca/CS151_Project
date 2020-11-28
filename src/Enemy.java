@@ -338,7 +338,7 @@ public class Enemy extends Character{
 
 				int dmgTaken = ((enemyDmg/2 < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg/2 - (int) (playerDef * EFFECTIVNESS_OF_DEF));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-				System.out.println("Player blocks enemy and takes " + dmgTaken + "and restores 5 mana.");
+				System.out.println("Player blocks enemy and takes " + dmgTaken + " damage and restores 5 mana.");
 				System.out.println();
 				player.resetBlock();
 			}

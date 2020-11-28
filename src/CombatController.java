@@ -192,6 +192,7 @@ public class CombatController {
 			player.blockEnemy();
 			combatView.resetVariables();
 			playSound("Block.wav");
+			combatEnsues();
 			
 		}
 		
