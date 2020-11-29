@@ -86,7 +86,7 @@ public class MapController {
 	private class NorthMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-			if (message.getClass() != northMessage.class) {
+			if (message.getClass() != NorthMessage.class) {
 				return ValveResponse.MISS;
 			}
 
@@ -100,7 +100,7 @@ public class MapController {
 	private class SouthMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-			if (message.getClass() != southMessage.class) {
+			if (message.getClass() != SouthMessage.class) {
 				return ValveResponse.MISS;
 			}
 
@@ -114,7 +114,7 @@ public class MapController {
 	private class EastMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-			if (message.getClass() != eastMessage.class) {
+			if (message.getClass() != EastMessage.class) {
 				return ValveResponse.MISS;
 			}
 
@@ -128,7 +128,7 @@ public class MapController {
 	private class WestMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-			if (message.getClass() != westMessage.class) {
+			if (message.getClass() != WestMessage.class) {
 				return ValveResponse.MISS;
 			}
 

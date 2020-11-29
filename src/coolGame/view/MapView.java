@@ -23,11 +23,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import coolGame.controller.Message;
-import coolGame.controller.eastMessage;
-import coolGame.controller.northMessage;
-import coolGame.controller.southMessage;
+import coolGame.controller.EastMessage;
+import coolGame.controller.NorthMessage;
+import coolGame.controller.SouthMessage;
 import coolGame.controller.viewStatsMessage;
-import coolGame.controller.westMessage;
+import coolGame.controller.WestMessage;
 import coolGame.model.character.Character;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
@@ -43,10 +43,10 @@ public class MapView extends JFrame{
 	private final int 	PLAYER_STARTING_LOCATION = 22;
 	private final int 	EXIT_STARTING_LOCATION = 2;
 	private final int 	NUM_ENEMIES_ON_MAP = 3;
-	private final int	BOSS_ID = 100; //find in enemy class
+	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3; //find in enemy class
 	private final String FILE_PATH = "resources/BGM.wav";
 	
-	private JLabel	mapPanel;
+	private JPanel	mapPanel;
 	private GridBagConstraints 	constraints;
 	
 	private JPanel helpPanel;
@@ -98,7 +98,12 @@ public class MapView extends JFrame{
 			currBGFile = "resources/mapbackground1.jpg";
 		if (currEnemyPower == 3)
 			currBGFile = "resources/mapbackground2.jpg";
-		this.allChractersOnMap = loadChracters();
+		
+		if (currEnemyPower % POWER_NEEDED_TO_SUMMON_BOSS == 0)
+			this.allChractersOnMap = loadChractersBossLevel();
+		else
+			this.allChractersOnMap = loadChracters();
+		
 		playerCurrLocation = PLAYER_STARTING_LOCATION;
 		createMapPanel();
 		createHelpPanel();
@@ -140,11 +145,8 @@ public class MapView extends JFrame{
 		TreeSet<Integer> occupiedLocations = new TreeSet<>();
 		occupiedLocations.add(PLAYER_STARTING_LOCATION);
 		
-		if (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) 
-			occupiedLocations.add(EXIT_STARTING_LOCATION);
-		
-		//Add 3 enemies to the map (it is num of enemies + 2 since player and exit take up a spot each)
-		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
+		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)
+		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+1) {
 			
 			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
 			occupiedLocations.add(randomInt);
@@ -157,6 +159,26 @@ public class MapView extends JFrame{
 			if (i == PLAYER_STARTING_LOCATION || i == EXIT_STARTING_LOCATION)
 				finalArrList.add(player);
 			else if (occupiedLocations.contains(i))
+				finalArrList.add(new Enemy(currEnemyPower));
+			else
+				finalArrList.add(null);
+			
+		}
+		
+		return finalArrList;
+		
+	}
+	
+	//Use this array list when we on final level
+	private ArrayList<Character> loadChractersBossLevel() {
+		
+		ArrayList<Character> finalArrList = new ArrayList<>();
+		
+		for (int i = 0; i < 25; i++) {
+			
+			if (i == PLAYER_STARTING_LOCATION)
+				finalArrList.add(player);
+			else if (i == EXIT_STARTING_LOCATION)
 				finalArrList.add(new Enemy(currEnemyPower));
 			else
 				finalArrList.add(null);
@@ -202,32 +224,41 @@ public class MapView extends JFrame{
 	
 	private void createMapPanel() {
 
+		mapPanel = new JPanel(new GridBagLayout());
 		ImageIcon backgroundImage = new ImageIcon(currBGFile);
-		mapPanel = new JLabel(backgroundImage);
+		//mapPanel = new JLabel(backgroundImage);
 		mapPanel.setLayout(new GridBagLayout());
 		mapPanel.setBackground(Color.black);
 
 		constraints.gridx = 0;
 		constraints.gridy = 0;
+
+		
 		
 		for (int i = 0; i < TOTAL_ENEMIES_ALLOWED; i++) {
 			
 			JLabel tempLabel;
 			
 			try {
+				
+				//Set character
 				tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
 				tempLabel.setOpaque(true);
 				
-				if (i == EXIT_STARTING_LOCATION && (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) )
+				//Set stairway
+				if ((i == EXIT_STARTING_LOCATION) && (allChractersOnMap.get(i).getClass() == Player.class))
 					tempLabel.setText("Stairway Up");
+				
 			}
 			
 			catch (NullPointerException e) {
+				
+				//Set nothing
 				tempLabel = new JLabel();
 				tempLabel.setOpaque(true);
 			}
 				
-			
+
 			mapPanel.add(tempLabel, constraints);
 			
 			constraints.gridx++;
@@ -241,6 +272,7 @@ public class MapView extends JFrame{
 		}
 		
 		this.add(mapPanel, BorderLayout.CENTER);
+		
 		mapPanel.repaint();
 		mapPanel.revalidate();
 		
@@ -268,8 +300,8 @@ public class MapView extends JFrame{
 		helpPanel.add(viewStatsButton, constraints);
 		
 		this.add(helpPanel, BorderLayout.NORTH);
-		mapPanel.repaint();
-		mapPanel.revalidate();
+		helpPanel.repaint();
+		helpPanel.revalidate();
 		
 	}
 	
@@ -283,7 +315,7 @@ public class MapView extends JFrame{
 		northButton = new JButton("^");
 		northButton.addActionListener(event -> {
 			try {
-				this.queue.put(new northMessage());
+				this.queue.put(new NorthMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -294,7 +326,7 @@ public class MapView extends JFrame{
 		southButton = new JButton("\\/");
 		southButton.addActionListener(event -> {
 			try {
-				this.queue.put(new southMessage());
+				this.queue.put(new SouthMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -305,7 +337,7 @@ public class MapView extends JFrame{
 		eastButton = new JButton("<");
 		eastButton.addActionListener(event -> {
 			try {
-				this.queue.put(new eastMessage());
+				this.queue.put(new EastMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -316,7 +348,7 @@ public class MapView extends JFrame{
 		westButton = new JButton(">");
 		westButton.addActionListener(event -> {
 			try {
-				this.queue.put(new westMessage());
+				this.queue.put(new WestMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
