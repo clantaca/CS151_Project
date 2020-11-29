@@ -1,4 +1,7 @@
-package coolGame.model;
+package coolGame.model.item;
+
+import coolGame.model.Stats;
+import coolGame.model.character.Player;
 
 public class BloodlustGauntlets implements Item {
 

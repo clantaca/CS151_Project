@@ -1,4 +1,4 @@
-package coolGame.model;
+package coolGame.model.character;
 
 public class Enemy extends Character{
 	public String				enemyImage;

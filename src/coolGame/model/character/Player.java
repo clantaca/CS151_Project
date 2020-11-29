@@ -1,6 +1,9 @@
-package coolGame.model;
+package coolGame.model.character;
 
 import java.util.ArrayList;
+
+import coolGame.model.item.Item;
+import coolGame.model.item.ItemStorage;
 
 public class Player extends Character {
 

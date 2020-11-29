@@ -21,9 +21,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import coolGame.model.Enemy;
-import coolGame.model.Player;
-import coolGame.model.Character;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+import coolGame.model.character.Character;
 
 public class MapView extends JFrame{
 

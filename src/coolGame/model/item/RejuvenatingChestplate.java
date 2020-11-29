@@ -1,6 +1,9 @@
-package coolGame.model;
+package coolGame.model.item;
 
-public class StonewallShield extends Stats implements Item {
+import coolGame.model.Stats;
+import coolGame.model.character.Player;
+
+public class RejuvenatingChestplate extends Stats implements Item {
 
     Item item;
     public int randomInt(int max, int min) {
@@ -8,33 +11,31 @@ public class StonewallShield extends Stats implements Item {
     }
     private Stats itemStats = new Stats();
 
-    public StonewallShield(Item item) {
-        itemStats.setDmg(randomInt(7,1));
-        itemStats.setHp(randomInt(20,10));
-        itemStats.setArm(randomInt(10,5));
-        itemStats.setcRes(randomInt(10,5));
-        itemStats.setfRes(randomInt(10,5));
-        itemStats.setpRes(randomInt(10,5));
-        itemStats.setlRes(randomInt(10,5));
+    public RejuvenatingChestplate(Item item) {
+        itemStats.setHp(randomInt(50,25));
+        itemStats.setArm(randomInt(20,10));
+        itemStats.setcRes(randomInt(20,10));
+        itemStats.setfRes(randomInt(20,10));
+        itemStats.setpRes(randomInt(20,10));
+        itemStats.setlRes(randomInt(20,10));
         this.item = item;
     }
 
     @Override
     public String getName() {
-        return item.getName() + "Stonewall's Shield";
+        return item.getName() + "Rejuvenating Chestplate";
     }
 
     @Override
     public String getDescription() {
-        return "On every 3rd turn, ignore all damage taken." + item.getDescription();
+        return "Every 5th you take from the enemy, heal for 20." + item.getDescription();
     }
 
     @Override
     public void updatePlayerStats(Player player) {
-        player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
-        player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
         player.getMyStats().setArm(player.getMyStats().getArm() + itemStats.getArm());
+        player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
         player.getMyStats().setcRes(player.getMyStats().getcRes() + itemStats.getcRes());
         player.getMyStats().setfRes(player.getMyStats().getfRes() + itemStats.getfRes());
         player.getMyStats().setpRes(player.getMyStats().getpRes() + itemStats.getpRes());
@@ -42,7 +43,6 @@ public class StonewallShield extends Stats implements Item {
     }
     @Override
     public void itemStats() {
-        System.out.println("+" + itemStats.getDmg() + " Physical Damage");
         System.out.println("+" + itemStats.getHp() + " Health");
         System.out.println("+" + itemStats.getArm() + " Armor");
         System.out.println("+" + itemStats.getcRes() + " Cold Resistance");
@@ -51,12 +51,16 @@ public class StonewallShield extends Stats implements Item {
         System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
 
-    //ignore all damage every 3rd turn
+    //heals self after every 4th hit taken
+    //TODO: MAKE IT SO THAT IT HEALS, NOT INCREASES TOTAL HEALTH BY 20
     @Override
     public void specialEffect(Player player) {
-        if (player.getTurnCounter()+1 % 3 == 0)
-            player.setShieldEffect(true);
-        else
-            player.setShieldEffect(false);
+        if (player.getHitsTakenCounter()+1 % 5 == 0) {
+            player.getMyStats().setHp((player.getMyStats().getHp() + 20));
+            System.out.println("Player heals for 20 health from Rejuvenating Chestplate");
+            if (player.getMyStats().getHp() > player.getMyStats().getMaxHP()) {
+                player.getMyStats().setHp(player.getMyStats().getMaxHP());
+            }
+        }
     }
 }

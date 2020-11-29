@@ -9,11 +9,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
-import coolGame.model.Enemy;
-import coolGame.model.Player;
-import coolGame.model.StatView;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+import coolGame.model.character.Character;
 import coolGame.view.CombatView;
 import coolGame.view.MapView;
+import coolGame.view.StatView;
 
 public class MapController {
 

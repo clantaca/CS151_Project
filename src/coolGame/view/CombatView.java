@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import coolGame.model.Enemy;
-import coolGame.model.Player;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
 
 public class CombatView extends JFrame{
 

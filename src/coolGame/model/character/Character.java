@@ -1,4 +1,6 @@
-package coolGame.model;
+package coolGame.model.character;
+
+import coolGame.model.Stats;
 
 public class Character {
 

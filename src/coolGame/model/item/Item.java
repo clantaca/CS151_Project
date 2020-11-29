@@ -1,4 +1,6 @@
-package coolGame.model;
+package coolGame.model.item;
+
+import coolGame.model.character.Player;
 
 public interface Item {
 

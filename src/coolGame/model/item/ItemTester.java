@@ -1,4 +1,4 @@
-package coolGame.model;
+package coolGame.model.item;
 
 import java.util.ArrayList;
 

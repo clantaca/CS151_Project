@@ -1,4 +1,4 @@
-package coolGame.model;
+package coolGame.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
 
 public class StatView extends JFrame {
 

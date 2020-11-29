@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import coolGame.model.ConsoleOutput;
+import coolGame.view.ConsoleOutput;
 
 public class NotificationView extends JFrame {
 
