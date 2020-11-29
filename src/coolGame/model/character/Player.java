@@ -1,9 +1,9 @@
 package coolGame.model.character;
 
-import java.util.ArrayList;
-
 import coolGame.model.item.Item;
 import coolGame.model.item.ItemStorage;
+
+import java.util.ArrayList;
 
 public class Player extends Character {
 
@@ -292,7 +292,7 @@ public class Player extends Character {
         // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold");
         int enemyRes = enemy.getMyStats().getcRes();
-        int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
+        int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
 
         // needs 5 mana to cold spell
         if(getMyStats().getMana() < 5) {
@@ -309,19 +309,13 @@ public class Player extends Character {
                     useSpell();
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special cold spell
-                    if (pdmg <= enemyRes) {
-                        tdmg = enemyRes+pdmg;
-                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                        System.out.println("Player uses cold spell and does " + pdmg*3 + " damage. Enemy loses " + tdmg*3 + " HP and is frozen.");
-                        cSpellCounter = 0;
-                    }
-                    else {
+
                         //tdmg = ((getMyStats().getCold() * 3) < enemyRes) ? 0 : ((getMyStats().getCold() * 3) - enemyRes);
                         enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
                         System.out.println("Player uses cold spell and does " + pdmg*3 + " damage. Enemy loses " + tdmg*3 + " HP and is frozen.");
                         cSpellCounter = 0;
                     }
-                } else {
+                 else {
                     //tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                     System.out.println("Player uses cold spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
@@ -391,8 +385,7 @@ public class Player extends Character {
         // randomizes damage and calculates damage based enemy armor and fire resistance
         int pdmg = randomizeDmg("Fire");
         int enemyRes = enemy.getMyStats().getfRes();
-        int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
-
+        int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
         // needs 5 mana to use fire spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana to use fire spell!");
@@ -407,6 +400,7 @@ public class Player extends Character {
                 //tdmg = ((getMyStats().getFire() * 1) < enemyRes) ? 0 : ((getMyStats().getFire() * 1) - enemyRes);
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                 System.out.println("Player uses fire spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
+                System.out.println("Enemy is ignited!");
                 fSpellCounter++;
 
                 // 2nd fire spell does bonus damage
@@ -414,16 +408,11 @@ public class Player extends Character {
                     useSpell();
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special fire spell
-                    if(pdmg <= enemyRes) {
-                        tdmg = enemyRes+pdmg;
-                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                        System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*3 + " HP.");
-                    }
-                    else {
+
                         //tdmg = ((getMyStats().getFire() * 3) < enemyRes) ? 0 : ((getMyStats().getFire() * 3) - enemyRes);
-                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                        System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*3 + " HP.");
-                    }
+                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
+                        System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*2 + " HP.");
+
                     fSpellCounter = 0;
                 }
             }
@@ -450,7 +439,7 @@ public class Player extends Character {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
         int pdmg = randomizeDmg("Lightning");
         int enemyRes = enemy.getMyStats().getlRes();
-        int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
+        int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
 
         // needs 5 mana to use lightning spell
         if(getMyStats().getMana() < 5) {
@@ -459,14 +448,15 @@ public class Player extends Character {
         else {
             if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
                 System.out.println("Enemy dodges your attack!");
+                System.out.println();
                 return;
             }
             else {
                 // enemy damage increases
                 useSpell();
                 //tdmg = ((getMyStats().getLightning() * 3) < enemyRes) ? 0 : ((getMyStats().getLightning() * 3) - enemyRes);
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                System.out.println("Player uses lightning spell and does " + pdmg*3 + " damage. Enemy loses " + ((pdmg*3)-enemyRes) + " HP.");
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                System.out.println("Player uses lightning spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
             }
             // checks poison debuff
             if(debuffOn){

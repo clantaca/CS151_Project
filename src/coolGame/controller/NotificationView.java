@@ -1,17 +1,10 @@
 package coolGame.controller;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.io.PrintStream;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-
 import coolGame.view.ConsoleOutput;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.PrintStream;
 
 public class NotificationView extends JFrame {
 
@@ -44,7 +37,7 @@ public class NotificationView extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450, 220);
+        setSize(500, 1200);
         setLocationRelativeTo(null);
         setVisible(true);
     }

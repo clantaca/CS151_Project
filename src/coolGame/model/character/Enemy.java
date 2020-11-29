@@ -175,7 +175,7 @@ public class Enemy extends Character{
 
 		this.getMyStats().setfRes(power * randomInt(3,6));
 
-		this.getMyStats().setlRes(power * randomInt(3,6));
+		this.getMyStats().setlRes(power * randomInt(50,50));
 
 		this.getMyStats().setDodge(10);			//lowered dodge and crit chances cause it can get way out of hand
 

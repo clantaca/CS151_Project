@@ -1,36 +1,24 @@
 package coolGame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import coolGame.model.character.Character;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-import coolGame.model.character.Character;
-
 public class MapView extends JFrame{
 
-	private final int 	FRAME_WIDTH = 1500;
+	private final int 	FRAME_WIDTH = 1400;
 	private final int 	FRAME_HEIGHT = 1000;
 	private final int	COMPONENT_PADDING_HEIGHT = 35;
-	private final int	COMPONENT_PADDING_LENGTH = 90;
+	private final int	COMPONENT_PADDING_LENGTH = 70;
 	private final int	ROWS_PER_SIDE = 5; 		//Map will be a 5x5 square
 	private final int	TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
 	private final int 	PLAYER_STARTING_LOCATION = 22;
