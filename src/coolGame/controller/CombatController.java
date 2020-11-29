@@ -1,17 +1,19 @@
 package coolGame.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 import coolGame.view.CombatView;
 import coolGame.view.StatView;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class CombatController {
 	
@@ -22,25 +24,67 @@ public class CombatController {
 	private Player player;
 	private Enemy enemy;
 
+	private BlockingQueue<Message> queue;
+	private List<Valve> valves = new LinkedList<Valve>();
+
 	
-	public CombatController(CombatView combatView, Enemy enemy, Player player) {
+	public CombatController(CombatView combatView, Enemy enemy, Player player, BlockingQueue<Message> queue) {
 
 		this.combatView = combatView;
 		this.enemy = enemy;
 		this.player = player;
+		this.queue = queue;
 		
 
 		
 		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
 		this.combatView.addPlayerInvButListener(new PlayerInvButListener());
-		this.combatView.addPhyAtkButListener(new PhyAtkListener());
+		//this.combatView.addPhyAtkButListener(new PhyAtkListener());
 		this.combatView.addColdSpButListener(new ColdSpButListener());
 		this.combatView.addFireSpButListener(new FireSpButListener());
 		this.combatView.addLightningSpButListener(new LightningSpButListener());
 		this.combatView.addPoisonSpButListener(new PoisonSpButListener());
 		this.combatView.addBlockButListener(new BlockButListener());
 		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());
-		
+
+		valves.add(new PhyAtkMessage());
+	}
+	private interface Valve {
+		public ValveResponse execute(Message message);
+	}
+
+	public void mainLoop() {
+		ValveResponse response = ValveResponse.EXECUTED;
+		Message message = null;
+		while (response != ValveResponse.FINISH) {
+			try {
+				message = queue.take(); // <--- take next message from the queue
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			// Look for a Valve that can process a message
+			for (Valve valve : valves) {
+				response = valve.execute(message);
+				// if successfully processed or game over, leave the loop
+				if (response != ValveResponse.MISS) {
+					break;
+				}
+			}
+		}
+	}
+
+	private class PhyAtkMessage implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PhyAtkMessage.class) {
+				return ValveResponse.MISS;
+			}
+			enemy.attackUser(player);
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
 	}
 	
 	//------------------------------------ Combat View Listners and Methods -------------------------------------------------
@@ -126,7 +170,7 @@ public class CombatController {
 		}
 		
 	}
-	
+	/*
 	class PhyAtkListener implements ActionListener {
 
 		@Override
@@ -138,7 +182,7 @@ public class CombatController {
 			
 		}
 		
-	}
+	}*/
 	
 	class ColdSpButListener implements ActionListener {
 
