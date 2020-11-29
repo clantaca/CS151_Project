@@ -1,17 +1,36 @@
 package coolGame.view;
 
-import coolGame.model.character.Character;
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-
-import javax.sound.sampled.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.concurrent.BlockingQueue;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import coolGame.controller.Message;
+import coolGame.controller.eastMessage;
+import coolGame.controller.northMessage;
+import coolGame.controller.southMessage;
+import coolGame.controller.viewStatsMessage;
+import coolGame.controller.westMessage;
+import coolGame.model.character.Character;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
 
 public class MapView extends JFrame{
 
@@ -46,20 +65,23 @@ public class MapView extends JFrame{
 	
 	private Player player;
 	
+	private BlockingQueue<Message> queue;
 	
+	public static MapView init(BlockingQueue<Message> queue) {
+		// Create object of type view
+		return new MapView(queue);
+	}
 	
-	
-	public MapView(Player player) {
+	public MapView(BlockingQueue<Message> queue) {
 		
-		this.player = player;
+		this.player = new Player("Tester");
+		this.queue = queue;
 		this.allChractersOnMap = loadChracters();
 
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH, COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH);
 		constraints.ipadx = 20;
 		constraints.ipady = 20;
-
-		//printArrayListOfEnemies(allEnemies);
 
 		createFrame();
 		createMapPanel();
@@ -68,6 +90,8 @@ public class MapView extends JFrame{
 		playMusic(FILE_PATH);
 
 	}
+	
+
 	
 	public void resetAfterCombat() {
 		currEnemyPower++;
@@ -231,6 +255,13 @@ public class MapView extends JFrame{
 		
 		constraints.gridy = 1;
 		viewStatsButton = new JButton("Click here to view your stats");
+		viewStatsButton.addActionListener(event -> {
+			try {
+				this.queue.put(new viewStatsMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 		helpPanel.add(viewStatsButton, constraints);
 		
 		this.add(helpPanel, BorderLayout.NORTH);
@@ -247,44 +278,50 @@ public class MapView extends JFrame{
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		northButton = new JButton("^");
+		northButton.addActionListener(event -> {
+			try {
+				this.queue.put(new northMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 		mvmtPanel.add(northButton, constraints);
 		
 		constraints.gridy = 1;
 		southButton = new JButton("\\/");
+		southButton.addActionListener(event -> {
+			try {
+				this.queue.put(new southMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 		mvmtPanel.add(southButton, constraints);
 		
 		constraints.gridx = 0;
 		eastButton = new JButton("<");
+		eastButton.addActionListener(event -> {
+			try {
+				this.queue.put(new eastMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 		mvmtPanel.add(eastButton, constraints);
 		
 		constraints.gridx = 2;
 		westButton = new JButton(">");
+		westButton.addActionListener(event -> {
+			try {
+				this.queue.put(new westMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 		mvmtPanel.add(westButton, constraints);
 		
 		this.add(mvmtPanel, BorderLayout.SOUTH);
 		
-	}
-	
-	//--------------------------------------------------------------------------------------------
-	
-	public void addViewStatsButtonListener (ActionListener listener) {
-		viewStatsButton.addActionListener(listener);
-	}
-	
-	public void addNorthButtonListener (ActionListener listener) {
-		northButton.addActionListener(listener);
-	}
-	
-	public void addSouthButtonListener (ActionListener listener) {
-		southButton.addActionListener(listener);
-	}
-	
-	public void addEastButtonListener (ActionListener listener) {
-		eastButton.addActionListener(listener);
-	}
-	
-	public void addWestButtonListener (ActionListener listener) {
-		westButton.addActionListener(listener);
 	}
 	
 	//--------------------------------------------------------------------------------------------
@@ -311,7 +348,7 @@ public class MapView extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		new MapView(new Player("Jon"));
+		//new MapView(new Player("Jon"));
 		
 	}
 	

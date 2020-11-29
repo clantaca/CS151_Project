@@ -1,26 +1,26 @@
 package coolGame;
 
-import coolGame.controller.CombatController;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import coolGame.controller.MapController;
 import coolGame.controller.Message;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
-import coolGame.view.CombatView;
-
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import coolGame.view.MapView;
 
 public class GameTester {
 
 	private static BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
-	private static CombatView view;
+	private static MapView view;
 	private static Player player;
 	private static Enemy enemy;
 
 	public static void main(String[] args) {
-		view = CombatView.init(queue);
-		player = new Player("Tester");
+		view = MapView.init(queue);
+		player = new Player("TESTER");
 		enemy = new Enemy(1);
-		CombatController controller = new CombatController(view, enemy, player, queue);
+		MapController controller = new MapController(view, player, queue);
 
 		controller.mainLoop();
 		view.dispose();
