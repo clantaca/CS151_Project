@@ -27,7 +27,7 @@ public class MapView extends JFrame{
 	private final int	BOSS_ID = 100; //find in enemy class
 	private final String FILE_PATH = "resources/BGM.wav";
 	
-	private JPanel	mapPanel;
+	private JLabel	mapPanel;
 	private GridBagConstraints 	constraints;
 	
 	private JPanel helpPanel;
@@ -60,7 +60,7 @@ public class MapView extends JFrame{
 		constraints.ipady = 20;
 
 		//printArrayListOfEnemies(allEnemies);
-		
+
 		createFrame();
 		createMapPanel();
 		createHelpPanel();
@@ -175,10 +175,10 @@ public class MapView extends JFrame{
 	}
 	
 	private void createMapPanel() {
-		
-		mapPanel = new JPanel(new GridBagLayout());
-		mapPanel.setBackground(Color.DARK_GRAY);
-		
+
+		ImageIcon backgroundImage = new ImageIcon("resources/mapbackground1.jpg");
+		mapPanel = new JLabel(backgroundImage);
+		mapPanel.setLayout(new GridBagLayout());
 
 		constraints.gridx = 0;
 		constraints.gridy = 0;
