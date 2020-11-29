@@ -1,19 +1,14 @@
 package coolGame.view;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
+import coolGame.controller.Message;
+import coolGame.controller.PhyAtkMessage;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.concurrent.BlockingQueue;
 
 public class CombatView extends JFrame{
 
@@ -51,13 +46,14 @@ public class CombatView extends JFrame{
 	private Player 				player;
 	private Enemy				enemy;
 
+	private BlockingQueue<Message> queue;
 
 
-	public CombatView(Player player, Enemy enemy) {
+	public CombatView(BlockingQueue<Message> queue) {
 
-		this.player = player;
-		this.enemy = enemy;
-
+		this.player = new Player("tester");
+		this.enemy = new Enemy(1);
+		this.queue = queue;
 		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
 		fullPanel = new JLabel(backgroundImage);
 		fullPanel.setLayout(new GridBagLayout());
@@ -69,10 +65,30 @@ public class CombatView extends JFrame{
 		createEastPanel();
 
 		this.add(fullPanel);
+		
+		phyAtkBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		fullPanel.add(phyAtkBut, constraints);
+
+
+
+
 
 		pack();
 	}
 
+	public static CombatView init(BlockingQueue<Message> queue) {
+		// Create object of type view
+		return new CombatView(queue);
+	}
 
 	//----------------------------------------------------------------------------------------
 
@@ -143,7 +159,6 @@ public class CombatView extends JFrame{
 
 		constraints.gridx = 1;
 		constraints.gridy = 0;
-		fullPanel.add(phyAtkBut, constraints);
 
 		constraints.gridy++;
 		fullPanel.add(coldSpBut, constraints);
@@ -207,13 +222,15 @@ public class CombatView extends JFrame{
 		playerStatsBut.addActionListener(listener);
 	}
 
+
 	public void addPlayerInvButListener (ActionListener listener) {
 		playerInvBut.addActionListener(listener);
 	}
 
-	public void addPhyAtkButListener (ActionListener listener) {
-		phyAtkBut.addActionListener(listener);
-	}
+
+//	public void addPhyAtkButListener (ActionListener listener) {
+//		phyAtkBut.addActionListener(listener);
+//	}
 
 	public void addColdSpButListener (ActionListener listener) {
 		coldSpBut.addActionListener(listener);
@@ -276,7 +293,7 @@ public class CombatView extends JFrame{
 
 	public static void main(String[] args) {
 
-		new CombatView(new Player("Bob"), new Enemy(1));
+		//new CombatView(new Player("Bob"), new Enemy(1));
 
 	}
 

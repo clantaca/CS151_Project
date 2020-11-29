@@ -1,20 +1,17 @@
 package coolGame.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+import coolGame.view.MapView;
+import coolGame.view.StatView;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.JOptionPane;
-
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-import coolGame.model.character.Character;
-import coolGame.view.CombatView;
-import coolGame.view.MapView;
-import coolGame.view.StatView;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MapController {
 
@@ -83,7 +80,7 @@ public class MapController {
 
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
-				new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
+				//new CombatController(new CombatView(player, (Enemy) mapView.getSpecificChracter(newLoc)), (Enemy) mapView.getSpecificChracter(newLoc), player);
 				mapView.setSpecificCharacter(newLoc, null);
 				mapView.redrawMapAfterMvmt();
 				enemyCounter++;
