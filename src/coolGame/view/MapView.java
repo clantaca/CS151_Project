@@ -45,6 +45,7 @@ public class MapView extends JFrame{
 	private static int currEnemyPower = 1;	//mapView holds the current power level of all enemies - this increments after each combat
 	
 	private Player player;
+	private String currBGFile = "resources/mapbackground2.jpg";
 	
 	
 	
@@ -71,7 +72,10 @@ public class MapView extends JFrame{
 	
 	public void resetAfterCombat() {
 		currEnemyPower++;
-		
+		if (currEnemyPower == 2)
+			currBGFile = "resources/mapbackground1.jpg";
+		if (currEnemyPower == 3)
+			currBGFile = "resources/mapbackground2.jpg";
 		this.allChractersOnMap = loadChracters();
 		playerCurrLocation = PLAYER_STARTING_LOCATION;
 		createMapPanel();
@@ -176,9 +180,10 @@ public class MapView extends JFrame{
 	
 	private void createMapPanel() {
 
-		ImageIcon backgroundImage = new ImageIcon("resources/mapbackground1.jpg");
+		ImageIcon backgroundImage = new ImageIcon(currBGFile);
 		mapPanel = new JLabel(backgroundImage);
 		mapPanel.setLayout(new GridBagLayout());
+		mapPanel.setBackground(Color.black);
 
 		constraints.gridx = 0;
 		constraints.gridy = 0;
