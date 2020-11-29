@@ -24,7 +24,7 @@ public class Enemy extends Character{
 	ResTypeEnum 	resType;
 	
 	final int 		NUMBER_OF_ENEMIES = 5;					//change this whenever you want to add more enemies 
-	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 4;
+	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 3;
 	
 	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
 	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
