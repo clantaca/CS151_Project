@@ -48,6 +48,7 @@ public class CombatController {
 		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());
 
 		valves.add(new PhyAtkMessage());
+		valves.add(new ColdAtkMessage());
 	}
 	private interface Valve {
 		public ValveResponse execute(Message message);
@@ -69,6 +70,7 @@ public class CombatController {
 				if (response != ValveResponse.MISS) {
 					break;
 				}
+				System.out.println("HERE");
 			}
 		}
 	}
@@ -76,10 +78,26 @@ public class CombatController {
 	private class PhyAtkMessage implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-			if (message.getClass() != PhyAtkMessage.class) {
-				return ValveResponse.MISS;
-			}
-			enemy.attackUser(player);
+//			if (message.getClass() != PhyAtkMessage.class) {
+//				return ValveResponse.MISS;
+//			}
+			player.physicalAttack(enemy);
+			System.out.println("you hit the physical atk button");
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class ColdAtkMessage implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+//			if (message.getClass() != PhyAtkMessage.class) {
+//				return ValveResponse.MISS;
+//			}
+			player.coldAttack(enemy);
+			System.out.println("you hit the cold atk button");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View

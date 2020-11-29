@@ -51,24 +51,13 @@ public class CombatView extends JFrame{
 
 	public CombatView(BlockingQueue<Message> queue) {
 
-		//this.player = player;
-		//this.enemy = enemy;
+		this.player = new Player("tester");
+		this.enemy = new Enemy(1);
 		this.queue = queue;
 		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
 		fullPanel = new JLabel(backgroundImage);
 		fullPanel.setLayout(new GridBagLayout());
 		fullPanel.setBackground(Color.CYAN);
-
-		this.addPhyAtkButListener(event -> {
-			try {
-				this.queue.put(new PhyAtkMessage());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
-
-
 
 		createFrame();
 		createWestPanel();
@@ -76,6 +65,22 @@ public class CombatView extends JFrame{
 		createEastPanel();
 
 		this.add(fullPanel);
+		
+		phyAtkBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		fullPanel.add(phyAtkBut, constraints);
+
+
+
+
 
 		pack();
 	}
@@ -154,7 +159,6 @@ public class CombatView extends JFrame{
 
 		constraints.gridx = 1;
 		constraints.gridy = 0;
-		fullPanel.add(phyAtkBut, constraints);
 
 		constraints.gridy++;
 		fullPanel.add(coldSpBut, constraints);
@@ -224,9 +228,9 @@ public class CombatView extends JFrame{
 	}
 
 
-	public void addPhyAtkButListener (ActionListener listener) {
-		phyAtkBut.addActionListener(listener);
-	}
+//	public void addPhyAtkButListener (ActionListener listener) {
+//		phyAtkBut.addActionListener(listener);
+//	}
 
 	public void addColdSpButListener (ActionListener listener) {
 		coldSpBut.addActionListener(listener);
