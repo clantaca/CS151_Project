@@ -68,14 +68,14 @@ public class MapView extends JFrame{
 	
 	private BlockingQueue<Message> queue;
 	
-	public static MapView init(BlockingQueue<Message> queue) {
+	public static MapView init(Player player, BlockingQueue<Message> queue) {
 		// Create object of type view
-		return new MapView(queue);
+		return new MapView(player, queue);
 	}
 	
-	public MapView(BlockingQueue<Message> queue) {
+	public MapView(Player player, BlockingQueue<Message> queue) {
 		
-		this.player = new Player("Tester");
+		this.player = player;
 		this.queue = queue;
 		this.allChractersOnMap = loadChracters();
 
@@ -91,8 +91,6 @@ public class MapView extends JFrame{
 		playMusic(FILE_PATH);
 
 	}
-	
-
 	
 	public void resetAfterCombat() {
 		currEnemyPower++;

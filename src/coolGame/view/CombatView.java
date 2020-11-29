@@ -49,10 +49,10 @@ public class CombatView extends JFrame{
 	private BlockingQueue<Message> queue;
 
 
-	public CombatView(BlockingQueue<Message> queue) {
+	public CombatView(Player player, Enemy enemy, BlockingQueue<Message> queue) {
 
-		this.player = new Player("tester");
-		this.enemy = new Enemy(1);
+		this.player = player;
+		this.enemy = enemy;
 		this.queue = queue;
 		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
 		fullPanel = new JLabel(backgroundImage);
@@ -85,9 +85,9 @@ public class CombatView extends JFrame{
 		pack();
 	}
 
-	public static CombatView init(BlockingQueue<Message> queue) {
+	public static CombatView init(Player player, Enemy enemy, BlockingQueue<Message> queue) {
 		// Create object of type view
-		return new CombatView(queue);
+		return new CombatView(player, enemy, queue);
 	}
 
 	//----------------------------------------------------------------------------------------

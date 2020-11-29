@@ -181,7 +181,7 @@ public class MapController {
 
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
-				new CombatController(new CombatView(queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue);
+				new CombatController(new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue);
 				mapView.setSpecificCharacter(newLoc, null);
 				mapView.redrawMapAfterMvmt();
 				enemyCounter++;
