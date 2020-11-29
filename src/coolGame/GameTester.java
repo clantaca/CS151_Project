@@ -1,3 +1,9 @@
+package coolGame;
+
+import coolGame.controller.MapController;
+import coolGame.controller.NotificationView;
+import coolGame.model.Player;
+import coolGame.view.MapView;
 
 public class GameTester {
 

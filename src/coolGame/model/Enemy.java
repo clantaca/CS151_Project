@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class Enemy extends Character{
 	public String				enemyImage;
 	//every mob has a damage type they can only deal that boosts an offensive stat

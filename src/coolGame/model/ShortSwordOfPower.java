@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class ShortSwordOfPower extends Stats implements Item {
 
     Item item;

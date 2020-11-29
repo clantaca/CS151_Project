@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public interface Item {
 
     //Method to print out all the stats of the item

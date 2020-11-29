@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class StonewallShield extends Stats implements Item {
 
     Item item;

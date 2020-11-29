@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class SwiftShoes implements Item {
     Item item;
     private Stats itemStats = new Stats();

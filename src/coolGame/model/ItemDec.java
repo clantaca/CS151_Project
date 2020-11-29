@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class ItemDec implements Item {
     @Override
     public void itemStats() {

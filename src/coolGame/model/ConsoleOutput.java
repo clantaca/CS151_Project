@@ -1,6 +1,9 @@
-import javax.swing.*;
+package coolGame.model;
+
 import java.io.IOException;
 import java.io.OutputStream;
+
+import javax.swing.JTextArea;
 
 public class ConsoleOutput extends OutputStream {
     private JTextArea textArea;

@@ -1,3 +1,4 @@
+package coolGame.model;
 
 public class Character {
 

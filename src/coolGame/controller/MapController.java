@@ -1,10 +1,19 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.*;
+package coolGame.controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
+
+import coolGame.model.Enemy;
+import coolGame.model.Player;
+import coolGame.model.StatView;
+import coolGame.view.CombatView;
+import coolGame.view.MapView;
 
 public class MapController {
 

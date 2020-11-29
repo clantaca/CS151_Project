@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class MageBerserkerGloves implements Item {
 
     Item item;

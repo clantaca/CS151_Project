@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class PoisonWand implements Item {
     Item item;
     private Stats itemStats = new Stats();

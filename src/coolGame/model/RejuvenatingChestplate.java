@@ -1,3 +1,5 @@
+package coolGame.model;
+
 public class RejuvenatingChestplate extends Stats implements Item {
 
     Item item;

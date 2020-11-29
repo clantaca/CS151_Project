@@ -1,6 +1,17 @@
-import javax.swing.*;
-import java.awt.*;
+package coolGame.controller;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.PrintStream;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+
+import coolGame.model.ConsoleOutput;
 
 public class NotificationView extends JFrame {
 

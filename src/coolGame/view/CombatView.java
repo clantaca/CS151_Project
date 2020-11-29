@@ -1,6 +1,19 @@
-import javax.swing.*;
-import java.awt.*;
+package coolGame.view;
+
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import coolGame.model.Enemy;
+import coolGame.model.Player;
 
 public class CombatView extends JFrame{
 
