@@ -46,7 +46,7 @@ public class MapView extends JFrame{
 	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3; //find in enemy class
 	private final String FILE_PATH = "resources/BGM.wav";
 	
-	private JPanel	mapPanel;
+	private JLabel	mapPanel;
 	private GridBagConstraints 	constraints;
 	
 	private JPanel helpPanel;
@@ -222,11 +222,13 @@ public class MapView extends JFrame{
 
 	}
 	
+	boolean firstTime = true;
+	
 	private void createMapPanel() {
 
-		mapPanel = new JPanel(new GridBagLayout());
+		//mapPanel = new JPanel(new GridBagLayout());
 		ImageIcon backgroundImage = new ImageIcon(currBGFile);
-		//mapPanel = new JLabel(backgroundImage);
+		mapPanel = new JLabel(backgroundImage);
 		mapPanel.setLayout(new GridBagLayout());
 		mapPanel.setBackground(Color.black);
 
@@ -271,7 +273,12 @@ public class MapView extends JFrame{
 				
 		}
 		
-		this.add(mapPanel, BorderLayout.CENTER);
+		if (firstTime)
+			this.add(mapPanel, BorderLayout.CENTER);
+		else
+			this.add(mapPanel, BorderLayout.EAST);
+		
+		firstTime = false;
 		
 		mapPanel.repaint();
 		mapPanel.revalidate();
