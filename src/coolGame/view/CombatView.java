@@ -1,21 +1,14 @@
 package coolGame.view;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.util.concurrent.BlockingQueue;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import coolGame.controller.Message;
 import coolGame.controller.PhyAtkMessage;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.concurrent.BlockingQueue;
 
 public class CombatView extends JFrame{
 
@@ -72,7 +65,7 @@ public class CombatView extends JFrame{
 		createEastPanel();
 
 		this.add(fullPanel);
-		
+
 		phyAtkBut.addActionListener(event -> {
 			try {
 				this.queue.put(new PhyAtkMessage());
@@ -81,12 +74,60 @@ public class CombatView extends JFrame{
 			}
 		});
 
+		coldSpBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		fireSpBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		lightningSpBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		poisonSpBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		blockBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PhyAtkMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		fullPanel.add(phyAtkBut, constraints);
-
-
-
+		constraints.gridy++;
+		fullPanel.add(coldSpBut, constraints);
+		constraints.gridy++;
+		fullPanel.add(fireSpBut, constraints);
+		constraints.gridy++;
+		fullPanel.add(lightningSpBut, constraints);
+		constraints.gridy++;
+		fullPanel.add(poisonSpBut, constraints);
+		constraints.gridy++;
+		fullPanel.add(blockBut, constraints);
 
 
 		pack();
@@ -235,7 +276,7 @@ public class CombatView extends JFrame{
 	}
 
 
-//	public void addPhyAtkButListener (ActionListener listener) {
+/*//	public void addPhyAtkButListener (ActionListener listener) {
 //		phyAtkBut.addActionListener(listener);
 //	}
 
@@ -257,7 +298,7 @@ public class CombatView extends JFrame{
 
 	public void addBlockButListener (ActionListener listener) {
 		blockBut.addActionListener(listener);
-	}
+	}*/
 
 	public void addEnemyStatsButListener (ActionListener listener) {
 		enemyStatsBut.addActionListener(listener);

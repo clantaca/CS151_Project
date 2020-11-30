@@ -40,18 +40,19 @@ public class CombatController {
 		
 		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
 		this.combatView.addPlayerInvButListener(new PlayerInvButListener());
-		//this.combatView.addPhyAtkButListener(new PhyAtkListener());
+/*		this.combatView.addPhyAtkButListener(new PhyAtkListener());
 		this.combatView.addColdSpButListener(new ColdSpButListener());
 		this.combatView.addFireSpButListener(new FireSpButListener());
 		this.combatView.addLightningSpButListener(new LightningSpButListener());
 		this.combatView.addPoisonSpButListener(new PoisonSpButListener());
-		this.combatView.addBlockButListener(new BlockButListener());
+		this.combatView.addBlockButListener(new BlockButListener());*/
 		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());
 
 		valves.add(new PhyAtkMessageValve());
 		valves.add(new ColdAtkMessageValve());
 		valves.add(new FireAtkMessageValve());
 		valves.add(new LightningAtkMessageValve());
+		valves.add(new PoisonAtkMessageValve());
 		valves.add(new BlockMessageValve());
 	}
 	private interface Valve {
@@ -81,10 +82,14 @@ public class CombatController {
 	private class PhyAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-//			if (message.getClass() != PhyAtkMessage.class) {
-//				return ValveResponse.MISS;
-//			}
+			if (message.getClass() != PhyAtkMessage.class) {
+				System.out.println("done?");
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
 			player.physicalAttack(enemy);
+			playSound("resources/PhysAttack.wav");
+			combatEnsues();
 			System.out.println("you hit the physical atk button");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -92,15 +97,18 @@ public class CombatController {
 			return ValveResponse.EXECUTED;
 		}
 	}
-	
+
 
 	private class ColdAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-//			if (message.getClass() != PhyAtkMessage.class) {
-//				return ValveResponse.MISS;
-//			}
+			if (message.getClass() != ColdAtkMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
 			player.coldAttack(enemy);
+			playSound("resources/ColdAttack.wav");
+			combatEnsues();
 			System.out.println("you hit the cold atk button");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -112,10 +120,13 @@ public class CombatController {
 	private class FireAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-//			if (message.getClass() != PhyAtkMessage.class) {
-//				return ValveResponse.MISS;
-//			}
+			if (message.getClass() != FireAtkMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
 			player.fireAttack(enemy);
+			playSound("resources/FireAttack.wav");
+			combatEnsues();
 			System.out.println("you hit the fire atk button");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -127,10 +138,31 @@ public class CombatController {
 	private class LightningAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-//			if (message.getClass() != PhyAtkMessage.class) {
-//				return ValveResponse.MISS;
-//			}
+			if (message.getClass() != LightningAtkMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
 			player.lightningAttack(enemy);
+			playSound("resources/LightningAttack.wav");
+			combatEnsues();
+			System.out.println("you hit the lightning atk button");
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+	private class PoisonAtkMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PoisonAtkMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
+			player.poisonAttack(enemy);
+			playSound("resources/PoisonAttack.wav");
+			combatEnsues();
 			System.out.println("you hit the lightning atk button");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -142,10 +174,13 @@ public class CombatController {
 	private class BlockMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
-//			if (message.getClass() != PhyAtkMessage.class) {
-//				return ValveResponse.MISS;
-//			}
+			if (message.getClass() != BlockMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
 			player.blockEnemy();
+			playSound("resources/Block.wav");
+			combatEnsues();
 			System.out.println("you blocked");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -262,7 +297,7 @@ public class CombatController {
 			
 		}
 		
-	}*/
+	}
 	
 	class ColdSpButListener implements ActionListener {
 
@@ -327,7 +362,7 @@ public class CombatController {
 			
 		}
 		
-	}
+	}*/
 	
 	//method to play sounds from a file
 	public void playSound (String filePath)
