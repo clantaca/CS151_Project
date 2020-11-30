@@ -78,9 +78,6 @@ public class Enemy extends Character{
 
 		}
 		
-		//possible mobs; idk what to put yet
-		//giant, yeti, undead, ghost, zombie, skeleton, spider, bat, slime, giant rat, ghoul, vampire, orcs, cyclops, witch, wizard, warlock, mummy, ogre, minotaur, snake, scorpion, lich
-		
 	}
 	
 	public int getPower() {

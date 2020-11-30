@@ -14,6 +14,7 @@ import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 import coolGame.view.CombatView;
 import coolGame.view.MapView;
+import coolGame.view.NotificationView;
 import coolGame.view.StatView;
 
 public class MapController {
@@ -24,6 +25,8 @@ public class MapController {
 	private final int MOVE_WEST = 1;
 	
 	private MapView mapView;
+	private CombatController currCombatController;
+	private NotificationView notificationView;
 	private StatView statViewPlayer;
 	private Player player;
 	private int enemyCounter = 0;
@@ -36,6 +39,7 @@ public class MapController {
 		this.mapView = mapView;
 		this.player = player;
 		this.queue = queue;
+		notificationView = new NotificationView();
 
 		//TODO: change name to fit convention
 		valves.add(new ViewStatsMessageValve());
@@ -43,6 +47,8 @@ public class MapController {
 		valves.add(new SouthMessageValve());
 		valves.add(new EastMessageValve());
 		valves.add(new WestMessageValve());
+		valves.add(new PlayerDiesMessageValve());
+		valves.add(new BossDiesMessageValve());
 		
 	}
 	
@@ -139,6 +145,32 @@ public class MapController {
 		}
 	}
 	
+	private class PlayerDiesMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PlayerDiesMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			displayMessage("You are dead");
+			disposeEverything();
+			
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class BossDiesMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != BossDiesMessage.class) {
+				return ValveResponse.MISS;
+			}
+			displayMessage("You have slain the boss!");
+			disposeEverything();
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
 	//------------------------------------ Map View Listners and Methods -------------------------------------------------
 	
 	private void playerMoves(int locDelta) {
@@ -181,7 +213,7 @@ public class MapController {
 
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
-				new CombatController(new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue);
+				currCombatController = new CombatController(new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue);
 				mapView.setSpecificCharacter(newLoc, null);
 				mapView.redrawMapAfterMvmt();
 				enemyCounter++;
@@ -190,6 +222,27 @@ public class MapController {
 		}
 		
 		
+	}
+	
+	private void disposeEverything() {
+		currCombatController.disposeEverything();
+		
+		mapView.setVisible(false);
+		mapView.dispose();
+		
+		System.out.println("disposing notificationView");
+		notificationView.setVisible(false);
+		notificationView.dispose();
+		
+		if (statViewPlayer != null) {
+			statViewPlayer.setVisible(false);
+			statViewPlayer.dispose();
+		}
+		
+	}
+	
+	public void displayMessage (String msg) {
+		JOptionPane.showMessageDialog(mapView, msg);
 	}
 	
 	//method to play sounds from a file

@@ -21,8 +21,6 @@ public class GameTester {
 
 		MapController controller = new MapController(view, player, queue);
 		
-		NotificationView notificationView = new NotificationView();
-		
 		controller.mainLoop();
 		view.dispose();
 		queue.clear();

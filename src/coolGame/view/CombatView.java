@@ -1,14 +1,21 @@
 package coolGame.view;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.util.concurrent.BlockingQueue;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import coolGame.controller.Message;
 import coolGame.controller.PhyAtkMessage;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.concurrent.BlockingQueue;
 
 public class CombatView extends JFrame{
 
@@ -277,17 +284,6 @@ public class CombatView extends JFrame{
 		enemyPowerLabel.setForeground(Color.WHITE);
 
 	}
-
-	public void setPlayerDie() {
-		fullPanel.setBackground(Color.RED);
-		displayMessage("You are dead");
-	}
-
-	public void displayMessage (String msg) {
-		JOptionPane.showMessageDialog(this, msg);
-	}
-
-
 
 	//----------------------------------------------------------------------------------------
 

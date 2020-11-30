@@ -17,6 +17,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class CombatController {
 	
+	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3;
 
 	private CombatView combatView;
 	private StatView statViewPlayer;
@@ -73,7 +74,6 @@ public class CombatController {
 				if (response != ValveResponse.MISS) {
 					break;
 				}
-				System.out.println("HERE");
 			}
 		}
 	}
@@ -175,6 +175,14 @@ public class CombatController {
 			player.resetCounters();
 			combatView.setVisible(false);
 			combatView.dispose();
+			
+			if (enemy.getPower() == POWER_NEEDED_TO_SUMMON_BOSS) {
+				try {
+					this.queue.put(new BossDiesMessage());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		//Else player gets hit
@@ -196,7 +204,11 @@ public class CombatController {
 		
 		if (player.getMyStats().getHp() <= 0) {
 			playSound("resources/Death.wav");
-			combatView.setPlayerDie();
+			try {
+				this.queue.put(new PlayerDiesMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -316,6 +328,23 @@ public class CombatController {
 		}
 		
 	}
+	
+	public void disposeEverything() {
+		
+		combatView.setVisible(false);
+		combatView.dispose();
+
+		if (statViewEnemy != null) {
+			statViewEnemy.setEnemy(enemy);
+			statViewEnemy.resetStats();
+		}
+		
+		if (statViewPlayer != null) {
+			statViewPlayer.setEnemy(enemy);
+			statViewPlayer.resetStats();
+		}
+	}
+	
 	//method to play sounds from a file
 	public void playSound (String filePath)
 	{
