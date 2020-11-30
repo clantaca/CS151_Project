@@ -299,13 +299,10 @@ public class Player extends Character {
         // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold");
         
-        System.out.println("old dmg" + pdmg);
-        
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
         	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
         
-        System.out.println("new dmg" + pdmg);
         
         int enemyRes = enemy.getMyStats().getcRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));

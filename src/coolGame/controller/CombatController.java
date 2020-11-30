@@ -1,19 +1,20 @@
 package coolGame.controller;
 
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-import coolGame.view.CombatView;
-import coolGame.view.StatView;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+import coolGame.view.CombatView;
+import coolGame.view.StatView;
 
 public class CombatController {
 	
@@ -29,12 +30,13 @@ public class CombatController {
 	private List<Valve> valves = new LinkedList<Valve>();
 
 	
-	public CombatController(CombatView combatView, Enemy enemy, Player player, BlockingQueue<Message> queue) {
+	public CombatController(CombatView combatView, Enemy enemy, Player player, BlockingQueue<Message> queue, List<Valve> valves) {
 
 		this.combatView = combatView;
 		this.enemy = enemy;
 		this.player = player;
 		this.queue = queue;
+		this.valves = valves;
 		
 
 		
@@ -54,9 +56,6 @@ public class CombatController {
 		valves.add(new LightningAtkMessageValve());
 		valves.add(new PoisonAtkMessageValve());
 		valves.add(new BlockMessageValve());
-	}
-	private interface Valve {
-		public ValveResponse execute(Message message);
 	}
 
 	public void mainLoop() {
@@ -83,14 +82,13 @@ public class CombatController {
 		@Override
 		public ValveResponse execute(Message message) {
 			if (message.getClass() != PhyAtkMessage.class) {
-				System.out.println("done?");
 				return ValveResponse.MISS;
 			}
 			player.startOfTurn(player);
 			player.physicalAttack(enemy);
 			playSound("resources/PhysAttack.wav");
 			combatEnsues();
-			System.out.println("you hit the physical atk button");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View
@@ -109,7 +107,7 @@ public class CombatController {
 			player.coldAttack(enemy);
 			playSound("resources/ColdAttack.wav");
 			combatEnsues();
-			System.out.println("you hit the cold atk button");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View
@@ -127,7 +125,7 @@ public class CombatController {
 			player.fireAttack(enemy);
 			playSound("resources/FireAttack.wav");
 			combatEnsues();
-			System.out.println("you hit the fire atk button");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View
@@ -145,7 +143,7 @@ public class CombatController {
 			player.lightningAttack(enemy);
 			playSound("resources/LightningAttack.wav");
 			combatEnsues();
-			System.out.println("you hit the lightning atk button");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View
@@ -163,7 +161,7 @@ public class CombatController {
 			player.poisonAttack(enemy);
 			playSound("resources/PoisonAttack.wav");
 			combatEnsues();
-			System.out.println("you hit the lightning atk button");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View
@@ -181,7 +179,7 @@ public class CombatController {
 			player.blockEnemy();
 			playSound("resources/Block.wav");
 			combatEnsues();
-			System.out.println("you blocked");
+
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
 			// actions in View

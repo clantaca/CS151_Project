@@ -52,10 +52,6 @@ public class MapController {
 		
 	}
 	
-	private interface Valve {
-		public ValveResponse execute(Message message);
-	}
-	
 	public void mainLoop() {
 		ValveResponse response = ValveResponse.EXECUTED;
 		Message message = null;
@@ -98,7 +94,6 @@ public class MapController {
 
 			playerMoves(MOVE_NORTH);
 			playSound("resources/ButtonClick.wav");
-			System.out.println("north");
 			return ValveResponse.EXECUTED;
 		}
 	}
@@ -112,7 +107,6 @@ public class MapController {
 
 			playerMoves(MOVE_SOUTH);
 			playSound("resources/ButtonClick.wav");
-			System.out.println("south");
 			return ValveResponse.EXECUTED;
 		}
 	}
@@ -126,7 +120,6 @@ public class MapController {
 
 			playerMoves(MOVE_EAST);
 			playSound("resources/ButtonClick.wav");
-			System.out.println("east");
 			return ValveResponse.EXECUTED;
 		}
 	}
@@ -140,7 +133,6 @@ public class MapController {
 
 			playerMoves(MOVE_WEST);
 			playSound("resources/ButtonClick.wav");
-			System.out.println("west");
 			return ValveResponse.EXECUTED;
 		}
 	}
@@ -213,7 +205,7 @@ public class MapController {
 
 			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
-				currCombatController = new CombatController(new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue);
+				currCombatController = new CombatController(new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue), (Enemy)mapView.getSpecificChracter(newLoc), player, queue, valves);
 				mapView.setSpecificCharacter(newLoc, null);
 				mapView.redrawMapAfterMvmt();
 				enemyCounter++;
