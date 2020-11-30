@@ -1,4 +1,4 @@
 package coolGame.controller;
 
-public class BlockMessage {
+public class BlockMessage implements Message {
 }
