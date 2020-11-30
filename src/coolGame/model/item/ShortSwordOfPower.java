@@ -43,10 +43,10 @@ public class ShortSwordOfPower extends Stats implements Item {
         System.out.println("+" + itemStats.getArm() + " Armor");
     }
 
-    //every 2nd attack deals bonus damage
+    //every 3rd attack deals bonus damage
     @Override
     public void specialEffect(Player player) {
-        if (player.getAttackCounter() % 3 == 0)
+        if (player.getAttackCounter()+1 % 3 == 0)
             player.getMyStats().setDmg(player.getMyStats().getDmg() + 15);
         else
             player.getMyStats().setDmg(player.getOriginalDmg());

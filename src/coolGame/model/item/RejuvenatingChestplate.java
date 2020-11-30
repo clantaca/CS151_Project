@@ -52,7 +52,6 @@ public class RejuvenatingChestplate extends Stats implements Item {
     }
 
     //heals self after every 4th hit taken
-    //TODO: MAKE IT SO THAT IT HEALS, NOT INCREASES TOTAL HEALTH BY 20
     @Override
     public void specialEffect(Player player) {
         if (player.getHitsTakenCounter()+1 % 5 == 0) {

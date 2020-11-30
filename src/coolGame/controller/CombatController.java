@@ -145,7 +145,7 @@ public class CombatController {
 //			if (message.getClass() != PhyAtkMessage.class) {
 //				return ValveResponse.MISS;
 //			}
-			player.blockEnemy(true);
+			player.blockEnemy();
 			System.out.println("you blocked");
 			// otherwise it means that it is a NewGameMessage message
 			// actions in Model
@@ -161,7 +161,7 @@ public class CombatController {
 		//Create new enemy if it's dead
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
-			
+			enemy.powerCharge = 0;
 			if (statViewPlayer != null) {
 				statViewPlayer.setVisible(false);
 				statViewPlayer.dispose();
