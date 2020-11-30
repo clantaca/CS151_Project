@@ -48,6 +48,7 @@ public class PoisonWand implements Item {
                 + item.getDescription();
     }
 
+    //Enemy starts the battle with 1 stack of poison debuff.
     @Override
     public void specialEffect(Player player) {
         if (player.getTurnCounter() == 0) {

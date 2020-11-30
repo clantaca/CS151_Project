@@ -31,7 +31,8 @@ public class Enemy extends Character{
 	
 	private int 	power = 0; 							//power is how strong a mob is; boss is summoned on power 10
 	private int		enemyTypeID;
-	
+	public int		powerCharge;
+
 	//----------------------------------------------------------------------------------------
 	
 	//Constructor- chooses a random enemy type and gives stats representative of that type
@@ -332,14 +333,21 @@ public class Enemy extends Character{
 	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
 		
 		boolean ifEnemyLandsCrit = generateRandomInt(100) <= this.getMyStats().getCrit();
-		final double EFFECTIVNESS_OF_DEF = 0.1;
-		
-		if(ifEnemyLandsCrit) {
+		final double EFFECTIVNESS_OF_DEF = 1.0;
+		if (powerCharge == 4) {
+			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
+			System.out.println("Enemy lands a power attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
+			System.out.println();
+			powerCharge = 0;
+		}
+		else if(ifEnemyLandsCrit) {
 			
 			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
 			System.out.println("Enemy lands critical attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
 			System.out.println();
+			powerCharge++;
 		}
 
 		else {
@@ -349,6 +357,7 @@ public class Enemy extends Character{
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 				System.out.println("Player blocks enemy and takes " + dmgTaken + " damage and restores 5 mana.");
 				System.out.println();
+				powerCharge++;
 				player.resetBlock();
 			}
 			else {
@@ -356,6 +365,7 @@ public class Enemy extends Character{
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 				System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
 				System.out.println();
+				powerCharge++;
 			}
 		}
 	}
