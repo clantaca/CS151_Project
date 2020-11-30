@@ -1,36 +1,18 @@
 package coolGame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import coolGame.controller.*;
+import coolGame.model.character.Character;
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.concurrent.BlockingQueue;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import coolGame.controller.Message;
-import coolGame.controller.EastMessage;
-import coolGame.controller.NorthMessage;
-import coolGame.controller.SouthMessage;
-import coolGame.controller.viewStatsMessage;
-import coolGame.controller.WestMessage;
-import coolGame.model.character.Character;
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
 
 public class MapView extends JFrame{
 
@@ -43,6 +25,7 @@ public class MapView extends JFrame{
 	private final int 	PLAYER_STARTING_LOCATION = 22;
 	private final int 	EXIT_STARTING_LOCATION = 2;
 	private final int 	NUM_ENEMIES_ON_MAP = 3;
+	private final int	BOSS_ID = 100;
 	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3; //find in enemy class
 	private final String FILE_PATH = "resources/BGM.wav";
 	
@@ -64,7 +47,7 @@ public class MapView extends JFrame{
 	private static int currEnemyPower = 1;	//mapView holds the current power level of all enemies - this increments after each combat
 	
 	private Player player;
-	private String currBGFile = "resources/mapbackground2.jpg";
+	private String currBGFile = "resources/mapbackground.jpg";
 	
 	private BlockingQueue<Message> queue;
 	
@@ -105,12 +88,14 @@ public class MapView extends JFrame{
 			this.allChractersOnMap = loadChracters();
 		
 		playerCurrLocation = PLAYER_STARTING_LOCATION;
+		remove(mapPanel);
 		createMapPanel();
 		createHelpPanel();
 		createMovementPanel();
 	}
 	
 	public void redrawMapAfterMvmt() {
+		remove(mapPanel);
 		createMapPanel();
 	}
 	
@@ -225,64 +210,48 @@ public class MapView extends JFrame{
 	boolean firstTime = true;
 	
 	private void createMapPanel() {
+			ImageIcon backgroundImage = new ImageIcon(currBGFile);
+			mapPanel = new JLabel(backgroundImage);
+			mapPanel.setLayout(new GridBagLayout());
+			mapPanel.setBackground(Color.DARK_GRAY);
 
-		//mapPanel = new JPanel(new GridBagLayout());
-		ImageIcon backgroundImage = new ImageIcon(currBGFile);
-		mapPanel = new JLabel(backgroundImage);
-		mapPanel.setLayout(new GridBagLayout());
-		mapPanel.setBackground(Color.black);
+			constraints.gridx = 0;
+			constraints.gridy = 0;
 
-		constraints.gridx = 0;
-		constraints.gridy = 0;
+			for (int i = 0; i < TOTAL_ENEMIES_ALLOWED; i++) {
 
-		
-		
-		for (int i = 0; i < TOTAL_ENEMIES_ALLOWED; i++) {
-			
-			JLabel tempLabel;
-			
-			try {
-				
-				//Set character
-				tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
-				tempLabel.setOpaque(true);
-				
-				//Set stairway
-				if ((i == EXIT_STARTING_LOCATION) && (allChractersOnMap.get(i).getClass() == Player.class))
-					tempLabel.setText("Stairway Up");
-				
+				JLabel tempLabel;
+
+				try {
+					tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
+					tempLabel.setOpaque(true);
+
+					if (i == EXIT_STARTING_LOCATION)
+						if (i == EXIT_STARTING_LOCATION && (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) )
+							tempLabel.setText("Stairway Up");
+				}
+
+				catch (NullPointerException e) {
+					tempLabel = new JLabel();
+					tempLabel.setOpaque(true);
+				}
+
+
+				mapPanel.add(tempLabel, constraints);
+
+				constraints.gridx++;
+
+				//new row
+				if (constraints.gridx % 5 == 0) {
+					constraints.gridx = 0;
+					constraints.gridy++;
+				}
+
 			}
-			
-			catch (NullPointerException e) {
-				
-				//Set nothing
-				tempLabel = new JLabel();
-				tempLabel.setOpaque(true);
-			}
-				
 
-			mapPanel.add(tempLabel, constraints);
-			
-			constraints.gridx++;
-			
-			//new row
-			if (constraints.gridx % 5 == 0) {
-				constraints.gridx = 0;
-				constraints.gridy++;
-			}
-				
-		}
-		
-		if (firstTime)
 			this.add(mapPanel, BorderLayout.CENTER);
-		else
-			this.add(mapPanel, BorderLayout.EAST);
-		
-		firstTime = false;
-		
-		mapPanel.repaint();
-		mapPanel.revalidate();
-		
+			mapPanel.repaint();
+			mapPanel.revalidate();
 	}
 	
 	private void createHelpPanel() {
