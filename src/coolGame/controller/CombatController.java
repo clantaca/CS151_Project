@@ -194,7 +194,7 @@ public class CombatController {
 		//Create new enemy if it's dead
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
-			enemy.powerCharge = 0;
+			enemy.setPowerCharge(0);
 			if (statViewPlayer != null) {
 				statViewPlayer.setVisible(false);
 				statViewPlayer.dispose();

@@ -232,7 +232,7 @@ public class CombatView extends JFrame{
 
 		enemyNameLabel = new JLabel(enemy.getName());
 		enemyNameLabel.setForeground(Color.WHITE);
-		enemyImageArea = new JLabel(new ImageIcon(enemy.enemyImage));
+		enemyImageArea = new JLabel(new ImageIcon(enemy.getEnemyImage()));
 		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
 		enemyHpLabel.setForeground(Color.WHITE);
 		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());

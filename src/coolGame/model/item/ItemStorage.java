@@ -30,7 +30,7 @@ public class ItemStorage {
     public Item getNewItem() {
 
         int rand = (int)(Math.random() * itemStorages.size());
-
+        
         Item returnItem = itemStorages.get(rand);
         itemStorages.remove(rand);
         return returnItem;

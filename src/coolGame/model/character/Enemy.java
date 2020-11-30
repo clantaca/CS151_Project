@@ -1,8 +1,21 @@
 package coolGame.model.character;
 
+/**
+ * Model- Represents a single enemy that player may encounter
+ * 
+ */
+
 public class Enemy extends Character{
-	public String				enemyImage;
-	//every mob has a damage type they can only deal that boosts an offensive stat
+
+	//Variables ------------------------------------------------------------------------------------------------
+	
+	final int 		NUMBER_OF_ENEMIES = 5;					//the number of basic types of enemies available
+	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 3;		
+	
+	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
+	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
+	
+	//every enemy has a specialized attack
 	private enum DmgTypeEnum {
 		PHYSICAL,
 		COLD,
@@ -23,53 +36,54 @@ public class Enemy extends Character{
 	DmgTypeEnum 	dmgType;
 	ResTypeEnum 	resType;
 	
-	final int 		NUMBER_OF_ENEMIES = 5;					//change this whenever you want to add more enemies 
-	final int 		POWER_NEEDED_TO_SUMMON_BOSS = 3;
+	private String	enemyImage;
 	
-	final int 		POWER_INCREASE_OF_COMMON_MOBS = 4;		//change boost in power of mobs to their dmgType and naturalRes
-	final int 		POWER_INCREASE_OF_THE_BOSS = 5;
-	
-	private int 	power = 0; 							//power is how strong a mob is; boss is summoned on power 10
-	private int		enemyTypeID;
-	private boolean	hasLightningDebuff = false;
-	public int		powerCharge;
+	private int 	power = 0; 							//power is how strong a monster
+	private int		enemyTypeID;						//The type of enemy's ID
+	private boolean	hasLightningDebuff = false;			//An enemy can have a lightning debuff when attacked by lightning attack
+	private int		powerCharge;						//countdown for when enemy will use a powerful attack
 
-	//----------------------------------------------------------------------------------------
+	//Constructor ----------------------------------------------------------------------------------------
 	
-	//Constructor- chooses a random enemy type and gives stats representative of that type
+	/**
+	 * Create an Enemy with a certain power level
+	 * @param power The power level of the enemy
+	 * 
+	 */
 	public Enemy(int power) {
 		
 		this.power = power;
-		this.setName(""); //need to initialize
-		enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);
+		this.setName(""); 									//need to initialize to empty string
+		enemyTypeID = generateRandomInt(NUMBER_OF_ENEMIES);	//chooses the enemyTypeID randomly of all available
 		
 		if (power % POWER_NEEDED_TO_SUMMON_BOSS == 0) {
 			enemyTypeID = 100; //the boss's id
 		}
 		
-		//Load random stats to enemy that aren't very good
+		//All enemies start off with generic stats; this will increase later depending on specialization
 		createGenericEnemy();
 
+		//Will create the monster type depending on random number generator
 		switch (enemyTypeID) {
 
 		case 1: 
-			createZombie();		//physical
+			createZombie();		//Specializes in physical attacks
 			break;
 
 		case 2: 
-			createSkeleton();	//cold
+			createSkeleton();	//Specializes in physical attacks
 			break;
 
 		case 3: 
-			createWitch();		//poison
+			createWitch();		//Specializes in physical attacks
 			break;
 			
 		case 4:
-			createWarlock();	//fire
+			createWarlock();	//Specializes in physical attacks
 			break;
 			
 		case 5:
-			createYeti();		//lightning
+			createYeti();		//Specializes in physical attacks
 			break;
 			
 		case 100:
@@ -80,17 +94,6 @@ public class Enemy extends Character{
 		
 	}
 	
-	public int getPower() {
-		
-		return power;
-		
-	}
-	
-	public int getEnemyTypeID() {
-		return enemyTypeID;
-	}
-	
-	
 	//----------------------------------------------------------------------------------------
 	
 	//Below are the methods that create a specific mob 
@@ -100,7 +103,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("zombie");
-		enemyImage = "resources/zombie.gif";
+		setEnemyImage("resources/zombie.gif");
 	}
 	
 	private void createSkeleton() {
@@ -109,7 +112,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("skeleton");
-		enemyImage = "resources/skeleton.gif";
+		setEnemyImage("resources/skeleton.gif");
 	}
 	
 	private void createWitch() {
@@ -118,7 +121,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("witch");
-		enemyImage = "resources/witch.gif";
+		setEnemyImage("resources/witch.gif");
 	}
 	
 	private void createWarlock() {
@@ -127,7 +130,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("warlock");
-		enemyImage = "resources/warlock.gif";
+		setEnemyImage("resources/warlock.gif");
 	}
 	
 	private void createYeti() {
@@ -136,7 +139,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("yeti");
-		enemyImage = "resources/yeti.gif";
+		setEnemyImage("resources/yeti.gif");
 	}
 	
 	//no, it's not a giant (big) boss, it's a giant (species)
@@ -146,7 +149,7 @@ public class Enemy extends Character{
 		setDmgType(dmgType, POWER_INCREASE_OF_THE_BOSS);
 		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
 		concatateToName("GIANT BOSS");
-		enemyImage = "resources/boss.gif";
+		setEnemyImage("resources/boss.gif");
 	}
 	
 
@@ -376,6 +379,14 @@ public class Enemy extends Character{
 		this.hasLightningDebuff = hasLightningDebuff;
 	}
 	
+	public void setPowerCharge(int powerCharge) {
+		this.powerCharge = powerCharge;
+	}
+	
+	public int getPowerCharge() {
+		return powerCharge;
+	}
+	
 	//----------------------------------------------------------------------------------------
 	
 	public String toString() {
@@ -414,6 +425,24 @@ public class Enemy extends Character{
 			System.out.println(newEnemy);
 			
 		}
+	}
+
+	public String getEnemyImage() {
+		return enemyImage;
+	}
+
+	public void setEnemyImage(String enemyImage) {
+		this.enemyImage = enemyImage;
+	}
+	
+	public int getPower() {
+		
+		return power;
+		
+	}
+	
+	public int getEnemyTypeID() {
+		return enemyTypeID;
 	}
 	
 }
