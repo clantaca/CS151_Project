@@ -93,7 +93,7 @@ public class StatView extends JFrame {
         createCenter();
         createEast();
 
-        this.add(fullPanel);
+        //this.add(fullPanel);
 
         this.setVisible(true);
     }

@@ -1,20 +1,17 @@
 package coolGame.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 import coolGame.view.CombatView;
 import coolGame.view.StatView;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class CombatController {
 	
@@ -40,15 +37,15 @@ public class CombatController {
 		
 
 		
-		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
+/*		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
 		this.combatView.addPlayerInvButListener(new PlayerInvButListener());
-/*		this.combatView.addPhyAtkButListener(new PhyAtkListener());
+		this.combatView.addPhyAtkButListener(new PhyAtkListener());
 		this.combatView.addColdSpButListener(new ColdSpButListener());
 		this.combatView.addFireSpButListener(new FireSpButListener());
 		this.combatView.addLightningSpButListener(new LightningSpButListener());
 		this.combatView.addPoisonSpButListener(new PoisonSpButListener());
-		this.combatView.addBlockButListener(new BlockButListener());*/
-		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());
+		this.combatView.addBlockButListener(new BlockButListener());
+		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());*/
 
 		valves.add(new PhyAtkMessageValve());
 		valves.add(new ColdAtkMessageValve());
@@ -56,6 +53,9 @@ public class CombatController {
 		valves.add(new LightningAtkMessageValve());
 		valves.add(new PoisonAtkMessageValve());
 		valves.add(new BlockMessageValve());
+		valves.add(new PlayerStatsMessageValve());
+		valves.add(new EnemyStatsMessageValve());
+		valves.add(new PlayerInvMessageValve());
 	}
 
 	public void mainLoop() {
@@ -187,6 +187,43 @@ public class CombatController {
 		}
 	}
 
+	private class PlayerStatsMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PlayerStatsMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
+			statViewPlayer = new StatView(player, enemy, true);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+	private class EnemyStatsMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != EnemyStatsMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.startOfTurn(player);
+			statViewEnemy = new StatView(player, enemy, false);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+	private class PlayerInvMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PlayerInvMessage.class) {
+				return ValveResponse.MISS;
+			}
+			player.displayInventory();
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
 
 	//------------------------------------ Combat View Listners and Methods -------------------------------------------------
 	private void combatEnsues() {
@@ -245,7 +282,7 @@ public class CombatController {
 		}
 
 	}
-	
+/*
 	class PlayerStatsButListener implements ActionListener {
 
 		@Override
@@ -269,7 +306,7 @@ public class CombatController {
 		}
 		
 	}
-	
+
 	//UNFINISHED
 	class PlayerInvButListener implements ActionListener {
 
@@ -283,7 +320,7 @@ public class CombatController {
 		}
 		
 	}
-	/*
+
 	class PhyAtkListener implements ActionListener {
 
 		@Override

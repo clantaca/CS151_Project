@@ -6,7 +6,6 @@ import coolGame.model.character.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.concurrent.BlockingQueue;
 
 public class CombatView extends JFrame{
@@ -113,6 +112,37 @@ public class CombatView extends JFrame{
 			}
 		});
 
+		blockBut.addActionListener(event -> {
+			try {
+				this.queue.put(new BlockMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		playerStatsBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PlayerStatsMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		enemyStatsBut.addActionListener(event -> {
+			try {
+				this.queue.put(new EnemyStatsMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		playerInvBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PlayerInvMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
 
 		constraints.gridx = 1;
 		constraints.gridy = 0;
@@ -128,6 +158,17 @@ public class CombatView extends JFrame{
 		constraints.gridy++;
 		fullPanel.add(blockBut, constraints);
 
+		constraints.gridx = 0;
+		constraints.gridy = 4;
+		fullPanel.add(playerStatsBut, constraints);
+
+		constraints.gridx = 2;
+		constraints.gridy = 4;
+		fullPanel.add(enemyStatsBut, constraints);
+
+		constraints.gridx = 0;
+		constraints.gridy = 5;
+		fullPanel.add(playerInvBut, constraints);
 
 		pack();
 	}
@@ -265,7 +306,7 @@ public class CombatView extends JFrame{
 
 	//All action listeners for needed buttons so that controller can be notified 
 
-	public void addPlayerStatsButListener (ActionListener listener) {
+/*	public void addPlayerStatsButListener (ActionListener listener) {
 		playerStatsBut.addActionListener(listener);
 	}
 
@@ -275,9 +316,9 @@ public class CombatView extends JFrame{
 	}
 
 
-/*//	public void addPhyAtkButListener (ActionListener listener) {
-//		phyAtkBut.addActionListener(listener);
-//	}
+	public void addPhyAtkButListener (ActionListener listener) {
+		phyAtkBut.addActionListener(listener);
+	}
 
 	public void addColdSpButListener (ActionListener listener) {
 		coldSpBut.addActionListener(listener);
@@ -297,11 +338,11 @@ public class CombatView extends JFrame{
 
 	public void addBlockButListener (ActionListener listener) {
 		blockBut.addActionListener(listener);
-	}*/
+	}
 
 	public void addEnemyStatsButListener (ActionListener listener) {
 		enemyStatsBut.addActionListener(listener);
-	}
+	}*/
 
 	//----------------------------------------------------------------------------------------
 
