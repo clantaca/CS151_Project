@@ -329,22 +329,6 @@ public class CombatController {
 		
 	}
 	
-	public void disposeEverything() {
-		
-		combatView.setVisible(false);
-		combatView.dispose();
-
-		if (statViewEnemy != null) {
-			statViewEnemy.setEnemy(enemy);
-			statViewEnemy.resetStats();
-		}
-		
-		if (statViewPlayer != null) {
-			statViewPlayer.setEnemy(enemy);
-			statViewPlayer.resetStats();
-		}
-	}
-	
 	//method to play sounds from a file
 	public void playSound (String filePath)
 	{

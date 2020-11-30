@@ -225,20 +225,7 @@ public class MapController {
 	}
 	
 	private void disposeEverything() {
-		currCombatController.disposeEverything();
-		
-		mapView.setVisible(false);
-		mapView.dispose();
-		
-		System.out.println("disposing notificationView");
-		notificationView.setVisible(false);
-		notificationView.dispose();
-		
-		if (statViewPlayer != null) {
-			statViewPlayer.setVisible(false);
-			statViewPlayer.dispose();
-		}
-		
+		System.exit(0);
 	}
 	
 	public void displayMessage (String msg) {
