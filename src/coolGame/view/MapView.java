@@ -8,7 +8,7 @@ import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TreeSet;
+import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 
 import javax.sound.sampled.AudioInputStream;
@@ -22,12 +22,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import coolGame.controller.Message;
 import coolGame.controller.EastMessage;
+import coolGame.controller.Message;
 import coolGame.controller.NorthMessage;
 import coolGame.controller.SouthMessage;
-import coolGame.controller.viewStatsMessage;
 import coolGame.controller.WestMessage;
+import coolGame.controller.viewStatsMessage;
 import coolGame.model.character.Character;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
@@ -142,7 +142,7 @@ public class MapView extends JFrame{
 		ArrayList<Character> finalArrList = new ArrayList<>();
 		
 		//Generates unique numbers to be used for character locations 
-		TreeSet<Integer> occupiedLocations = new TreeSet<>();
+		HashSet<Integer> occupiedLocations = new HashSet<>();
 		occupiedLocations.add(PLAYER_STARTING_LOCATION);
 		
 		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)

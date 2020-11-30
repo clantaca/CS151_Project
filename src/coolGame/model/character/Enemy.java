@@ -31,6 +31,7 @@ public class Enemy extends Character{
 	
 	private int 	power = 0; 							//power is how strong a mob is; boss is summoned on power 10
 	private int		enemyTypeID;
+	private boolean	hasLightningDebuff = false;
 	
 	//----------------------------------------------------------------------------------------
 	
@@ -358,6 +359,14 @@ public class Enemy extends Character{
 				System.out.println();
 			}
 		}
+	}
+	
+	public boolean getHasLightningDebuff() {
+		return hasLightningDebuff;
+	}
+	
+	public void setHasLightningDebuff(boolean hasLightningDebuff) {
+		this.hasLightningDebuff = hasLightningDebuff;
 	}
 	
 	//----------------------------------------------------------------------------------------

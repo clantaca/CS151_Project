@@ -7,6 +7,7 @@ import coolGame.controller.MapController;
 import coolGame.controller.Message;
 import coolGame.model.character.Player;
 import coolGame.view.MapView;
+import coolGame.view.NotificationView;
 
 public class GameTester {
 
@@ -19,7 +20,9 @@ public class GameTester {
 		view = MapView.init(player, queue);
 
 		MapController controller = new MapController(view, player, queue);
-
+		
+		NotificationView notificationView = new NotificationView();
+		
 		controller.mainLoop();
 		view.dispose();
 		queue.clear();

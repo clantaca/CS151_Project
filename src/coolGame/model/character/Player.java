@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Player extends Character {
 
+	private final int PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 10;
+	
     private int N; // size of inventory space
     private ItemStorage itemStorage; //Item class to use methods
     private ArrayList<Item> inventory = new ArrayList<>(); // inventory of items
@@ -228,6 +230,11 @@ public class Player extends Character {
     public void physicalAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor
         int pdmg = randomizeDmg("Physical");
+        
+        //Calculates additional damage when enemy has lightning debuff
+        if(enemy.getHasLightningDebuff())
+        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        
         int enemyRes = enemy.getMyStats().getArm();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
 
@@ -291,6 +298,15 @@ public class Player extends Character {
     public void coldAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold");
+        
+        System.out.println("old dmg" + pdmg);
+        
+        //Calculates additional damage when enemy has lightning debuff
+        if(enemy.getHasLightningDebuff())
+        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        
+        System.out.println("new dmg" + pdmg);
+        
         int enemyRes = enemy.getMyStats().getcRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
 
@@ -343,6 +359,11 @@ public class Player extends Character {
     public void poisonAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and poison resistance
         int pdmg = randomizeDmg("Poison");
+        
+        //Calculates additional damage when enemy has lightning debuff
+        if(enemy.getHasLightningDebuff())
+        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        
         int enemyRes = enemy.getMyStats().getpRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
 
@@ -384,6 +405,11 @@ public class Player extends Character {
     public void fireAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and fire resistance
         int pdmg = randomizeDmg("Fire");
+        
+        //Calculates additional damage when enemy has lightning debuff
+        if(enemy.getHasLightningDebuff())
+        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        
         int enemyRes = enemy.getMyStats().getfRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
         // needs 5 mana to use fire spell
@@ -438,6 +464,11 @@ public class Player extends Character {
     public void lightningAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
         int pdmg = randomizeDmg("Lightning");
+        
+        //Calculates additional damage when enemy has lightning debuff
+        if(enemy.getHasLightningDebuff())
+        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        
         int enemyRes = enemy.getMyStats().getlRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
 
@@ -473,6 +504,9 @@ public class Player extends Character {
             if (enemyHp < 0) {
                 enemy.getMyStats().setHp(0);
             }
+            
+            enemy.setHasLightningDebuff(true);	//give enemy lightning debuff
+            System.out.println("Enemy's has lightning debuff status: " + enemy.getHasLightningDebuff());
         }
     }
 
