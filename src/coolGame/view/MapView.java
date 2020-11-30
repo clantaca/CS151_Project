@@ -1,13 +1,10 @@
 package coolGame.view;
 
-import coolGame.controller.*;
-import coolGame.model.character.Character;
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-
-import javax.sound.sampled.*;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -150,9 +147,10 @@ public class MapView extends JFrame{
 		//Generates unique numbers to be used for character locations 
 		HashSet<Integer> occupiedLocations = new HashSet<>();
 		occupiedLocations.add(PLAYER_STARTING_LOCATION);
+		occupiedLocations.add(EXIT_STARTING_LOCATION);
 		
 		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)
-		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+1) {
+		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
 			
 			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
 			occupiedLocations.add(randomInt);
