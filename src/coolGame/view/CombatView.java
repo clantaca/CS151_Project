@@ -1,7 +1,6 @@
 package coolGame.view;
 
-import coolGame.controller.Message;
-import coolGame.controller.PhyAtkMessage;
+import coolGame.controller.*;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 
@@ -76,7 +75,7 @@ public class CombatView extends JFrame{
 
 		coldSpBut.addActionListener(event -> {
 			try {
-				this.queue.put(new PhyAtkMessage());
+				this.queue.put(new ColdAtkMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -84,7 +83,7 @@ public class CombatView extends JFrame{
 
 		fireSpBut.addActionListener(event -> {
 			try {
-				this.queue.put(new PhyAtkMessage());
+				this.queue.put(new FireAtkMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -92,7 +91,7 @@ public class CombatView extends JFrame{
 
 		lightningSpBut.addActionListener(event -> {
 			try {
-				this.queue.put(new PhyAtkMessage());
+				this.queue.put(new LightningAtkMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -100,7 +99,7 @@ public class CombatView extends JFrame{
 
 		poisonSpBut.addActionListener(event -> {
 			try {
-				this.queue.put(new PhyAtkMessage());
+				this.queue.put(new PoisonAtkMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -108,7 +107,7 @@ public class CombatView extends JFrame{
 
 		blockBut.addActionListener(event -> {
 			try {
-				this.queue.put(new PhyAtkMessage());
+				this.queue.put(new BlockMessage());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
