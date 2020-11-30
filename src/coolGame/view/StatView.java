@@ -1,18 +1,10 @@
 package coolGame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class StatView extends JFrame {
 
@@ -63,16 +55,24 @@ public class StatView extends JFrame {
     private JLabel ePResLabel;
     private JLabel eFResLabel;
     private JLabel eLResLabel;
+    private JLabel fullPanel;
+    private ImageIcon background_Image;
 
     public StatView(Player player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
+
+        //ImageIcon backgroundImage = new ImageIcon(background_Image);
+        //fullPanel = new JLabel(backgroundImage);
+        //fullPanel.setLayout(new BorderLayout());
 
         createView();
         createNorth();
         createWest();
         createCenter();
         createEast();
+
+        //this.add(fullPanel);
 
         this.setVisible(true);
     }
@@ -83,11 +83,17 @@ public class StatView extends JFrame {
         this.enemy = enemy;
         this.initialized = initialized;
 
+        //ImageIcon backgroundImage = new ImageIcon(background_Image);
+        //fullPanel = new JLabel(backgroundImage);
+        //fullPanel.setLayout(new BorderLayout());
+
         createView();
         createNorth();
         createWest();
         createCenter();
         createEast();
+
+        this.add(fullPanel);
 
         this.setVisible(true);
     }

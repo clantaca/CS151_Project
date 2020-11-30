@@ -28,10 +28,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/GameTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/GameTester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coolGame/controller/CombatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/CombatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/MapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/view/CombatView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/CombatView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/view/StatView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/StatView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +152,7 @@
       <workItem from="1604021552984" duration="12651000" />
       <workItem from="1606077340840" duration="5471000" />
       <workItem from="1606592121252" duration="25000" />
-      <workItem from="1606617370645" duration="7104000" />
+      <workItem from="1606617370645" duration="11647000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
@@ -310,16 +308,5 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="346" y="59" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1606490106803" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/coolGame/GameTester.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
