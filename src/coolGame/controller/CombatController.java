@@ -47,8 +47,11 @@ public class CombatController {
 		this.combatView.addBlockButListener(new BlockButListener());
 		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());
 
-		valves.add(new PhyAtkMessage());
-		valves.add(new ColdAtkMessage());
+		valves.add(new PhyAtkMessageValve());
+		valves.add(new ColdAtkMessageValve());
+		valves.add(new FireAtkMessageValve());
+		valves.add(new LightningAtkMessageValve());
+		valves.add(new BlockMessageValve());
 	}
 	private interface Valve {
 		public ValveResponse execute(Message message);
@@ -75,7 +78,7 @@ public class CombatController {
 		}
 	}
 
-	private class PhyAtkMessage implements Valve {
+	private class PhyAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
 //			if (message.getClass() != PhyAtkMessage.class) {
@@ -90,7 +93,8 @@ public class CombatController {
 		}
 	}
 	
-	private class ColdAtkMessage implements Valve {
+
+	private class ColdAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
 //			if (message.getClass() != PhyAtkMessage.class) {
@@ -104,7 +108,53 @@ public class CombatController {
 			return ValveResponse.EXECUTED;
 		}
 	}
-	
+
+	private class FireAtkMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+//			if (message.getClass() != PhyAtkMessage.class) {
+//				return ValveResponse.MISS;
+//			}
+			player.fireAttack(enemy);
+			System.out.println("you hit the fire atk button");
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+	private class LightningAtkMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+//			if (message.getClass() != PhyAtkMessage.class) {
+//				return ValveResponse.MISS;
+//			}
+			player.lightningAttack(enemy);
+			System.out.println("you hit the lightning atk button");
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+	private class BlockMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+//			if (message.getClass() != PhyAtkMessage.class) {
+//				return ValveResponse.MISS;
+//			}
+			player.blockEnemy(true);
+			System.out.println("you blocked");
+			// otherwise it means that it is a NewGameMessage message
+			// actions in Model
+			// actions in View
+			return ValveResponse.EXECUTED;
+		}
+	}
+
+
 	//------------------------------------ Combat View Listners and Methods -------------------------------------------------
 	private void combatEnsues() {
 		
