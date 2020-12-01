@@ -13,7 +13,8 @@ public class StatView extends JFrame {
 
     private int fWidth = 450;
     private int fHeight = 220;
-    private int border = 10;
+    private GridBagConstraints 	constraints;
+    private final String background_Image = "resources/background.jpg"; // change background here
     private Boolean initialized = true; // changes from player to enemy stats
 
     private JPanel northPanel;
@@ -56,15 +57,14 @@ public class StatView extends JFrame {
     private JLabel eFResLabel;
     private JLabel eLResLabel;
     private JLabel fullPanel;
-    private ImageIcon background_Image;
 
     public StatView(Player player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
 
-        //ImageIcon backgroundImage = new ImageIcon(background_Image);
-        //fullPanel = new JLabel(backgroundImage);
-        //fullPanel.setLayout(new BorderLayout());
+        ImageIcon backgroundImage = new ImageIcon(background_Image);
+        fullPanel = new JLabel(backgroundImage);
+        fullPanel.setLayout(new GridBagLayout());
 
         createView();
         createNorth();
@@ -72,20 +72,21 @@ public class StatView extends JFrame {
         createCenter();
         createEast();
 
-        //this.add(fullPanel);
+        this.add(fullPanel);
+        pack();
 
         this.setVisible(true);
     }
-    
+
     public StatView(Player player, Enemy enemy, boolean initialized) {
-    	
+
         this.player = player;
         this.enemy = enemy;
         this.initialized = initialized;
 
-        //ImageIcon backgroundImage = new ImageIcon(background_Image);
-        //fullPanel = new JLabel(backgroundImage);
-        //fullPanel.setLayout(new BorderLayout());
+        ImageIcon backgroundImage = new ImageIcon(background_Image);
+        fullPanel = new JLabel(backgroundImage);
+        fullPanel.setLayout(new GridBagLayout());
 
         createView();
         createNorth();
@@ -93,8 +94,8 @@ public class StatView extends JFrame {
         createCenter();
         createEast();
 
-        //this.add(fullPanel);
-
+        this.add(fullPanel);
+        pack();
         this.setVisible(true);
     }
 
@@ -108,70 +109,69 @@ public class StatView extends JFrame {
 
     // displays which stats you are viewing
     private void createNorth() {
-        northPanel = new JPanel();
-        northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.PAGE_AXIS));
-        northPanel.add(Box.createRigidArea(new Dimension(border, border)));
+        constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.insets.bottom = 30;
 
         if (initialized) {
-            statsLabel = new JLabel("Character Stats");
+            statsLabel = new JLabel(player.getName() + " Stats", SwingConstants.CENTER);
             statsLabel.setHorizontalAlignment(JLabel.CENTER);
         }
         else
         {
-            statsLabel = new JLabel("Enemy Stats", SwingConstants.CENTER);
+            statsLabel = new JLabel(enemy.getName() + " Stats", SwingConstants.CENTER);
             statsLabel.setHorizontalAlignment(JLabel.CENTER);
         }
-        northPanel.setBackground(Color.LIGHT_GRAY);
-        northPanel.add(statsLabel);
-        this.add(northPanel, BorderLayout.NORTH);
+        fullPanel.add(statsLabel, constraints);
     }
 
     // displays basic stats and character image
     private void createWest() {
-        westPanel = new JPanel();
-        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
-        westPanel.add(Box.createRigidArea(new Dimension(border, border)));
-        westPanel.setBackground(Color.LIGHT_GRAY);
+        constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
 
         if (initialized) {
-            pNameLabel = new JLabel(player.getName() + " Stats");
-            //playerPic = new JLabel(new ImageIcon("Player.PNG"));
             pHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
             pManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
             pArmorLabel = new JLabel("Armor: " + player.getMyStats().getArm());
 
-            westPanel.add(pNameLabel);
-            //westPanel.add(playerPic);
-            westPanel.add(pHpLabel);
-            westPanel.add(pManaLabel);
-            westPanel.add(pArmorLabel);
+            constraints.gridy = 4;
+            constraints.gridy++;
+            fullPanel.add(pHpLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pManaLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pArmorLabel, constraints);
 
         }
         else {
-            eNameLabel = new JLabel(enemy.getName() + " Stats");
-            //enemyPic = new JLabel(new ImageIcon(("Enemy.png")));
             eHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
             eArmorLabel = new JLabel("Armor: " + enemy.getMyStats().getArm());
             ePowerLabel = new JLabel("Power: " + enemy.getPower());
 
-            westPanel.add(eNameLabel);
-            //westPanel.add(enemyPic);
-            westPanel.add(eHpLabel);
-            westPanel.add(eArmorLabel);
-            westPanel.add(ePowerLabel);
+            constraints.gridy++;
+            fullPanel.add(eHpLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eArmorLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(ePowerLabel, constraints);
         }
-
-        this.add(westPanel, BorderLayout.WEST);
     }
 
     // displays Attack Damage
     private void createCenter() {
-        centPanel = new JPanel();
-        centPanel.setLayout(new BoxLayout(centPanel, BoxLayout.PAGE_AXIS));
-        centPanel.add(Box.createRigidArea(new Dimension(border, border)));
-        centPanel.setBackground(Color.RED);
+        constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+
         dmgLabel = new JLabel("Attack Damage");
-        centPanel.add(dmgLabel);
+        fullPanel.add(dmgLabel, constraints);
+
 
         if (initialized) {
             pDmgLabel = new JLabel("Physical: " + player.getMyStats().getDmg());
@@ -179,11 +179,17 @@ public class StatView extends JFrame {
             pPDmgLabel = new JLabel("Poison: " + player.getMyStats().getPoison());
             pFDmgLabel = new JLabel("Fire: " + player.getMyStats().getFire());
             pLDmgLabel = new JLabel("Lightning: " + player.getMyStats().getLightning());
-            centPanel.add(pDmgLabel);
-            centPanel.add(pCDmgLabel);
-            centPanel.add(pPDmgLabel);
-            centPanel.add(pFDmgLabel);
-            centPanel.add(pLDmgLabel);
+            constraints.gridy++;
+            fullPanel.add(pDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pCDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pPDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pFDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pLDmgLabel, constraints);
+            constraints.gridy++;
         }
         else {
             eDmgLabel = new JLabel("Physical: " + enemy.getMyStats().getDmg());
@@ -191,36 +197,42 @@ public class StatView extends JFrame {
             ePDmgLabel = new JLabel("Poison: " + enemy.getMyStats().getPoison());
             eFDmgLabel = new JLabel("Fire: " + enemy.getMyStats().getFire());
             eLDmgLabel = new JLabel("Lightning: " + enemy.getMyStats().getLightning());
-            centPanel.add(eDmgLabel);
-            centPanel.add(eCDmgLabel);
-            centPanel.add(ePDmgLabel);
-            centPanel.add(eFDmgLabel);
-            centPanel.add(eLDmgLabel);
+            constraints.gridy++;
+            fullPanel.add(eDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eCDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(ePDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eFDmgLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eLDmgLabel, constraints);
         }
-        this.add(centPanel, BorderLayout.CENTER);
     }
 
     // displays Resistances
     private void createEast() {
 
-        eastPanel = new JPanel();
-        eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.PAGE_AXIS));
-        eastPanel.add(Box.createRigidArea(new Dimension(border, border)));
-        eastPanel.setBackground(Color.BLUE);
+        constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 2;
+        constraints.gridy = 4;
         resLabel = new JLabel("Resistances");
-        eastPanel.add(resLabel);
+        fullPanel.add(resLabel, constraints);
 
         if (initialized) {
-            emptyLabel = new JLabel("");
             pCResLabel = new JLabel("Cold: " + player.getMyStats().getcRes());
             pPResLabel = new JLabel("Poison: " + player.getMyStats().getpRes());
             pFResLabel = new JLabel("Fire: " + player.getMyStats().getfRes());
             pLResLabel = new JLabel("Lightning: " + player.getMyStats().getlRes());
-            eastPanel.add(emptyLabel);
-            eastPanel.add(pCResLabel);
-            eastPanel.add(pPResLabel);
-            eastPanel.add(pFResLabel);
-            eastPanel.add(pLResLabel);
+            constraints.gridy++;
+            fullPanel.add(pCResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pPResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pFResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(pLResLabel, constraints);
         }
         else {
             emptyLabel = new JLabel("");
@@ -228,19 +240,23 @@ public class StatView extends JFrame {
             ePResLabel = new JLabel("Poison: " + enemy.getMyStats().getpRes());
             eFResLabel = new JLabel("Fire: " + enemy.getMyStats().getfRes());
             eLResLabel = new JLabel("Lightning: " + enemy.getMyStats().getlRes());
-            eastPanel.add(emptyLabel);
-            eastPanel.add(eCResLabel);
-            eastPanel.add(ePResLabel);
-            eastPanel.add(eFResLabel);
-            eastPanel.add(eLResLabel);
+            constraints.gridy++;
+            fullPanel.add(emptyLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eCResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(ePResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eFResLabel, constraints);
+            constraints.gridy++;
+            fullPanel.add(eLResLabel, constraints);
         }
-        this.add(eastPanel, BorderLayout.EAST);
     }
 
     public void resetStats() {
-    	
-    	if (initialized) {
-    		
+
+        if (initialized) {
+
             pNameLabel.setText(player.getName() + " Stats");
             pHpLabel.setText("Health: " + player.getMyStats().getHp());
             pManaLabel.setText("Mana: " + player.getMyStats().getMana());
@@ -254,11 +270,11 @@ public class StatView extends JFrame {
             pPResLabel.setText("Poison: " + player.getMyStats().getpRes());
             pFResLabel.setText("Fire: " + player.getMyStats().getfRes());
             pLResLabel.setText("Lightning: " + player.getMyStats().getlRes());
-    		
-    	}
 
-    	else {
-    		
+        }
+
+        else {
+
             eNameLabel = new JLabel(enemy.getName() + " Stats");
             eHpLabel.setText("Health: " + enemy.getMyStats().getHp());
             eArmorLabel.setText("Armor: " + enemy.getMyStats().getArm());
@@ -272,8 +288,8 @@ public class StatView extends JFrame {
             ePResLabel.setText("Poison: " + enemy.getMyStats().getpRes());
             eFResLabel.setText("Fire: " + enemy.getMyStats().getfRes());
             eLResLabel.setText("Lightning: " + enemy.getMyStats().getlRes());
-            
-    	}
+
+        }
 
     }
 
@@ -285,9 +301,9 @@ public class StatView extends JFrame {
     public void setInitialized(Boolean initialized) {
         this.initialized = initialized;
     }
-    
+
     public void setEnemy(Enemy enemy) {
-    	this.enemy = enemy;
+        this.enemy = enemy;
     }
 
     public static void main(String[] args) {
@@ -296,4 +312,6 @@ public class StatView extends JFrame {
     }
 
 }
+
+
 
