@@ -28,6 +28,7 @@ import coolGame.controller.NorthMessage;
 import coolGame.controller.SouthMessage;
 import coolGame.controller.WestMessage;
 import coolGame.controller.viewStatsMessage;
+import coolGame.model.Map;
 import coolGame.model.character.Character;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
@@ -42,9 +43,7 @@ public class MapView extends JFrame{
 	private final int	TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
 	private final int 	PLAYER_STARTING_LOCATION = 22;
 	private final int 	EXIT_STARTING_LOCATION = 2;
-	private final int 	NUM_ENEMIES_ON_MAP = 3;
 	private final int	BOSS_ID = 100;
-	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3; //find in enemy class
 	private final String FILE_PATH = "resources/BGM.wav";
 	
 	private JLabel	mapPanel;
@@ -61,24 +60,24 @@ public class MapView extends JFrame{
 	private JButton westButton;
 	
 	private int playerCurrLocation = PLAYER_STARTING_LOCATION;
-	private ArrayList<Character> allChractersOnMap;
 	private static int currEnemyPower = 1;	//mapView holds the current power level of all enemies - this increments after each combat
 	
 	private Player player;
+	private Map map;
 	private String currBGFile = "resources/mapbackground.jpg";
 	
 	private BlockingQueue<Message> queue;
 	
-	public static MapView init(Player player, BlockingQueue<Message> queue) {
+	public static MapView init(Player player, Map map, BlockingQueue<Message> queue) {
 		// Create object of type view
-		return new MapView(player, queue);
+		return new MapView(player, map, queue);
 	}
 	
-	public MapView(Player player, BlockingQueue<Message> queue) {
+	public MapView(Player player, Map map, BlockingQueue<Message> queue) {
 		
 		this.player = player;
+		this.map = map;
 		this.queue = queue;
-		this.allChractersOnMap = loadChracters();
 
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH, COMPONENT_PADDING_HEIGHT, COMPONENT_PADDING_LENGTH);
@@ -100,10 +99,8 @@ public class MapView extends JFrame{
 		if (currEnemyPower == 3)
 			currBGFile = "resources/mapbackground2.jpg";
 		
-		if (currEnemyPower % POWER_NEEDED_TO_SUMMON_BOSS == 0)
-			this.allChractersOnMap = loadChractersBossLevel();
-		else
-			this.allChractersOnMap = loadChracters();
+		
+		map = new Map(player, currEnemyPower);
 		
 		playerCurrLocation = PLAYER_STARTING_LOCATION;
 		remove(mapPanel);
@@ -130,89 +127,11 @@ public class MapView extends JFrame{
 	}
 	
 	public void setSpecificCharacter(int i, Character newCharacter){
-		allChractersOnMap.set(i, newCharacter);
+		map.setSpecificCharacter(i, newCharacter);
 	}
 	
 	public Character getSpecificCharacter(int value) {
-		return allChractersOnMap.get(value);
-	}
-	
-	//--------------------------------------------------------------------------------------------
-	
-	//Fills an arrayList of length 25 with null enemies except for three unique spots where it is filled with enemies of a given power level.
-	private ArrayList<Character> loadChracters() {
-		
-		ArrayList<Character> finalArrList = new ArrayList<>();
-		
-		//Generates unique numbers to be used for character locations 
-		HashSet<Integer> occupiedLocations = new HashSet<>();
-		occupiedLocations.add(PLAYER_STARTING_LOCATION);
-		occupiedLocations.add(EXIT_STARTING_LOCATION);
-		
-		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)
-		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
-			
-			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
-			occupiedLocations.add(randomInt);
-			
-		}
-		
-		
-		for (int i = 0; i < 25; i++) {
-			
-			if (i == PLAYER_STARTING_LOCATION || i == EXIT_STARTING_LOCATION)
-				finalArrList.add(player);
-			else if (occupiedLocations.contains(i))
-				finalArrList.add(new Enemy(currEnemyPower));
-			else
-				finalArrList.add(null);
-			
-		}
-		
-		return finalArrList;
-		
-	}
-	
-	//Use this array list when we on final level
-	private ArrayList<Character> loadChractersBossLevel() {
-		
-		ArrayList<Character> finalArrList = new ArrayList<>();
-		
-		for (int i = 0; i < 25; i++) {
-			
-			if (i == PLAYER_STARTING_LOCATION)
-				finalArrList.add(player);
-			else if (i == EXIT_STARTING_LOCATION)
-				finalArrList.add(new Enemy(currEnemyPower));
-			else
-				finalArrList.add(null);
-			
-		}
-		
-		return finalArrList;
-		
-	}
-	
-	//will generate a random number given upper limit
-	//ex: an upper limit of "2" will return 0, 1, or 2
-	private int generateRandomInt(int upperLimit) {
-		return (int) (Math.random() * upperLimit);
-	}
-	
-	private void printArrayListOfEnemies(ArrayList<Character> input) {
-		
-		for (int i = 0; i < input.size(); i++) {
-			
-			try {
-				System.out.println(i + ": " + input.get(i).getName());
-			}
-			
-			catch (NullPointerException e) {
-				System.out.println(i + ": " + "null");
-			}
-			
-		}
-		
+		return map.getSpecificCharacter(value);
 	}
 	
 	//--------------------------------------------------------------------------------------------
@@ -225,8 +144,6 @@ public class MapView extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
-	boolean firstTime = true;
 	
 	private void createMapPanel() {
 			ImageIcon backgroundImage = new ImageIcon(currBGFile);
@@ -242,7 +159,7 @@ public class MapView extends JFrame{
 				JLabel tempLabel;
 
 				try {
-					tempLabel = new JLabel("*" + allChractersOnMap.get(i).getName() + "*");
+					tempLabel = new JLabel("*" + map.getSpecificCharacter(i).getName() + "*");
 					tempLabel.setOpaque(true);
 
 					if (i == EXIT_STARTING_LOCATION)
