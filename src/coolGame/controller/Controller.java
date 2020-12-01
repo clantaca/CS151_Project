@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
+import coolGame.model.Map;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 import coolGame.view.CombatView;
@@ -32,6 +33,7 @@ public class Controller {
 	
 	private Player player;
 	private Enemy enemy;
+	private Map map;
 	private int enemyCounter = 0;
 	
 	private BlockingQueue<Message> queue;
@@ -63,6 +65,12 @@ public class Controller {
 		valves.add(new PlayerInvMessageValve());
 		
 	}
+	
+	private interface Valve {
+
+		public ValveResponse execute(Message message);
+	}
+
 	
 	public void mainLoop() {
 		ValveResponse response = ValveResponse.EXECUTED;
