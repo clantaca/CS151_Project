@@ -22,7 +22,6 @@ public class GameTester {
 		player = new Player("Tester");
 		enemy = new Enemy(1);
 		mapView = MapView.init(player, queue);
-		//combatView = CombatView.init(player, enemy, queue);
 
 		Controller controller = new Controller(mapView, player, queue);
 		

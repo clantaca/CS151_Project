@@ -133,7 +133,7 @@ public class MapView extends JFrame{
 		allChractersOnMap.set(i, newCharacter);
 	}
 	
-	public Character getSpecificChracter(int value) {
+	public Character getSpecificCharacter(int value) {
 		return allChractersOnMap.get(value);
 	}
 	

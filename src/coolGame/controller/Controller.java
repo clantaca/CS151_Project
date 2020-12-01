@@ -331,7 +331,7 @@ public class Controller {
 		int newLoc = mapView.getPlayerCurrLocation()+locDelta;
 		
 		//if there's nothing we can bump into, we swap places with that empty space
-		if (mapView.getSpecificChracter(newLoc) == null) {
+		if (mapView.getSpecificCharacter(newLoc) == null) {
 			
 			mapView.setSpecificCharacter(newLoc, mapView.getPlayer());
 			mapView.setPlayerCurrLocation(newLoc);
@@ -340,7 +340,7 @@ public class Controller {
 		}
 		
 		//if we hit the exit (exit is part of player class)
-		else if (mapView.getSpecificChracter(newLoc) instanceof Player ) {
+		else if (mapView.getSpecificCharacter(newLoc) instanceof Player ) {
 			
 			if(statViewPlayer != null) {
 				statViewPlayer.setVisible(false);
@@ -362,9 +362,10 @@ public class Controller {
 				statViewPlayer.dispose();
 			}
 
-			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificChracter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificCharacter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
-				combatView = new CombatView(player, (Enemy)mapView.getSpecificChracter(newLoc), queue);
+				combatView = new CombatView(player, (Enemy)mapView.getSpecificCharacter(newLoc), queue);
+				enemy = (Enemy)mapView.getSpecificCharacter(newLoc);
 				mapView.setSpecificCharacter(newLoc, null);
 				mapView.redrawMapAfterMvmt();
 				enemyCounter++;
