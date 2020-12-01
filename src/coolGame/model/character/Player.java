@@ -252,7 +252,7 @@ public class Player extends Character {
                 // for a guaranteed special attack
 
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*4);
-                    getMyStats().setHp(getMyStats().getHp()+tdmg*4);
+                    getMyStats().setHp(getMyStats().getHp() + tdmg*4);
                     if (getMyStats().getHp() > getMyStats().getMaxHP())
                         getMyStats().setHp(getMyStats().getMaxHP());
                     System.out.println("Player uses special physical attack and crits, stealing" + tdmg*4 + "HP from the enemy!");
@@ -264,9 +264,10 @@ public class Player extends Character {
             else if (specialAttack == 2) {
                 //tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
+            getMyStats().setHp(getMyStats().getHp() + tdmg*2);
                 if (getMyStats().getHp() > getMyStats().getMaxHP())
                     getMyStats().setHp(getMyStats().getMaxHP());
-                System.out.println("Player uses special physical attack, stealing " + tdmg*4 + " HP from the enemy!");
+                System.out.println("Player uses special physical attack, stealing " + tdmg*2 + " HP from the enemy!");
                 specialAttack = 0;
             }
 
@@ -536,6 +537,7 @@ public class Player extends Character {
         hitsTakenCounter = 0;
         turnCounter = 0;
         blockCounter = 0;
+        isFrozen = false;
     }
 
     // removes poison buff from enemy

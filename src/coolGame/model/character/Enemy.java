@@ -373,6 +373,7 @@ public class Enemy extends Character{
 				System.out.println();
 				powerCharge = 0;
 			}
+			else
 			if (player.blocked) {
 
 				int dmgTaken = ((enemyDmg/2 < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg/2 - (int) (playerDef * EFFECTIVNESS_OF_DEF));
