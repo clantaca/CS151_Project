@@ -21,6 +21,7 @@ public class Player extends Character {
     private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
     public boolean blocked = false;
+    public boolean isFrozen = false;
 
     private int spellCounter = 0; // whenever the player casts a spell
     private int attackCounter = 0; // whenever the player attacks with physical attack
@@ -237,7 +238,7 @@ public class Player extends Character {
         
         int enemyRes = enemy.getMyStats().getArm();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
-
+        isFrozen = false;
         // 4th physical attack does special attack
         if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
             System.out.println("Enemy dodges your attack!");
@@ -283,7 +284,7 @@ public class Player extends Character {
             debuffTurnCounter++;
         }
 
-        increaseMana(3);
+//        increaseMana(3);
         resetBlock();
         attackCounter++;
         turnCounter++;
@@ -303,7 +304,7 @@ public class Player extends Character {
         if(enemy.getHasLightningDebuff())
         	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
         
-        
+        isFrozen = false;
         int enemyRes = enemy.getMyStats().getcRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
 
@@ -313,6 +314,7 @@ public class Player extends Character {
         }
         else {
             if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                useSpell();
                 System.out.println("Enemy dodges your attack!");
                 return;
             }
@@ -324,12 +326,14 @@ public class Player extends Character {
                     // for a guaranteed special cold spell
 
                         //tdmg = ((getMyStats().getCold() * 3) < enemyRes) ? 0 : ((getMyStats().getCold() * 3) - enemyRes);
+                        isFrozen = true;
                         enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                        System.out.println("Player uses cold spell and does " + pdmg*3 + " damage. Enemy loses " + tdmg*3 + " HP and is frozen.");
+                        System.out.println("Player uses cold spell and does " + pdmg*3 + " damage. Enemy loses " + tdmg*3 + "!");
                         cSpellCounter = 0;
                     }
                  else {
                     //tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
+                    useSpell();
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                     System.out.println("Player uses cold spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
                     cSpellCounter++;
@@ -342,7 +346,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 
-            increaseMana(1);
+//            increaseMana(1);
             resetBlock();
             turnCounter++;
 
@@ -363,7 +367,7 @@ public class Player extends Character {
         
         int enemyRes = enemy.getMyStats().getpRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
-
+        isFrozen = false;
         // needs 5 mana to use poison spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana to use poison spell!");
@@ -389,7 +393,7 @@ public class Player extends Character {
                 }
 
                 resetBlock();
-            increaseMana(1);
+//            increaseMana(1);
             turnCounter++;
 
             int enemyHp = enemy.getMyStats().getHp();
@@ -409,6 +413,7 @@ public class Player extends Character {
         
         int enemyRes = enemy.getMyStats().getfRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
+        isFrozen = false;
         // needs 5 mana to use fire spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana to use fire spell!");
@@ -447,7 +452,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 }
-            increaseMana(1);
+//            increaseMana(1);
             resetBlock();
             turnCounter++;
 
@@ -468,7 +473,7 @@ public class Player extends Character {
         
         int enemyRes = enemy.getMyStats().getlRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
-
+        isFrozen = false;
         // needs 5 mana to use lightning spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana to use lightning spell!");
@@ -493,7 +498,7 @@ public class Player extends Character {
                 debuffTurnCounter++;
             }
 
-            increaseMana(1);
+//            increaseMana(1);
             resetBlock();
             turnCounter++;
 
@@ -559,7 +564,7 @@ public class Player extends Character {
     }
 
     // each spell uses 5 mana
-    public boolean useSpell() {
+    public void useSpell() {
         int cMana = getMyStats().getMana()-5;
         if(cMana <= 0) {
             getMyStats().setMana(0);
@@ -568,7 +573,7 @@ public class Player extends Character {
             getMyStats().setMana(cMana);
         }
         spellCounter++;
-        return true;
+
     }
 
     // updates inventory with obtained item

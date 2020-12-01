@@ -41,7 +41,7 @@ public class Enemy extends Character{
 	private int 	power = 0; 							//power is how strong a monster
 	private int		enemyTypeID;						//The type of enemy's ID
 	private boolean	hasLightningDebuff = false;			//An enemy can have a lightning debuff when attacked by lightning attack
-	public int		powerCharge;						//countdown for when enemy will use a powerful attack
+	private int		powerCharge;						//countdown for when enemy will use a powerful attack
 
 	//Constructor ----------------------------------------------------------------------------------------
 	
@@ -167,16 +167,16 @@ public class Enemy extends Character{
 
 		this.getMyStats().setArm(power * randomInt(5,10));
 
-		enemyAttack = randomInt(15,20);
+		enemyAttack = randomInt(10,15);
 		this.getMyStats().setCold(power * enemyAttack);
 
-		enemyAttack = randomInt(15,20);
+		enemyAttack = randomInt(10,15);
 		this.getMyStats().setPoison(power * enemyAttack);
 
-		enemyAttack = randomInt(15,20);
+		enemyAttack = randomInt(10,15);
 		this.getMyStats().setFire(power * enemyAttack);
 
-		enemyAttack = randomInt(15,20);
+		enemyAttack = randomInt(10,15);
 		this.getMyStats().setLightning(power * enemyAttack);
 
 		enemyRes = randomInt(10,15);
@@ -307,6 +307,10 @@ public class Enemy extends Character{
 		}
 		if (player.isShieldEffect()) {
 			System.out.println("Player's Stonewall shield blocks all the damage!");
+			return;
+		}
+		if (player.isFrozen) {
+			System.out.println("Enemy is frozen and unable to act!");
 			return;
 		}
 		switch(dmgType) {
