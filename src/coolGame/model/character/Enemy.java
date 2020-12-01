@@ -100,7 +100,7 @@ public class Enemy extends Character{
 	private void createZombie() {
 		
 		dmgType = DmgTypeEnum.PHYSICAL;
-		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("zombie");
 		setEnemyImage("resources/zombie.gif");
@@ -109,7 +109,7 @@ public class Enemy extends Character{
 	private void createSkeleton() {
 		
 		dmgType = DmgTypeEnum.COLD;
-		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("skeleton");
 		setEnemyImage("resources/skeleton.gif");
@@ -118,7 +118,7 @@ public class Enemy extends Character{
 	private void createWitch() {
 		
 		dmgType = DmgTypeEnum.POISON;
-		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("witch");
 		setEnemyImage("resources/witch.gif");
@@ -127,7 +127,7 @@ public class Enemy extends Character{
 	private void createWarlock() {
 		
 		dmgType = DmgTypeEnum.FIRE;
-		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("warlock");
 		setEnemyImage("resources/warlock.gif");
@@ -136,7 +136,7 @@ public class Enemy extends Character{
 	private void createYeti() {
 		
 		dmgType = DmgTypeEnum.LIGHTNING;
-		setDmgType(dmgType, POWER_INCREASE_OF_COMMON_MOBS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
 		concatateToName("yeti");
 		setEnemyImage("resources/yeti.gif");
@@ -146,7 +146,7 @@ public class Enemy extends Character{
 	private void createGiantBoss() {
 		
 		dmgType = DmgTypeEnum.PHYSICAL;
-		setDmgType(dmgType, POWER_INCREASE_OF_THE_BOSS);
+		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
 		concatateToName("GIANT BOSS");
 		setEnemyImage("resources/boss.gif");
@@ -155,73 +155,82 @@ public class Enemy extends Character{
 
 	//I'm lazy, so this class will give generic stats that we override later
 	private void createGenericEnemy() {
-		
+
 		final int ALLOWED_POWER_VARIANCE = 3;
+		int enemyRes;
+		int enemyAttack = randomInt(15,20);
 		this.getMyStats().setHp(power * randomInt(80, 100));
 
-		this.getMyStats().setDmg(power * randomInt(5,10));
-		
-		this.getMyStats().setArm(power * randomInt(3,6));
-		
-		this.getMyStats().setCold(power * randomInt(5,10));
-		
-		this.getMyStats().setPoison(power * randomInt(5,10));
+		this.getMyStats().setDmg(power * enemyAttack);
 
-		this.getMyStats().setFire(power * randomInt(5,10));
-		
-		this.getMyStats().setLightning(power * randomInt(5,10));
-		
-		this.getMyStats().setcRes(power * randomInt(3,6));
-		
-		this.getMyStats().setpRes(power * randomInt(3,6));
+		this.getMyStats().setArm(power * randomInt(5,10));
 
-		this.getMyStats().setfRes(power * randomInt(3,6));
+		enemyAttack = randomInt(15,20);
+		this.getMyStats().setCold(power * enemyAttack);
 
-		this.getMyStats().setlRes(power * randomInt(50,50));
+		enemyAttack = randomInt(15,20);
+		this.getMyStats().setPoison(power * enemyAttack);
+
+		enemyAttack = randomInt(15,20);
+		this.getMyStats().setFire(power * enemyAttack);
+
+		enemyAttack = randomInt(15,20);
+		this.getMyStats().setLightning(power * enemyAttack);
+
+		enemyRes = randomInt(10,15);
+		this.getMyStats().setcRes(power * enemyRes);
+
+		enemyRes = randomInt(10,15);
+		this.getMyStats().setpRes(power * enemyRes);
+
+		enemyRes = randomInt(10,15);
+		this.getMyStats().setfRes(power * enemyRes);
+
+		enemyRes = randomInt(10,15);
+		this.getMyStats().setlRes(power * enemyRes);
 
 		this.getMyStats().setDodge(10);			//lowered dodge and crit chances cause it can get way out of hand
 
 		this.getMyStats().setCrit(10);
-		
+
 	}
 
 	//assign a damage type to a mob
-	private void setDmgType(DmgTypeEnum dmgType, int powerIncrease) {
-		
+	private void setDmgType(Enemy.DmgTypeEnum dmgType) {
+
 		switch(dmgType) {
-		
-		case PHYSICAL:
-			
-			concatateToName("Punching");
-			this.getMyStats().setDmg(power*2 + powerIncrease);
-			break;
-			
-		case COLD:
-			
-			concatateToName("Freezing");
-			this.getMyStats().setCold(power*2 + powerIncrease);
-			break;
-			
-		case POISON:
-			
-			concatateToName("Poisonous");
-			this.getMyStats().setPoison(power*2 + powerIncrease);
-			break;
-			
-		case FIRE:
-			
-			concatateToName("Firey");
-			this.getMyStats().setFire(power*2 + powerIncrease);
-			break;
-			
-		case LIGHTNING:
-			
-			concatateToName("Electrified");
-			this.getMyStats().setLightning(power*2 + powerIncrease);
-			break;
-			
+
+			case PHYSICAL:
+
+				concatateToName("Punching");
+				this.getMyStats().setDmg(power * this.getMyStats().getDmg());
+				break;
+
+			case COLD:
+
+				concatateToName("Freezing");
+				this.getMyStats().setCold(power * this.getMyStats().getCold());
+				break;
+
+			case POISON:
+
+				concatateToName("Poisonous");
+				this.getMyStats().setPoison(power * this.getMyStats().getPoison());
+				break;
+
+			case FIRE:
+
+				concatateToName("Firey");
+				this.getMyStats().setFire(power* this.getMyStats().getFire());
+				break;
+
+			case LIGHTNING:
+
+				concatateToName("Electrified");
+				this.getMyStats().setLightning(power * this.getMyStats().getLightning());
+				break;
+
 		}
-		
 	}
 	
 	//each mob will get a natural resistance against a certain attack type
@@ -332,26 +341,21 @@ public class Enemy extends Character{
 	//helper method of attackUser that helps calculate damage taken
 	//arguments: how much dmg the enemy is capable is doing, and the player's def against that type, and the player object
 	private void calculateDmgTaken(int enemyDmg, int playerDef, Player player) {
-		
+
 		boolean ifEnemyLandsCrit = generateRandomInt(100) <= this.getMyStats().getCrit();
 		final double EFFECTIVNESS_OF_DEF = 1.0;
-		if (powerCharge == 4) {
-			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
-			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
-			System.out.println("Enemy lands a power attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
-			System.out.println();
-			powerCharge = 0;
-		}
-		else if(ifEnemyLandsCrit) {
-			
+
+		if (ifEnemyLandsCrit) {
+
 			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
 			System.out.println("Enemy lands critical attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
 			System.out.println();
 			powerCharge++;
 		}
-
-		else {
+		else
+		if (dmgType == Enemy.DmgTypeEnum.PHYSICAL)
+		{
 			if (player.blocked) {
 
 				int dmgTaken = ((enemyDmg/2 < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg/2 - (int) (playerDef * EFFECTIVNESS_OF_DEF));
@@ -361,8 +365,33 @@ public class Enemy extends Character{
 				powerCharge++;
 				player.resetBlock();
 			}
+			else
+			if (powerCharge == 4) {
+				int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
+				System.out.println("Enemy lands a power attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
+				System.out.println();
+				powerCharge = 0;
+			}
 			else {
 				int dmgTaken = ((enemyDmg < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg - (int) (playerDef * EFFECTIVNESS_OF_DEF));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
+				System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
+				System.out.println();
+				powerCharge++;
+			}
+		}
+		else {
+			if (player.blocked) {
+				int dmgTaken = enemyDmg/2 - (int) (enemyDmg/2 * (playerDef/100.0f));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
+				System.out.println("Player blocks enemy and takes " + dmgTaken + " damage and restores 5 mana.");
+				System.out.println();
+				powerCharge++;
+				player.resetBlock();
+			}
+			else {
+				int dmgTaken = enemyDmg - (int) (enemyDmg * (playerDef/100.0f));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 				System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
 				System.out.println();
