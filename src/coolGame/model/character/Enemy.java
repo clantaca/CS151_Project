@@ -41,7 +41,7 @@ public class Enemy extends Character{
 	private int 	power = 0; 							//power is how strong a monster
 	private int		enemyTypeID;						//The type of enemy's ID
 	private boolean	hasLightningDebuff = false;			//An enemy can have a lightning debuff when attacked by lightning attack
-	private int		powerCharge;						//countdown for when enemy will use a powerful attack
+	public int		powerCharge;						//countdown for when enemy will use a powerful attack
 
 	//Constructor ----------------------------------------------------------------------------------------
 	
@@ -159,7 +159,9 @@ public class Enemy extends Character{
 		final int ALLOWED_POWER_VARIANCE = 3;
 		int enemyRes;
 		int enemyAttack = randomInt(15,20);
-		this.getMyStats().setHp(power * randomInt(80, 100));
+		int enemyHealth = randomInt(80, 100);
+		this.getMyStats().setHp(power * enemyHealth);
+		this.getMyStats().setMaxHP(this.getMyStats().getHp());
 
 		this.getMyStats().setDmg(power * enemyAttack);
 
@@ -354,7 +356,7 @@ public class Enemy extends Character{
 			powerCharge++;
 		}
 		else
-		if (dmgType == Enemy.DmgTypeEnum.PHYSICAL)
+		if (dmgType == DmgTypeEnum.PHYSICAL)
 		{
 			if (player.blocked) {
 
@@ -376,7 +378,7 @@ public class Enemy extends Character{
 			else {
 				int dmgTaken = ((enemyDmg < (int) (playerDef * EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg - (int) (playerDef * EFFECTIVNESS_OF_DEF));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
-				System.out.println("Enemy attacks player and does " + dmgTaken + " damage. Player loses " + dmgTaken + " HP.");
+				System.out.println("Enemy attacks player with " + enemyDmg + " physical damage. Player takes " + dmgTaken + " damage.");
 				System.out.println();
 				powerCharge++;
 			}
@@ -389,6 +391,13 @@ public class Enemy extends Character{
 				System.out.println();
 				powerCharge++;
 				player.resetBlock();
+			}
+			else if (powerCharge == 4) {
+				int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
+				System.out.println("Enemy lands a power attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
+				System.out.println();
+				powerCharge = 0;
 			}
 			else {
 				int dmgTaken = enemyDmg - (int) (enemyDmg * (playerDef/100.0f));

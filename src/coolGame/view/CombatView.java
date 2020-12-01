@@ -274,9 +274,9 @@ public class CombatView extends JFrame{
 		enemyNameLabel = new JLabel(enemy.getName());
 		enemyNameLabel.setForeground(Color.WHITE);
 		enemyImageArea = new JLabel(new ImageIcon(enemy.getEnemyImage()));
-		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp());
+		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp() + "/" + enemy.getMyStats().getMaxHP());
 		enemyHpLabel.setForeground(Color.WHITE);
-		enemyPowerLabel = new JLabel("Power: " + enemy.getPower());
+		enemyPowerLabel = new JLabel("Power: " + enemy.powerCharge + "/5");
 		enemyPowerLabel.setForeground(Color.WHITE);
 		enemyStatsBut = new JButton("Check Stats");
 
@@ -359,9 +359,9 @@ public class CombatView extends JFrame{
 		playerManaLabel.setForeground(Color.WHITE);
 		enemyNameLabel.setText(enemy.getName());
 		enemyNameLabel.setForeground(Color.WHITE);
-		enemyHpLabel.setText("Health: " + enemy.getMyStats().getHp());
+		enemyHpLabel = new JLabel("Health: " + enemy.getMyStats().getHp() + "/" + enemy.getMyStats().getMaxHP());
 		enemyHpLabel.setForeground(Color.WHITE);
-		enemyPowerLabel.setText("Power: " + enemy.getPower());
+		enemyPowerLabel = new JLabel("Power: " + enemy.powerCharge + "/5");
 		enemyPowerLabel.setForeground(Color.WHITE);
 
 	}

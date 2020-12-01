@@ -20,7 +20,7 @@ public class Player extends Character {
     private int debuffTurnCounter = 0; // resets debuff after every 3 turns
     private int debuffCounter;
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
-    public boolean blocked = true;
+    public boolean blocked = false;
 
     private int spellCounter = 0; // whenever the player casts a spell
     private int attackCounter = 0; // whenever the player attacks with physical attack
