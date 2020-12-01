@@ -320,7 +320,7 @@ public class Player extends Character {
             }
             else {
                 // 3rd cold spell freezes enemy
-                if (cSpellCounter == 3) {
+                if (cSpellCounter == 2) {
                     useSpell();
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special cold spell
