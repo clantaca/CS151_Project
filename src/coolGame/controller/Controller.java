@@ -1,52 +1,57 @@
 package coolGame.controller;
 
-import coolGame.model.character.Enemy;
-import coolGame.model.character.Player;
-import coolGame.view.CombatView;
-import coolGame.view.StatView;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-public class CombatController {
-	
-	private final int	POWER_NEEDED_TO_SUMMON_BOSS = 3;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
 
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
+import coolGame.view.CombatView;
+import coolGame.view.MapView;
+import coolGame.view.NotificationView;
+import coolGame.view.StatView;
+
+public class Controller {
+	private final int MOVE_NORTH = -5;
+	private final int MOVE_SOUTH = 5;
+	private final int MOVE_EAST = -1;
+	private final int MOVE_WEST = 1;
+	private final int POWER_NEEDED_TO_SUMMON_BOSS = 3;
+	
+	private MapView mapView;
 	private CombatView combatView;
+	private NotificationView notificationView;
 	private StatView statViewPlayer;
 	private StatView statViewEnemy;
+	
 	private Player player;
 	private Enemy enemy;
-
+	private int enemyCounter = 0;
+	
 	private BlockingQueue<Message> queue;
 	private List<Valve> valves = new LinkedList<Valve>();
-
 	
-	public CombatController(CombatView combatView, Enemy enemy, Player player, BlockingQueue<Message> queue, List<Valve> valves) {
-
-		this.combatView = combatView;
-		this.enemy = enemy;
+	public Controller(MapView mapView, Player player, BlockingQueue<Message> queue) {
+		
+		this.mapView = mapView;
 		this.player = player;
 		this.queue = queue;
-		this.valves = valves;
-		
+		notificationView = new NotificationView();
 
+		valves.add(new ViewStatsMessageValve());
+		valves.add(new NorthMessageValve());
+		valves.add(new SouthMessageValve());
+		valves.add(new EastMessageValve());
+		valves.add(new WestMessageValve());
+		valves.add(new PlayerDiesMessageValve());
+		valves.add(new BossDiesMessageValve());
 		
-/*		this.combatView.addPlayerStatsButListener(new PlayerStatsButListener());
-		this.combatView.addPlayerInvButListener(new PlayerInvButListener());
-		this.combatView.addPhyAtkButListener(new PhyAtkListener());
-		this.combatView.addColdSpButListener(new ColdSpButListener());
-		this.combatView.addFireSpButListener(new FireSpButListener());
-		this.combatView.addLightningSpButListener(new LightningSpButListener());
-		this.combatView.addPoisonSpButListener(new PoisonSpButListener());
-		this.combatView.addBlockButListener(new BlockButListener());
-		this.combatView.addEnemyStatsButListener(new EnemyStatsButListener());*/
-
 		valves.add(new PhyAtkMessageValve());
 		valves.add(new ColdAtkMessageValve());
 		valves.add(new FireAtkMessageValve());
@@ -56,8 +61,9 @@ public class CombatController {
 		valves.add(new PlayerStatsMessageValve());
 		valves.add(new EnemyStatsMessageValve());
 		valves.add(new PlayerInvMessageValve());
+		
 	}
-
+	
 	public void mainLoop() {
 		ValveResponse response = ValveResponse.EXECUTED;
 		Message message = null;
@@ -77,7 +83,98 @@ public class CombatController {
 			}
 		}
 	}
+	
+	private class ViewStatsMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != viewStatsMessage.class) {
+				return ValveResponse.MISS;
+			}
 
+			statViewPlayer = new StatView(player, new Enemy(1), true);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class NorthMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != NorthMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			playerMoves(MOVE_NORTH);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class SouthMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != SouthMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			playerMoves(MOVE_SOUTH);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class EastMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != EastMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			playerMoves(MOVE_EAST);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class WestMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != WestMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			playerMoves(MOVE_WEST);
+			playSound("resources/ButtonClick.wav");
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class PlayerDiesMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != PlayerDiesMessage.class) {
+				return ValveResponse.MISS;
+			}
+
+			displayMessage("You are dead");
+			disposeEverything();
+			
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
+	private class BossDiesMessageValve implements Valve {
+		@Override
+		public ValveResponse execute(Message message) {
+			if (message.getClass() != BossDiesMessage.class) {
+				return ValveResponse.MISS;
+			}
+			displayMessage("You have slain the boss!");
+			disposeEverything();
+			return ValveResponse.EXECUTED;
+		}
+	}
+	
 	private class PhyAtkMessageValve implements Valve {
 		@Override
 		public ValveResponse execute(Message message) {
@@ -224,8 +321,61 @@ public class CombatController {
 			return ValveResponse.EXECUTED;
 		}
 	}
+	
+	//------------------------------------ Map View Listners and Methods -------------------------------------------------
+	
+	private void playerMoves(int locDelta) {
+		
+		//TODO: make it so you can't go out of bounds of map
+		int oldLoc = mapView.getPlayerCurrLocation();
+		int newLoc = mapView.getPlayerCurrLocation()+locDelta;
+		
+		//if there's nothing we can bump into, we swap places with that empty space
+		if (mapView.getSpecificCharacter(newLoc) == null) {
+			
+			mapView.setSpecificCharacter(newLoc, mapView.getPlayer());
+			mapView.setPlayerCurrLocation(newLoc);
+			mapView.setSpecificCharacter(oldLoc, null);
+			mapView.redrawMapAfterMvmt();
+		}
+		
+		//if we hit the exit (exit is part of player class)
+		else if (mapView.getSpecificCharacter(newLoc) instanceof Player ) {
+			
+			if(statViewPlayer != null) {
+				statViewPlayer.setVisible(false);
+				statViewPlayer.dispose();
+			}
 
-	//------------------------------------ Combat View Listners and Methods -------------------------------------------------
+			int option = JOptionPane.showConfirmDialog(null, "You have reached the exit", "Would you like to go up to the next level of this tower?", JOptionPane.YES_NO_OPTION);
+			if(option == JOptionPane.YES_OPTION) {
+				mapView.resetAfterCombat();
+			}
+			
+		}
+		
+		//else it's an enemy
+		else {
+
+			if(statViewPlayer != null) {
+				statViewPlayer.setVisible(false);
+				statViewPlayer.dispose();
+			}
+
+			int option = JOptionPane.showConfirmDialog(null, "Do you want to fight this " + mapView.getSpecificCharacter(newLoc).getName() +"?", "Enemy encountered!", JOptionPane.YES_NO_OPTION);
+			if(option == JOptionPane.YES_OPTION) {
+				combatView = new CombatView(player, (Enemy)mapView.getSpecificCharacter(newLoc), queue);
+				enemy = (Enemy)mapView.getSpecificCharacter(newLoc);
+				mapView.setSpecificCharacter(newLoc, null);
+				mapView.redrawMapAfterMvmt();
+				enemyCounter++;
+
+			}
+		}
+		
+		
+	}
+	
 	private void combatEnsues() {
 		
 		//Create new enemy if it's dead
@@ -282,122 +432,14 @@ public class CombatController {
 		}
 
 	}
-/*
-	class PlayerStatsButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			statViewPlayer = new StatView(player, enemy, true);
-			playSound("resources/ButtonClick.wav");
-			
-		}
-		
+	
+	private void disposeEverything() {
+		System.exit(0);
 	}
 	
-	class EnemyStatsButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			statViewEnemy = new StatView(player, enemy, false);
-			playSound("resources/ButtonClick.wav");
-			
-		}
-		
+	public void displayMessage (String msg) {
+		JOptionPane.showMessageDialog(mapView, msg);
 	}
-
-	//UNFINISHED
-	class PlayerInvButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-
-			//Need implementation, waiting to see how item class turns out
-			player.displayInventory();
-			playSound("resources/ButtonClick.wav");
-			
-		}
-		
-	}
-
-	class PhyAtkListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.physicalAttack(enemy);
-			playSound("resources/PhysAttack.wav");
-			combatEnsues();
-			
-		}
-		
-	}
-	
-	class ColdSpButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.coldAttack(enemy);
-			playSound("resources/ColdAttack.wav");
-			combatEnsues();
-			
-		}
-		
-	}
-	
-	class FireSpButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.fireAttack(enemy);
-			playSound("resources/FireAttack.wav");
-			combatEnsues();
-			
-		}
-		
-	}
-	
-	class LightningSpButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.lightningAttack(enemy);
-			playSound("resources/LightningAttack.wav");
-			combatEnsues();
-			
-		}
-		
-	}
-	
-	class PoisonSpButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.poisonAttack(enemy);
-			playSound("resources/PoisonAttack.wav");
-			combatEnsues();
-			
-		}
-		
-	}
-	
-	class BlockButListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			player.startOfTurn(player);
-			player.blockEnemy();
-			playSound("resources/Block.wav");
-			combatEnsues();
-			
-		}
-		
-	}*/
 	
 	//method to play sounds from a file
 	public void playSound (String filePath)
@@ -414,6 +456,4 @@ public class CombatController {
 			ex.printStackTrace( );
 		}
 	}
-	
 }
-	
