@@ -14,7 +14,7 @@ public class StatView extends JFrame {
     private int fWidth = 450;
     private int fHeight = 220;
     private GridBagConstraints 	constraints;
-    private final String background_Image = "resources/background.jpg"; // change background here
+    private final String background_Image = "resources/background1.jpg"; // change background here
     private Boolean initialized = true; // changes from player to enemy stats
 
     private JPanel northPanel;
@@ -110,18 +110,22 @@ public class StatView extends JFrame {
     // displays which stats you are viewing
     private void createNorth() {
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 1;
+        constraints.insets = new Insets(10,10,10,10);
+        constraints.gridx = 0;
         constraints.gridy = 0;
+        constraints.weightx = 0;
+        constraints.weighty = 1;
         constraints.insets.bottom = 30;
+        constraints.weightx = 4;
+        constraints.weighty = 0;
 
         if (initialized) {
-            statsLabel = new JLabel(player.getName() + " Stats", SwingConstants.CENTER);
+            statsLabel = new JLabel(player.getName() + " Stats");
             statsLabel.setHorizontalAlignment(JLabel.CENTER);
         }
         else
         {
-            statsLabel = new JLabel(enemy.getName() + " Stats", SwingConstants.CENTER);
+            statsLabel = new JLabel(enemy.getName() + " Stats");
             statsLabel.setHorizontalAlignment(JLabel.CENTER);
         }
         fullPanel.add(statsLabel, constraints);
@@ -130,8 +134,8 @@ public class StatView extends JFrame {
     // displays basic stats and character image
     private void createWest() {
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 0;
+        constraints.insets = new Insets(10,10,10,10);
+        constraints.gridx = 3;
         constraints.gridy = 2;
 
         if (initialized) {
@@ -165,8 +169,8 @@ public class StatView extends JFrame {
     // displays Attack Damage
     private void createCenter() {
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 1;
+        constraints.insets = new Insets(10,10,10,10);
+        constraints.gridx = 4;
         constraints.gridy = 4;
 
         dmgLabel = new JLabel("Attack Damage");
@@ -214,8 +218,8 @@ public class StatView extends JFrame {
     private void createEast() {
 
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 2;
+        constraints.insets = new Insets(10,10,10,10);
+        constraints.gridx = 5;
         constraints.gridy = 4;
         resLabel = new JLabel("Resistances");
         fullPanel.add(resLabel, constraints);
