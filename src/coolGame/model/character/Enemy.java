@@ -303,14 +303,17 @@ public class Enemy extends Character{
 		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
 		{
 			System.out.println("Player dodges the enemy's attack!");
+			System.out.println();
 			return;
 		}
 		if (player.isShieldEffect()) {
 			System.out.println("Player's Stonewall shield blocks all the damage!");
+			System.out.println();
 			return;
 		}
 		if (player.isFrozen) {
 			System.out.println("Enemy is frozen and unable to act!");
+			System.out.println();
 			return;
 		}
 		switch(dmgType) {

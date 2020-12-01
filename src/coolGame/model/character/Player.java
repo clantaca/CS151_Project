@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Player extends Character {
 
 	private final int PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 10;
-	
+
     private int N; // size of inventory space
     private ItemStorage itemStorage; //Item class to use methods
     private ArrayList<Item> inventory = new ArrayList<>(); // inventory of items
@@ -159,10 +159,10 @@ public class Player extends Character {
         this.getMyStats().setArm(5);
         this.getMyStats().setMana(20);
         this.getMyStats().setMaxMana(20);
-        this.getMyStats().setcRes(5);
-        this.getMyStats().setpRes(5);
-        this.getMyStats().setfRes(5);
-        this.getMyStats().setlRes(5);
+        this.getMyStats().setcRes(10);
+        this.getMyStats().setpRes(10);
+        this.getMyStats().setfRes(10);
+        this.getMyStats().setlRes(10);
         this.getMyStats().setDodge(5);
         this.getMyStats().setCrit(5);
     }
@@ -231,38 +231,47 @@ public class Player extends Character {
     public void physicalAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor
         int pdmg = randomizeDmg("Physical");
-        
+
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
         	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
-        
+
         int enemyRes = enemy.getMyStats().getArm();
-        int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
+        int critChance;
+        critChance = randomInt(0, 100);
+        int tdmg = (pdmg < enemyRes) ? 1 : (pdmg - enemyRes);  //Modified here so that enemy doesn't gain health if it's armour exceeds dmg taken
         isFrozen = false;
         // 4th physical attack does special attack
         if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
             System.out.println("Enemy dodges your attack!");
             return;
         }
-        else {
-            if (specialAttack == 4) {
+        else  if (specialAttack == 2 && critChance <= getMyStats().getCrit()) {
+
                 // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                 // for a guaranteed special attack
-                if(pdmg < enemyRes) {
-                    tdmg = enemyRes+pdmg;
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
-                    System.out.println("Player uses special physical attack and does " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
+
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*4);
+                    getMyStats().setHp(getMyStats().getHp()+tdmg*4);
+                    if (getMyStats().getHp() > getMyStats().getMaxHP())
+                        getMyStats().setHp(getMyStats().getMaxHP());
+                    System.out.println("Player uses special physical attack and crits, stealing" + tdmg*4 + "HP from the enemy!");
                     specialAttack = 0;                                //Set specialAttack to zero after performing special attack, else you'll just be doing it all the time.. then it's not very special
 
-                }
-                else {
-                    //tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
-                    System.out.println("Player uses special physical attack and does " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
-                    specialAttack = 0;
-                }
-            } else {
-                if (randomInt(0, 100) <= getMyStats().getCrit()) {
+
+
+            }
+            else if (specialAttack == 2) {
+                //tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
+                if (getMyStats().getHp() > getMyStats().getMaxHP())
+                    getMyStats().setHp(getMyStats().getMaxHP());
+                System.out.println("Player uses special physical attack, stealing " + tdmg*4 + " HP from the enemy!");
+                specialAttack = 0;
+            }
+
+            else if (critChance <= getMyStats().getCrit()) {
+
                     //tdmg = ((getMyStats().getCold() * 2) < enemyRes) ? 0 : ((getMyStats().getCold() * 2) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg*2));
                     System.out.println("Player lands a critical strike, dealing " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
@@ -274,8 +283,6 @@ public class Player extends Character {
                     System.out.println("Player attacks with his weapon, dealing " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
                     specialAttack++;
                 }
-            }
-        }
 
         // checks poison debuff and enemy loses 10 hp if poisoned
         if(debuffOn){
@@ -327,8 +334,8 @@ public class Player extends Character {
 
                         //tdmg = ((getMyStats().getCold() * 3) < enemyRes) ? 0 : ((getMyStats().getCold() * 3) - enemyRes);
                         isFrozen = true;
-                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*3);
-                        System.out.println("Player uses cold spell and does " + pdmg*3 + " damage. Enemy loses " + tdmg*3 + "!");
+                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
+                        System.out.println("Player uses cold spell and does " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + "!");
                         cSpellCounter = 0;
                     }
                  else {
@@ -374,6 +381,7 @@ public class Player extends Character {
         }
         else {
             if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                useSpell();
                 System.out.println("Enemy dodges your attack!");
                 return;
             }
@@ -420,28 +428,31 @@ public class Player extends Character {
         }
         else {
             if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                useSpell();
                 System.out.println("Enemy dodges your attack!");
                 return;
             }
             else {
-                useSpell();
-                //tdmg = ((getMyStats().getFire() * 1) < enemyRes) ? 0 : ((getMyStats().getFire() * 1) - enemyRes);
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
-                System.out.println("Player uses fire spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
-                System.out.println("Enemy is ignited!");
-                fSpellCounter++;
-
-                // 2nd fire spell does bonus damage
                 if (fSpellCounter == 2) {
                     useSpell();
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special fire spell
 
-                        //tdmg = ((getMyStats().getFire() * 3) < enemyRes) ? 0 : ((getMyStats().getFire() * 3) - enemyRes);
-                        enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
-                        System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*2 + " HP.");
+                    //tdmg = ((getMyStats().getFire() * 3) < enemyRes) ? 0 : ((getMyStats().getFire() * 3) - enemyRes);
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
+                    System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*2 + " HP.");
 
                     fSpellCounter = 0;
+                }
+                else {
+                    useSpell();
+                    //tdmg = ((getMyStats().getFire() * 1) < enemyRes) ? 0 : ((getMyStats().getFire() * 1) - enemyRes);
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
+                    System.out.println("Player uses fire spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
+                    System.out.println("Enemy is ignited!");
+                    fSpellCounter++;
+
+                    // 2nd fire spell does bonus damage
                 }
             }
 
