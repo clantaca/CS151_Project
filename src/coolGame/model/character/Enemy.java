@@ -148,7 +148,7 @@ public class Enemy extends Character{
 		dmgType = DmgTypeEnum.PHYSICAL;
 		setDmgType(dmgType);
 		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
-		concatateToName("GIANT BOSS");
+		concatateToName("Diablo");
 		setEnemyImage("resources/boss.gif");
 	}
 	
@@ -304,16 +304,25 @@ public class Enemy extends Character{
 		{
 			System.out.println("Player dodges the enemy's attack!");
 			System.out.println();
+			powerCharge++;
+			if (powerCharge >= 4)
+				powerCharge = 0;
 			return;
 		}
 		if (player.isShieldEffect()) {
 			System.out.println("Player's Stonewall shield blocks all the damage!");
 			System.out.println();
+			powerCharge++;
+			if (powerCharge >= 4)
+				powerCharge = 0;
 			return;
 		}
 		if (player.isFrozen) {
 			System.out.println("Enemy is frozen and unable to act!");
 			System.out.println();
+			powerCharge++;
+			if (powerCharge >= 4)
+				powerCharge = 0;
 			return;
 		}
 		switch(dmgType) {

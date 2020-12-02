@@ -578,6 +578,7 @@ public class Player extends Character {
             debuffTurnCounter++;
         }
         blockCounter++;
+        isFrozen = false;
         //System.out.println(getMyStats().getMana());
         return blocked = true;
     }
