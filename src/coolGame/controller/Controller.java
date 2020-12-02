@@ -1,15 +1,5 @@
 package coolGame.controller;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.JOptionPane;
-
 import coolGame.model.Map;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
@@ -17,6 +7,15 @@ import coolGame.view.CombatView;
 import coolGame.view.MapView;
 import coolGame.view.NotificationView;
 import coolGame.view.StatView;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class Controller {
 	private final int MOVE_NORTH = -5;
@@ -390,6 +389,9 @@ public class Controller {
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
 			enemy.setPowerCharge(0);
+			player.getMyStats().setHp(player.getMyStats().getHp()+20);
+			if (player.getMyStats().getHp() > player.getMyStats().getMaxHP())
+				player.getMyStats().setHp(player.getMyStats().getMaxHP());
 			if (statViewPlayer != null) {
 				statViewPlayer.setVisible(false);
 				statViewPlayer.dispose();
