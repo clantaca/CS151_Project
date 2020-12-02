@@ -112,14 +112,6 @@ public class CombatView extends JFrame{
 			}
 		});
 
-		blockBut.addActionListener(event -> {
-			try {
-				this.queue.put(new BlockMessage());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
 		playerStatsBut.addActionListener(event -> {
 			try {
 				this.queue.put(new PlayerStatsMessage());
