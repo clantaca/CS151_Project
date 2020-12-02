@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Player extends Character {
 
-	private final int PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 20;
+	private final float PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 20.0f;
 
     private int N; // size of inventory space
     private ItemStorage itemStorage; //Item class to use methods
@@ -235,7 +235,7 @@ public class Player extends Character {
 
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
-        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+        	pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
 
         int enemyRes = enemy.getMyStats().getArm();
         int critChance;
@@ -311,7 +311,7 @@ public class Player extends Character {
         
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
-        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+            pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         isFrozen = false;
         int enemyRes = enemy.getMyStats().getcRes();
@@ -372,7 +372,7 @@ public class Player extends Character {
         
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
-        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+            pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getpRes();
         int tdmg = (pdmg < enemyRes) ? 0 : (pdmg - enemyRes);
@@ -419,7 +419,7 @@ public class Player extends Character {
         
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
-        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+            pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getfRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
@@ -482,7 +482,7 @@ public class Player extends Character {
         
         //Calculates additional damage when enemy has lightning debuff
         if(enemy.getHasLightningDebuff())
-        	pdmg = pdmg + (pdmg / PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF);
+            pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getlRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
@@ -493,6 +493,7 @@ public class Player extends Character {
         }
         else {
             if (randomInt(0, 100) <= enemy.getMyStats().getDodge()) {
+                useSpell();
                 System.out.println("Enemy dodges your attack!");
                 System.out.println();
                 return;
@@ -578,6 +579,7 @@ public class Player extends Character {
             debuffTurnCounter++;
         }
         blockCounter++;
+        isFrozen = false;
         //System.out.println(getMyStats().getMana());
         return blocked = true;
     }
