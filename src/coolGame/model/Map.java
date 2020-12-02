@@ -26,8 +26,6 @@ public class Map {
 		this.player = player;
 		this.currEnemyPower = currEnemyPower; 
 		
-		System.out.println("curr enemy power: " + currEnemyPower + " boss power needed: " + POWER_NEEDED_TO_SUMMON_BOSS);
-		
 		if (currEnemyPower % POWER_NEEDED_TO_SUMMON_BOSS == 0)
 			this.allChractersOnMap = loadChractersBossLevel();
 		else
