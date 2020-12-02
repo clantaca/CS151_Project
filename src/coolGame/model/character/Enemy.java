@@ -158,7 +158,7 @@ public class Enemy extends Character{
 
 		final int ALLOWED_POWER_VARIANCE = 3;
 		int enemyRes;
-		int enemyAttack = randomInt(15,20);
+		int enemyAttack = randomInt(10,15);
 		int enemyHealth = randomInt(80, 100);
 		this.getMyStats().setHp(power * enemyHealth);
 		this.getMyStats().setMaxHP(this.getMyStats().getHp());
@@ -373,6 +373,7 @@ public class Enemy extends Character{
 				System.out.println();
 				powerCharge = 0;
 				player.resetBlock();
+
 			}
 			else
 			if (player.blocked) {
@@ -399,8 +400,9 @@ public class Enemy extends Character{
 				System.out.println();
 				powerCharge++;
 			}
+
 		}
-		else {
+		else
 			if (powerCharge == 4 && player.blocked){
 				int dmgTaken = enemyDmg/2 - (int) (enemyDmg/2 * (playerDef/100.0f));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken); //crits ignore player defense
@@ -431,7 +433,7 @@ public class Enemy extends Character{
 				System.out.println();
 				powerCharge++;
 			}
-		}
+
 	}
 	
 	public boolean getHasLightningDebuff() {

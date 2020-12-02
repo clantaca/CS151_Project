@@ -3,7 +3,7 @@ package coolGame.model.item;
 import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
-public class ShortSwordOfPower implements Item {
+public class VampireGreatsword implements Item {
 
     Item item;
     public int randomInt(int max, int min) {
@@ -11,21 +11,20 @@ public class ShortSwordOfPower implements Item {
     }
     private Stats itemStats = new Stats();
 
-    public ShortSwordOfPower(Item item) {
-        itemStats.setDmg(randomInt(10, 4));
-        itemStats.setCrit(15);
+    public VampireGreatsword(Item item) {
+        itemStats.setDmg(randomInt(15, 10));
         itemStats.setHp(randomInt(20,10));
-        itemStats.setArm(randomInt(10,5));
+        itemStats.setCrit(5);
         this.item = item;
     }
     @Override
     public String getName() {
-        return item.getName() + "Short Sword Of Power";
+        return item.getName() + "Vampiric Greatsword";
     }
 
     @Override
     public String getDescription() {
-        return "Every special physical attack has it's damage increased by 10." + item.getDescription();
+        return "Your physical special attack now procs every other atack." + item.getDescription();
     }
 
     @Override
@@ -40,15 +39,12 @@ public class ShortSwordOfPower implements Item {
         System.out.println("+" + itemStats.getDmg() + " Physical Damage");
         System.out.println("+%" + itemStats.getCrit() + " Critical Strike Chance");
         System.out.println("+" + itemStats.getHp() + " Health");
-        System.out.println("+" + itemStats.getArm() + " Armor");
     }
 
     //every 3rd attack deals bonus damage
     @Override
     public void specialEffect(Player player) {
-        if (player.getSpecialAttack() == player.physSpecialAttackCounter)
-            player.getMyStats().setDmg(player.getMyStats().getDmg() + 10);
-        else
-            player.getMyStats().setDmg(player.getOriginalDmg());
+        player.physSpecialAttackCounter = 1;
     }
 }
+

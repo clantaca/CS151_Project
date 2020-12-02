@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Player extends Character {
 
-	private final int PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 10;
+	private final int PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF = 20;
 
     private int N; // size of inventory space
     private ItemStorage itemStorage; //Item class to use methods
@@ -28,6 +28,7 @@ public class Player extends Character {
     private int hitsTakenCounter = 0; // whenever the player takes a hit from the enemy
     private int turnCounter = 0; // whenever the player attacks/enemy attacks, add 1 to this counter
     private int blockCounter = 0; // whenever the player uses block
+    public int physSpecialAttackCounter = 2;
 
     public int getcSpellCounter() {
         return cSpellCounter;
@@ -153,7 +154,7 @@ public class Player extends Character {
         this.getMyStats().setMaxHP(100);
         this.getMyStats().setDmg(20);
         this.getMyStats().setCold(20);
-        this.getMyStats().setPoison(20);
+        this.getMyStats().setPoison(5);
         this.getMyStats().setFire(20);
         this.getMyStats().setLightning(20);
         this.getMyStats().setArm(5);
@@ -246,7 +247,7 @@ public class Player extends Character {
             System.out.println("Enemy dodges your attack!");
             return;
         }
-        else  if (specialAttack == 2 && critChance <= getMyStats().getCrit()) {
+        else  if (specialAttack == physSpecialAttackCounter && critChance <= getMyStats().getCrit()) {
 
                 // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                 // for a guaranteed special attack
@@ -261,7 +262,7 @@ public class Player extends Character {
 
 
             }
-            else if (specialAttack == 2) {
+            else if (specialAttack == physSpecialAttackCounter) {
                 //tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
             getMyStats().setHp(getMyStats().getHp() + tdmg*2);
@@ -287,8 +288,8 @@ public class Player extends Character {
 
         // checks poison debuff and enemy loses 10 hp if poisoned
         if(debuffOn){
-            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
-            System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison()*debuffCounter));
+            System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
             debuffTurnCounter++;
         }
 
@@ -349,8 +350,8 @@ public class Player extends Character {
             }
             // checks poison debuff
             if(debuffOn){
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
-                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison()*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
                 debuffTurnCounter++;
             }
 
@@ -396,8 +397,8 @@ public class Player extends Character {
             }
                 if (debuffOn) {
                     System.out.println("Enemy is poisoned.");
-                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10 * debuffCounter));
-                    System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                    enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison() * debuffCounter));
+                    System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
                     debuffTurnCounter++;
                 }
 
@@ -459,8 +460,8 @@ public class Player extends Character {
 
             // checks poison debuff
             if(debuffOn){
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
-                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison()*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
                 debuffTurnCounter++;
             }
 }
@@ -505,8 +506,8 @@ public class Player extends Character {
             }
             // checks poison debuff
             if(debuffOn){
-                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (10*debuffCounter));
-                System.out.println("Enemy is poisoned and loses an additional " + (10*debuffCounter) + " HP.");
+                enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison()*debuffCounter));
+                System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
                 debuffTurnCounter++;
             }
 
@@ -563,13 +564,18 @@ public class Player extends Character {
     }
 
     // returns true is attack if blocked, enemy cannot damage player
-    public boolean blockEnemy() {
+    public boolean blockEnemy(Enemy enemy) {
         int bMana = getMyStats().getMana()+5;
         if (bMana >= 20) {
             getMyStats().setMana(20);
         }
         else {
             getMyStats().setMana(bMana);
+        }
+        if(debuffOn){
+            enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (getMyStats().getPoison()*debuffCounter));
+            System.out.println("Enemy is poisoned and loses an additional " + (getMyStats().getPoison()*debuffCounter) + " HP.");
+            debuffTurnCounter++;
         }
         blockCounter++;
         //System.out.println(getMyStats().getMana());

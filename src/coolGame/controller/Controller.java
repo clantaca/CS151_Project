@@ -280,7 +280,7 @@ public class Controller {
 				return ValveResponse.MISS;
 			}
 			player.startOfTurn(player);
-			player.blockEnemy();
+			player.blockEnemy(enemy);
 			playSound("resources/Block.wav");
 			combatEnsues();
 
@@ -389,6 +389,7 @@ public class Controller {
 		if (enemy.getMyStats().getHp() <= 0) {
 			player.updateInventory(player);
 			enemy.setPowerCharge(0);
+			player.getMyStats().setDmg(player.getOriginalDmg());
 			player.getMyStats().setHp(player.getMyStats().getHp()+20);
 			if (player.getMyStats().getHp() > player.getMyStats().getMaxHP())
 				player.getMyStats().setHp(player.getMyStats().getMaxHP());

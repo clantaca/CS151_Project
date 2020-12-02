@@ -17,6 +17,8 @@ public class ItemStorage {
         Item shortSwordOfPower = new ShortSwordOfPower(itemDec);
         Item bloodlustGauntlets = new BloodlustGauntlets(itemDec);
         Item swiftShoes = new SwiftShoes(itemDec);
+        Item lightningStaff = new LightningStaff(itemDec);
+        Item vampireGreatsword = new VampireGreatsword(itemDec);
         itemStorages.add(poisonWand);
         itemStorages.add(mageBerserkerGloves);
         itemStorages.add(rejuvenatingChestplate);
@@ -24,6 +26,8 @@ public class ItemStorage {
         itemStorages.add(shortSwordOfPower);
         itemStorages.add(bloodlustGauntlets);
         itemStorages.add(swiftShoes);
+        itemStorages.add(lightningStaff);
+        itemStorages.add(vampireGreatsword);
     }
 
     //picks a random item from the array, updates the player stats with the items' stats and removes it from the array
