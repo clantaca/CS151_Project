@@ -367,11 +367,12 @@ public class Enemy extends Character{
 		if (dmgType == DmgTypeEnum.PHYSICAL)
 		{
 			if (powerCharge == 4 && player.blocked){
-				int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+				int dmgTakenDoubled = ((enemyDmg < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
-				System.out.println("Enemy lands a power attack and does " + dmgTakenDoubled + " damage. Player loses " + dmgTakenDoubled + " HP.");
+				System.out.println("Enemy lands a power attack and does " + enemyDmg*2 + " damage. Player blocks, losing onle " + dmgTakenDoubled + " HP.");
 				System.out.println();
 				powerCharge = 0;
+				player.resetBlock();
 			}
 			else
 			if (player.blocked) {
@@ -400,7 +401,15 @@ public class Enemy extends Character{
 			}
 		}
 		else {
-			if (player.blocked) {
+			if (powerCharge == 4 && player.blocked){
+				int dmgTaken = enemyDmg/2 - (int) (enemyDmg/2 * (playerDef/100.0f));
+				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken); //crits ignore player defense
+				System.out.println("Enemy lands a power attack and does " + enemyDmg*2 + " damage. Player blocks and loses " + dmgTaken + " HP.");
+				System.out.println();
+				powerCharge = 0;
+				player.resetBlock();
+			}
+			else if (player.blocked) {
 				int dmgTaken = enemyDmg/2 - (int) (enemyDmg/2 * (playerDef/100.0f));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTaken);
 				System.out.println("Player blocks enemy and takes " + dmgTaken + " damage and restores 5 mana.");
