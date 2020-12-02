@@ -379,7 +379,7 @@ public class Enemy extends Character{
 			if (powerCharge == 4 && player.blocked){
 				int dmgTakenDoubled = ((enemyDmg < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 				player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
-				System.out.println("Enemy lands a power attack and does " + enemyDmg*2 + " damage. Player blocks, losing onle " + dmgTakenDoubled + " HP.");
+				System.out.println("Enemy lands a power attack and does " + enemyDmg*2 + " damage. Player blocks, losing only " + dmgTakenDoubled + " HP.");
 				System.out.println();
 				powerCharge = 0;
 				player.resetBlock();
