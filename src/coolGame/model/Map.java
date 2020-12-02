@@ -20,13 +20,14 @@ public class Map {
 	private static int currEnemyPower = 1;	//mapView holds the current power level of all enemies - this increments after each combat
 	
 	Player player;
-	int currPower;
 
-	public Map(Player player, int currPower) {
+	public Map(Player player, int currEnemyPower) {
 
 		this.player = player;
-		this.currPower = currPower; 
-
+		this.currEnemyPower = currEnemyPower; 
+		
+		System.out.println("curr enemy power: " + currEnemyPower + " boss power needed: " + POWER_NEEDED_TO_SUMMON_BOSS);
+		
 		if (currEnemyPower % POWER_NEEDED_TO_SUMMON_BOSS == 0)
 			this.allChractersOnMap = loadChractersBossLevel();
 		else
