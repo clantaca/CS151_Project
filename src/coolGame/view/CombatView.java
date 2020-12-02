@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * A view that allows player and enemy to interact with each other
+ */
 public class CombatView extends JFrame{
 
 	private final int 	FRAME_WIDTH = 600;
@@ -46,23 +49,155 @@ public class CombatView extends JFrame{
 
 	private BlockingQueue<Message> queue;
 
+	/**
+	 * Initializes combatView with the appropriate models and queue
+	 * @param player
+	 * @param enemy
+	 * @param queue
+	 * @return
+	 */
+	public static CombatView init(Player player, Enemy enemy, BlockingQueue<Message> queue) {
+		return new CombatView(player, enemy, queue);
+	}
 
+	/**
+	 * Will create all of the necessary components and add them
+	 * @param player
+	 * @param enemy
+	 * @param queue
+	 */
 	public CombatView(Player player, Enemy enemy, BlockingQueue<Message> queue) {
 
 		this.player = player;
 		this.enemy = enemy;
 		this.queue = queue;
-		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
-		fullPanel = new JLabel(backgroundImage);
-		fullPanel.setLayout(new GridBagLayout());
-		fullPanel.setBackground(Color.CYAN);
 
 		createFrame();
 		createWestPanel();
 		createCentPanel();
 		createEastPanel();
-
 		this.add(fullPanel);
+		pack();
+
+	}
+
+	//Initialize and add components to combatView--------------------------------------------------------------------------------------------
+
+	/**
+	 * Creates the initial frame
+	 */
+	private void createFrame() {
+
+		ImageIcon backgroundImage = new ImageIcon(BACKGROUND_IMAGE);
+		fullPanel = new JLabel(backgroundImage);
+		fullPanel.setLayout(new GridBagLayout());
+		fullPanel.setBackground(Color.CYAN);
+
+		this.setTitle("You are in combat!");
+		this.setVisible(true);
+		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	/**
+	 * Creates left panel (for player)
+	 */
+	private void createWestPanel() {
+
+
+		constraints = new GridBagConstraints();
+		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
+
+		playerNameLabel = new JLabel(player.getName());
+		playerNameLabel.setForeground(Color.WHITE);
+		playerImageArea = new JLabel(new ImageIcon("resources/player.gif"));		//Delete this text later
+		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
+		playerHpLabel.setForeground(Color.WHITE);
+		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
+		playerManaLabel.setForeground(Color.WHITE);
+		playerStatsBut = new JButton("Check Stats");
+		playerInvBut = new JButton("Open Inventory");
+
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		fullPanel.add(playerNameLabel, constraints);
+
+		constraints.weighty = 1; //makes component taller
+		constraints.gridy++;
+		fullPanel.add(playerImageArea, constraints);
+
+		constraints.weighty = 0;
+		constraints.gridy++;
+		fullPanel.add(playerHpLabel, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(playerManaLabel, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(playerStatsBut, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(playerInvBut, constraints);
+
+		playerStatsBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PlayerStatsMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		playerInvBut.addActionListener(event -> {
+			try {
+				this.queue.put(new PlayerInvMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		constraints.gridx = 0;
+		constraints.gridy = 4;
+		fullPanel.add(playerStatsBut, constraints);
+
+		constraints.gridx = 0;
+		constraints.gridy = 5;
+		fullPanel.add(playerInvBut, constraints);
+	}
+
+
+	/**
+	 * Creates the center panel (for attack buttons)
+	 */
+	private void createCentPanel() {
+
+		constraints = new GridBagConstraints();
+		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
+
+		phyAtkBut = new JButton("Physical Attack");
+		coldSpBut = new JButton("Cold Spell Attack");
+		fireSpBut = new JButton("Fire Spell Attack");
+		lightningSpBut = new JButton("Lightning Spell Attack");
+		poisonSpBut = new JButton("Poison Spell Attack");
+		blockBut = new JButton("Block");
+
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+
+		constraints.gridy++;
+		fullPanel.add(coldSpBut, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(fireSpBut, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(lightningSpBut, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(poisonSpBut, constraints);
+
+		constraints.gridy++;
+		fullPanel.add(blockBut, constraints);
 
 		phyAtkBut.addActionListener(event -> {
 			try {
@@ -112,30 +247,6 @@ public class CombatView extends JFrame{
 			}
 		});
 
-		playerStatsBut.addActionListener(event -> {
-			try {
-				this.queue.put(new PlayerStatsMessage());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
-		enemyStatsBut.addActionListener(event -> {
-			try {
-				this.queue.put(new EnemyStatsMessage());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
-		playerInvBut.addActionListener(event -> {
-			try {
-				this.queue.put(new PlayerInvMessage());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		fullPanel.add(phyAtkBut, constraints);
@@ -150,114 +261,12 @@ public class CombatView extends JFrame{
 		constraints.gridy++;
 		fullPanel.add(blockBut, constraints);
 
-		constraints.gridx = 0;
-		constraints.gridy = 4;
-		fullPanel.add(playerStatsBut, constraints);
-
-		constraints.gridx = 2;
-		constraints.gridy = 4;
-		fullPanel.add(enemyStatsBut, constraints);
-
-		constraints.gridx = 0;
-		constraints.gridy = 5;
-		fullPanel.add(playerInvBut, constraints);
-
-		pack();
-	}
-
-	public static CombatView init(Player player, Enemy enemy, BlockingQueue<Message> queue) {
-		// Create object of type view
-		return new CombatView(player, enemy, queue);
-	}
-
-	//----------------------------------------------------------------------------------------
-
-	//Initialize all of the various components
-
-	//Creates the initial frame
-	private void createFrame() {
-
-		this.setTitle("You are in combat!");
-		this.setVisible(true);
-		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
-
-	//Creates left panel and adds it
-	private void createWestPanel() {
-
-
-		constraints = new GridBagConstraints();
-		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
-
-		playerNameLabel = new JLabel(player.getName());
-		playerNameLabel.setForeground(Color.WHITE);
-		playerImageArea = new JLabel(new ImageIcon("resources/player.gif"));		//Delete this text later
-		playerHpLabel = new JLabel("Health: " + player.getMyStats().getHp() + "/" + player.getMyStats().getMaxHP());
-		playerHpLabel.setForeground(Color.WHITE);
-		playerManaLabel = new JLabel("Mana: " + player.getMyStats().getMana() + "/" + player.getMyStats().getMaxMana());
-		playerManaLabel.setForeground(Color.WHITE);
-		playerStatsBut = new JButton("Check Stats");
-		playerInvBut = new JButton("Open Inventory");
-
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		fullPanel.add(playerNameLabel, constraints);
-		
-		constraints.weighty = 1; //makes component taller
-		constraints.gridy++;
-		fullPanel.add(playerImageArea, constraints);
-
-		constraints.weighty = 0;
-		constraints.gridy++;
-		fullPanel.add(playerHpLabel, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(playerManaLabel, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(playerStatsBut, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(playerInvBut, constraints);
 	}
 
 
-	//Creates center panel and adds it
-	private void createCentPanel() {
-
-		constraints = new GridBagConstraints();
-		constraints.insets = new Insets(COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING, COMPONENT_PADDING);
-
-		phyAtkBut = new JButton("Physical Attack");
-		coldSpBut = new JButton("Cold Spell Attack");
-		fireSpBut = new JButton("Fire Spell Attack");
-		lightningSpBut = new JButton("Lightning Spell Attack");
-		poisonSpBut = new JButton("Poison Spell Attack");
-		blockBut = new JButton("Block");
-
-		constraints.gridx = 1;
-		constraints.gridy = 0;
-
-		constraints.gridy++;
-		fullPanel.add(coldSpBut, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(fireSpBut, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(lightningSpBut, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(poisonSpBut, constraints);
-
-		constraints.gridy++;
-		fullPanel.add(blockBut, constraints);
-	}
-
-
-	//Creates right panel and adds it
+	/**
+	 * Creates the right panel (for enemy)
+	 */
 	private void createEastPanel() {
 
 		constraints = new GridBagConstraints();
@@ -275,73 +284,39 @@ public class CombatView extends JFrame{
 		constraints.gridx = 2;
 		constraints.gridy = 0;
 		fullPanel.add(enemyNameLabel, constraints);
-		
+
 		constraints.weighty = 1;
 		constraints.gridy++;
 		fullPanel.add(enemyImageArea, constraints);
-		
+
 		constraints.weighty = 0;
 		constraints.gridy++;
 		fullPanel.add(enemyHpLabel, constraints);
-		
+
 		constraints.gridy++;
 		fullPanel.add(enemyPowerLabel, constraints);
-		
+
 		constraints.gridy++;
 		fullPanel.add(enemyStatsBut, constraints);
 
+		enemyStatsBut.addActionListener(event -> {
+			try {
+				this.queue.put(new EnemyStatsMessage());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+
+		constraints.gridx = 2;
+		constraints.gridy = 4;
+		fullPanel.add(enemyStatsBut, constraints);
 
 	}
-	
-
-	//----------------------------------------------------------------------------------------
-
-	//All action listeners for needed buttons so that controller can be notified 
-
-/*	public void addPlayerStatsButListener (ActionListener listener) {
-		playerStatsBut.addActionListener(listener);
-	}
 
 
-	public void addPlayerInvButListener (ActionListener listener) {
-		playerInvBut.addActionListener(listener);
-	}
-
-
-	public void addPhyAtkButListener (ActionListener listener) {
-		phyAtkBut.addActionListener(listener);
-	}
-
-	public void addColdSpButListener (ActionListener listener) {
-		coldSpBut.addActionListener(listener);
-	}
-
-	public void addFireSpButListener (ActionListener listener) {
-		fireSpBut.addActionListener(listener);
-	}
-
-	public void addLightningSpButListener (ActionListener listener) {
-		lightningSpBut.addActionListener(listener);
-	}
-
-	public void addPoisonSpButListener (ActionListener listener) {
-		poisonSpBut.addActionListener(listener);
-	}
-
-	public void addBlockButListener (ActionListener listener) {
-		blockBut.addActionListener(listener);
-	}
-
-	public void addEnemyStatsButListener (ActionListener listener) {
-		enemyStatsBut.addActionListener(listener);
-	}*/
-
-	//----------------------------------------------------------------------------------------
-
-	public void setEnemy(Enemy enemy) {
-		this.enemy = enemy;
-	}
-
+	/**
+	 * Reset display on combatView
+	 */
 	public void resetVariables() {
 
 		playerNameLabel.setText(player.getName());
@@ -358,12 +333,9 @@ public class CombatView extends JFrame{
 
 	}
 
-	//----------------------------------------------------------------------------------------
+	//Getters and setters------------------------------------------------------
 
-	public static void main(String[] args) {
-
-		//new CombatView(new Player("Bob"), new Enemy(1));
-
+	public void setEnemy(Enemy enemy) {
+		this.enemy = enemy;
 	}
-
 }
