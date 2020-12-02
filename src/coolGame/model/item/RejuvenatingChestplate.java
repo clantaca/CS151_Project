@@ -28,7 +28,7 @@ public class RejuvenatingChestplate extends Stats implements Item {
 
     @Override
     public String getDescription() {
-        return "Every 5th you take from the enemy, heal for 20." + item.getDescription();
+        return "Every 5th hit you take from the enemy, heal for 20." + item.getDescription();
     }
 
     @Override

@@ -37,6 +37,7 @@ public class LightningStaff implements Item {
         player.getMyStats().setPoison(player.getMyStats().getPoison() + itemStats.getPoison());
         player.getMyStats().setFire(player.getMyStats().getFire() + itemStats.getFire());
         player.getMyStats().setlRes(player.getMyStats().getlRes() + itemStats.getlRes());
+        player.lightningDebuff = 40.0f;
     }
 
     @Override
@@ -46,15 +47,13 @@ public class LightningStaff implements Item {
 
     @Override
     public String getDescription() {
-        return "At the start of every combat, apply a debuff, causing the enemy to take 20% increased damage."
+        return "Increases the lightning debuff that the player has to 40% increased damage taken."
                 + item.getDescription();
     }
 
     //Enemy starts the battle with 1 stack of poison debuff.
     @Override
     public void specialEffect(Player player) {
-        if (player.getTurnCounter() == 0) {
-            player.setHasLightningDebuff(true);
-        }
+
     }
 }
