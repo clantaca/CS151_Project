@@ -1,14 +1,13 @@
 package coolGame;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import coolGame.controller.Controller;
 import coolGame.controller.Message;
 import coolGame.model.Map;
 import coolGame.model.character.Player;
-import coolGame.view.CombatView;
 import coolGame.view.MapView;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class GameTester {
 
@@ -18,7 +17,7 @@ public class GameTester {
 	private static Map map;
 	
 	public static void main(String[] args) {
-		player = new Player("Tester");
+		player = new Player("You are here");
 		map = new Map(player, 1);
 		mapView = MapView.init(player, map, queue);
 

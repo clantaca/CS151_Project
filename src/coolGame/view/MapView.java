@@ -16,7 +16,7 @@ import java.util.concurrent.BlockingQueue;
 public class MapView extends JFrame{
 
 	private final int 	FRAME_WIDTH = 1400;
-	private final int 	FRAME_HEIGHT = 1000;
+	private final int 	FRAME_HEIGHT = 1200;
 	private final int	COMPONENT_PADDING_HEIGHT = 35;
 	private final int	COMPONENT_PADDING_LENGTH = 70;
 	private final int	ROWS_PER_SIDE = 5; 		//Map will be a 5x5 square
@@ -77,7 +77,7 @@ public class MapView extends JFrame{
 		if (currEnemyPower == 2)
 			currBGFile = "resources/mapbackground1.jpg";
 		if (currEnemyPower == 3)
-			currBGFile = "resources/mapbackground2.jpg";
+			currBGFile = "resources/mapbackground3.jpg";
 		
 		
 		map = new Map(player, currEnemyPower);
@@ -140,12 +140,12 @@ public class MapView extends JFrame{
 				JLabel tempLabel;
 
 				try {
-					tempLabel = new JLabel("*" + map.getSpecificCharacter(i).getName() + "*");
+					tempLabel = new JLabel("   " + map.getSpecificCharacter(i).getName());
 					tempLabel.setOpaque(true);
 
 					if (i == EXIT_STARTING_LOCATION)
 						if (i == EXIT_STARTING_LOCATION && (new Enemy(currEnemyPower).getEnemyTypeID() != BOSS_ID) )
-							tempLabel.setText("Stairway Up");
+							tempLabel.setText("   Stairway Up");
 				}
 
 				catch (NullPointerException e) {

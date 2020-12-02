@@ -40,7 +40,7 @@ public class Enemy extends Character{
 	
 	private int 	power = 0; 							//power is how strong a monster
 	private int		enemyTypeID;						//The type of enemy's ID
-	private boolean	hasLightningDebuff = false;			//An enemy can have a lightning debuff when attacked by lightning attack
+
 	private int		powerCharge;						//countdown for when enemy will use a powerful attack
 
 	//Constructor ----------------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.PHYSICAL;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes();
 		concatateToName("zombie");
 		setEnemyImage("resources/zombie.gif");
 	}
@@ -110,7 +110,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.COLD;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes();
 		concatateToName("skeleton");
 		setEnemyImage("resources/skeleton.gif");
 	}
@@ -119,7 +119,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.POISON;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes();
 		concatateToName("witch");
 		setEnemyImage("resources/witch.gif");
 	}
@@ -128,7 +128,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.FIRE;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes();
 		concatateToName("warlock");
 		setEnemyImage("resources/warlock.gif");
 	}
@@ -137,7 +137,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.LIGHTNING;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_COMMON_MOBS);
+		setNaturalRes();
 		concatateToName("yeti");
 		setEnemyImage("resources/yeti.gif");
 	}
@@ -147,7 +147,7 @@ public class Enemy extends Character{
 		
 		dmgType = DmgTypeEnum.PHYSICAL;
 		setDmgType(dmgType);
-		setNaturalRes(POWER_INCREASE_OF_THE_BOSS);
+		setNaturalRes();
 		concatateToName("Diablo");
 		setEnemyImage("resources/boss.gif");
 	}
@@ -158,7 +158,7 @@ public class Enemy extends Character{
 
 		final int ALLOWED_POWER_VARIANCE = 3;
 		int enemyRes;
-		int enemyAttack = randomInt(10,15);
+		int enemyAttack = randomInt(8,11);
 		int enemyHealth = randomInt(80, 100);
 		this.getMyStats().setHp(power * enemyHealth);
 		this.getMyStats().setMaxHP(this.getMyStats().getHp());
@@ -205,38 +205,38 @@ public class Enemy extends Character{
 			case PHYSICAL:
 
 				concatateToName("Punching");
-				this.getMyStats().setDmg(power * this.getMyStats().getDmg());
+				this.getMyStats().setDmg(power * this.getMyStats().getDmg()+4);
 				break;
 
 			case COLD:
 
 				concatateToName("Freezing");
-				this.getMyStats().setCold(power * this.getMyStats().getCold());
+				this.getMyStats().setCold(power * this.getMyStats().getCold()+4);
 				break;
 
 			case POISON:
 
 				concatateToName("Poisonous");
-				this.getMyStats().setPoison(power * this.getMyStats().getPoison());
+				this.getMyStats().setPoison(power * this.getMyStats().getPoison()+4);
 				break;
 
 			case FIRE:
 
 				concatateToName("Firey");
-				this.getMyStats().setFire(power* this.getMyStats().getFire());
+				this.getMyStats().setFire(power* this.getMyStats().getFire()+4);
 				break;
 
 			case LIGHTNING:
 
 				concatateToName("Electrified");
-				this.getMyStats().setLightning(power * this.getMyStats().getLightning());
+				this.getMyStats().setLightning(power * this.getMyStats().getLightning()+4);
 				break;
 
 		}
 	}
 	
 	//each mob will get a natural resistance against a certain attack type
-	private void setNaturalRes(int powerIncrease) {
+	private void setNaturalRes() {
 		
 		int resTypeID = generateRandomInt(ResTypeEnum.values().length);
 		
@@ -246,35 +246,35 @@ public class Enemy extends Character{
 			
 			resType = ResTypeEnum.FOREST;
 			concatateToName("forest");
-			this.getMyStats().setArm(power*2 + powerIncrease);
+			this.getMyStats().setArm(power* (this.getMyStats().getArm()+5));
 			break;
 		
 		case 2:
 			
 			resType = ResTypeEnum.TUNDRA;
 			concatateToName("tundra");
-			this.getMyStats().setcRes(power*2 + powerIncrease);
+			this.getMyStats().setcRes(power * (this.getMyStats().getcRes()+5));
 			break;
 			
 		case 3:
 			
 			resType = ResTypeEnum.SWAMP;
 			concatateToName("swamp");
-			this.getMyStats().setpRes(power*2 + powerIncrease);
+			this.getMyStats().setpRes(power * (this.getMyStats().getPoison()+5));
 			break;
 			
 		case 4:
 			
 			resType = ResTypeEnum.DESERT;
 			concatateToName("desert");
-			this.getMyStats().setfRes(power*2 + powerIncrease);
+			this.getMyStats().setfRes(power * (this.getMyStats().getfRes()+5));
 			break;
 			
 		case 5:
 			
 			resType = ResTypeEnum.MOUNTIN;
 			concatateToName("mountain");
-			this.getMyStats().setlRes(power*2 + powerIncrease);
+			this.getMyStats().setlRes(power * (this.getMyStats().getlRes()+5));
 			break;
 		
 		}
@@ -300,15 +300,7 @@ public class Enemy extends Character{
 	public void attackUser(Player player) {
 
 		boolean ifPlayerDodgesEnemyAttack = generateRandomInt(100) <= player.getMyStats().getDodge();
-		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
-		{
-			System.out.println("Player dodges the enemy's attack!");
-			System.out.println();
-			powerCharge++;
-			if (powerCharge >= 4)
-				powerCharge = 0;
-			return;
-		}
+
 		if (player.isShieldEffect()) {
 			System.out.println("Player's Stonewall shield blocks all the damage!");
 			System.out.println();
@@ -319,6 +311,15 @@ public class Enemy extends Character{
 		}
 		if (player.isFrozen) {
 			System.out.println("Enemy is frozen and unable to act!");
+			System.out.println();
+			powerCharge++;
+			if (powerCharge >= 4)
+				powerCharge = 0;
+			return;
+		}
+		if (ifPlayerDodgesEnemyAttack) //if a random number generated between 1-100 is less than the player's chance of dodgeing, player dodges and no more damage is taken by enemy
+		{
+			System.out.println("Player dodges the enemy's attack!");
 			System.out.println();
 			powerCharge++;
 			if (powerCharge >= 4)
@@ -445,13 +446,7 @@ public class Enemy extends Character{
 
 	}
 	
-	public boolean getHasLightningDebuff() {
-		return hasLightningDebuff;
-	}
-	
-	public void setHasLightningDebuff(boolean hasLightningDebuff) {
-		this.hasLightningDebuff = hasLightningDebuff;
-	}
+
 	
 	public void setPowerCharge(int powerCharge) {
 		this.powerCharge = powerCharge;

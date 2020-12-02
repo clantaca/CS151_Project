@@ -25,7 +25,7 @@ public class LightningStaff implements Item {
     public void itemStats() {
         System.out.println("+" + itemStats.getLightning() + " Lightning Damage");
         System.out.println("+" + itemStats.getCold() + " Cold Damage");
-        System.out.println("+" + itemStats.getLightning() + " Lightning Damage");
+        System.out.println("+" + itemStats.getPoison() + " Poison Damage");
         System.out.println("+" + itemStats.getFire() + " Fire Damage");
         System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
@@ -41,7 +41,7 @@ public class LightningStaff implements Item {
 
     @Override
     public String getName() {
-        return item.getName() + "Poisonous Wand";
+        return item.getName() + "Lightning Staff";
     }
 
     @Override
@@ -54,7 +54,7 @@ public class LightningStaff implements Item {
     @Override
     public void specialEffect(Player player) {
         if (player.getTurnCounter() == 0) {
-            enemy.setHasLightningDebuff(true);
+            player.setHasLightningDebuff(true);
         }
     }
 }

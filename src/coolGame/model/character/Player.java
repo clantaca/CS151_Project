@@ -22,6 +22,7 @@ public class Player extends Character {
     private boolean debuffOn = false; // poison spell causes enemy to lose 10 hp each turn
     public boolean blocked = false;
     public boolean isFrozen = false;
+    private boolean	hasLightningDebuff = false;			//An enemy can have a lightning debuff when attacked by lightning attack
 
     private int spellCounter = 0; // whenever the player casts a spell
     private int attackCounter = 0; // whenever the player attacks with physical attack
@@ -127,7 +128,13 @@ public class Player extends Character {
     }
 
     private boolean shieldEffect;
+    public boolean getHasLightningDebuff() {
+        return hasLightningDebuff;
+    }
 
+    public void setHasLightningDebuff(boolean hasLightningDebuff) {
+        this.hasLightningDebuff = hasLightningDebuff;
+    }
 
     private int originalDmg;
 
@@ -234,7 +241,7 @@ public class Player extends Character {
         int pdmg = randomizeDmg("Physical");
 
         //Calculates additional damage when enemy has lightning debuff
-        if(enemy.getHasLightningDebuff())
+        if(getHasLightningDebuff())
         	pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
 
         int enemyRes = enemy.getMyStats().getArm();
@@ -310,7 +317,7 @@ public class Player extends Character {
         int pdmg = randomizeDmg("Cold");
         
         //Calculates additional damage when enemy has lightning debuff
-        if(enemy.getHasLightningDebuff())
+        if(getHasLightningDebuff())
             pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         isFrozen = false;
@@ -371,7 +378,7 @@ public class Player extends Character {
         int pdmg = randomizeDmg("Poison");
         
         //Calculates additional damage when enemy has lightning debuff
-        if(enemy.getHasLightningDebuff())
+        if(getHasLightningDebuff())
             pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getpRes();
@@ -418,7 +425,7 @@ public class Player extends Character {
         int pdmg = randomizeDmg("Fire");
         
         //Calculates additional damage when enemy has lightning debuff
-        if(enemy.getHasLightningDebuff())
+        if(getHasLightningDebuff())
             pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getfRes();
@@ -481,7 +488,7 @@ public class Player extends Character {
         int pdmg = randomizeDmg("Lightning");
         
         //Calculates additional damage when enemy has lightning debuff
-        if(enemy.getHasLightningDebuff())
+        if(getHasLightningDebuff())
             pdmg =  pdmg + (int)(pdmg * (PERCENT_INCREASE_FOR_LIGHTNING_DEBUFF/100.0f));
         
         int enemyRes = enemy.getMyStats().getlRes();
@@ -521,8 +528,8 @@ public class Player extends Character {
                 enemy.getMyStats().setHp(0);
             }
             
-            enemy.setHasLightningDebuff(true);	//give enemy lightning debuff
-            System.out.println("Enemy's has lightning debuff status: " + enemy.getHasLightningDebuff());
+            setHasLightningDebuff(true);	//give enemy lightning debuff
+            System.out.println("Enemy's has lightning debuff status: " + getHasLightningDebuff());
         }
     }
 
