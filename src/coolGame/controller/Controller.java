@@ -1,21 +1,20 @@
 package coolGame.controller;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.JOptionPane;
-
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
 import coolGame.view.CombatView;
 import coolGame.view.MapView;
 import coolGame.view.NotificationView;
 import coolGame.view.StatView;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Controller will control what to do with any Message added to the ongoing blockingQueue
@@ -445,6 +444,7 @@ public class Controller {
 			if (player.getMyStats().getHp() > player.getMyStats().getMaxHP())
 				player.getMyStats().setHp(player.getMyStats().getMaxHP());
 
+			player.getMyStats().setMana(player.getMyStats().getMaxMana());
 			//Close all appropriate views if they are open
 			if (statViewPlayer != null) {
 				statViewPlayer.setVisible(false);

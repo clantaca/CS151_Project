@@ -195,7 +195,7 @@ public class Enemy extends Character{
 
 		this.getMyStats().setDmg(power * enemyAttack);
 
-		this.getMyStats().setArm(power * randomInt(5,10));
+		this.getMyStats().setArm(power * randomInt(5,8));
 
 		enemyAttack = randomInt(7,10);
 		this.getMyStats().setCold(power * enemyAttack);
@@ -444,15 +444,22 @@ public class Enemy extends Character{
 		boolean ifEnemyLandsCrit = generateRandomInt(100) <= this.getMyStats().getCrit(); //calculate if enemy lands a crit
 
 		//If enemy lands a crit
-		if (ifEnemyLandsCrit) {
+		if (ifEnemyLandsCrit && powerCharge == 4) {
 			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
 			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
-			System.out.println("Enemy lands a critical attack and does " + dmgTakenDoubled +
+			System.out.println("Enemy lands a critical power attack and does " + dmgTakenDoubled +
+					dmgType + " damage. Player loses " + dmgTakenDoubled + " Health.");
+			System.out.println();
+			powerCharge = 0;
+		}
+		else if (ifEnemyLandsCrit ) {
+			int dmgTakenDoubled = ((enemyDmg*2 < (int)(playerDef*EFFECTIVNESS_OF_DEF)) ? 1 : enemyDmg*2 - (int)(playerDef*EFFECTIVNESS_OF_DEF));
+			player.getMyStats().setHp(player.getMyStats().getHp() - dmgTakenDoubled); //crits ignore player defense
+			System.out.println("Enemy lands a critical attack and does " + dmgTakenDoubled + " " +
 					dmgType + " damage. Player loses " + dmgTakenDoubled + " Health.");
 			System.out.println();
 			powerCharge++;
 		}
-
 		//Else enemy does not land a crit
 		else if (dmgType == DmgTypeEnum.PHYSICAL) {
 
