@@ -17,7 +17,7 @@ public class Map {
 	private final int				TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;	//Subtract 1 to include 0 index
 	private final int 				PLAYER_STARTING_LOCATION = 22;
 	private final int 				EXIT_STARTING_LOCATION = 2;
-	private final int 				NUM_ENEMIES_ON_MAP = 3;
+	private final int 				NUM_ENEMIES_ON_MAP = 4;
 	private final int				POWER_NEEDED_TO_SUMMON_BOSS = 3; 							//Must be in sync with variable in enemy class
 	
 	private ArrayList<Character> 	allChractersOnMap;
