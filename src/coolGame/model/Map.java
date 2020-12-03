@@ -14,7 +14,7 @@ public class Map {
 	
 	//Final variables
 	private final int				ROWS_PER_SIDE = 5; 						
-	private final int				TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;
+	private final int				TOTAL_ENEMIES_ALLOWED = ROWS_PER_SIDE * ROWS_PER_SIDE;	//Subtract 1 to include 0 index
 	private final int 				PLAYER_STARTING_LOCATION = 22;
 	private final int 				EXIT_STARTING_LOCATION = 2;
 	private final int 				NUM_ENEMIES_ON_MAP = 3;
@@ -61,7 +61,7 @@ public class Map {
 		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)
 		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
 
-			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
+			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED-1);	//Subtract 1 to take account of index 0
 			occupiedLocations.add(randomInt);
 
 		}

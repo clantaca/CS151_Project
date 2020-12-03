@@ -269,7 +269,7 @@ public class StatView extends JFrame {
 
         if (initialized) {
 
-            pNameLabel.setText(player.getName() + " Stats");
+            pNameLabel = new JLabel(player.getName() + " Stats");
             pHpLabel.setText("Health: " + player.getMyStats().getHp());
             pManaLabel.setText("Mana: " + player.getMyStats().getMana());
             pArmorLabel.setText("Armor: " + player.getMyStats().getArm());
