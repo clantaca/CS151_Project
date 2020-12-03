@@ -136,6 +136,11 @@ public class Player extends Character {
     }
 
     private int originalDmg;
+    public int bonusDmg = 0;
+    public int bonuscDmg = 0;
+    public int bonusfDmg = 0;
+    public int bonuspDmg = 0;
+    public int bonuslDmg = 0;
 
 
     public ArrayList<Item> getInventory() {
@@ -166,10 +171,10 @@ public class Player extends Character {
         this.getMyStats().setArm(5);
         this.getMyStats().setMana(20);
         this.getMyStats().setMaxMana(20);
-        this.getMyStats().setcRes(10);
-        this.getMyStats().setpRes(10);
-        this.getMyStats().setfRes(10);
-        this.getMyStats().setlRes(10);
+        this.getMyStats().setcRes(15);
+        this.getMyStats().setpRes(15);
+        this.getMyStats().setfRes(15);
+        this.getMyStats().setlRes(15);
         this.getMyStats().setDodge(5);
         this.getMyStats().setCrit(5);
     }
@@ -237,7 +242,7 @@ public class Player extends Character {
 
     public void physicalAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor
-        int pdmg = randomizeDmg("Physical");
+        int pdmg = randomizeDmg("Physical") + bonusDmg;
 
         //Calculates additional damage when enemy has lightning debuff
         if(getHasLightningDebuff())
@@ -313,7 +318,7 @@ public class Player extends Character {
 
     public void coldAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and cold resistance
-        int pdmg = randomizeDmg("Cold");
+        int pdmg = randomizeDmg("Cold") + bonuscDmg;
         
         //Calculates additional damage when enemy has lightning debuff
         if(getHasLightningDebuff())
@@ -374,7 +379,7 @@ public class Player extends Character {
 
     public void poisonAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and poison resistance
-        int pdmg = randomizeDmg("Poison");
+        int pdmg = randomizeDmg("Poison") + bonuspDmg;
         
         //Calculates additional damage when enemy has lightning debuff
         if(getHasLightningDebuff())
@@ -421,7 +426,7 @@ public class Player extends Character {
 
     public void fireAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and fire resistance
-        int pdmg = randomizeDmg("Fire");
+        int pdmg = randomizeDmg("Fire") + bonusfDmg;
         
         //Calculates additional damage when enemy has lightning debuff
         if(getHasLightningDebuff())
@@ -484,7 +489,7 @@ public class Player extends Character {
 
     public void lightningAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
-        int pdmg = randomizeDmg("Lightning");
+        int pdmg = randomizeDmg("Lightning") + bonuslDmg;
         
         //Calculates additional damage when enemy has lightning debuff
         if(getHasLightningDebuff())

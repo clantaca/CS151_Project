@@ -160,10 +160,21 @@ public class Enemy extends Character{
 	 * Special case- final is a the boss
 	 */
 	private void createGiantBoss() {
-
-		dmgType = DmgTypeEnum.PHYSICAL;
-		setDmgType(dmgType);
-		setNaturalRes();
+		dmgType = DmgTypeEnum.FIRE;
+		this.getMyStats().setHp(350);
+		this.getMyStats().setMaxHP(350);
+		this.getMyStats().setDmg(100);
+		this.getMyStats().setCold(100);
+		this.getMyStats().setPoison(100);
+		this.getMyStats().setFire(100);
+		this.getMyStats().setLightning(100);
+		this.getMyStats().setArm(30);
+		this.getMyStats().setcRes(50);
+		this.getMyStats().setpRes(50);
+		this.getMyStats().setfRes(50);
+		this.getMyStats().setlRes(50);
+		this.getMyStats().setDodge(10);
+		this.getMyStats().setCrit(10);
 		concatateToName("Diablo");
 		setEnemyImage("resources/boss.gif");
 	}
@@ -176,7 +187,7 @@ public class Enemy extends Character{
 	private void createGenericEnemy() {
 
 		int enemyRes;
-		int enemyAttack = randomInt(8,11);
+		int enemyAttack = randomInt(7,10);
 		int enemyHealth = randomInt(80, 100);
 
 		this.getMyStats().setHp(power * enemyHealth);
@@ -186,16 +197,16 @@ public class Enemy extends Character{
 
 		this.getMyStats().setArm(power * randomInt(5,10));
 
-		enemyAttack = randomInt(10,15);
+		enemyAttack = randomInt(7,10);
 		this.getMyStats().setCold(power * enemyAttack);
 
-		enemyAttack = randomInt(10,15);
+		enemyAttack = randomInt(7,10);
 		this.getMyStats().setPoison(power * enemyAttack);
 
-		enemyAttack = randomInt(10,15);
+		enemyAttack = randomInt(7,10);
 		this.getMyStats().setFire(power * enemyAttack);
 
-		enemyAttack = randomInt(10,15);
+		enemyAttack = randomInt(7,10);
 		this.getMyStats().setLightning(power * enemyAttack);
 
 		enemyRes = randomInt(10,15);
@@ -274,7 +285,7 @@ public class Enemy extends Character{
 
 			resType = ResTypeEnum.FOREST;
 			concatateToName("forest");
-			this.getMyStats().setArm(power* (this.getMyStats().getArm()+5));
+			this.getMyStats().setArm(power* (this.getMyStats().getArm()+1));
 			break;
 
 		case 2:

@@ -19,15 +19,15 @@ public class ItemStorage {
         Item swiftShoes = new SwiftShoes(itemDec);
         Item lightningStaff = new LightningStaff(itemDec);
         Item vampireGreatsword = new VampireGreatsword(itemDec);
-        itemStorages.add(poisonWand);
-        itemStorages.add(mageBerserkerGloves);
-        itemStorages.add(rejuvenatingChestplate);
-        itemStorages.add(stonewallShield);
+//        itemStorages.add(poisonWand);
+//        itemStorages.add(mageBerserkerGloves);
+//        itemStorages.add(rejuvenatingChestplate);
+//        itemStorages.add(stonewallShield);
         itemStorages.add(shortSwordOfPower);
-        itemStorages.add(bloodlustGauntlets);
+//        itemStorages.add(bloodlustGauntlets);
         itemStorages.add(swiftShoes);
-        itemStorages.add(lightningStaff);
-        itemStorages.add(vampireGreatsword);
+//        itemStorages.add(lightningStaff);
+//        itemStorages.add(vampireGreatsword);
     }
 
     //picks a random item from the array, updates the player stats with the items' stats and removes it from the array

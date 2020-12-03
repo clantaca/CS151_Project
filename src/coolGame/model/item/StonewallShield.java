@@ -13,7 +13,7 @@ public class StonewallShield extends Stats implements Item {
 
     public StonewallShield(Item item) {
         itemStats.setDmg(randomInt(7,1));
-        itemStats.setHp(randomInt(20,10));
+        itemStats.setHp(randomInt(30,20));
         itemStats.setArm(randomInt(10,5));
         itemStats.setcRes(randomInt(10,5));
         itemStats.setfRes(randomInt(10,5));

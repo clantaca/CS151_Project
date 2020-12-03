@@ -37,17 +37,17 @@ public class MageBerserkerGloves implements Item {
 
     @Override
     public void updatePlayerStats (Player player) {
-        player.getMyStats().setHp(player.getMyStats().getHp() + randomInt(10, 5));
+        player.getMyStats().setHp(player.getMyStats().getHp() + randomInt(20, 15));
         player.getMyStats().setMaxHP(player.getMyStats().getMaxHP() + itemStats.getHp());
-        player.getMyStats().setArm(player.getMyStats().getArm() + randomInt(5, 0));
-        player.getMyStats().setcRes(player.getMyStats().getcRes() + randomInt(5, 0));
-        player.getMyStats().setfRes(player.getMyStats().getfRes() + randomInt(5, 0));
-        player.getMyStats().setpRes(player.getMyStats().getpRes() + randomInt(5, 0));
-        player.getMyStats().setlRes(player.getMyStats().getlRes() + randomInt(5, 0));
-        player.getMyStats().setCold(player.getMyStats().getCold() + randomInt(4, 2));
-        player.getMyStats().setFire(player.getMyStats().getfRes() + randomInt(4, 2));
-        player.getMyStats().setPoison(player.getMyStats().getPoison() + randomInt(4, 2));
-        player.getMyStats().setLightning(player.getMyStats().getLightning() + randomInt(4, 2));
+        player.getMyStats().setArm(player.getMyStats().getArm() + randomInt(5, 3));
+        player.getMyStats().setcRes(player.getMyStats().getcRes() + randomInt(5, 3));
+        player.getMyStats().setfRes(player.getMyStats().getfRes() + randomInt(5, 3));
+        player.getMyStats().setpRes(player.getMyStats().getpRes() + randomInt(5, 3));
+        player.getMyStats().setlRes(player.getMyStats().getlRes() + randomInt(5, 3));
+        player.getMyStats().setCold(player.getMyStats().getCold() + randomInt(5, 3));
+        player.getMyStats().setFire(player.getMyStats().getFire() + randomInt(5, 3));
+        player.getMyStats().setPoison(player.getMyStats().getPoison() + randomInt(5, 3));
+        player.getMyStats().setLightning(player.getMyStats().getLightning() + randomInt(5, 3));
     }
     @Override
     public void itemStats() {
@@ -66,9 +66,9 @@ public class MageBerserkerGloves implements Item {
     //each spell casts increase all magic damage
     @Override
     public void specialEffect(Player player) {
-        player.getMyStats().setCold(player.getMyStats().getCold() + (2 * player.getSpellCounter()));
-        player.getMyStats().setFire(player.getMyStats().getfRes() + (2 * player.getSpellCounter()));
-        player.getMyStats().setPoison(player.getMyStats().getPoison() + (2 * player.getSpellCounter()));
-        player.getMyStats().setLightning(player.getMyStats().getLightning() + (2 * player.getSpellCounter()));
+        player.bonuslDmg = player.getSpellCounter()*2;
+        player.bonusfDmg = player.getSpellCounter()*2;
+        player.bonuspDmg = player.getSpellCounter()*2;
+        player.bonuscDmg = player.getSpellCounter()*2;
 }
 }

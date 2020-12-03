@@ -1,11 +1,11 @@
 package coolGame.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import coolGame.model.character.Character;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Model that's responsible for returning a random ArrayList of all Characters on a map
@@ -61,7 +61,7 @@ public class Map {
 		//Add 3 enemies to the map (it is num of enemies + 1 since player and exit take up a spot each)
 		while(occupiedLocations.size() < NUM_ENEMIES_ON_MAP+2) {
 
-			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED);
+			int randomInt = generateRandomInt(TOTAL_ENEMIES_ALLOWED-1);
 			occupiedLocations.add(randomInt);
 
 		}
