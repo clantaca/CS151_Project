@@ -48,5 +48,7 @@ public class ShortSwordOfPower implements Item {
     public void specialEffect(Player player) {
         if (player.getSpecialAttack() == player.physSpecialAttackCounter)
             player.bonusDmg = 15;
+        else
+            player.bonusDmg = 0;
     }
 }

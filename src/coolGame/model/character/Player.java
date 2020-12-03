@@ -551,6 +551,11 @@ public class Player extends Character {
         turnCounter = 0;
         blockCounter = 0;
         isFrozen = false;
+        bonusDmg = 0;
+        bonuscDmg = 0;
+        bonusfDmg = 0;
+        bonuspDmg = 0;
+        bonuslDmg = 0;
     }
 
     // removes poison buff from enemy

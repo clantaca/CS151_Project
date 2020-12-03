@@ -32,7 +32,7 @@ public class MageBerserkerGloves implements Item {
 
     @Override
     public String getDescription() {
-        return "Every spell cast increases the damage of consecutive spells cast by 2." + item.getDescription();
+        return "Every spell cast increases the damage of consecutive spells cast by 3." + item.getDescription();
     }
 
     @Override
@@ -63,12 +63,12 @@ public class MageBerserkerGloves implements Item {
         System.out.println("+" + itemStats.getPoison() + " Poison Damage");
     }
 
-    //each spell casts increase all magic damage
+    //each spell casts increases all magic damage
     @Override
     public void specialEffect(Player player) {
-        player.bonuslDmg = player.getSpellCounter()*2;
-        player.bonusfDmg = player.getSpellCounter()*2;
-        player.bonuspDmg = player.getSpellCounter()*2;
-        player.bonuscDmg = player.getSpellCounter()*2;
+        player.bonuslDmg = player.getSpellCounter()*3;
+        player.bonusfDmg = player.getSpellCounter()*3;
+        player.bonuspDmg = player.getSpellCounter()*3;
+        player.bonuscDmg = player.getSpellCounter()*3;
 }
 }

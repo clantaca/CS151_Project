@@ -1,11 +1,11 @@
 package coolGame.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import coolGame.model.character.Character;
 import coolGame.model.character.Enemy;
 import coolGame.model.character.Player;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Model that's responsible for returning a random ArrayList of all Characters on a map
