@@ -1,17 +1,27 @@
-/*
+import coolGame.model.character.Enemy;
+import coolGame.model.character.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Unit testing of the Player class
+ */
 public class PlayerTest {
     Player p;
     Enemy e;
 
+    /**
+     * Initializes all the player's stats and enemy with a power of 1 before testing
+     * @throws Exception
+     */
     @BeforeEach
     public void setUp() throws Exception {
         p = new Player("Test Player");
+        e = new Enemy(1);
+        e.getMyStats().setHp(100);
         p.getMyStats().setHp(100);
         p.getMyStats().setMaxHP(100);
         p.getMyStats().setDmg(20);
@@ -28,6 +38,9 @@ public class PlayerTest {
         p.getMyStats().setlRes(2);
     }
 
+    /**
+     * Player stats (dmg, hp, arm, resistances, damages) should be initialized with specified amount in the setup
+     */
     @Test
     public void testPlayer() {
         assertEquals(p.getMyStats().getHp(), 100, "Player starts with 100 hp");
@@ -46,58 +59,80 @@ public class PlayerTest {
         assertEquals(p.getMyStats().getlRes(), 2, "Player has 2 cold resistance");
     }
 
-    */
-/*
-    //Not sure if we should test methods whose behavior is random each time its called
 
-    @Test
-    public int testRandomizeDmg() {
-        p.randomizeDmg("Physical");
-    }
-
+    /**
+     * Tests physical attack where the enemy should lose health if not dodged
+     */
     @Test
     public void testPhysicalAttack() {
         p.physicalAttack(e);
+        assertTrue(e.getMyStats().getHp() <= 100, "Enemy's health should be decreased");
     }
 
+    /**
+     * Tests cold spell where the enemy should lose health if not dodged
+     */
     @Test
     public void testColdAttack() {
         p.coldAttack(e);
+        assertTrue(e.getMyStats().getHp() <= 100, "Player uses cold spell; enemy loses hp");
     }
 
+    /**
+     * Tests poison spell where the enemy should lose 10 health on the next attack as a poison debuff is applied
+     */
     @Test
     public void testPoisonAttack() {
         p.poisonAttack(e);
+        p.physicalAttack(e);
+        assertTrue(e.getMyStats().getHp() <= 100, "Player uses poison spell; enemy loses hp");
     }
 
+    /**
+     * Tests fire spell where the enemy should lose health if not dodged
+     */
     @Test
     public void testFireAttack() {
         p.fireAttack(e);
+        assertTrue(e.getMyStats().getHp() <= 100, "Player uses fire spell; enemy loses hp");
     }
 
+    /**
+     * Tests lightning spell where the enemy should lose health if not dodged
+     */
     @Test
     public void testLightningAttack() {
         p.lightningAttack(e);
+        assertTrue(e.getMyStats().getHp() <= 100, "Player uses lightning spell; enemy loses hp");
     }
-    *//*
 
 
+    /**
+     * Tests when the player uses a spell; player should lose 5 mana as a result
+     */
     @Test
     public void testUseSpell() {
         p.useSpell();
         assertEquals(p.getMyStats().getMana(), 10, "Mana should decrease by 5");
     }
 
+    /**
+     * Tests when the player's mana increases
+     */
     @Test
     public void testIncreaseMana() {
         p.increaseMana(2);
         assertEquals(p.getMyStats().getMana(), 17, "Mana should increase by 2");
     }
+
+    /**
+     * Tests when the player blocks the enemy; player should get 5 additional mana as a result
+     */
     @Test
     public void testEnemyBlocked() {
         Player p = new Player("TestPlayer");
-        p.blockEnemy();
-        assertTrue(p.blockEnemy(), "Player should block enemy");
+        p.blockEnemy(e);
+        assertTrue(p.blockEnemy(e), "Player should block enemy");
         assertEquals(p.getMyStats().getMana(), 20, "Mana should increase");
     }
-}*/
+}
