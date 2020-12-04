@@ -26,22 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/character/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/character/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/BloodlustGauntlets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/BloodlustGauntlets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ItemDec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ItemDec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ItemStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ItemStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/LightningStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/LightningStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/MageBerserkerGloves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/MageBerserkerGloves.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/PoisonWand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/PoisonWand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/RejuvenatingChestplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/RejuvenatingChestplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ShortSwordOfPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ShortSwordOfPower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/StonewallShield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/StonewallShield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/SwiftShoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/SwiftShoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/VampireGreatsword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/VampireGreatsword.java" afterDir="false" />
-    </list>
+    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,7 +156,7 @@
       <workItem from="1606617370645" duration="11647000" />
       <workItem from="1607009383786" duration="3718000" />
       <workItem from="1607054092413" duration="8413000" />
-      <workItem from="1607062564056" duration="339000" />
+      <workItem from="1607062564056" duration="582000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
