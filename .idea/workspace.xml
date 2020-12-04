@@ -26,33 +26,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/BloodlustGauntletsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/BloodlustGauntletsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/CharacterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/EnemyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/ItemStorageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/ItemStorageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/MageBerserkerGlovesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/MageBerserkerGlovesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/PoisonWandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/PoisonWandTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/RejuvenatingChestplateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/RejuvenatingChestplateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/ShortSwordOfPowerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/ShortSwordOfPowerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/StonewallShieldTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/StonewallShieldTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestSourceRoot/SwiftShoesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestSourceRoot/SwiftShoesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/BlockMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/BlockMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/BossDiesMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/BossDiesMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/ColdAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/ColdAtkMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/EastMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/EastMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/EnemyStatsMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/EnemyStatsMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/FireAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/FireAtkMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/LightningAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/LightningAtkMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/NorthMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/NorthMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PhyAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PhyAtkMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PlayerDiesMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PlayerDiesMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PlayerInvMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PlayerInvMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PlayerStatsMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PlayerStatsMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PoisonAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PoisonAtkMessage.java" afterDir="false" />
+    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="updated readme file">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +157,7 @@
       <workItem from="1607073812568" duration="255000" />
       <workItem from="1607097836593" duration="1068000" />
       <workItem from="1607099016960" duration="5979000" />
+      <workItem from="1607107340587" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
