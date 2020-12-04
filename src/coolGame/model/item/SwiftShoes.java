@@ -3,40 +3,45 @@ package coolGame.model.item;
 import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
-/**
- * Model that constructs an item, Swift Shoes, that the player could obtain/utilize during combat
- */
 public class SwiftShoes implements Item {
+
+    //Constructors to be used in the class
     Item item;
     private Stats itemStats = new Stats();
 
+    //String variables
+    private String name = "Shoes of Swiftness";
+    private String description = "Increases Dodge chance by 25%";
+
     /**
-     * Returns a random integer given a minimum and maximum number
-     * @param max
-     * @param min
-     * @return randomInt
+     * Random number generator method
+     *
+     * @param max - the upper limit of the random function
+     * @param min - the lower limit of the random function
+     * @return - retrieves a random number between the max and min
      */
     public int randomInt(int max, int min) {
-        return (int) (Math.random()*(max-min))+min;
+        return (int) (Math.random() * (max - min)) + min;
     }
 
     /**
-     * Constructor that initializes the stats (HP, armor, resistances, dodge) of the item with a randomized int
-     * @param item
+     * Adds stats to the item
+     *
+     * @param item - accepts an item to be used for the decorator pattern
      */
     public SwiftShoes(Item item) {
-        itemStats.setHp(randomInt(30, 15));
-        itemStats.setArm(randomInt(10,0));
-        itemStats.setcRes(randomInt(10,0));
-        itemStats.setfRes(randomInt(10,0));
-        itemStats.setpRes(randomInt(10,0));
-        itemStats.setlRes(randomInt(10,0));
+        itemStats.setHp(randomInt(30, 20));
+        itemStats.setArm(randomInt(10, 0));
+        itemStats.setcRes(randomInt(10, 0));
+        itemStats.setfRes(randomInt(10, 0));
+        itemStats.setpRes(randomInt(10, 0));
+        itemStats.setlRes(randomInt(10, 0));
         itemStats.setDodge(25);
         this.item = item;
     }
 
     /**
-     * Displays the stats of the items that include the hp, armor, and resistances
+     * Method used to print out the stats of the item
      */
     @Override
     public void itemStats() {
@@ -50,9 +55,9 @@ public class SwiftShoes implements Item {
     }
 
     /**
-     * Constructs the special effect of the item;
-     * Since swift shoes does not have any special effects on the player, it remains empty
-     * @param player
+     * Nothing, special effect is an increase of a rare stat of dodge.
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
     @Override
     public void specialEffect(Player player) {
@@ -60,18 +65,15 @@ public class SwiftShoes implements Item {
     }
 
     /**
-     * Returns the name of the item
-     * @return name
+     * Used to get the name of the item
+     *
+     * @return returns the item decorator's method and the name of the item
      */
     @Override
     public String getName() {
-        return item.getName() + "Shoes of Swiftness";
+        return item.getName() + name;
     }
 
-    /**
-     * Updates/Adds the stats of the player according the the item's stats
-     * @param player
-     */
     @Override
     public void updatePlayerStats(Player player) {
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
@@ -85,11 +87,12 @@ public class SwiftShoes implements Item {
     }
 
     /**
-     * Returns the description of the item
-     * @return description
+     * Used to get the description of the item's special effect
+     *
+     * @return returns the description of the item and the item decorator's method
      */
     @Override
     public String getDescription() {
-        return "Increases Dodge chance by 25%" + item.getDescription();
+        return description + item.getDescription();
     }
 }

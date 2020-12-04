@@ -4,60 +4,69 @@ import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
 /**
- * Model that constructs an item, Stone Wall Shield, that the player could obtain/utilize during combat
+ * Creates the Stonewall Shield under the Item Interface
  */
 public class StonewallShield extends Stats implements Item {
 
+    //Constructors to be used in the class
     Item item;
-
-    /**
-     * Returns a random integer given a minimum and maximum number
-     * @param max
-     * @param min
-     * @return randomInt
-     */
-    public int randomInt(int max, int min) {
-        return (int) (Math.random()*(max-min))+min;
-    }
-
     private Stats itemStats = new Stats();
 
+    //String variables
+    private String name = "Stonewall's Shield";
+    private String description = "On every 3rd turn, ignore all damage taken.";
+
     /**
-     * Constructor that initializes the stats (HP, armor, resistances) of the item with a randomized int
-     * @param item
+     * Random number generator method
+     *
+     * @param max - the upper limit of the random function
+     * @param min - the lower limit of the random function
+     * @return - retrieves a random number between the max and min
+     */
+    public int randomInt(int max, int min) {
+        return (int) (Math.random() * (max - min)) + min;
+    }
+
+    /**
+     * Adds stats to the item
+     *
+     * @param item - accepts an item to be used for the decorator pattern
      */
     public StonewallShield(Item item) {
-        itemStats.setDmg(randomInt(7,1));
-        itemStats.setHp(randomInt(30,20));
-        itemStats.setArm(randomInt(10,5));
-        itemStats.setcRes(randomInt(10,5));
-        itemStats.setfRes(randomInt(10,5));
-        itemStats.setpRes(randomInt(10,5));
-        itemStats.setlRes(randomInt(10,5));
+        itemStats.setDmg(randomInt(10, 5));
+        itemStats.setHp(randomInt(30, 20));
+        itemStats.setArm(randomInt(10, 5));
+        itemStats.setcRes(randomInt(10, 5));
+        itemStats.setfRes(randomInt(10, 5));
+        itemStats.setpRes(randomInt(10, 5));
+        itemStats.setlRes(randomInt(10, 5));
         this.item = item;
     }
 
     /**
-     * Returns the name of item
-     * @return name
+     * Used to get the name of the item
+     *
+     * @return returns the item decorator's method and the name of the item
      */
     @Override
     public String getName() {
-        return item.getName() + "Stonewall's Shield";
+        return item.getName() + name;
     }
 
     /**
-     * Returns the description of item
-     * @return description
+     * Used to get the description of the item's special effect
+     *
+     * @return returns the description of the item and the item decorator's method
      */
     @Override
     public String getDescription() {
-        return "On every 3rd turn, ignore all damage taken." + item.getDescription();
+        return description + item.getDescription();
     }
 
     /**
-     * Updates/Adds the stats of the player according the the item's stats
-     * @param player
+     * Method used to update the player's stats with the item's stats
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
     @Override
     public void updatePlayerStats(Player player) {
@@ -72,7 +81,7 @@ public class StonewallShield extends Stats implements Item {
     }
 
     /**
-     * Displays the stats of the items that include the physical damage, health, armor and resistances
+     * Method used to print out the stats of the item
      */
     @Override
     public void itemStats() {
@@ -86,14 +95,13 @@ public class StonewallShield extends Stats implements Item {
     }
 
     /**
-     * Constructs the special effect of the item;
-     * Ignores all damage every third turn
-     * @param player
+     * Ignores all damage taken from the enemy on every 3rd turn
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
-    //ignore all damage every 3rd turn
     @Override
     public void specialEffect(Player player) {
-        if (player.getTurnCounter()+1 % 3 == 0)
+        if (player.getTurnCounter() + 1 % 3 == 0)
             player.setShieldEffect(true);
         else
             player.setShieldEffect(false);

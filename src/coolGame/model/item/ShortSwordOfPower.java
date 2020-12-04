@@ -4,59 +4,69 @@ import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
 /**
- * Model that constructs an item, Short Sword of Power, that the player could obtain/utilize during combat
+ * Creates the Short Sword of Power under the Item Interface
  */
 public class ShortSwordOfPower implements Item {
 
+    //Constructors to be used in the class
     Item item;
-
-    /**
-     * Returns a random integer given a minimum and maximum number
-     * @param max
-     * @param min
-     * @return randomInt
-     */
-    public int randomInt(int max, int min) {
-        return (int) (Math.random()*(max-min))+min;
-    }
     private Stats itemStats = new Stats();
 
+    //String variables
+    private String description = "Every special physical attack has it's damage increased by 10.";
+    private String name = "Short Sword Of Power";
+
     /**
-     * Constructor that initializes the stats (dmg, crit, hp, armor) of the item with a randomized int
-     * @param item
+     * Random number generator method
+     *
+     * @param max - the upper limit of the random function
+     * @param min - the lower limit of the random function
+     * @return - retrieves a random number between the max and min
+     */
+    public int randomInt(int max, int min) {
+        return (int) (Math.random() * (max - min)) + min;
+    }
+
+    /**
+     * Adds stats to the item
+     *
+     * @param item - accepts an item to be used for the decorator pattern
      */
     public ShortSwordOfPower(Item item) {
         itemStats.setDmg(randomInt(10, 4));
         itemStats.setCrit(15);
-        itemStats.setHp(randomInt(20,10));
-        itemStats.setArm(randomInt(10,5));
+        itemStats.setHp(randomInt(20, 10));
+        itemStats.setArm(randomInt(10, 5));
         this.item = item;
     }
 
     /**
-     * Returns name of item
-     * @return name
+     * Used to get the name of the item
+     *
+     * @return returns the item decorator's method and the name of the item
      */
     @Override
     public String getName() {
-        return item.getName() + "Short Sword Of Power";
+        return item.getName() + name;
     }
 
     /**
-     * Returns description of item
-     * @return description
+     * Used to get the description of the item's special effect
+     *
+     * @return returns the description of the item and the item decorator's method
      */
     @Override
     public String getDescription() {
-        return "Every special physical attack has it's damage increased by 10." + item.getDescription();
+        return description + item.getDescription();
     }
 
     /**
-     * Updates/Adds the stats of the player according the the item's stats
-     * @param player
+     * Method used to update the player's stats with the item's stats
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
     @Override
-    public void updatePlayerStats (Player player) {
+    public void updatePlayerStats(Player player) {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
         player.getMyStats().setCrit(player.getMyStats().getCrit() + itemStats.getCrit());
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
@@ -64,7 +74,7 @@ public class ShortSwordOfPower implements Item {
     }
 
     /**
-     * Displays the stats of the items that include the physical damage, health, armor and crit
+     * Method used to print out the stats of the item
      */
     @Override
     public void itemStats() {
@@ -75,15 +85,14 @@ public class ShortSwordOfPower implements Item {
     }
 
     /**
-     * Constructs the special effect of the item;
-     * Every third attack deals a bonus damage
-     * @param player
+     * Every special physical attack has it's damage increased by 10
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
-    //every 3rd attack deals bonus damage
     @Override
     public void specialEffect(Player player) {
         if (player.getSpecialAttack() == player.physSpecialAttackCounter)
-            player.bonusDmg = 15;
+            player.bonusDmg = +15;
         else
             player.bonusDmg = 0;
     }

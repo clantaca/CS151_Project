@@ -3,17 +3,16 @@ package coolGame.model.item;
 import java.util.ArrayList;
 
 /**
- * Model class that holds an arraylist of items into a storage
+ * This is the storage class of all the objects from all the item classes underneath the item interface
  */
 public class ItemStorage {
 
-    //creates an array to put the items in
+    //Creates an array to put the items in
     public ArrayList<Item> itemStorages = new ArrayList<>();
 
     /**
-     * Constructor that initializes all the items and adds them to the storage
+     * uses the item storage arraylist from above to add all the items into it
      */
-	//creates the item storage array list with all the items
     public ItemStorage() {
         Item itemDec = new ItemDec();
         Item poisonWand = new PoisonWand(itemDec);
@@ -31,20 +30,21 @@ public class ItemStorage {
         itemStorages.add(stonewallShield);
         itemStorages.add(shortSwordOfPower);
         itemStorages.add(bloodlustGauntlets);
-//        itemStorages.add(swiftShoes);
+        itemStorages.add(swiftShoes);
         itemStorages.add(lightningStaff);
         itemStorages.add(vampireGreatsword);
     }
 
     /**
-     * Returns a random item from the array of items and removes it from the array, updating the player stats with it
-     * @return
+     * Method is used to pick a random item from the itemStorages array,
+     * return that item, and then delete the item from the array.
+     *
+     * @return - returns an Item object from the itemStorages arraylist
      */
-    //picks a random item from the array, updates the player stats with the items' stats and removes it from the array
     public Item getNewItem() {
 
-        int rand = (int)(Math.random() * itemStorages.size());
-        
+        int rand = (int) (Math.random() * itemStorages.size());
+
         Item returnItem = itemStorages.get(rand);
         itemStorages.remove(rand);
         return returnItem;

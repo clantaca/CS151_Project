@@ -3,11 +3,12 @@ package coolGame.model.item;
 import coolGame.model.character.Player;
 
 /**
- * Decorator class for Item
+ * A simple item decorator class that adds base strings for the description and the names
  */
 public class ItemDec implements Item {
+
     /**
-     * Displays the stats of the item
+     * nothing
      */
     @Override
     public void itemStats() {
@@ -15,8 +16,9 @@ public class ItemDec implements Item {
     }
 
     /**
-     * Constructs the special effects for the item
-     * @param player
+     * nothing
+     *
+     * @param player - player argument that the special effects of items use to enhance.
      */
     @Override
     public void specialEffect(Player player) {
@@ -24,8 +26,9 @@ public class ItemDec implements Item {
     }
 
     /**
-     * Returns the name of item
-     * @return name
+     * This method is a string that all the names items use
+     *
+     * @return - a string
      */
     @Override
     public String getName() {
@@ -33,8 +36,9 @@ public class ItemDec implements Item {
     }
 
     /**
-     * Updates/Adds the player's stats according to the item's stats
-     * @param player
+     * nothing
+     *
+     * @param player - player argument that is used to add the item's stats to the player's stats
      */
     @Override
     public void updatePlayerStats(Player player) {
@@ -42,11 +46,12 @@ public class ItemDec implements Item {
     }
 
     /**
-     * Returns the description of the item
-     * @return description
+     * This method is a string that all descriptions of items use
+     *
+     * @return - a string formatting
      */
     @Override
     public String getDescription() {
-        return System.lineSeparator() + "-----------------------------------------------------------------------";
+        return System.lineSeparator() + "-----------------------------------------------------------------------------";
     }
 }

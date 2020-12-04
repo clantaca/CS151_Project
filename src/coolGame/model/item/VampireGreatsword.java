@@ -4,59 +4,68 @@ import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
 /**
- * Model that constructs an item, Vampire Great Sword, that the player could obtain/utilize during combat
+ * Creates the Lightning Staff under the Item Interface
  */
 public class VampireGreatsword implements Item {
 
+    //Constructors to be used in the class
     Item item;
-
-    /**
-     * Returns a random integer given a minimum and maximum number
-     * @param max
-     * @param min
-     * @return randomInt
-     */
-    public int randomInt(int max, int min) {
-        return (int) (Math.random()*(max-min))+min;
-    }
-
     private Stats itemStats = new Stats();
 
+    //String variables
+    private String name = "Vampiric Greatsword";
+    private String description = "Your physical special attack now procs every other atack.";
+
     /**
-     * Constructor that initializes the stats (physical dmg, hp, crit) of the item with a randomized int
-     * @param item
+     * Random number generator method
+     *
+     * @param max - the upper limit of the random function
+     * @param min - the lower limit of the random function
+     * @return - retrieves a random number between the max and min
+     */
+    public int randomInt(int max, int min) {
+        return (int) (Math.random() * (max - min)) + min;
+    }
+
+    /**
+     * Adds stats to the item
+     *
+     * @param item - accepts an item to be used for the decorator pattern
      */
     public VampireGreatsword(Item item) {
         itemStats.setDmg(randomInt(15, 10));
-        itemStats.setHp(randomInt(20,10));
+        itemStats.setHp(randomInt(20, 10));
         itemStats.setCrit(5);
         this.item = item;
     }
 
     /**
-     * Returns the name of the item
-     * @return name
+     * Used to get the name of the item
+     *
+     * @return returns the item decorator's method and the name of the item
      */
     @Override
     public String getName() {
-        return item.getName() + "Vampiric Greatsword";
+        return item.getName() + name;
     }
 
     /**
-     * Returns the description of the item
-     * @return description
+     * Used to get the description of the item's special effect
+     *
+     * @return returns the description of the item and the item decorator's method
      */
     @Override
     public String getDescription() {
-        return "Your physical special attack now procs every other atack." + item.getDescription();
+        return description + item.getDescription();
     }
 
     /**
-     * Updates/Adds the stats of the player according the the item's stats
-     * @param player
+     * Method used to update the player's stats with the item's stats
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
     @Override
-    public void updatePlayerStats (Player player) {
+    public void updatePlayerStats(Player player) {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
         player.getMyStats().setCrit(player.getMyStats().getCrit() + itemStats.getCrit());
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
@@ -64,7 +73,7 @@ public class VampireGreatsword implements Item {
     }
 
     /**
-     * Displays the stats of the items that include the damage, crits, and hp
+     * Method used to print out the stats of the item
      */
     @Override
     public void itemStats() {
@@ -74,11 +83,10 @@ public class VampireGreatsword implements Item {
     }
 
     /**
-     * Constructs the special effect of the item;
-     * Every 3rd attack deals with bonus damage
-     * @param player
+     * Reduces the amount of physical attacks it takes to proc the special attack by 1.
+     *
+     * @param player - the argument is used to retrieve the player class' stats
      */
-    //every 3rd attack deals bonus damage
     @Override
     public void specialEffect(Player player) {
         player.physSpecialAttackCounter = 1;
