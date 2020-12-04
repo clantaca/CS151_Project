@@ -46,15 +46,5 @@ public class NotificationView extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
-    /**
-     * Main test to display system.out.print onto the Activity Log
-     * @param args
-     */
-    public static void main(String[] args) {
-        new NotificationView();
-        System.out.println("This is a test");
-        System.out.println("Hello");
-    }
 }
 

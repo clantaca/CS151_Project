@@ -350,15 +350,6 @@ public class StatView extends JFrame {
         this.enemy = enemy;
     }
 
-    /**
-     * Main test for StatView to display the player, "Zero's" Stats
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        new StatView(new Player("Zero"), new Enemy(1));
-    }
-
 }
 
 

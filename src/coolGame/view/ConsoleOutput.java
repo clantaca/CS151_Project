@@ -6,6 +6,7 @@ import java.io.OutputStream;
 
 /**
  * ConsoleOutput that displays the outputstream onto a textArea
+ *
  * @Nam Ha Minh https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
  */
 public class ConsoleOutput extends OutputStream {
@@ -13,6 +14,7 @@ public class ConsoleOutput extends OutputStream {
 
     /**
      * Constructor that initializes the textarea
+     *
      * @param textArea
      */
     public ConsoleOutput(JTextArea textArea) {
@@ -21,12 +23,13 @@ public class ConsoleOutput extends OutputStream {
 
     /**
      * Overwrites the output and appends text into the textarea
+     *
      * @param b
      * @throws IOException
      */
     @Override
     public void write(int b) throws IOException {
-        textArea.append(String.valueOf((char)b));
+        textArea.append(String.valueOf((char) b));
         textArea.setCaretPosition(textArea.getDocument().getLength());
     }
 }

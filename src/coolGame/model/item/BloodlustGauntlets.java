@@ -14,7 +14,7 @@ public class BloodlustGauntlets implements Item {
 
     //String variables
     private String name = "Bloodlust Gauntlets";
-    private String description = "While below 75%/50%/25% health, increase damage by 10/20/30 respectively.";
+    private String description = "While below 75%/50%/25% health, increase damage by 15/25/35 respectively.";
 
     /**
      * Random number generator method
@@ -103,10 +103,12 @@ public class BloodlustGauntlets implements Item {
     @Override
     public void specialEffect(Player player) {
         if (player.getMyStats().getHp() < player.getMyStats().getHp() * .25)
-            player.bonusDmg = +30;
+            player.bonusDmg2 = 35;
         else if (player.getMyStats().getHp() < player.getMyStats().getHp() * .5)
-            player.bonusDmg = +20;
+            player.bonusDmg2 = 25;
         else if (player.getMyStats().getHp() < player.getMyStats().getHp() * .75)
-            player.bonusDmg = +10;
+            player.bonusDmg2 = 15;
+        else
+            player.bonusDmg2 = 0;
     }
 }
