@@ -3,13 +3,27 @@ package coolGame.model.item;
 import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
+/**
+ * Model that constructs an item, Swift Shoes, that the player could obtain/utilize during combat
+ */
 public class SwiftShoes implements Item {
     Item item;
     private Stats itemStats = new Stats();
+
+    /**
+     * Returns a random integer given a minimum and maximum number
+     * @param max
+     * @param min
+     * @return randomInt
+     */
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
 
+    /**
+     * Constructor that initializes the stats (HP, armor, resistances, dodge) of the item with a randomized int
+     * @param item
+     */
     public SwiftShoes(Item item) {
         itemStats.setHp(randomInt(30, 15));
         itemStats.setArm(randomInt(10,0));
@@ -20,6 +34,10 @@ public class SwiftShoes implements Item {
         itemStats.setDodge(25);
         this.item = item;
     }
+
+    /**
+     * Displays the stats of the items that include the hp, armor, and resistances
+     */
     @Override
     public void itemStats() {
         System.out.println("+" + itemStats.getHp() + " Health");
@@ -31,16 +49,29 @@ public class SwiftShoes implements Item {
 
     }
 
+    /**
+     * Constructs the special effect of the item;
+     * Since swift shoes does not have any special effects on the player, it remains empty
+     * @param player
+     */
     @Override
     public void specialEffect(Player player) {
 
     }
 
+    /**
+     * Returns the name of the item
+     * @return name
+     */
     @Override
     public String getName() {
         return item.getName() + "Shoes of Swiftness";
     }
 
+    /**
+     * Updates/Adds the stats of the player according the the item's stats
+     * @param player
+     */
     @Override
     public void updatePlayerStats(Player player) {
         player.getMyStats().setHp(player.getMyStats().getHp() + itemStats.getHp());
@@ -53,6 +84,10 @@ public class SwiftShoes implements Item {
         player.getMyStats().setDodge(player.getMyStats().getDodge() + itemStats.getDodge());
     }
 
+    /**
+     * Returns the description of the item
+     * @return description
+     */
     @Override
     public String getDescription() {
         return "Increases Dodge chance by 25%" + item.getDescription();

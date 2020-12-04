@@ -5,6 +5,9 @@ import coolGame.model.item.ItemStorage;
 
 import java.util.ArrayList;
 
+/**
+ * Model that constructs a single player in the game
+ */
 public class Player extends Character {
 
     private int N; // size of inventory space
@@ -30,107 +33,101 @@ public class Player extends Character {
     public int physSpecialAttackCounter = 2;
     public float lightningDebuff = 20.0f;
 
-    public int getcSpellCounter() {
-        return cSpellCounter;
-    }
 
-    public void setcSpellCounter(int cSpellCounter) {
-        this.cSpellCounter = cSpellCounter;
-    }
-
-    public int getfSpellCounter() {
-        return fSpellCounter;
-    }
-
-    public void setfSpellCounter(int fSpellCounter) {
-        this.fSpellCounter = fSpellCounter;
-    }
-
+    /**
+     * Returns the amount of turns with debuff
+     * @return debuffTurnCounter
+     */
     public int getDebuffTurnCounter() {
         return debuffTurnCounter;
     }
 
-    public void setDebuffTurnCounter(int debuffTurnCounter) {
-        this.debuffTurnCounter = debuffTurnCounter;
-    }
-
-    public int getDebuffCounter() {
-        return debuffCounter;
-    }
-
+    /**
+     * Sets the debuff counter
+     * @param debuffCounter
+     */
     public void setDebuffCounter(int debuffCounter) {
         this.debuffCounter = debuffCounter;
     }
 
-    public boolean isDebuffOn() {
-        return debuffOn;
-    }
-
+    /**
+     * Sets whether debuff is on/off
+     * @param debuffOn
+     */
     public void setDebuffOn(boolean debuffOn) {
         this.debuffOn = debuffOn;
     }
 
+    /**
+     * Returns number of spell used
+     * @return spellCounter
+     */
     public int getSpellCounter() {
         return spellCounter;
     }
 
-    public void setSpellCounter(int spellCounter) {
-        this.spellCounter = spellCounter;
-    }
-
-    public int getAttackCounter() {
-        return attackCounter;
-    }
-
-    public void setAttackCounter(int attackCounter) {
-        this.attackCounter = attackCounter;
-    }
-
+    /**
+     * Returns number of hits taken
+     * @return hitsTakenCounter
+     */
     public int getHitsTakenCounter() {
         return hitsTakenCounter;
     }
 
+    /**
+     * Sets the number of hits taken
+     * @param hitsTakenCounter
+     */
     public void setHitsTakenCounter(int hitsTakenCounter) {
         this.hitsTakenCounter = hitsTakenCounter;
     }
 
+    /**
+     * Returns the number of turns
+     * @return turnCounter
+     */
     public int getTurnCounter() {
         return turnCounter;
     }
 
-    public void setTurnCounter(int turnCounter) {
-        this.turnCounter = turnCounter;
-    }
-
-    public int getBlockCounter() {
-        return blockCounter;
-    }
-
-    public void setBlockCounter(int blockCounter) {
-        this.blockCounter = blockCounter;
-    }
-
+    /**
+     * Returns whether the player's shield is in effect or not
+     * @return
+     */
     public boolean isShieldEffect() {
         return shieldEffect;
     }
 
+    /**
+     * Sets the shield effect of the player
+     * @param shieldEffect
+     */
     public void setShieldEffect(boolean shieldEffect) {
         this.shieldEffect = shieldEffect;
     }
 
+    /**
+     * Returns the original damage
+     * @return originalDmg
+     */
     public int getOriginalDmg() {
         return originalDmg;
     }
 
-    public void setOriginalDmg(int originalDmg) {
-        this.originalDmg = originalDmg;
-    }
-
     private boolean shieldEffect;
+
+    /**
+     * Returns whether the player has lightning debuff on/off
+     * @return
+     */
     public boolean getHasLightningDebuff() {
         return hasLightningDebuff;
     }
 
+    /**
+     * Sets the lightning debuff
+     * @param hasLightningDebuff
+     */
     public void setHasLightningDebuff(boolean hasLightningDebuff) {
         this.hasLightningDebuff = hasLightningDebuff;
     }
@@ -143,18 +140,34 @@ public class Player extends Character {
     public int bonuslDmg = 0;
 
 
+    /**
+     * Returns an arraylist of the player's inventory
+     * @return inventory
+     */
     public ArrayList<Item> getInventory() {
         return inventory;
     }
 
+    /**
+     * Returns an item from ItemStorage
+     * @return ItemStorage
+     */
     public ItemStorage getItem() {
         return itemStorage;
     }
 
+    /**
+     * Sets the item of ItemStorage
+     * @param itemStorage
+     */
     public void setItem(ItemStorage itemStorage) {
         this.itemStorage = itemStorage;
     }
 
+    /**
+     * Constructor that initializes the players name, hp, mana, damages, resistances, etc.
+     * @param name
+     */
     public Player(String name) {
         this.setName(name);
         this.N = 10; // fixed inventory size
@@ -179,11 +192,22 @@ public class Player extends Character {
         this.getMyStats().setCrit(5);
     }
 
+    /**
+     * Returns a random number from a minimum and maximum value
+     * @param min
+     * @param max
+     * @return randomInt
+     */
     // generates random integer
     public int randomInt(int min, int max) {
         return (int) (Math.random()*(max-min))+min;
     }
 
+    /**
+     * Randomizes the player's damage based off of the attack they choose
+     * @param dmgType
+     * @return random damage
+     */
     // randomizes player's damages for each attack type
     public int randomizeDmg(String dmgType) {
         int pdmg = 0;
@@ -240,6 +264,11 @@ public class Player extends Character {
         return pdmg;
     }
 
+    /**
+     * Physical attack method that calculates the damage dealt by the enemy;
+     * Every fourth physical attack does a special physical attack
+     * @param enemy
+     */
     public void physicalAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor
         int pdmg = randomizeDmg("Physical") + bonusDmg;
@@ -274,7 +303,7 @@ public class Player extends Character {
 
             }
             else if (specialAttack == physSpecialAttackCounter) {
-                //tdmg = ((getMyStats().getDmg() * 2) < enemyRes) ? 0 : ((getMyStats().getDmg() * 2) - enemyRes); //Also modified here; same case as above
+
                 enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
             getMyStats().setHp(getMyStats().getHp() + tdmg*2);
                 if (getMyStats().getHp() > getMyStats().getMaxHP())
@@ -285,13 +314,13 @@ public class Player extends Character {
 
             else if (critChance <= getMyStats().getCrit()) {
 
-                    //tdmg = ((getMyStats().getCold() * 2) < enemyRes) ? 0 : ((getMyStats().getCold() * 2) - enemyRes);
+
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg*2));
                     System.out.println("Player lands a critical strike, dealing " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + " HP.");
                     specialAttack++;
                 }
                 else {
-                    //tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
+
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - (tdmg));
                     System.out.println("Player attacks with his weapon, dealing " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
                     specialAttack++;
@@ -316,6 +345,11 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Cold spell method that calculates the damage dealt by the enemy;
+     * Every third cold spell freezes enemy
+     * @param enemy
+     */
     public void coldAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and cold resistance
         int pdmg = randomizeDmg("Cold") + bonuscDmg;
@@ -345,14 +379,12 @@ public class Player extends Character {
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special cold spell
 
-                        //tdmg = ((getMyStats().getCold() * 3) < enemyRes) ? 0 : ((getMyStats().getCold() * 3) - enemyRes);
                         isFrozen = true;
                         enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
                         System.out.println("Player uses cold spell and does " + pdmg*2 + " damage. Enemy loses " + tdmg*2 + "!");
                         cSpellCounter = 0;
                     }
                  else {
-                    //tdmg = ((getMyStats().getCold() * 1) < enemyRes) ? 0 : ((getMyStats().getCold() * 1) - enemyRes);
                     useSpell();
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                     System.out.println("Player uses cold spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
@@ -377,6 +409,11 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Poison spell method that calculates the damage dealt by the enemy;
+     * Once used, a debuff on the enemy is applied in which the enemy loses an additional 10 HP every round
+     * @param enemy
+     */
     public void poisonAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and poison resistance
         int pdmg = randomizeDmg("Poison") + bonuspDmg;
@@ -424,6 +461,11 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Fire spell method that calculates the damage dealt by the enemy;
+     * Every second fire spell does bonus fire damage
+     * @param enemy
+     */
     public void fireAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and fire resistance
         int pdmg = randomizeDmg("Fire") + bonusfDmg;
@@ -435,6 +477,7 @@ public class Player extends Character {
         int enemyRes = enemy.getMyStats().getfRes();
         int tdmg = (int)(pdmg-(pdmg*(enemyRes/100.0f)));
         isFrozen = false;
+
         // needs 5 mana to use fire spell
         if(getMyStats().getMana() < 5) {
             System.out.println("Not enough mana to use fire spell!");
@@ -451,7 +494,6 @@ public class Player extends Character {
                     // if the randomly generated player dmg is less than enemy's resistance, the new total dmg is the enemy's resistance + player damage
                     // for a guaranteed special fire spell
 
-                    //tdmg = ((getMyStats().getFire() * 3) < enemyRes) ? 0 : ((getMyStats().getFire() * 3) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg*2);
                     System.out.println("Player does bonus fire damage. Enemy loses " + tdmg*2 + " HP.");
 
@@ -459,7 +501,6 @@ public class Player extends Character {
                 }
                 else {
                     useSpell();
-                    //tdmg = ((getMyStats().getFire() * 1) < enemyRes) ? 0 : ((getMyStats().getFire() * 1) - enemyRes);
                     enemy.getMyStats().setHp(enemy.getMyStats().getHp() - tdmg);
                     System.out.println("Player uses fire spell and does " + pdmg + " damage. Enemy loses " + tdmg + " HP.");
                     System.out.println("Enemy is ignited!");
@@ -487,6 +528,11 @@ public class Player extends Character {
         }
 
 
+    /**
+     * Lightning spell method that calculates the damage dealt by the enemy;
+     * Damages enemy and applies lightning debuff that does additional damage to enemy every turn
+     * @param enemy
+     */
     public void lightningAttack(Enemy enemy) {
         // randomizes damage and calculates damage based enemy armor and lightning resistance
         int pdmg = randomizeDmg("Lightning") + bonuslDmg;
@@ -537,6 +583,9 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Resets all counters for attacks, spells, damages, etc.
+     */
     // resets all the counters
     public void resetCounters() {
         specialAttack = 0;
@@ -558,6 +607,9 @@ public class Player extends Character {
         bonuslDmg = 0;
     }
 
+    /**
+     * Removes debuffs from enemy
+     */
     // removes poison buff from enemy
     public void resetDebuff() {
         debuffOn = false;
@@ -565,6 +617,10 @@ public class Player extends Character {
         debuffCounter = 0;
     }
 
+    /**
+     * Player's mana increases each time they attack
+     * @param num
+     */
     // adds +2 mana each time a player attacks
     public void increaseMana(int num) {
         int cMana = getMyStats().getMana()+num;
@@ -576,10 +632,18 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Resets block as false when attacking
+     */
     public void resetBlock() {
         blocked = false;
     }
 
+    /**
+     * Returns whether the player has blocked the enemy's attack and gains additional mana
+     * @param enemy
+     * @return blocked
+     */
     // returns true is attack if blocked, enemy cannot damage player
     public boolean blockEnemy(Enemy enemy) {
         int bMana = getMyStats().getMana()+5;
@@ -600,6 +664,9 @@ public class Player extends Character {
         return blocked = true;
     }
 
+    /**
+     * Decreases the player's mana by 5 when using spell
+     */
     // each spell uses 5 mana
     public void useSpell() {
         int cMana = getMyStats().getMana()-5;
@@ -613,6 +680,10 @@ public class Player extends Character {
 
     }
 
+    /**
+     * Updates inventory with an obtained item
+     * @param player
+     */
     // updates inventory with obtained item
     public void updateInventory(Player player) {
         inventory.add(itemStorage.getNewItem());
@@ -629,6 +700,10 @@ public class Player extends Character {
         originalDmg = player.getMyStats().getDmg();
     }
 
+    /**
+     *
+     * @param player
+     */
     //checks the start of the turn if any conditions for special effect from items are met
     public void startOfTurn(Player player) {
         for (Item i : inventory) {
@@ -636,6 +711,9 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Displays the player's inventory of items with their name, stats, and description
+     */
     //prints out the inventory of all the items with their name, stats, and description
     public void displayInventory() {
         System.out.println("Displaying inventory...");
@@ -646,12 +724,18 @@ public class Player extends Character {
         }
     }
 
-
+    /**
+     * Returns the number of special attacks
+     * @return specialAttack
+     */
 	public int getSpecialAttack() {
         return specialAttack;
     }
 
-
+    /**
+     * Main method to test player and display their stats
+     * @param args
+     */
     public static void main(String[] args) {
         // Test
         Player player = new Player("Zero");

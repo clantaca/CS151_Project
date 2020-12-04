@@ -6,6 +6,10 @@ import coolGame.model.character.Player;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View that displays all the stats of the player or enemy that would include their hp, damages, resistances, etc.
+ */
+
 public class StatView extends JFrame {
 
     private Player player;
@@ -59,6 +63,12 @@ public class StatView extends JFrame {
     private JLabel eLResLabel;
     private JLabel fullPanel;
 
+    /**
+     * Constructor that would initialize the player and enemy, creating a background image, and all the necessary
+     * labels that would display their stats
+     * @param player
+     * @param enemy
+     */
     public StatView(Player player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
@@ -79,6 +89,14 @@ public class StatView extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Constructor that includes initialized in the parameter that would indicate what stats the player wants to view.
+     * If it is initialized, then the stats of the player would be displayed.
+     *
+     * @param player
+     * @param enemy
+     * @param initialized - indicates whether you are viewing player or enemy stats
+     */
     public StatView(Player player, Enemy enemy, boolean initialized) {
 
         this.player = player;
@@ -100,6 +118,9 @@ public class StatView extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Creates the initial frame of StatView by setting the size and title
+     */
     private void createView() {
 
         this.setSize(fWidth, fHeight);
@@ -108,6 +129,9 @@ public class StatView extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Creates the north portion of the frame that would display the gif and name of the enemy/player
+     */
     // displays which stats you are viewing
     private void createNorth() {
         constraints = new GridBagConstraints();
@@ -140,6 +164,10 @@ public class StatView extends JFrame {
         }
     }
 
+    /**
+     * Creates the west portion of the frame that displays the health, mana, and armor for the player and the health,
+     * armor, and power for the enemy
+     */
     // displays basic stats and character image
     private void createWest() {
         constraints = new GridBagConstraints();
@@ -176,6 +204,9 @@ public class StatView extends JFrame {
         }
     }
 
+    /**
+     * Creates the center portion of the frame that displays all the damages for the enemy/player
+     */
     // displays Attack Damage
     private void createCenter() {
         constraints = new GridBagConstraints();
@@ -223,6 +254,9 @@ public class StatView extends JFrame {
         }
     }
 
+    /**
+     * Creates the east portion of the frame that displays all the resistances of the enemy/player
+     */
     // displays Resistances
     private void createEast() {
 
@@ -265,6 +299,9 @@ public class StatView extends JFrame {
         }
     }
 
+    /**
+     * Resets/updates all the stats of the player/enemy during combat
+     */
     public void resetStats() {
 
         if (initialized) {
@@ -305,19 +342,18 @@ public class StatView extends JFrame {
 
     }
 
-
-    public Boolean getInitialized() {
-        return initialized;
-    }
-
-    public void setInitialized(Boolean initialized) {
-        this.initialized = initialized;
-    }
-
+    /**
+     * Sets the variable enemy as enemy in parameter
+     * @param enemy
+     */
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
 
+    /**
+     * Main test for StatView to display the player, "Zero's" Stats
+     * @param args
+     */
     public static void main(String[] args) {
 
         new StatView(new Player("Zero"), new Enemy(1));

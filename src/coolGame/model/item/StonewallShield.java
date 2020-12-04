@@ -3,14 +3,29 @@ package coolGame.model.item;
 import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
+/**
+ * Model that constructs an item, Stone Wall Shield, that the player could obtain/utilize during combat
+ */
 public class StonewallShield extends Stats implements Item {
 
     Item item;
+
+    /**
+     * Returns a random integer given a minimum and maximum number
+     * @param max
+     * @param min
+     * @return randomInt
+     */
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
+
     private Stats itemStats = new Stats();
 
+    /**
+     * Constructor that initializes the stats (HP, armor, resistances) of the item with a randomized int
+     * @param item
+     */
     public StonewallShield(Item item) {
         itemStats.setDmg(randomInt(7,1));
         itemStats.setHp(randomInt(30,20));
@@ -22,16 +37,28 @@ public class StonewallShield extends Stats implements Item {
         this.item = item;
     }
 
+    /**
+     * Returns the name of item
+     * @return name
+     */
     @Override
     public String getName() {
         return item.getName() + "Stonewall's Shield";
     }
 
+    /**
+     * Returns the description of item
+     * @return description
+     */
     @Override
     public String getDescription() {
         return "On every 3rd turn, ignore all damage taken." + item.getDescription();
     }
 
+    /**
+     * Updates/Adds the stats of the player according the the item's stats
+     * @param player
+     */
     @Override
     public void updatePlayerStats(Player player) {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
@@ -43,6 +70,10 @@ public class StonewallShield extends Stats implements Item {
         player.getMyStats().setpRes(player.getMyStats().getpRes() + itemStats.getpRes());
         player.getMyStats().setlRes(player.getMyStats().getlRes() + itemStats.getlRes());
     }
+
+    /**
+     * Displays the stats of the items that include the physical damage, health, armor and resistances
+     */
     @Override
     public void itemStats() {
         System.out.println("+" + itemStats.getDmg() + " Physical Damage");
@@ -54,6 +85,11 @@ public class StonewallShield extends Stats implements Item {
         System.out.println("+" + itemStats.getpRes() + " Poison Resistance");
     }
 
+    /**
+     * Constructs the special effect of the item;
+     * Ignores all damage every third turn
+     * @param player
+     */
     //ignore all damage every 3rd turn
     @Override
     public void specialEffect(Player player) {

@@ -3,14 +3,28 @@ package coolGame.model.item;
 import coolGame.model.Stats;
 import coolGame.model.character.Player;
 
+/**
+ * Model that constructs an item, Bloodlust Guantlets, that the player could obtain/utilize during combat
+ */
 public class BloodlustGauntlets implements Item {
 
     Item item;
     private Stats itemStats = new Stats();
+
+    /**
+     * Returns a random integer given a minimum and maximum number
+     * @param max
+     * @param min
+     * @return randomInt
+     */
     public int randomInt(int max, int min) {
         return (int) (Math.random()*(max-min))+min;
     }
 
+    /**
+     * Constructor that initializes the stats (hp, armor, damage, resistances) of the item with a randomized int
+     * @param item
+     */
     public BloodlustGauntlets(Item item) {
         itemStats.setDmg(randomInt(25,10));
         itemStats.setHp(randomInt(0,-30));
@@ -22,6 +36,9 @@ public class BloodlustGauntlets implements Item {
         this.item = item;
     }
 
+    /**
+     * Displays the stats of the items that include the hp, damage, armor, and resistances
+     */
     @Override
     public void itemStats() {
         System.out.println("" + itemStats.getHp() + " HP");
@@ -33,6 +50,10 @@ public class BloodlustGauntlets implements Item {
         System.out.println("" + itemStats.getpRes() + " Poison Resistance");
     }
 
+    /**
+     * Updates/Adds the stats of the player according the the item's stats
+     * @param player
+     */
     @Override
     public void updatePlayerStats(Player player) {
         player.getMyStats().setDmg(player.getMyStats().getDmg() + itemStats.getDmg());
@@ -46,16 +67,29 @@ public class BloodlustGauntlets implements Item {
 
     }
 
+    /**
+     * Returns the name of item
+     * @return name
+     */
     @Override
     public String getName() {
         return item.getName() + "Bloodlust Gauntlets";
     }
 
+    /**
+     * Returns description of item
+     * @return description
+     */
     @Override
     public String getDescription() {
         return "While below 75%/50%/25% health, increase damage by 10/20/30 respectively." + item.getDescription();
     }
 
+    /**
+     * Constructs the special effect of the item;
+     * When the player is at 75% / 50% / 25% of their max health, the damage increases
+     * @param player
+     */
     //When the player is at 75%/50%/25% of his max health, increase damage
     @Override
     public void specialEffect(Player player) {

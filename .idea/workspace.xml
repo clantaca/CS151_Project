@@ -27,6 +27,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/GameTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/GameTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/PoisonAtkMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/PoisonAtkMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/SouthMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/SouthMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/ValveResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/ValveResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/WestMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/WestMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/controller/viewStatsMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/controller/viewStatsMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/character/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/character/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/BloodlustGauntlets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/BloodlustGauntlets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ItemDec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ItemDec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ItemStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ItemStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ItemTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ItemTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/LightningStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/LightningStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/MageBerserkerGloves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/MageBerserkerGloves.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/PoisonWand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/PoisonWand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/RejuvenatingChestplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/RejuvenatingChestplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/ShortSwordOfPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/ShortSwordOfPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/StonewallShield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/StonewallShield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/SwiftShoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/SwiftShoes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/item/VampireGreatsword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/item/VampireGreatsword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/view/ConsoleOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/ConsoleOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/view/NotificationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/NotificationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coolGame/view/StatView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/StatView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +93,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.StatView">
+  <component name="RunManager" selected="Application.GameTester (1)">
     <configuration name="GameTester (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coolGame.GameTester" />
       <module name="CS151_Project" />
@@ -129,8 +154,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StatView" />
         <item itemvalue="Application.GameTester (1)" />
+        <item itemvalue="Application.StatView" />
         <item itemvalue="Application.GameTester" />
         <item itemvalue="JUnit.BloodlustGauntletsTest" />
         <item itemvalue="JUnit.StonewallShieldTest" />
@@ -155,6 +180,8 @@
       <workItem from="1606077340840" duration="5471000" />
       <workItem from="1606592121252" duration="25000" />
       <workItem from="1606617370645" duration="11647000" />
+      <workItem from="1607009383786" duration="3718000" />
+      <workItem from="1607054092413" duration="7877000" />
     </task>
     <task id="LOCAL-00001" summary="getters and setters">
       <created>1603060975616</created>
@@ -230,28 +257,28 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="479" y="229" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1606484177271" />
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1606959054026">
+    <state width="661" height="117" key="GridCell.Tab.0.bottom" timestamp="1607025581069">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606959054025" />
+    <state width="661" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607025581069" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1606959054025">
+    <state width="661" height="117" key="GridCell.Tab.0.center" timestamp="1607025581068">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606959054025" />
+    <state width="661" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607025581068" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1606959054025">
+    <state width="661" height="117" key="GridCell.Tab.0.left" timestamp="1607025581068">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606959054025" />
+    <state width="661" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607025581068" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1606959054025">
+    <state width="661" height="117" key="GridCell.Tab.0.right" timestamp="1607025581069">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606959054025" />
+    <state width="661" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607025581069" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">
@@ -286,10 +313,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="552" y="333" key="Vcs.Push.Dialog.v2/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1603061128449" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1606592122067">
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1607054111258">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1606592122067" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1607054111258" />
     <state x="387" y="263" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604038799712">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

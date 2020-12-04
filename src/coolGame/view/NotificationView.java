@@ -1,16 +1,13 @@
 package coolGame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.io.PrintStream;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-
+/**
+ * View that displays all the activity that occurs throughout gameplay; essential outputs the printsream onto a textArea that
+ * is called the Activity Log
+ */
 public class NotificationView extends JFrame {
 
     private JTextArea textArea;
@@ -18,6 +15,9 @@ public class NotificationView extends JFrame {
     private JLabel jlabel;
     private JScrollPane scrollPane;
 
+    /**
+     * Constructor that creates the textArea and sets the console output to display on the activity log
+     */
     public NotificationView() {
         super("Activity Log");
 
@@ -47,6 +47,10 @@ public class NotificationView extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Main test to display system.out.print onto the Activity Log
+     * @param args
+     */
     public static void main(String[] args) {
         new NotificationView();
         System.out.println("This is a test");
