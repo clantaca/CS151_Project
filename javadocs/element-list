@@ -1,0 +1,7 @@
+unnamed package
+coolGame
+coolGame.controller
+coolGame.model
+coolGame.model.character
+coolGame.model.item
+coolGame.view

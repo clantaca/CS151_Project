@@ -26,8 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="updated readme file">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="f4167fe5-df8c-4bb2-88d4-23ff0bf66f0d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/model/character/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/model/character/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coolGame/view/ConsoleOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coolGame/view/ConsoleOutput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +72,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="JUnit.ShortSwordOfPowerTest">
-    <configuration name="RejuvenatingChestplateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CS151_Project" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RejuvenatingChestplateTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JAR Application.CoolGame.jar">
     <configuration name="ShortSwordOfPowerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS151_Project" />
       <option name="PACKAGE_NAME" value="" />
@@ -116,20 +109,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CoolGame.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/Runnable jar inside this folder/CoolGame.jar" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="JUnit.RejuvenatingChestplateTest" />
       <item itemvalue="JUnit.ShortSwordOfPowerTest" />
       <item itemvalue="JUnit.StonewallShieldTest" />
       <item itemvalue="JUnit.SwiftShoesTest" />
       <item itemvalue="JUnit.VampireGreatswordTest" />
+      <item itemvalue="JAR Application.CoolGame.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.CoolGame.jar" />
         <item itemvalue="JUnit.ShortSwordOfPowerTest" />
         <item itemvalue="JUnit.SwiftShoesTest" />
         <item itemvalue="JUnit.VampireGreatswordTest" />
         <item itemvalue="JUnit.StonewallShieldTest" />
-        <item itemvalue="JUnit.RejuvenatingChestplateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -237,28 +234,40 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="479" y="229" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1606484177271" />
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1607103190268">
+    <state x="430" y="93" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1607201079875">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607103190268" />
+    <state x="430" y="93" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1607201079875" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1607201268306">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1607201268306" />
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1607201071552">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607201071552" />
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom" timestamp="1607201150057">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="117" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607201150057" />
     <state width="1815" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.bottom/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1607103190267">
+    <state width="1323" height="117" key="GridCell.Tab.0.center" timestamp="1607201150057">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607103190267" />
+    <state width="1323" height="117" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607201150057" />
     <state width="1815" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.center/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1607103190267">
+    <state width="1323" height="117" key="GridCell.Tab.0.left" timestamp="1607201150056">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607103190267" />
+    <state width="1323" height="117" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607201150056" />
     <state width="1815" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.left/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
-    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1607103190268">
+    <state width="1323" height="117" key="GridCell.Tab.0.right" timestamp="1607201150057">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607103190268" />
+    <state width="1323" height="117" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607201150057" />
     <state width="1815" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@-1858.113.1858.1080" timestamp="1604349572447" />
     <state width="1877" height="335" key="GridCell.Tab.0.right/0.0.1920.1200/-1858.113.1858.1080@0.0.1920.1200" timestamp="1604335193729" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606079857608">
@@ -310,10 +319,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="387" y="263" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.738@0.0.1366.738" timestamp="1604038799712" />
-    <state x="492" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607098520994">
+    <state x="492" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607201213281">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="492" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1607098520994" />
+    <state x="492" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1607201213281" />
     <state x="-1716" y="90" width="1430" height="1167" maximized="true" key="dock-window-1" timestamp="1604252958573">
       <screen x="-1858" y="113" width="1858" height="1080" />
     </state>

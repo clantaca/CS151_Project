@@ -136,7 +136,7 @@ public class Player extends Character {
     /**
      * Returns whether the player has lightning debuff on/off
      *
-     * @return
+     * @return hasLightningDebuff
      */
     public boolean getHasLightningDebuff() {
         return hasLightningDebuff;
